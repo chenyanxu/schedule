@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.3.0" name="kalix-features-schedule-1.0.0">
+    <!--<repository>mvn:org.apache.shiro/shiro-features/${shiro.version}/xml/features</repository>-->
+    <feature name="schedule-all" version="1.0">
+        <feature>schedule-core</feature>
+        <feature>schedule-system</feature>
+        <feature>schedule-personalplan</feature>
+        <feature>schedule-departmentplan</feature>
+    </feature>
+
+    <feature name="schedule-core" version="1.0">
+        <bundle>mvn:com.kalix.schedule.core/schedule-core-web/${parent.version}</bundle>
+    </feature>
+
+    <feature name="schedule-system" version="1.0">
+        <feature>schedule-system-dict</feature>
+    </feature>
+
+    <feature name="schedule-system-dict" version="1.0">
+        <bundle>mvn:com.kalix.schedule.system.dict/schedule-system-dict-entities/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.system.dict/schedule-system-dict-api/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.system.dict/schedule-system-dict-dao/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.system.dict/schedule-system-dict-biz/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.system.dict/schedule-system-dict-rest/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.system.dict/schedule-system-dict-web/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.system.dict/schedule-system-dict-extjs/${parent.version}</bundle>
+    </feature>
+
+    <feature name="schedule-workflow" version="1.0">
+        <feature>schedule-workflow-carapply</feature>
+        <feature>schedule-workflow-employapply</feature>
+        <feature>schedule-workflow-meetingapply</feature>
+        <feature>schedule-workflow-recruitapply</feature>
+        <feature>schedule-workflow-sealapply</feature>
+    </feature>
+
+    <feature name="schedule-workflow-carapply" version="1.0">
+        <bundle>mvn:com.kalix.schedule.workflow.carapply/schedule-workflow-carapply-entities/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.carapply/schedule-workflow-carapply-api/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.carapply/schedule-workflow-carapply-dao/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.carapply/schedule-workflow-carapply-biz/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.carapply/schedule-workflow-carapply-rest/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.carapply/schedule-workflow-carapply-web/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.carapply/schedule-workflow-carapply-extjs/${parent.version}</bundle>
+    </feature>
+
+    <feature name="schedule-workflow-employapply" version="1.0">
+        <bundle>mvn:com.kalix.schedule.workflow.employapply/schedule-workflow-employapply-entities/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.employapply/schedule-workflow-employapply-api/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.employapply/schedule-workflow-employapply-dao/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.employapply/schedule-workflow-employapply-biz/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.employapply/schedule-workflow-employapply-rest/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.employapply/schedule-workflow-employapply-web/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.employapply/schedule-workflow-employapply-extjs/${parent.version}</bundle>
+    </feature>
+
+    <feature name="schedule-workflow-meetingapply" version="1.0">
+        <bundle>mvn:com.kalix.schedule.workflow.meetingapply/schedule-workflow-meetingapply-entities/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.meetingapply/schedule-workflow-meetingapply-api/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.meetingapply/schedule-workflow-meetingapply-dao/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.meetingapply/schedule-workflow-meetingapply-biz/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.meetingapply/schedule-workflow-meetingapply-rest/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.meetingapply/schedule-workflow-meetingapply-web/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.meetingapply/schedule-workflow-meetingapply-extjs/${parent.version}</bundle>
+    </feature>
+
+    <feature name="schedule-workflow-recruitapply" version="1.0">
+        <bundle>mvn:com.kalix.schedule.workflow.recruitapply/schedule-workflow-recruitapply-entities/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.recruitapply/schedule-workflow-recruitapply-api/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.recruitapply/schedule-workflow-recruitapply-dao/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.recruitapply/schedule-workflow-recruitapply-biz/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.recruitapply/schedule-workflow-recruitapply-rest/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.recruitapply/schedule-workflow-recruitapply-web/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.recruitapply/schedule-workflow-recruitapply-extjs/${parent.version}</bundle>
+    </feature>
+
+    <feature name="schedule-workflow-sealapply" version="1.0">
+        <bundle>mvn:com.kalix.schedule.workflow.sealapply/schedule-workflow-sealapply-entities/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.sealapply/schedule-workflow-sealapply-api/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.sealapply/schedule-workflow-sealapply-dao/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.sealapply/schedule-workflow-sealapply-biz/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.sealapply/schedule-workflow-sealapply-rest/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.sealapply/schedule-workflow-sealapply-web/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.workflow.sealapply/schedule-workflow-sealapply-extjs/${parent.version}</bundle>
+    </feature>
+
+    <feature name="schedule-usecase" version="1.0">
+        <feature>schedule-usecase-candidate</feature>
+        <feature>schedule-usecase-interview</feature>
+    </feature>
+
+    <feature name="schedule-usecase-candidate" version="1.0">
+        <bundle>mvn:com.kalix.schedule.usecase.candidate/schedule-usecase-candidate-entities/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.usecase.candidate/schedule-usecase-candidate-api/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.usecase.candidate/schedule-usecase-candidate-dao/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.usecase.candidate/schedule-usecase-candidate-biz/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.usecase.candidate/schedule-usecase-candidate-rest/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.usecase.candidate/schedule-usecase-candidate-web/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.usecase.candidate/schedule-usecase-candidate-extjs/${parent.version}</bundle>
+    </feature>
+
+    <feature name="schedule-usecase-interview" version="1.0">
+        <bundle>mvn:com.kalix.schedule.usecase.interview/schedule-usecase-interview-entities/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.usecase.interview/schedule-usecase-interview-api/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.usecase.interview/schedule-usecase-interview-dao/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.usecase.interview/schedule-usecase-interview-biz/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.usecase.interview/schedule-usecase-interview-rest/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.usecase.interview/schedule-usecase-interview-web/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.usecase.interview/schedule-usecase-interview-extjs/${parent.version}</bundle>
+    </feature>
+</features>
