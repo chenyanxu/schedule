@@ -14,6 +14,8 @@
 
     <modules>
         <module>core-parent</module>
+        <module>system-parent</module>
+        <module>plan-parent</module>
         <module>karaf-features</module>
     </modules>
     <build>
