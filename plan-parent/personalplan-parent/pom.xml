@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress ALL -->
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.kalix.schedule.plan</groupId>
+        <artifactId>plan-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.kalix.schedule.plan.personalplan</groupId>
+    <artifactId>personalplan-parent</artifactId>
+    <name>Kalix Schedule Plan PersonalPlan Parent</name>
+    <packaging>pom</packaging>
+    <modules>
+        <module>schedule-plan-personalplan-api</module>
+        <module>schedule-plan-personalplan-biz</module>
+        <module>schedule-plan-personalplan-dao</module>
+        <module>schedule-plan-personalplan-entities</module>
+        <module>schedule-plan-personalplan-extjs</module>
+        <module>schedule-plan-personalplan-rest</module>
+        <module>schedule-plan-personalplan-web</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.kalix.admin.core</groupId>
+                <artifactId>admin-core-entities</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.kalix.schedule.plan.personalplan</groupId>
+                <artifactId>schedule-plan-personalplan-api</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kalix.schedule.plan.personalplan</groupId>
+                <artifactId>schedule-plan-personalplan-entities</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
