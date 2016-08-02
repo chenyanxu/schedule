@@ -19,7 +19,7 @@
                 <to uri="bean:scheduleDictBeanService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
             </get>
 
-            <post id="route-addScheduleDict" type="ScheduleDictBean"
+            <post id="route-addScheduleDict" type="com.kalix.schedule.system.dict.entities.ScheduleDictBean"
                   outType="com.kalix.framework.core.api.persistence.JsonStatus">
                 <description>Create a ScheduleDict</description>
                 <to uri="bean:scheduleDictBeanService?method=saveEntity"/>
@@ -27,12 +27,12 @@
         </rest>
         <rest path="/schedule/dicts/{id}" consumes="application/json;charset=utf-8" produces="application/json">
 
-            <get  id="route-getScheduleDict" type="ScheduleDictBean">
+            <get  id="route-getScheduleDict" type="com.kalix.schedule.system.dict.entities.ScheduleDictBean">
                 <description>Find ScheduleDict by id</description>
                 <to uri="bean:scheduleDictBeanService?method=getEntity(${header.id})"/>
             </get>
 
-            <put  id="route-updateScheduleDict" type="ScheduleDictBean"
+            <put  id="route-updateScheduleDict" type="com.kalix.schedule.system.dict.entities.ScheduleDictBean"
                   outType="com.kalix.framework.core.api.persistence.JsonStatus">
                 <description>Updates a ScheduleDict</description>
                 <to uri="bean:scheduleDictBeanService?method=updateEntity"/>

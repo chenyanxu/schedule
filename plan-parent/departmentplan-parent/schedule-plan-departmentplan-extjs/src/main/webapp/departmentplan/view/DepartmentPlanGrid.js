@@ -7,7 +7,8 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
     extend: 'kalix.view.components.common.BaseGrid',
     requires: [
         'kalix.plan.departmentplan.controller.DepartmentPlanGridController',
-        'kalix.plan.departmentplan.store.DepartmentPlanStore'
+        'kalix.plan.departmentplan.store.DepartmentPlanStore',
+        'kalix.schedule.scheduleDict.component.ScheduleDictGridColumn'
     ],
     alias: 'widget.departmentplanGrid',
     xtype: 'departmentplanGridPanel',
@@ -23,7 +24,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
 
     //todo 在此修改grid显示列
     columns: {
-        defaults: {flex: 1,renderer: 'addTooltip'},
+        defaults: {flex: 1, renderer: 'addTooltip'},
         items: [
             {
                 xtype: "rownumberer",
@@ -31,52 +32,61 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
                 width: 50,
                 flex: 0,
                 align: 'center',
-                renderer:this.update
+                renderer: this.update
             },
             {
                 text: '编号',
                 dataIndex: 'id',
                 hidden: true
             },
-            	{
-            		text: '用户ID',
-            		dataIndex: 'userId'
-            	},
-            	{
-            		text: '用户姓名',
-            		dataIndex: 'userName'
-            	},
-            	{
-            		text: '性别',
-            		dataIndex: 'departmentId'
-            	},
-            	{
-            		text: '用户姓名',
-            		dataIndex: 'departmentName'
-            	},
-            	{
-            		text: '计划标题',
-            		dataIndex: 'title'
-            	},
-            	{
-            		text: '计划内容',
-            		dataIndex: 'content'
-            	},
-            	{
-            		text: '计划类型',
-            		dataIndex: 'planType'
-            	},
-            	{
-            		text: '计划开始时间',
-            		dataIndex: 'beginDate',
-            		xtype: 'datecolumn',
-            		format: 'Y-m-d',		renderer:null
-            	},
-            	{
-            		text: '计划结束时间',
-            		dataIndex: 'endDate'
-            	},
-
+            {
+                text: '用户ID',
+                dataIndex: 'userId',
+                hidden: true
+            },
+            {
+                text: '用户姓名',
+                dataIndex: 'userName',
+                hidden: true
+            },
+            {
+                text: '部门ID',
+                dataIndex: 'departmentId',
+                hidden: true
+            },
+            {
+                text: '部门名称',
+                dataIndex: 'departmentName',
+                hidden: true
+            },
+            {
+                text: '计划标题',
+                dataIndex: 'title'
+            },
+            {
+                text: '计划类型',
+                xtype: 'scheduleDictGridColumn',
+                dictType: '计划类型',
+                dataIndex: 'planType'
+            },
+            {
+                text: '计划开始时间',
+                dataIndex: 'beginDate',
+                xtype: 'datecolumn',
+                format: 'Y-m-d', renderer: null
+            },
+            {
+                text: '计划结束时间',
+                dataIndex: 'endDate',
+                xtype: 'datecolumn',
+                format: 'Y-m-d', renderer: null
+            },
+            {
+                text: '计划状态',
+                xtype: 'scheduleDictGridColumn',
+                dictType: '计划状态',
+                dataIndex: 'state'
+            },
             {
                 xtype: 'securityGridColumnCommon',
                 //todo change permission
@@ -110,7 +120,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
             {
                 text: '添加',
                 xtype: 'button',
-                iconCls:'iconfont icon-add',
+                iconCls: 'iconfont icon-add',
                 permission: '',
                 handler: 'onAdd'
             }

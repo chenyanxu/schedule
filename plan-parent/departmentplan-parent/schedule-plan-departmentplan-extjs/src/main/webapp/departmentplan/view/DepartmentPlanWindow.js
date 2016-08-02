@@ -7,7 +7,8 @@
 Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
     extend: 'kalix.view.components.common.BaseWindow',
     requires: [
-        'kalix.controller.BaseWindowController'
+        'kalix.controller.BaseWindowController',
+		'kalix.schedule.scheduleDict.component.ScheduleDictCombobox'
     ],
     alias: 'widget.departmentplanWindow',
     controller: {
@@ -23,6 +24,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
                 	{
                 		fieldLabel: '用户ID',
                 		allowBlank: false,
+						hidden: true,
                 		bind: {
                 			value: '{rec.userId}'
                 		}
@@ -30,20 +32,23 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
                 	{
                 		fieldLabel: '用户姓名',
                 		allowBlank: false,
+						hidden: true,
                 		bind: {
                 			value: '{rec.userName}'
                 		}
                 	},
                 	{
-                		fieldLabel: '性别',
+                		fieldLabel: '部门ID',
                 		allowBlank: false,
+						hidden: true,
                 		bind: {
                 			value: '{rec.departmentId}'
                 		}
                 	},
                 	{
-                		fieldLabel: '用户姓名',
+                		fieldLabel: '部门名称',
                 		allowBlank: false,
+						hidden: true,
                 		bind: {
                 			value: '{rec.departmentName}'
                 		}
@@ -58,12 +63,15 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
                 	{
                 		fieldLabel: '计划内容',
                 		allowBlank: false,
+						xtype: 'textarea',
                 		bind: {
                 			value: '{rec.content}'
                 		}
                 	},
                 	{
                 		fieldLabel: '计划类型',
+						xtype: 'scheduleDictCombobox',
+						dictType: '计划类型',
                 		allowBlank: false,
                 		bind: {
                 			value: '{rec.planType}'
@@ -81,8 +89,19 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
                 	{
                 		fieldLabel: '计划结束时间',
                 		allowBlank: false,
+						xtype: 'datefield',
+						format: 'Y-m-d',
                 		bind: {
                 			value: '{rec.endDate}'
+                		}
+                	},
+                	{
+                		fieldLabel: '计划状态',
+						xtype: 'scheduleDictCombobox',
+						dictType: '计划状态',
+                		allowBlank: false,
+                		bind: {
+                			value: '{rec.state}'
                 		}
                 	}
             ]

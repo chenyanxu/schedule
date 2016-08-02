@@ -28,11 +28,11 @@ public class DepartmentPlanBean extends PersistentEntity {
      */
     private String userName;
     /**
-     * @describe 性别
+     * @describe 部门ID
      */
     private long departmentId;
     /**
-     * @describe 用户姓名
+     * @describe 部门名称
      */
     private String departmentName;
     /**
@@ -55,7 +55,12 @@ public class DepartmentPlanBean extends PersistentEntity {
     /**
      * @describe 计划结束时间
      */
-    private String endDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date endDate;
+    /**
+     * @describe 计划状态
+     */
+    private String state;
 
     public long getUserId() {
         return this.userId;
@@ -121,13 +126,19 @@ public class DepartmentPlanBean extends PersistentEntity {
         this.beginDate = beginDate;
     }
 
-    public String getEndDate() {
-        return this.endDate;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
+    public String getState() {
+        return state;
+    }
 
+    public void setState(String state) {
+        this.state = state;
+    }
 }

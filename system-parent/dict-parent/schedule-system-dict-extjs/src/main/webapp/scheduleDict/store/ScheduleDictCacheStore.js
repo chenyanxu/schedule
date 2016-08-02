@@ -10,7 +10,7 @@ Ext.define('kalix.schedule.scheduleDict.store.ScheduleDictCacheStore', {
     xtype: 'scheduleDictCacheStore',
     storeId: 'scheduleDictCacheStore',
     pageSize:0,
-    autoLscheduled:true,
+    autoLoad:true,
     singleton: true,
     proxyUrl: CONFIG.restRoot + '/camel/rest/schedule/dicts/cache/list'
 });

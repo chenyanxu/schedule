@@ -12,4 +12,8 @@
         <bean class="com.kalix.schedule.core.web.impl.module.PlanManagerModuleImpl"/>
     </service>
 
+    <!--系统管理模块-->
+    <service interface="com.kalix.framework.core.api.web.IModule">
+        <bean class="com.kalix.schedule.core.web.impl.module.ScheduleSystemModuleImpl"/>
+    </service>
 </blueprint>

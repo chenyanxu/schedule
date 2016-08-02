@@ -14,7 +14,8 @@ Ext.define('kalix.plan.departmentplan.Main', {
         {
             title: '部门计划查询',
             xtype: 'departmentplanSearchForm'
-        }, {
+        },
+        {
             xtype: 'departmentplanGridPanel',
             id: 'departmentplanGridPanel',
             title: '部门计划列表',
