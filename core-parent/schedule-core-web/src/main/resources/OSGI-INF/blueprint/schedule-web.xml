@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
+    <!--计划任务应用-->
+    <service interface="com.kalix.framework.core.api.web.IApplication">
+        <bean class="com.kalix.schedule.core.web.impl.app.ScheduleApplicationImpl"/>
+    </service>
+
+    <!--计划管理模块-->
+    <service interface="com.kalix.framework.core.api.web.IModule">
+        <bean class="com.kalix.schedule.core.web.impl.module.PlanManagerModuleImpl"/>
+    </service>
+
+</blueprint>

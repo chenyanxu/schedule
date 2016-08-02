@@ -12,6 +12,9 @@
     <name>Kalix Schedule Parent</name>
     <packaging>pom</packaging>
 
+    <modules>
+        <module>core-parent</module>
+    </modules>
     <build>
         <plugins>
             <plugin>
