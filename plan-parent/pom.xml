@@ -14,7 +14,7 @@
     <name>Kalix Schedule Plan Parent</name>
     <modules>
         <module>departmentplan-parent</module>
+        <module>personalplan-parent</module>
     </modules>
     <packaging>pom</packaging>
-
 </project>
