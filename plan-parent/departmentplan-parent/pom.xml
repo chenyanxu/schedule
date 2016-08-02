@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress ALL -->
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.kalix.schedule.plan</groupId>
+        <artifactId>plan-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.kalix.schedule.plan.departmentplan</groupId>
+    <artifactId>departmentplan-parent</artifactId>
+    <name>Kalix Schedule Plan DepartmentPlan Parent</name>
+    <packaging>pom</packaging>
+    <modules>
+        <module>schedule-plan-departmentplan-api</module>
+        <module>schedule-plan-departmentplan-biz</module>
+        <module>schedule-plan-departmentplan-dao</module>
+        <module>schedule-plan-departmentplan-entities</module>
+        <module>schedule-plan-departmentplan-extjs</module>
+        <module>schedule-plan-departmentplan-rest</module>
+        <module>schedule-plan-departmentplan-web</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.kalix.admin.core</groupId>
+                <artifactId>admin-core-entities</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.kalix.schedule.plan.departmentplan</groupId>
+                <artifactId>schedule-plan-departmentplan-api</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kalix.schedule.plan.departmentplan</groupId>
+                <artifactId>schedule-plan-departmentplan-entities</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

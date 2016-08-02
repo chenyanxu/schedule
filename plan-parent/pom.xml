@@ -12,6 +12,9 @@
     <groupId>com.kalix.schedule.plan</groupId>
     <artifactId>plan-parent</artifactId>
     <name>Kalix Schedule Plan Parent</name>
+    <modules>
+        <module>departmentplan-parent</module>
+    </modules>
     <packaging>pom</packaging>
 
 </project>
