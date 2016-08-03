@@ -45,7 +45,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
                 hidden: true
             },
             {
-                text: '用户姓名',
+                text: '用户名称',
                 dataIndex: 'userName',
                 hidden: true
             },
@@ -64,12 +64,6 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
                 dataIndex: 'title'
             },
             {
-                text: '计划类型',
-                xtype: 'scheduleDictGridColumn',
-                dictType: '计划类型',
-                dataIndex: 'planType'
-            },
-            {
                 text: '计划开始时间',
                 dataIndex: 'beginDate',
                 xtype: 'datecolumn',
@@ -85,7 +79,19 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
                 text: '计划状态',
                 xtype: 'scheduleDictGridColumn',
                 dictType: '计划状态',
-                dataIndex: 'state'
+                dataIndex: 'state', renderer: null
+            },
+            {
+                text: '最近更新',
+                dataIndex: 'updateDate',
+                xtype: 'datecolumn',
+                format: 'Y-m-d', renderer: null
+            },
+            {
+                text: '计划类型',
+                xtype: 'scheduleDictGridColumn',
+                dictType: '计划类型',
+                dataIndex: 'planType', renderer: null
             },
             {
                 xtype: 'securityGridColumnCommon',
@@ -109,6 +115,12 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
                         permission: '',
                         tooltip: '删除',
                         handler: 'onDelete'
+                    },
+                    {
+                        iconCls: 'iconfont icon-attachment-column',
+                        permission: '',
+                        tooltip: '附件管理',
+                        handler: 'onAttachmentManage'
                     }
                 ]
             }

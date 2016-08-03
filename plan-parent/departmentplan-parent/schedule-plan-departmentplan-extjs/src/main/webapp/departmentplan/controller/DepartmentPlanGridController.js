@@ -6,5 +6,8 @@
  */
 Ext.define('kalix.plan.departmentplan.controller.DepartmentPlanGridController', {
     extend: 'kalix.controller.BaseGridController',
-    alias: 'controller.departmentplanGridController'
+    alias: 'controller.departmentplanGridController',
+    mixins: {
+        attachment: 'kalix.attachment.common.mixins.Attachment'
+    }
 });

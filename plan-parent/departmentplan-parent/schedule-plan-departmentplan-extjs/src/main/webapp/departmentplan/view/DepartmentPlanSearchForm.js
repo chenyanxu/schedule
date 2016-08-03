@@ -27,7 +27,8 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchForm', {
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
-            name: 'userName'
+            name: 'userName',
+            hidden: true
         },
         {
             xtype: 'textfield',
@@ -44,7 +45,8 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchForm', {
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
-            name: 'departmentName'
+            name: 'departmentName',
+            hidden: true
         },
         {
             xtype: 'textfield',
