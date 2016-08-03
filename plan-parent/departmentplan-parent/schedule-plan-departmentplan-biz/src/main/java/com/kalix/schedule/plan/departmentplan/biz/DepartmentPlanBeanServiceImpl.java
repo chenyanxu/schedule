@@ -28,21 +28,22 @@ public class DepartmentPlanBeanServiceImpl extends ShiroGenericBizServiceImpl<ID
     @Override
     public JsonData getAllEntityByQuery(Integer page, Integer limit, String jsonStr){
         Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
-        //jsonMap.put("userId","1");
-        //jsonMap.put("userName","");
-        //jsonMap.put("departmentId","");
-        //jsonMap.put("departmentName","");
+        Long userId = this.getShiroService().getCurrentUserId();
+        String userName = this.getShiroService().getCurrentUserRealName();
+        jsonMap.put("userId",String.valueOf(userId));
+        jsonMap.put("userName",userName);
+
         String newJsonStr = SerializeUtil.serializeJson(jsonMap);
         return super.getAllEntityByQuery(page,limit,newJsonStr);
     }
 
     @Override
     public JsonStatus saveEntity(DepartmentPlanBean entity) {
+        Long userId = this.getShiroService().getCurrentUserId();
+        String userName = this.getShiroService().getCurrentUserRealName();
 
-        entity.setUserId(0);
-        entity.setUserName("");
-        entity.setDepartmentId(0);
-        entity.setDepartmentName("");
+        entity.setUserId(userId);
+        entity.setUserName(userName);
 
         return super.saveEntity(entity);
     }
