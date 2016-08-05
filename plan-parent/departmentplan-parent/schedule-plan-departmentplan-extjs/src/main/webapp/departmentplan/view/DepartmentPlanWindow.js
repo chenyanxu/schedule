@@ -25,45 +25,33 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
             items: [
                 {
                     fieldLabel: '用户ID',
-                    xtype: 'userTagField',
                     allowBlank: false,
+                    hidden: true,
                     bind: {
                         value: '{rec.userId}'
                     }
                 },
-                //{
-                //    fieldLabel: '用户ID',
-                //    allowBlank: false,
-                //    hidden: true,
-                //    bind: {
-                //        value: '{rec.userId}'
-                //    }
-                //},
-                //{
-                //    fieldLabel: '用户姓名',
-                //    allowBlank: false,
-                //    hidden: true,
-                //    bind: {
-                //        value: '{rec.userName}'
-                //    }
-                //},
-                //{
-                //    fieldLabel: '部门ID',
-                //    allowBlank: false,
-                //    hidden: true,
-                //    bind: {
-                //        value: '{rec.departmentId}'
-                //    }
-                //},
                 {
                     fieldLabel: '部门名称',
                     xtype: 'userOrgComboBox',
-                    //name: 'departmentId',
                     valueField: 'departmentId',
                     displayField: 'departmentName',
                     allowBlank: false,
                     bind: {
                         value: '{rec.departmentId}'
+                    },
+                    listeners:{
+                        'change':function(e,t,options) {
+                            this.lookupViewModel().get('rec').set('departmentName',e.displayTplData[0].departmentName);
+                        }
+                    }
+                },
+                {
+                    fieldLabel: '部门名称',
+                    allowBlank: false,
+                    hidden: true,
+                    bind: {
+                        value: '{rec.departmentName}'
                     }
                 },
                 {
