@@ -23,37 +23,46 @@ Ext.define('kalix.plan.departmentplan.model.DepartmentPlanModel', {
         {
             name: 'departmentId',
             type: 'int',
-            defaultValue: 0
+            defaultValue: 0,
+            validators: [{type: 'presence'}]
         },
         {
             name: 'departmentName',
-            type: 'string'
+            type: 'string',
+            validators: [{type: 'presence'}]
         },
         {
             name: 'title',
-            type: 'string'
+            type: 'string',
+            validators: [{type: 'presence'}]
         },
         {
             name: 'content',
             type: 'string'
+            ,
+            validators: [{type: 'presence'}]
         },
         {
             name: 'planType',
-            type: 'string'
+            type: 'string',
+            validators: [{type: 'presence'}]
         },
         {
             name: 'beginDate',
             type: 'date',
-            dateFormat: 'Y-m-d H:i:s'
+            dateFormat: 'Y-m-d H:i:s',
+            validators: [{type: 'presence'}]
         },
         {
             name: 'endDate',
             type: 'date',
-            dateFormat: 'Y-m-d H:i:s'
+            dateFormat: 'Y-m-d H:i:s',
+            validators: [{type: 'presence'}]
         },
         {
             name: 'state',
-            type: 'string'
+            type: 'string',
+            defaultValue: '0'
         }
     ]
 });

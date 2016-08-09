@@ -83,6 +83,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
                     allowBlank: false,
                     xtype: 'datefield',
                     format: 'Y-m-d',
+                    minValue: new Date(),
                     bind: {
                         value: '{rec.beginDate}'
                     }
@@ -92,19 +93,21 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
                     allowBlank: false,
                     xtype: 'datefield',
                     format: 'Y-m-d',
+                    minValue: new Date(),
                     bind: {
                         value: '{rec.endDate}'
                     }
-                },
-                {
-                    fieldLabel: '计划状态',
-                    xtype: 'scheduleDictCombobox',
-                    dictType: '计划状态',
-                    allowBlank: false,
-                    bind: {
-                        value: '{rec.state}'
-                    }
                 }
+                //,
+                //{
+                //    fieldLabel: '计划状态',
+                //    xtype: 'scheduleDictCombobox',
+                //    dictType: '计划状态',
+                //    allowBlank: false,
+                //    bind: {
+                //        value: '{rec.state}'
+                //    }
+                //}
             ]
         }
     ]
