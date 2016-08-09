@@ -10,5 +10,6 @@ Ext.define('kalix.plan.departmentplan.store.DepartmentPlanStore', {
     alias: 'store.departmentplanStore',
     xtype: 'departmentplanStore',
     storeId: "departmentplanStore",
+    autoLoad: true,
     proxyUrl: '/kalix/camel/rest/departmentplans'
 });
