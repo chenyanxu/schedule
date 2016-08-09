@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <features xmlns="http://karaf.apache.org/xmlns/features/v1.3.0" name="kalix-features-schedule-1.0.0">
     <feature name="schedule-all" version="1.0">
-        <feature>schedule-core</feature>
-        <feature>schedule-system</feature>
-        <feature>schedule-personalplan</feature>
-        <feature>schedule-departmentplan</feature>
+        <feature>core-parent</feature>
+        <feature>system-parent</feature>
+        <feature>plan-parent</feature>
+        <feature>task-parent</feature>
     </feature>
 
-    <feature name="schedule-core" version="1.0">
+    <feature name="core-parent" version="1.0">
         <bundle>mvn:com.kalix.schedule.core/schedule-core-web/${parent.version}</bundle>
         <bundle>mvn:com.kalix.schedule.core/schedule-core-extjs/${parent.version}</bundle>
     </feature>
 
-    <feature name="schedule-system" version="1.0">
+    <feature name="system-parent" version="1.0">
         <feature>schedule-system-dict</feature>
     </feature>
 
@@ -26,11 +26,29 @@
         <bundle>mvn:com.kalix.schedule.system.dict/schedule-system-dict-extjs/${parent.version}</bundle>
     </feature>
 
-    <feature name="schedule-personalplan">
-
+    <feature name="plan-parent" version="1.0">
+        <feature>departmentplan-parent</feature>
     </feature>
-    <feature name="schedule-departmentplan">
-
+    <feature name="task-parent" version="1.0">
+        <feature>assignment-parent</feature>
     </feature>
 
+    <feature name="departmentplan-parent" version="1.0">
+        <bundle>mvn:com.kalix.schedule.plan.departmentplan/schedule-plan-departmentplan-entities/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.departmentplan/schedule-plan-departmentplan-api/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.departmentplan/schedule-plan-departmentplan-dao/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.departmentplan/schedule-plan-departmentplan-biz/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.departmentplan/schedule-plan-departmentplan-rest/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.departmentplan/schedule-plan-departmentplan-web/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.departmentplan/schedule-plan-departmentplan-extjs/${parent.version}</bundle>
+    </feature>
+    <feature name="assignment-parent" version="1.0">
+        <bundle>mvn:com.kalix.schedule.task.assignment/schedule-task-assignment-entities/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.task.assignment/schedule-task-assignment-api/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.task.assignment/schedule-task-assignment-dao/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.task.assignment/schedule-task-assignment-biz/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.task.assignment/schedule-task-assignment-rest/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.task.assignment/schedule-task-assignment-web/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.task.assignment/schedule-task-assignment-extjs/${parent.version}</bundle>
+    </feature>
 </features>
