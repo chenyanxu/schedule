@@ -9,6 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.kalix.schedule.core</groupId>
     <artifactId>core-parent</artifactId>
     <name>Kalix Schedule Core Parent</name>
     <modules>
