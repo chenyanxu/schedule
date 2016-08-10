@@ -13,7 +13,8 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
         'kalix.admin.user.component.UserTagField',
         'kalix.admin.user.component.UserOrgComboBox',
         'kalix.plan.departmentplan.component.DepartmentPlanComboBox',
-        'kalix.task.assignment.component.AssignmentComboBox'
+        'kalix.task.assignment.component.AssignmentComboBox',
+        'kalix.view.components.common.BaseComboBox'
     ],
     alias: 'widget.assignmentWindow',
     controller: {
@@ -84,15 +85,16 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                         'change':function(e,t,options) {
                             if(t=='0'){
                                 Ext.getCmp("schedule_task_assignment_sourceId1").show();
-                                Ext.getCmp("schedule_task_assignment_sourceId2").hide();
+                                Ext.getCmp("schedule_task_assignment_sourceId1").store.proxy.url='/kalix/camel/rest/departmentplans';
+                                Ext.getCmp("schedule_task_assignment_sourceId1").store.load();
                             }
                             else if(t=='1'){
-                                Ext.getCmp("schedule_task_assignment_sourceId1").hide();
-                                Ext.getCmp("schedule_task_assignment_sourceId2").show();
+                                Ext.getCmp("schedule_task_assignment_sourceId1").store.proxy.url='/kalix/camel/rest/assignments';
+                                Ext.getCmp("schedule_task_assignment_sourceId1").store.load();
+                                Ext.getCmp("schedule_task_assignment_sourceId1").show();
                             }
                             else{
                                 Ext.getCmp("schedule_task_assignment_sourceId1").hide();
-                                Ext.getCmp("schedule_task_assignment_sourceId2").hide();
                             }
                         }
                     }
@@ -100,22 +102,16 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                 {
                     fieldLabel: '来源于',
                     id: 'schedule_task_assignment_sourceId1',
-                    xtype: 'departmentPlanComboBox',
-                    allowBlank: false,
+                    xtype: 'baseComboBox',
+                    valueField: 'id',
+                    displayField: 'title',
+                    queryParam: 'title',
+                    modelField:'id',
                     hidden: true,
                     bind: {
                         value: '{rec.sourceId}'
-                    }
-                },
-                {
-                    fieldLabel: '来源于',
-                    id: 'schedule_task_assignment_sourceId2',
-                    xtype: 'assignmentComboBox',
-                    allowBlank: false,
-                    hidden: true,
-                    bind: {
-                        value: '{rec.sourceId}'
-                    }
+                    },
+                    store:Ext.create('kalix.store.BaseStore',{autoLoad:false,proxyUrl: '/kalix/camel/rest/departmentplans'})
                 },
                 {
                     fieldLabel: '内容',

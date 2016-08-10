@@ -42,7 +42,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         List beans = jsonData.getData();
         List ids= BeanUtil.getBeanFieldValueList(beans,"head");
         List values=this.userBeanService.getFieldValuesByIds(ids.toArray(),"name");
-        BeanUtil.setBeanListFieldValues(beans,"head",values);
+        BeanUtil.setBeanListFieldValues(beans,"header",values);
 
         jsonData.setTotalCount((long)beans.size());
         jsonData.setData(beans);

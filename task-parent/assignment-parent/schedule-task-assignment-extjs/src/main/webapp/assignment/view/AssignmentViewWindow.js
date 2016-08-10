@@ -11,7 +11,8 @@ Ext.define('kalix.task.assignment.view.AssignmentViewWindow', {
     requires: [
         'kalix.schedule.scheduleDict.component.ScheduleDictCombobox',
         'kalix.plan.departmentplan.component.DepartmentPlanComboBox',
-        'kalix.task.assignment.component.AssignmentComboBox'
+        'kalix.task.assignment.component.AssignmentComboBox',
+        'kalix.admin.user.component.UserTagField',
     ],
     xtype: "assignmentViewWindow",
     width: 800,
@@ -69,20 +70,34 @@ Ext.define('kalix.task.assignment.view.AssignmentViewWindow', {
                         value: '{rec.sourceType}'
                     }
                 },
-                //{
-                //    fieldLabel: '来源于',
-                //    xtype: 'departmentPlanComboBox',
-                //    allowBlank: false,
-                //    bind: {
-                //        value: '{rec.sourceId}'
-                //    }
-                //},
                 {
                     fieldLabel: '来源于',
-                    xtype: 'assignmentComboBox',
-                    allowBlank: false,
+                    //id: 'schedule_task_assignment_sourceId1',
+                    xtype: 'baseComboBox',
+                    valueField: 'id',
+                    displayField: 'title',
+                    queryParam: 'title',
+                    modelField:'id',
                     bind: {
                         value: '{rec.sourceId}'
+                    },
+                    store:Ext.create('kalix.store.BaseStore',{autoLoad:false,proxyUrl: '/kalix/camel/rest/departmentplans'}),
+                    listeners:{
+                        render:function(target) {
+                            var sourceType=this.lookupViewModel().get('rec').get('sourceType');
+
+                            if(sourceType=="0"){
+                                target.store.proxy.url='/kalix/camel/rest/departmentplans';
+                                target.store.load();
+                            }
+                            else if(sourceType=="1"){
+                                target.store.proxy.url='/kalix/camel/rest/assignments';
+                                target.store.load();
+                            }
+                            else{
+
+                            }
+                        }
                     }
                 },
                 {
@@ -141,6 +156,9 @@ Ext.define('kalix.task.assignment.view.AssignmentViewWindow', {
                 },
                 {
                     fieldLabel: '参与人',
+                    xtype: 'userTagField',
+                    valueField: 'id',
+                    displayField: 'name',
                     allowBlank: false,
                     bind: {
                         value: '{rec.participant}'

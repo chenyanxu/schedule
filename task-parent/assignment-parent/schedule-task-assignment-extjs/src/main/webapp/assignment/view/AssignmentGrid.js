@@ -67,11 +67,12 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                 text: '任务状态',
                 xtype: 'scheduleDictGridColumn',
                 dictType: '任务状态',
-                dataIndex: 'state'
+                dataIndex: 'state',
+                renderer: null
             },
             {
                 text: '负责人',
-                dataIndex: 'head'
+                dataIndex: 'header'
             },
             {
                 text: '布置人',
@@ -86,7 +87,12 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
             },
             {
                 text: '来源于',
-                dataIndex: 'sourceId',
+                dataIndex: 'sourcePlanId',
+                hidden: true
+            },
+            {
+                text: '来源于',
+                dataIndex: 'sourceTaskId',
                 hidden: true
             },
             {

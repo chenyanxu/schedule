@@ -5,6 +5,7 @@ import com.kalix.framework.core.api.persistence.PersistentEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.Date;
 
 /**
@@ -73,6 +74,8 @@ public class AssignmentBean extends PersistentEntity {
      * @describe 负责人
      */
     private String head;
+    @Transient
+    private String header;
     /**
      * @describe 参与人
      */
@@ -188,6 +191,14 @@ public class AssignmentBean extends PersistentEntity {
 
     public void setHead(String head) {
         this.head = head;
+    }
+
+    public String getHeader() {
+        return header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
     }
 
     public String getParticipant() {
