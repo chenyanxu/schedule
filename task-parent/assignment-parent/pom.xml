@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress ALL -->
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.kalix.schedule.task</groupId>
+        <artifactId>task-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.kalix.schedule.task.assignment</groupId>
+    <artifactId>assignment-parent</artifactId>
+    <name>Kalix Schedule Task Assignment Parent</name>
+    <packaging>pom</packaging>
+    <modules>
+        <module>schedule-task-assignment-api</module>
+        <module>schedule-task-assignment-biz</module>
+        <module>schedule-task-assignment-dao</module>
+        <module>schedule-task-assignment-entities</module>
+        <module>schedule-task-assignment-extjs</module>
+        <module>schedule-task-assignment-rest</module>
+        <module>schedule-task-assignment-web</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.kalix.admin.core</groupId>
+                <artifactId>admin-core-entities</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.kalix.schedule.task.assignment</groupId>
+                <artifactId>schedule-task-assignment-api</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kalix.schedule.task.assignment</groupId>
+                <artifactId>schedule-task-assignment-entities</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

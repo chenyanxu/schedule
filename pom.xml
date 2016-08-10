@@ -17,6 +17,7 @@
         <module>system-parent</module>
         <module>plan-parent</module>
         <module>karaf-features</module>
+        <module>task-parent</module>
     </modules>
     <build>
         <plugins>

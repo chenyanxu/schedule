@@ -12,6 +12,11 @@
         <bean class="com.kalix.schedule.core.web.impl.module.PlanManagerModuleImpl"/>
     </service>
 
+    <!--任务管理模块-->
+    <service interface="com.kalix.framework.core.api.web.IModule">
+        <bean class="com.kalix.schedule.core.web.impl.module.TaskManagerModuleImpl"/>
+    </service>
+
     <!--系统管理模块-->
     <service interface="com.kalix.framework.core.api.web.IModule">
         <bean class="com.kalix.schedule.core.web.impl.module.ScheduleSystemModuleImpl"/>
