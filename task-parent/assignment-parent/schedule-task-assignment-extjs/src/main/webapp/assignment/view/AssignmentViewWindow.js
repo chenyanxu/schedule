@@ -12,7 +12,7 @@ Ext.define('kalix.task.assignment.view.AssignmentViewWindow', {
         'kalix.schedule.scheduleDict.component.ScheduleDictCombobox',
         'kalix.plan.departmentplan.component.DepartmentPlanComboBox',
         'kalix.task.assignment.component.AssignmentComboBox',
-        'kalix.admin.user.component.UserTagField',
+        'kalix.admin.user.component.UserTagField'
     ],
     xtype: "assignmentViewWindow",
     width: 800,
@@ -151,7 +151,7 @@ Ext.define('kalix.task.assignment.view.AssignmentViewWindow', {
                     fieldLabel: '负责人',
                     allowBlank: false,
                     bind: {
-                        value: '{rec.head}'
+                        value: '{rec.header}'
                     }
                 },
                 {
