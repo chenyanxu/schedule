@@ -15,131 +15,144 @@ import java.util.Date;
  * @修改时间：
  * @修改备注：
  */
- //todo 修改模型定义
+//todo 修改模型定义
 @Entity
 @Table(name = "schedule_personalplan")
 public class PersonalPlanBean extends PersistentEntity {
-    	/**
-    	*@describe 用户id
-    	*/
-    	private long userId;
-    	/**
-    	*@describe 用户名
-    	*/
-    	private String userName;
-    	/**
-    	*@describe 部门id
-    	*/
-    	private long departmentId;
-    	/**
-    	*@describe 部门名
-    	*/
-    	private String departmentName;
-    	/**
-    	*@describe 标题
-    	*/
-    	private String title;
-    	/**
-    	*@describe 内容
-    	*/
-    	private String content;
-    	/**
-    	*@describe 计划类型
-    	*/
-    	private String planType;
-    	/**
-    	*@describe 计划状态
-    	*/
-    	private String state;
-    	/**
-    	*@describe 开始日期
-    	*/
-    @JsonFormat(shape= JsonFormat.Shape.STRING ,pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    	private Date beginDate;
-    	/**
-    	*@describe 结束日期
-    	*/
-    @JsonFormat(shape= JsonFormat.Shape.STRING ,pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    	private Date endDate;
-    	public long getUserId(){
-    		return this.userId;
-    	}
+    /**
+     * @describe 用户id
+     */
+    private long userId;
+    /**
+     * @describe 用户名
+     */
+    private String userName;
+    /**
+     * @describe 组织机构id
+     */
+    private long orgId;
+    /**
+     * @describe 组织机构code
+     */
+    private String orgCode;
+    /**
+     * @describe 组织机构名
+     */
+    private String orgName;
+    /**
+     * @describe 标题
+     */
+    private String title;
+    /**
+     * @describe 内容
+     */
+    private String content;
+    /**
+     * @describe 计划类型
+     */
+    private String planType;
+    /**
+     * @describe 计划状态
+     */
+    private String state;
+    /**
+     * @describe 开始日期
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date beginDate;
+    /**
+     * @describe 结束日期
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date endDate;
 
-    	public void setUserId(long userId) {
-    		this.userId = userId;
-    	}
+    public long getUserId() {
+        return this.userId;
+    }
 
-    	public String getUserName(){
-    		return this.userName;
-    	}
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
 
-    	public void setUserName(String userName) {
-    		this.userName = userName;
-    	}
+    public String getUserName() {
+        return this.userName;
+    }
 
-    	public long getDepartmentId(){
-    		return this.departmentId;
-    	}
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-    	public void setDepartmentId(long departmentId) {
-    		this.departmentId = departmentId;
-    	}
+    public long getOrgId() {
+        return orgId;
+    }
 
-    	public String getDepartmentName(){
-    		return this.departmentName;
-    	}
+    public void setOrgId(long orgId) {
+        this.orgId = orgId;
+    }
 
-    	public void setDepartmentName(String departmentName) {
-    		this.departmentName = departmentName;
-    	}
+    public String getOrgCode() {
+        return orgCode;
+    }
 
-    	public String getTitle(){
-    		return this.title;
-    	}
+    public void setOrgCode(String orgCode) {
+        this.orgCode = orgCode;
+    }
 
-    	public void setTitle(String title) {
-    		this.title = title;
-    	}
+    public String getOrgName() {
+        return orgName;
+    }
 
-    	public String getContent(){
-    		return this.content;
-    	}
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
+    }
 
-    	public void setContent(String content) {
-    		this.content = content;
-    	}
+    public String getTitle() {
+        return this.title;
+    }
 
-    	public String getPlanType(){
-    		return this.planType;
-    	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-    	public void setPlanType(String planType) {
-    		this.planType = planType;
-    	}
+    public String getContent() {
+        return this.content;
+    }
 
-    	public String getState(){
-    		return this.state;
-    	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-    	public void setState(String state) {
-    		this.state = state;
-    	}
+    public String getPlanType() {
+        return this.planType;
+    }
 
-    	public Date getBeginDate(){
-    		return this.beginDate;
-    	}
+    public void setPlanType(String planType) {
+        this.planType = planType;
+    }
 
-    	public void setBeginDate(Date beginDate) {
-    		this.beginDate = beginDate;
-    	}
+    public String getState() {
+        return this.state;
+    }
 
-    	public Date getEndDate(){
-    		return this.endDate;
-    	}
+    public void setState(String state) {
+        this.state = state;
+    }
 
-    	public void setEndDate(Date endDate) {
-    		this.endDate = endDate;
-    	}
+    public Date getBeginDate() {
+        return this.beginDate;
+    }
+
+    public void setBeginDate(Date beginDate) {
+        this.beginDate = beginDate;
+    }
+
+    public Date getEndDate() {
+        return this.endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
 
 
 }

@@ -7,7 +7,8 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanGrid', {
     extend: 'kalix.view.components.common.BaseGrid',
     requires: [
         'kalix.plan.personalplan.controller.PersonalPlanGridController',
-        'kalix.plan.personalplan.store.PersonalPlanStore'
+        'kalix.plan.personalplan.store.PersonalPlanStore',
+        'kalix.schedule.scheduleDict.component.ScheduleDictGridColumn'
     ],
     alias: 'widget.personalplanGrid',
     xtype: 'personalplanGridPanel',
@@ -49,13 +50,12 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanGrid', {
             	},
             	{
             		text: '部门id',
-            		dataIndex: 'departmentId',
+            		dataIndex: 'orgId',
                     hidden: true
             	},
             	{
             		text: '部门名',
-            		dataIndex: 'departmentName',
-                    hidden: true
+            		dataIndex: 'orgName'
             	},
             	{
             		text: '标题',
@@ -67,12 +67,16 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanGrid', {
                     hidden: true
             	},
             	{
-            		text: '计划类型',
-            		dataIndex: 'planType'
+                    text: '计划类型',
+                    xtype: 'scheduleDictGridColumn',
+                    dictType: '计划类型',
+                    dataIndex: 'planType', renderer: null
             	},
             	{
-            		text: '计划状态',
-            		dataIndex: 'state'
+                    text: '计划状态',
+                    xtype: 'scheduleDictGridColumn',
+                    dictType: '计划状态',
+                    dataIndex: 'state', renderer: null
             	},
             	{
             		text: '开始日期',
@@ -109,6 +113,12 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanGrid', {
                         permission: '',
                         tooltip: '删除',
                         handler: 'onDelete'
+                    },
+                    {
+                        iconCls: 'iconfont icon-attachment-column',
+                        permission: '',
+                        tooltip: '附件管理',
+                        handler: 'onAttachmentManage'
                     }
                 ]
             }

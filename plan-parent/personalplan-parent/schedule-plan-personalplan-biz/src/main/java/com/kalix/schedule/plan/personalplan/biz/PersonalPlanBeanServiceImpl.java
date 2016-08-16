@@ -20,4 +20,11 @@ public class PersonalPlanBeanServiceImpl extends ShiroGenericBizServiceImpl<IPer
     public PersonalPlanBeanServiceImpl() {
         super.init(PersonalPlanBean.class.getName());
     }
+
+    @Override
+    public void beforeSaveEntity(PersonalPlanBean entity, JsonStatus status) {
+        entity.setUserId(this.getShiroService().getCurrentUserId());
+        entity.setUserName(this.getShiroService().getCurrentUserRealName());
+        super.beforeSaveEntity(entity,status);
+    }
 }

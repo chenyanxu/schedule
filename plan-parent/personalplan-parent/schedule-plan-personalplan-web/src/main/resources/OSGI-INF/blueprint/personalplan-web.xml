@@ -5,4 +5,8 @@
     <service interface="com.kalix.framework.core.api.web.IMenu">
         <bean class="com.kalix.schedule.plan.personalplan.web.impl.PersonalPlanMenuImpl"/>
     </service>
+
+    <service interface="com.kalix.framework.core.api.web.IMenu">
+        <bean class="com.kalix.schedule.plan.personalplan.web.impl.PersonalPlanSearchMenuImpl"/>
+    </service>
 </blueprint>
