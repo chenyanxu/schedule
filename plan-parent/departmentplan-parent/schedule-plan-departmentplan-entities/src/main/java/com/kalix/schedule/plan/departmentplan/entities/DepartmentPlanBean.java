@@ -30,11 +30,15 @@ public class DepartmentPlanBean extends PersistentEntity {
     /**
      * @describe 部门ID
      */
-    private long departmentId;
+    private long orgId;
+    /**
+     * @describe 组织机构code
+     */
+    private String orgCode;
     /**
      * @describe 部门名称
      */
-    private String departmentName;
+    private String orgName;
     /**
      * @describe 计划标题
      */
@@ -78,20 +82,28 @@ public class DepartmentPlanBean extends PersistentEntity {
         this.userName = userName;
     }
 
-    public long getDepartmentId() {
-        return this.departmentId;
+    public long getOrgId() {
+        return orgId;
     }
 
-    public void setDepartmentId(long departmentId) {
-        this.departmentId = departmentId;
+    public void setOrgId(long orgId) {
+        this.orgId = orgId;
     }
 
-    public String getDepartmentName() {
-        return this.departmentName;
+    public String getOrgCode() {
+        return orgCode;
     }
 
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
+    public void setOrgCode(String orgCode) {
+        this.orgCode = orgCode;
+    }
+
+    public String getOrgName() {
+        return orgName;
+    }
+
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
     }
 
     public String getTitle() {

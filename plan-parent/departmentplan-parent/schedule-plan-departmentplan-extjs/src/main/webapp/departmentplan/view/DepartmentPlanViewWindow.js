@@ -40,7 +40,15 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanViewWindow', {
                     allowBlank: false,
                     hidden: true,
                     bind: {
-                        value: '{rec.departmentId}'
+                        value: '{rec.orgId}'
+                    }
+                },
+                {
+                    fieldLabel: '部门代码',
+                    allowBlank: false,
+                    hidden: true,
+                    bind: {
+                        value: '{rec.orgCode}'
                     }
                 },
                 {
@@ -48,7 +56,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanViewWindow', {
                     allowBlank: false,
                     hidden: true,
                     bind: {
-                        value: '{rec.departmentName}'
+                        value: '{rec.orgName}'
                     }
                 },
                 {
