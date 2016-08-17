@@ -18,7 +18,7 @@
         <module>schedule-system-dict-dao</module>
         <module>schedule-system-dict-biz</module>
         <module>schedule-system-dict-rest</module>
-        <module>schedule-system-dict-web</module>
+        <!--<module>schedule-system-dict-web</module>-->
         <module>schedule-system-dict-extjs</module>
     </modules>
     <packaging>pom</packaging>

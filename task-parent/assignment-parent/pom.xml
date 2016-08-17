@@ -22,7 +22,7 @@
         <module>schedule-task-assignment-entities</module>
         <module>schedule-task-assignment-extjs</module>
         <module>schedule-task-assignment-rest</module>
-        <module>schedule-task-assignment-web</module>
+        <!--<module>schedule-task-assignment-web</module>-->
     </modules>
 
     <dependencyManagement>

@@ -22,7 +22,7 @@
         <module>schedule-plan-personalplan-entities</module>
         <module>schedule-plan-personalplan-extjs</module>
         <module>schedule-plan-personalplan-rest</module>
-        <module>schedule-plan-personalplan-web</module>
+        <!--<module>schedule-plan-personalplan-web</module>-->
     </modules>
 
     <dependencyManagement>

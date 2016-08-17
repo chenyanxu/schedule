@@ -22,7 +22,7 @@
         <module>schedule-plan-departmentplan-entities</module>
         <module>schedule-plan-departmentplan-extjs</module>
         <module>schedule-plan-departmentplan-rest</module>
-        <module>schedule-plan-departmentplan-web</module>
+        <!--<module>schedule-plan-departmentplan-web</module>-->
     </modules>
 
     <dependencyManagement>
