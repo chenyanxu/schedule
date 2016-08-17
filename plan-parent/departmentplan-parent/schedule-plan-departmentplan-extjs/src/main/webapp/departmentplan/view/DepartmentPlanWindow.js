@@ -34,16 +34,27 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
                 {
                     fieldLabel: '部门名称',
                     xtype: 'userOrgComboBox',
-                    valueField: 'departmentId',
-                    displayField: 'departmentName',
+                    valueField: 'orgId',
+                    displayField: 'orgName',
                     allowBlank: false,
                     bind: {
-                        value: '{rec.departmentId}'
+                        value: '{rec.orgId}'
                     },
                     listeners:{
                         'change':function(e,t,options) {
-                            this.lookupViewModel().get('rec').set('departmentName',e.displayTplData[0].departmentName);
+                            if(e.displayTplData.length != 0) {
+                                this.lookupViewModel().get('rec').set('orgName', e.displayTplData[0].orgName);
+                                this.lookupViewModel().get('rec').set('orgCode', e.displayTplData[0].orgCode);
+                            }
                         }
+                    }
+                },
+                {
+                    fieldLabel: '部门代码',
+                    allowBlank: false,
+                    hidden: true,
+                    bind: {
+                        value: '{rec.orgCode}'
                     }
                 },
                 {
@@ -51,7 +62,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
                     allowBlank: false,
                     hidden: true,
                     bind: {
-                        value: '{rec.departmentName}'
+                        value: '{rec.orgName}'
                     }
                 },
                 {
