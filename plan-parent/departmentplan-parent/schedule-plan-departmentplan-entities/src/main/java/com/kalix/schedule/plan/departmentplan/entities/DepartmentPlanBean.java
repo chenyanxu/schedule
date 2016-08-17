@@ -28,13 +28,17 @@ public class DepartmentPlanBean extends PersistentEntity {
      */
     private String userName;
     /**
-     * @describe 部门ID
+     * @describe 组织机构ID
      */
-    private long departmentId;
+    private long orgId;
     /**
-     * @describe 部门名称
+     * @describe 组织机构编码
      */
-    private String departmentName;
+    private String orgCode;
+    /**
+     * @describe 组织机构名称
+     */
+    private String orgName;
     /**
      * @describe 计划标题
      */
@@ -63,7 +67,7 @@ public class DepartmentPlanBean extends PersistentEntity {
     private String state;
 
     public long getUserId() {
-        return this.userId;
+        return userId;
     }
 
     public void setUserId(long userId) {
@@ -71,31 +75,39 @@ public class DepartmentPlanBean extends PersistentEntity {
     }
 
     public String getUserName() {
-        return this.userName;
+        return userName;
     }
 
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public long getDepartmentId() {
-        return this.departmentId;
+    public long getOrgId() {
+        return orgId;
     }
 
-    public void setDepartmentId(long departmentId) {
-        this.departmentId = departmentId;
+    public void setOrgId(long orgId) {
+        this.orgId = orgId;
     }
 
-    public String getDepartmentName() {
-        return this.departmentName;
+    public String getOrgCode() {
+        return orgCode;
     }
 
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
+    public void setOrgCode(String orgCode) {
+        this.orgCode = orgCode;
+    }
+
+    public String getOrgName() {
+        return orgName;
+    }
+
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
     }
 
     public String getTitle() {
-        return this.title;
+        return title;
     }
 
     public void setTitle(String title) {
@@ -103,7 +115,7 @@ public class DepartmentPlanBean extends PersistentEntity {
     }
 
     public String getContent() {
-        return this.content;
+        return content;
     }
 
     public void setContent(String content) {
@@ -111,7 +123,7 @@ public class DepartmentPlanBean extends PersistentEntity {
     }
 
     public String getPlanType() {
-        return this.planType;
+        return planType;
     }
 
     public void setPlanType(String planType) {
@@ -119,7 +131,7 @@ public class DepartmentPlanBean extends PersistentEntity {
     }
 
     public Date getBeginDate() {
-        return this.beginDate;
+        return beginDate;
     }
 
     public void setBeginDate(Date beginDate) {

@@ -1,0 +1,14 @@
+/**
+ * Created by Administrator on 2016/8/16.
+ */
+Ext.define('kalix.plan.departmentplan.controller.DepartmentPlanSearchController', {
+    extend: 'Ext.app.ViewController',
+    alias: 'controller.departmentplansearchController',
+    onItemClick: function (view, record, item, index, e) {
+        var searchForm = this.getView().items.getAt(1).items.getAt(0);
+        var orgCode = searchForm.items.getAt(2);
+        orgCode.setValue(record.data.code);
+        var grid = this.getView().items.getAt(1).items.getAt(1);
+        grid.store.reload();
+    }
+});

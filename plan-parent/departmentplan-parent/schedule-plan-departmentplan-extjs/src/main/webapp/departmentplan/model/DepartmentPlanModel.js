@@ -21,13 +21,18 @@ Ext.define('kalix.plan.departmentplan.model.DepartmentPlanModel', {
             type: 'string'
         },
         {
-            name: 'departmentId',
+            name: 'orgId',
             type: 'int',
             defaultValue: 0,
             validators: [{type: 'presence'}]
         },
         {
-            name: 'departmentName',
+            name: 'orgCode',
+            type: 'string',
+            validators: [{type: 'presence'}]
+        },
+        {
+            name: 'orgName',
             type: 'string',
             validators: [{type: 'presence'}]
         },

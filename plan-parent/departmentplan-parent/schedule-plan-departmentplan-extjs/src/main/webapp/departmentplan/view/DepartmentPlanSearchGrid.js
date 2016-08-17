@@ -3,23 +3,23 @@
  * @author
  * @version 1.0.0
  */
-Ext.define('kalix.plan.personalplan.view.PersonalPlanGrid', {
+Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchGrid', {
     extend: 'kalix.view.components.common.BaseGrid',
     requires: [
-        'kalix.plan.personalplan.controller.PersonalPlanGridController',
-        'kalix.plan.personalplan.store.PersonalPlanStore',
+        'kalix.plan.departmentplan.controller.DepartmentPlanGridController',
+        'kalix.plan.departmentplan.store.DepartmentPlanStore',
         'kalix.schedule.scheduleDict.component.ScheduleDictGridColumn'
     ],
-    alias: 'widget.personalplanGrid',
-    xtype: 'personalplanGridPanel',
+    alias: 'widget.departmentplansearchGrid',
+    xtype: 'departmentplansearchGridPanel',
     controller: {
-        type: 'personalplanGridController',
-        cfgForm: 'kalix.plan.personalplan.view.PersonalPlanWindow',
-        cfgViewForm: 'kalix.plan.personalplan.view.PersonalPlanViewWindow',
-        cfgModel: 'kalix.plan.personalplan.model.PersonalPlanModel'
+        type: 'departmentplanGridController',
+        cfgForm: 'kalix.plan.departmentplan.view.DepartmentPlanWindow',
+        cfgViewForm: 'kalix.plan.departmentplan.view.DepartmentPlanViewWindow',
+        cfgModel: 'kalix.plan.departmentplan.model.DepartmentPlanModel'
     },
     store: {
-        type: 'personalplanStore'
+        type: 'departmentplanStore'
     },
 
     //todo 在此修改grid显示列
@@ -51,6 +51,11 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanGrid', {
             {
                 text: '部门id',
                 dataIndex: 'orgId',
+                hidden: true
+            },
+            {
+                text: '部门code',
+                dataIndex: 'orgCode',
                 hidden: true
             },
             {
@@ -102,37 +107,12 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanGrid', {
                         handler: 'onView'
                     },
                     {
-                        //bind: {icon: ''},
-                        iconCls: "iconfont icon-edit-column",
-                        permission: '',
-                        tooltip: '编辑',
-                        handler: 'onEdit'
-                    },
-                    {
-                        iconCls: "iconfont icon-delete",
-                        permission: '',
-                        tooltip: '删除',
-                        handler: 'onDelete'
-                    },
-                    {
                         iconCls: 'iconfont icon-attachment-column',
                         permission: '',
                         tooltip: '附件管理',
                         handler: 'onAttachmentManage'
                     }
                 ]
-            }
-        ]
-    },
-    tbar: {
-        xtype: 'securityToolbar',
-        verifyItems: [
-            {
-                text: '添加',
-                xtype: 'button',
-                iconCls: 'iconfont icon-add',
-                permission: '',
-                handler: 'onAdd'
             }
         ]
     }

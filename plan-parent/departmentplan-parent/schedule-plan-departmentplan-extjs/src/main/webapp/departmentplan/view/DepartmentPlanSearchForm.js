@@ -32,11 +32,20 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchForm', {
         },
         {
             xtype: 'textfield',
+            fieldLabel: '部门code',
+            labelAlign: 'right',
+            labelWidth: 60,
+            width: 200,
+            name: 'orgCode',
+            hidden: true
+        },
+        {
+            xtype: 'textfield',
             fieldLabel: '部门ID',
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
-            name: 'departmentId',
+            name: 'orgId',
             hidden: true
         },
         {
@@ -45,7 +54,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchForm', {
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
-            name: 'departmentName',
+            name: 'orgName',
             hidden: true
         },
         {

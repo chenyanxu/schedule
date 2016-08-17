@@ -1,14 +1,10 @@
 package com.kalix.schedule.plan.departmentplan.biz;
 
-import com.kalix.framework.core.api.persistence.JsonData;
 import com.kalix.framework.core.api.persistence.JsonStatus;
 import com.kalix.framework.core.impl.biz.ShiroGenericBizServiceImpl;
-import com.kalix.framework.core.util.SerializeUtil;
 import com.kalix.schedule.plan.departmentplan.api.biz.IDepartmentPlanBeanService;
 import com.kalix.schedule.plan.departmentplan.api.dao.IDepartmentPlanBeanDao;
 import com.kalix.schedule.plan.departmentplan.entities.DepartmentPlanBean;
-
-import java.util.Map;
 
 /**
  * @类描述： 
@@ -25,17 +21,17 @@ public class DepartmentPlanBeanServiceImpl extends ShiroGenericBizServiceImpl<ID
         super.init(DepartmentPlanBean.class.getName());
     }
 
-    @Override
-    public JsonData getAllEntityByQuery(Integer page, Integer limit, String jsonStr){
-        Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
-        Long userId = this.getShiroService().getCurrentUserId();
-        String userName = this.getShiroService().getCurrentUserRealName();
-        jsonMap.put("userId",String.valueOf(userId));
-        jsonMap.put("userName",userName);
-
-        String newJsonStr = SerializeUtil.serializeJson(jsonMap);
-        return super.getAllEntityByQuery(page,limit,newJsonStr);
-    }
+//    @Override
+//    public JsonData getAllEntityByQuery(Integer page, Integer limit, String jsonStr){
+//        Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
+//        Long userId = this.getShiroService().getCurrentUserId();
+//        String userName = this.getShiroService().getCurrentUserRealName();
+//        jsonMap.put("userId",String.valueOf(userId));
+//        jsonMap.put("userName",userName);
+//
+//        String newJsonStr = SerializeUtil.serializeJson(jsonMap);
+//        return super.getAllEntityByQuery(page,limit,newJsonStr);
+//    }
 
     @Override
     public JsonStatus saveEntity(DepartmentPlanBean entity) {
