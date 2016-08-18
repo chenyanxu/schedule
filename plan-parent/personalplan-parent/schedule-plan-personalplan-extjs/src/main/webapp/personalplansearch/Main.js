@@ -5,17 +5,18 @@ Ext.define('kalix.plan.personalplansearch.Main', {
     extend: 'kalix.view.components.common.AutoHPanel',
     requires: [
         'kalix.plan.personalplan.controller.PersonalPlanSearchController',
-        'kalix.admin.org.view.UserOrgTreeList',
+        'kalix.plan.personalplan.component.PersonalPlanUserOrgTreeList',
         'kalix.plan.personalplan.PersonalPlanSearchMain'
     ],
     xtype: 'personalplansearchPanel',
     controller: 'personalplansearchController',
     items: [
         {
-            xtype: 'userorgtreelist',
+            xtype: 'personalplanuserorgtreeList',
             flex: 1,
             listeners: {
-                itemClick: 'onItemClick'
+                itemClick: 'onItemClick',
+                load: 'onLoad'
             }
         },
         {

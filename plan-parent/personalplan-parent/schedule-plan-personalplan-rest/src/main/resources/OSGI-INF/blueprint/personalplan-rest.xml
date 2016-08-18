@@ -14,10 +14,10 @@
         <rest path="/personalplans" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
             <description>personalplan rest service</description>
 
-            <!-- this is a rest GET to find all personalplan -->
-            <get id="route-getAllPersonalPlan" outType="com.kalix.framework.core.api.persistence.JsonData">
+            <!-- this is a rest GET to find self personalplan -->
+            <get id="route-getSelfPersonalPlan" outType="com.kalix.framework.core.api.persistence.JsonData">
                 <description>Find all PersonalPlans</description>
-                <to uri="bean:personalplanService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
+                <to uri="bean:personalplanService?method=getSelfEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
             </get>
 
             <!-- this is a rest POST to create a personalplan -->
@@ -27,6 +27,7 @@
                 <to uri="bean:personalplanService?method=saveEntity"/>
             </post>
         </rest>
+
         <rest path="/personalplans/{id}" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
             <!-- this is a rest GET to view a personalplan by the given id -->
             <get id="route-getPersonalPlan" outType="com.kalix.schedule.plan.personalplan.entities.PersonalPlanBean">
@@ -47,6 +48,16 @@
                 <description>Delete a PersonalPlan</description>
                 <to uri="bean:personalplanService?method=deleteEntity(${header.id})"/>
             </delete>
+        </rest>
+
+        <rest path="/personalplansearchs" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+            <description>personalplan rest service</description>
+
+            <!-- this is a rest GET to find All personalplan -->
+            <get id="route-getPersonalPlanSearch" outType="com.kalix.framework.core.api.persistence.JsonData">
+                <description>Find all PersonalPlans</description>
+                <to uri="bean:personalplanService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
+            </get>
         </rest>
     </camelContext>
 </blueprint>

@@ -5,17 +5,18 @@ Ext.define('kalix.plan.departmentplansearch.Main', {
     extend: 'kalix.view.components.common.AutoHPanel',
     requires: [
         'kalix.plan.departmentplan.controller.DepartmentPlanSearchController',
-        'kalix.admin.org.view.UserOrgTreeList',
+        'kalix.plan.departmentplan.component.DepartmentPlanUserOrgTreeList',
         'kalix.plan.departmentplan.DepartmentPlanSearchMain'
     ],
     xtype: 'departmentplansearchPanel',
     controller: 'departmentplansearchController',
     items: [
         {
-            xtype: 'userorgtreelist',
+            xtype: 'departmentplanuserorgtreeList',
             flex: 1,
             listeners: {
-                itemClick: 'onItemClick'
+                itemClick: 'onItemClick',
+                load: 'onLoad'
             }
         },
         {

@@ -19,7 +19,8 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchGrid', {
         cfgModel: 'kalix.plan.departmentplan.model.DepartmentPlanModel'
     },
     store: {
-        type: 'departmentplanStore'
+        type: 'departmentplanStore',
+        proxyUrl: '/kalix/camel/rest/departmentplansearchs'
     },
 
     //todo 在此修改grid显示列

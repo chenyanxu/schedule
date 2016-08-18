@@ -1,6 +1,7 @@
 package com.kalix.schedule.plan.personalplan.api.biz;
 
 import com.kalix.framework.core.api.biz.IBizService;
+import com.kalix.framework.core.api.persistence.JsonData;
 import com.kalix.schedule.plan.personalplan.entities.PersonalPlanBean;
 
 /**
@@ -13,4 +14,14 @@ import com.kalix.schedule.plan.personalplan.entities.PersonalPlanBean;
  */
 public interface IPersonalPlanBeanService extends IBizService<PersonalPlanBean> {
     //在此添加新的业务方法
+
+    /**
+     * 查询个人的个人计划
+     *
+     * @param page
+     * @param limit
+     * @param jsonStr
+     * @return
+     */
+    JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr);
 }

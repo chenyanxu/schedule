@@ -15,9 +15,9 @@
             <description>departmentplan rest service</description>
 
             <!-- this is a rest GET to find all departmentplan -->
-            <get id="route-getAllDepartmentPlan" outType="com.kalix.framework.core.api.persistence.JsonData">
+            <get id="route-getSelfDepartmentPlan" outType="com.kalix.framework.core.api.persistence.JsonData">
                 <description>Find all DepartmentPlans</description>
-                <to uri="bean:departmentplanService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
+                <to uri="bean:departmentplanService?method=getSelfEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
             </get>
 
             <!-- this is a rest POST to create a departmentplan -->
@@ -47,6 +47,16 @@
                 <description>Delete a DepartmentPlan</description>
                 <to uri="bean:departmentplanService?method=deleteEntity(${header.id})"/>
             </delete>
+        </rest>
+
+        <rest path="/departmentplansearchs" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+            <description>departmentplansearch rest service</description>
+
+            <!-- this is a rest GET to find all departmentplansearch -->
+            <get id="route-getDepartmentPlanSearch" outType="com.kalix.framework.core.api.persistence.JsonData">
+                <description>Find all DepartmentPlans</description>
+                <to uri="bean:departmentplanService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
+            </get>
         </rest>
     </camelContext>
 </blueprint>
