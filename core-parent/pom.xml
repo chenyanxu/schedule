@@ -15,7 +15,7 @@
     <modules>
         <module>schedule-core-extjs</module>
         <module>schedule-core-web</module>
-        <module>sechedule-core-etc</module>
+        <module>schedule-core-etc</module>
     </modules>
     <packaging>pom</packaging>
 

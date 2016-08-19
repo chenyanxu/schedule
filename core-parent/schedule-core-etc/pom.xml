@@ -10,8 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.kalix.schedule.core</groupId>
-    <artifactId>sechedule-core-etc</artifactId>
-    <name>Kalix Sechedule Core ETC</name>
+    <artifactId>schedule-core-etc</artifactId>
+    <name>Kalix Schedule Core ETC</name>
     <description>ETC</description>
     <packaging>pom</packaging>
 </project>
