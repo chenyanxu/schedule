@@ -7,13 +7,13 @@
 Ext.define('kalix.task.assignment.view.CompleteWindow', {
     extend: 'kalix.view.components.common.BaseWindow',
     requires: [
-        'kalix.controller.BaseWindowController'
+        'kalix.task.assignment.controller.CompleteWindowController'
     ],
     alias: 'widget.completeWindow',
-    controller: {
-        type: 'baseWindowController'
-    },
     xtype: "completeWindow",
+    controller: {
+        type: 'completeWindowController'
+    },
     width: 400,
     //todo 在此修改表单
     items: [
@@ -44,6 +44,23 @@ Ext.define('kalix.task.assignment.view.CompleteWindow', {
                     }
                 }
             ]
+        }
+    ],
+    buttons: [
+        {
+            text: '继续修改',
+            iconCls: 'iconfont icon-edit-column',
+            handler: 'onEdit'
+        },
+        {
+            text: '任务完成',
+            iconCls: 'iconfont icon-schedule-task-complete',
+            handler: 'onFinish'
+        },
+        {
+            text: '任务失败',
+            iconCls: 'iconfont icon-schedule-task-failure',
+            handler: 'onFailure'
         }
     ]
 })

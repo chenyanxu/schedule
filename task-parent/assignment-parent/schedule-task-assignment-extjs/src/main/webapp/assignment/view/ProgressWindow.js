@@ -21,8 +21,11 @@ Ext.define('kalix.task.assignment.view.ProgressWindow', {
             xtype: 'baseForm',
             items: [
                 {
-                    fieldLabel: '任务进度',
+                    fieldLabel: '任务进度(%)',
                     allowBlank: false,
+                    xtype: 'numberfield',
+                    maxValue: 100,
+                    minValue: 0,
                     bind: {
                         value: '{rec.percent}'
                     }

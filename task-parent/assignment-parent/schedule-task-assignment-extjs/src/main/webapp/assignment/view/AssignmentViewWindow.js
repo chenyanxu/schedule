@@ -20,7 +20,7 @@ Ext.define('kalix.task.assignment.view.AssignmentViewWindow', {
         type: 'assignmentWindowController'
     },
     width: 800,
-    height: 600,
+    height: 640,
     //todo 在此修改查看字段
     items: [
         {
@@ -171,6 +171,24 @@ Ext.define('kalix.task.assignment.view.AssignmentViewWindow', {
                                     bind: {
                                         value: '{rec.endDate}'
                                     }
+                                },
+                                {
+                                    fieldLabel: '任务进度(%)',
+                                    allowBlank: false,
+                                    xtype: 'numberfield',
+                                    maxValue: 100,
+                                    minValue: 0,
+                                    bind: {
+                                        value: '{rec.percent}'
+                                    }
+                                },
+                                {
+                                    fieldLabel: '进度说明',
+                                    allowBlank: false,
+                                    xtype: 'textarea',
+                                    bind: {
+                                        value: '{rec.comment}'
+                                    }
                                 }
                             ]
                         },
@@ -216,6 +234,24 @@ Ext.define('kalix.task.assignment.view.AssignmentViewWindow', {
                                     allowBlank: false,
                                     bind: {
                                         value: '{rec.instruction}'
+                                    }
+                                },
+                                {
+                                    fieldLabel: '评分',
+                                    allowBlank: false,
+                                    xtype: 'numberfield',
+                                    maxValue: 100,
+                                    minValue: 0,
+                                    bind: {
+                                        value: '{rec.score}'
+                                    }
+                                },
+                                {
+                                    fieldLabel: '任务意见',
+                                    allowBlank: false,
+                                    xtype: 'textarea',
+                                    bind: {
+                                        value: '{rec.advice}'
                                     }
                                 }
                             ]

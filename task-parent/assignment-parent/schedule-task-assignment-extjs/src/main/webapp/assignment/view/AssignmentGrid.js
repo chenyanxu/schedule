@@ -205,7 +205,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                         getClass: function (v, meta, record) {
                             //如果当前登录用户是任务的创建人,那么可以撤销任务
                             if (Ext.util.Cookies.get('currentUserId') == record.data.userId) {
-                                if(record.data.state == 0) {
+                                if(record.data.state < 4) {
                                     return "iconfont icon-schedule-task-cancel";
                                 }else{
                                     return "kalix_hidden";
@@ -220,13 +220,14 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                         handler: 'onSupervise',
                         getClass: function (v, meta, record) {
                             //如果当前登录用户是任务的创建人,那么可以督办任务
-                            if (Ext.util.Cookies.get('currentUserId') == record.data.userId) {
-                                if(record.data.state == 2) {
-                                    return "iconfont icon-schedule-task-supervise";
-                                }else{
-                                    return "kalix_hidden";
-                                }
-                            }
+                            //特别注意的，暂时不放开督办功能，因为没有任务的审批人
+                            //if (Ext.util.Cookies.get('currentUserId') == record.data.userId) {
+                            //    if(record.data.state == 2) {
+                            //        return "iconfont icon-schedule-task-supervise";
+                            //    }else{
+                            //        return "kalix_hidden";
+                            //    }
+                            //}
                             return "kalix_hidden";
                         }
                     },
@@ -253,7 +254,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                         getClass: function (v, meta, record) {
                             //如果当前登录用户是任务的创建人,那么可以失败任务
                             if (Ext.util.Cookies.get('currentUserId') == record.data.userId) {
-                                if(record.data.state == 2) {
+                                if(record.data.state < 4) {
                                     return "iconfont icon-schedule-task-failure";
                                 }else{
                                     return "kalix_hidden";
@@ -280,7 +281,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                         }
                     },
                     {
-                        tooltip: '申请任务完成',
+                        tooltip: '申请完成',
                         permission: '',
                         handler: 'onComplete',
                         getClass: function (v, meta, record) {
@@ -302,7 +303,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                         getClass: function (v, meta, record) {
                             //如果当前登录用户是任务的创建人,那么可以审批任务完成
                             if (Ext.util.Cookies.get('currentUserId') == record.data.userId) {
-                                if(record.data.state == 4) {
+                                if(record.data.state == 3) {
                                     return "iconfont icon-schedule-task-complete";
                                 }else{
                                     return "kalix_hidden";
