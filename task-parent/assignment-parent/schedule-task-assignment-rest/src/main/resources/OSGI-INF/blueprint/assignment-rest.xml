@@ -48,5 +48,26 @@
                 <to uri="bean:assignmentService?method=deleteEntity(${header.id})"/>
             </delete>
         </rest>
+        <rest path="/assignments/{assignmentId}/progresss" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+            <!-- this is a rest GET progress by the given assignmentId -->
+            <get id="route-getProgresss" outType="com.kalix.framework.core.api.persistence.JsonData">
+                <description>Find Progresss by assignmentId</description>
+                <to uri="bean:assignmentService?method=getAllProgressEntity(${header.assignmentId})"/>
+            </get>
+        </rest>
+        <rest path="/assignments/{assignmentId}/readings" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+            <!-- this is a rest GET readings by the given assignmentId -->
+            <get id="route-getReadings" outType="com.kalix.framework.core.api.persistence.JsonData">
+                <description>Find Progress by assignmentId</description>
+                <to uri="bean:assignmentService?method=getAllReadingEntity(${header.assignmentId})"/>
+            </get>
+        </rest>
+        <rest path="/assignments/{assignmentId}/events" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+            <!-- this is a rest GET events by the given assignmentId -->
+            <get id="route-getEvents" outType="com.kalix.framework.core.api.persistence.JsonData">
+                <description>Find Progress by assignmentId</description>
+                <to uri="bean:assignmentService?method=getAllEventEntity(${header.assignmentId})"/>
+            </get>
+        </rest>
     </camelContext>
 </blueprint>

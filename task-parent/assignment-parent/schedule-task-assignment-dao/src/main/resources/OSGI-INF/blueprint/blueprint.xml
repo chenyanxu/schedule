@@ -12,6 +12,19 @@
         <tx:transaction method="*" value="Required"/>
     </bean>
 
+    <bean id="progressBeanDaoImpl" class="com.kalix.schedule.task.assignment.dao.ProgressBeanDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+    </bean>
+    <bean id="eventBeanDaoImpl" class="com.kalix.schedule.task.assignment.dao.EventBeanDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+    </bean>
+    <bean id="readingBeanDaoImpl" class="com.kalix.schedule.task.assignment.dao.ReadingBeanDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+    </bean>
+
     <service interface="com.kalix.schedule.task.assignment.api.dao.IAssignmentBeanDao" ref="assignmentBeanDaoImpl"/>
+    <service interface="com.kalix.schedule.task.assignment.api.dao.IProgressBeanDao" ref="progressBeanDaoImpl"/>
+    <service interface="com.kalix.schedule.task.assignment.api.dao.IEventBeanDao" ref="eventBeanDaoImpl"/>
+    <service interface="com.kalix.schedule.task.assignment.api.dao.IReadingBeanDao" ref="readingBeanDaoImpl"/>
 </blueprint>
 

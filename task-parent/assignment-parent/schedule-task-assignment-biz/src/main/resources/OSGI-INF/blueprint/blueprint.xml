@@ -5,8 +5,14 @@
 
     <reference id="shiroService" interface="com.kalix.framework.core.api.security.IShiroService"/>
     <reference id="assignmentBeanDao" interface="com.kalix.schedule.task.assignment.api.dao.IAssignmentBeanDao"/>
+    <reference id="progressBeanDao" interface="com.kalix.schedule.task.assignment.api.dao.IProgressBeanDao"/>
+    <reference id="eventBeanDao" interface="com.kalix.schedule.task.assignment.api.dao.IEventBeanDao"/>
+    <reference id="readingBeanDao" interface="com.kalix.schedule.task.assignment.api.dao.IReadingBeanDao"/>
     <reference id="userBeanService" interface="com.kalix.admin.core.api.biz.IUserBeanService"/>
     <bean id="assignmentBeanServiceImpl" class="com.kalix.schedule.task.assignment.biz.AssignmentBeanServiceImpl">
+        <property name="progressBeanDao" ref="progressBeanDao"/>
+        <property name="eventBeanDao" ref="eventBeanDao"/>
+        <property name="readingBeanDao" ref="readingBeanDao"/>
         <property name="dao" ref="assignmentBeanDao"/>
         <property name="shiroService" ref="shiroService"/>
         <property name="userBeanService" ref="userBeanService"/>

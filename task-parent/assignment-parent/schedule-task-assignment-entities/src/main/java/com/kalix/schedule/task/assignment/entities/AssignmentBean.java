@@ -31,11 +31,15 @@ public class AssignmentBean extends PersistentEntity {
     /**
      * @describe 部门id
      */
-    private long departmentId;
+    private long orgId;
     /**
-     * @describe 部门名
+     * @describe 部门代码
      */
-    private String departmentName;
+    private long orgCode;
+    /**
+     * @describe 部门名称
+     */
+    private String orgName;
     /**
      * @describe 标题
      */
@@ -55,7 +59,7 @@ public class AssignmentBean extends PersistentEntity {
     /**
      * @describe 任务状态
      */
-    private String state;
+    private Integer state;
     /**
      * @describe 开始日期
      */
@@ -73,7 +77,7 @@ public class AssignmentBean extends PersistentEntity {
     /**
      * @describe 负责人
      */
-    private String head;
+    private long head;
     @Transient
     private String header;
     /**
@@ -88,6 +92,22 @@ public class AssignmentBean extends PersistentEntity {
      * @describe 领导批示
      */
     private String instruction;
+    /**
+     * @describe 任务进度
+     */
+    private Integer percent;
+    /**
+     * @describe 进度说明
+     */
+    private String comment;
+    /**
+     * @describe 完成任务打分
+     */
+    private Integer score;
+    /**
+     * @describe 完成任务意见
+     */
+    private String advice;
 
     public long getUserId() {
         return this.userId;
@@ -105,20 +125,28 @@ public class AssignmentBean extends PersistentEntity {
         this.userName = userName;
     }
 
-    public long getDepartmentId() {
-        return this.departmentId;
+    public long getOrgId() {
+        return orgId;
     }
 
-    public void setDepartmentId(long departmentId) {
-        this.departmentId = departmentId;
+    public void setOrgId(long orgId) {
+        this.orgId = orgId;
     }
 
-    public String getDepartmentName() {
-        return this.departmentName;
+    public long getOrgCode() {
+        return orgCode;
     }
 
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
+    public void setOrgCode(long orgCode) {
+        this.orgCode = orgCode;
+    }
+
+    public String getOrgName() {
+        return orgName;
+    }
+
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
     }
 
     public String getTitle() {
@@ -153,11 +181,11 @@ public class AssignmentBean extends PersistentEntity {
         this.content = content;
     }
 
-    public String getState() {
-        return this.state;
+    public Integer getState() {
+        return state;
     }
 
-    public void setState(String state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 
@@ -185,11 +213,11 @@ public class AssignmentBean extends PersistentEntity {
         this.workHours = workHours;
     }
 
-    public String getHead() {
-        return this.head;
+    public long getHead() {
+        return head;
     }
 
-    public void setHead(String head) {
+    public void setHead(long head) {
         this.head = head;
     }
 
@@ -225,5 +253,35 @@ public class AssignmentBean extends PersistentEntity {
         this.instruction = instruction;
     }
 
+    public Integer getScore() {
+        return score;
+    }
 
+    public void setScore(Integer score) {
+        this.score = score;
+    }
+
+    public String getAdvice() {
+        return advice;
+    }
+
+    public void setAdvice(String advice) {
+        this.advice = advice;
+    }
+
+    public Integer getPercent() {
+        return percent;
+    }
+
+    public void setPercent(Integer percent) {
+        this.percent = percent;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 }

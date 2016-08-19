@@ -21,13 +21,19 @@ Ext.define('kalix.task.assignment.model.AssignmentModel', {
             type: 'string'
         },
         {
-            name: 'departmentId',
+            name: 'orgId',
             type: 'int',
             defaultValue: 0,
             validators: [{type: 'presence'}]
         },
         {
-            name: 'departmentName',
+            name: 'orgCode',
+            type: 'int',
+            defaultValue: 0,
+            validators: [{type: 'presence'}]
+        },
+        {
+            name: 'orgName',
             type: 'string'
         },
         {
@@ -51,8 +57,8 @@ Ext.define('kalix.task.assignment.model.AssignmentModel', {
         },
         {
             name: 'state',
-            type: 'string',
-            defaultValue: '0'
+            type: 'int',
+            defaultValue: 0
         },
         {
             name: 'beginDate',
@@ -75,7 +81,7 @@ Ext.define('kalix.task.assignment.model.AssignmentModel', {
         },
         {
             name: 'head',
-            type: 'string',
+            type: 'int',
             validators: [{type: 'presence'}]
         },
         {
@@ -93,6 +99,22 @@ Ext.define('kalix.task.assignment.model.AssignmentModel', {
         },
         {
             name: 'instruction',
+            type: 'string'
+        },
+        {
+            name: 'percent',
+            type: 'int'
+        },
+        {
+            name: 'comment',
+            type: 'string'
+        },
+        {
+            name: 'score',
+            type: 'int'
+        },
+        {
+            name: 'advice',
             type: 'string'
         }
     ]
