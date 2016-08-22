@@ -73,9 +73,9 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
     onHeader: function (grid, rowIndex, colIndex) {
         var selModel = grid.getStore().getData().items[rowIndex];
         //状态为拒绝接受时，修改负责人后，状态是否可改为等待接收
-        if(selModel.data.state == 1){
-            selModel.data.state = '0';
-        }
+        //if(selModel.data.state == 1){
+        //    selModel.data.state = '0';
+        //}
         var view = Ext.create('kalix.task.assignment.view.HeaderWindow');
         var vm = view.lookupViewModel();
 
@@ -131,11 +131,11 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
     onComplete: function (grid, rowIndex, colIndex) {
         var model = grid.getStore().getData().items[rowIndex];
         var store = grid.getStore();
-        Ext.Msg.confirm("警告", "确定要完成本任务吗？", function (button) {
+        Ext.Msg.confirm("警告", "确定要申请完成本任务吗？", function (button) {
             if (button == "yes") {
                 store.proxy.extraParams = {};
-                // 设置任务状态为完成
-                model.set('state',4);
+                // 设置任务状态为申请完成
+                model.set('state',3);
                 model.modified = model.data;
                 store.sync(
                     {
@@ -160,13 +160,13 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
     onFinish: function (grid, rowIndex, colIndex) {
         var selModel = grid.getStore().getData().items[rowIndex];
         // 设置任务状态为完成
-        selModel.data.state = '7';
+        //selModel.data.state = '6';
         var view = Ext.create('kalix.task.assignment.view.CompleteWindow');
         var vm = view.lookupViewModel();
 
         vm.set('rec', selModel);
         vm.set('iconCls', vm.get('editIconCls'));
-        vm.set('title','任务完成');
+        vm.set('title','审批任务完成');
         vm.set('store',this.getView().store);
 
         view.show();

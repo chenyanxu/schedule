@@ -38,13 +38,21 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
     private IProgressBeanDao progressBeanDao;
     private IEventBeanDao eventBeanDao;
     private IReadingBeanDao readingBeanDao;
+
+    /**
+     * 根据登录用户的信息，查询任务
+     * @param page
+     * @param limit
+     * @param jsonStr
+     * @return
+     */
     @Override
-    public JsonData getAllEntityByQuery(Integer page, Integer limit, String jsonStr){
+    public JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr){
         Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
         Long userId = this.getShiroService().getCurrentUserId();
-        String userName = this.getShiroService().getCurrentUserRealName();
+        //String userName = this.getShiroService().getCurrentUserRealName();
         jsonMap.put("userId",String.valueOf(userId));
-        jsonMap.put("userName",userName);
+        //jsonMap.put("userName",userName);
 
         //查找任务布置人是当前用户的数据
         String newJsonStr = SerializeUtil.serializeJson(jsonMap);
@@ -75,7 +83,6 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         totalList.addAll(participantList);
 
         //翻译任务负责人
-        //List beans = jsonData.getData();
         List ids= BeanUtil.getBeanFieldValueList(totalList,"head");
         List values=this.userBeanService.getFieldValuesByIds(ids.toArray(),"name");
         BeanUtil.setBeanListFieldValues(totalList,"header",values);
@@ -85,18 +92,50 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         return jsonData;
     }
 
+    /**
+     * 根据登录用户的信息，查询任务
+     * @param page
+     * @param limit
+     * @param jsonStr
+     * @return
+     */
+    @Override
+    public JsonData getAllEntityByQuery(Integer page, Integer limit, String jsonStr){
+        JsonData jsonData = super.getAllEntityByQuery(page,limit,jsonStr);
+        List creationList = jsonData.getData();
+
+        //翻译任务负责人
+        List ids= BeanUtil.getBeanFieldValueList(creationList,"head");
+        List values=this.userBeanService.getFieldValuesByIds(ids.toArray(),"name");
+        BeanUtil.setBeanListFieldValues(creationList,"header",values);
+
+        jsonData.setTotalCount((long)creationList.size());
+        jsonData.setData(creationList);
+        return jsonData;
+    }
+
+    /**
+     * 新增任务
+     * @param entity
+     * @return
+     */
     @Override
     public JsonStatus saveEntity(AssignmentBean entity) {
+        // 获取登录用户id及用户名
         Long userId = this.getShiroService().getCurrentUserId();
         String userName = this.getShiroService().getCurrentUserRealName();
-
+        // 新增时，写入用户id及用户名
         entity.setUserId(userId);
         entity.setUserName(userName);
 
         return super.saveEntity(entity);
     }
 
-
+    /**
+     * 根据任务id查找进度
+     * @param assignmentId
+     * @return
+     */
     @Override
     public JsonData getAllProgressEntity(long assignmentId) {
         JsonData jsonData = new JsonData();
@@ -107,6 +146,11 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         return jsonData;
     }
 
+    /**
+     * 根据任务id查找任务已读和未读用户
+     * @param assignmentId
+     * @return
+     */
     @Override
     public JsonData getAllReadingEntity(long assignmentId) {
         JsonData jsonData = new JsonData();
@@ -117,6 +161,11 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         return jsonData;
     }
 
+    /**
+     * 根据任务id查找任务的事件
+     * @param assignmentId
+     * @return
+     */
     @Override
     public JsonData getAllEventEntity(long assignmentId) {
         JsonData jsonData = new JsonData();

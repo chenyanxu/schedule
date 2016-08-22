@@ -14,6 +14,7 @@ import com.kalix.schedule.task.assignment.entities.AssignmentBean;
  */
 public interface IAssignmentBeanService extends IBizService<AssignmentBean> {
     //在此添加新的业务方法
+    JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr);
     JsonData getAllProgressEntity(long assignmentId);
     JsonData getAllReadingEntity(long assignmentId);
     JsonData getAllEventEntity(long assignmentId);
