@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+       http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+
+    <reference id="workreportService" interface="com.kalix.schedule.plan.workreport.api.biz.IWorkReportBeanService"/>
+    <camelContext id="workreportCamel" xmlns="http://camel.apache.org/schema/blueprint">
+        <restConfiguration component="servlet" bindingMode="json">
+            <dataFormatProperty key="prettyPrint" value="true"/>
+        </restConfiguration>
+
+        <!-- defines the rest services using the context-path /workreport -->
+        <rest path="/workreports" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+            <description>workreport rest service</description>
+
+            <!-- this is a rest GET to find all workreport -->
+            <get id="route-getAllWorkReport" outType="com.kalix.framework.core.api.persistence.JsonData">
+                <description>Find all WorkReports</description>
+                <to uri="bean:workreportService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
+            </get>
+
+            <!-- this is a rest POST to create a workreport -->
+            <post id="route-addWorkReport" type="com.kalix.schedule.plan.workreport.entities.WorkReportBean"
+                  outType="com.kalix.framework.core.api.persistence.JsonStatus">
+                <description>Create a WorkReport</description>
+                <to uri="bean:workreportService?method=saveEntity"/>
+            </post>
+        </rest>
+
+        <rest path="/workreports/{id}" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+            <!-- this is a rest GET to view a workreport by the given id -->
+            <get id="route-getWorkReport" outType="com.kalix.schedule.plan.workreport.entities.WorkReportBean">
+                <description>Find WorkReport by id</description>
+                <to uri="bean:workreportService?method=getEntity(${header.id})"/>
+            </get>
+
+            <!-- this is a rest PUT to update a workreport -->
+            <put id="route-updateWorkReport" type="com.kalix.schedule.plan.workreport.entities.WorkReportBean"
+                 outType="com.kalix.framework.core.api.persistence.JsonStatus">
+                <description>Updates a WorkReport</description>
+                <to uri="bean:workreportService?method=updateEntity"/>
+            </put>
+
+            <!-- this is a rest DELETE to delete a workreport -->
+            <delete id="route-deleteWorkReport"
+                outType="com.kalix.framework.core.api.persistence.JsonStatus">
+                <description>Delete a WorkReport</description>
+                <to uri="bean:workreportService?method=deleteEntity(${header.id})"/>
+            </delete>
+        </rest>
+
+        <rest path="/workreports/{id}/personalplans" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+            <description>workreport rest service</description>
+
+            <!-- this is a rest GET to find all workreport -->
+            <get id="route-getPersonalPlanByWorkReportId" outType="com.kalix.framework.core.api.persistence.JsonData">
+                <description>Find all WorkReports</description>
+                <to uri="bean:workreportService?method=getPersonalPlanByWorkReportId(${header.id})"/>
+            </get>
+
+            <!-- this is a rest POST to create a workreport -->
+            <post id="route-addWorkReportPersonalPlan" type="com.kalix.schedule.plan.workreport.entities.WorkReportBean"
+                  outType="com.kalix.framework.core.api.persistence.JsonStatus">
+                <description>Create a WorkReport</description>
+                <to uri="bean:workreportService?method=saveEntity"/>
+            </post>
+        </rest>
+
+        <rest path="/workreports/{id}/departmentplans" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+            <description>workreport rest service</description>
+
+            <!-- this is a rest GET to find all workreport -->
+            <get id="route-getDepartmentPlanByWorkReportId" outType="com.kalix.framework.core.api.persistence.JsonData">
+                <description>Find all WorkReports</description>
+                <to uri="bean:workreportService?method=getDepartmentPlanByWorkReportId(${header.id})"/>
+            </get>
+        </rest>
+    </camelContext>
+</blueprint>

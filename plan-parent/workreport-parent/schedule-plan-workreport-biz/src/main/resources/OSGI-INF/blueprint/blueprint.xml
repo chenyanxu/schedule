@@ -1,0 +1,24 @@
+<blueprint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+">
+
+    <reference id="shiroService" interface="com.kalix.framework.core.api.security.IShiroService"/>
+    <reference id="workreportBeanDao" interface="com.kalix.schedule.plan.workreport.api.dao.IWorkReportBeanDao"/>
+    <reference id="workreportplanBeanDao" interface="com.kalix.schedule.plan.workreport.api.dao.IWorkReportPlanBeanDao"/>
+    <reference id="personalplanBeanDao" interface="com.kalix.schedule.plan.personalplan.api.dao.IPersonalPlanBeanDao"/>
+    <reference id="departmentplanBeanDao" interface="com.kalix.schedule.plan.departmentplan.api.dao.IDepartmentPlanBeanDao"/>
+
+    <bean id="workreportBeanServiceImpl" class="com.kalix.schedule.plan.workreport.biz.WorkReportBeanServiceImpl">
+        <property name="dao" ref="workreportBeanDao"/>
+        <property name="shiroService" ref="shiroService"/>
+        <property name="workreportplanBeanDao" ref="workreportplanBeanDao"/>
+        <property name="personalplanBeanDao" ref="personalplanBeanDao"/>
+        <property name="departmentplanBeanDao" ref="departmentplanBeanDao"/>
+    </bean>
+
+    <service id="workreportBeanService" interface="com.kalix.schedule.plan.workreport.api.biz.IWorkReportBeanService"
+             ref="workreportBeanServiceImpl">
+    </service>
+</blueprint>
+
