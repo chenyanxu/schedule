@@ -1,6 +1,7 @@
 package com.kalix.schedule.plan.worksummary.api.biz;
 
 import com.kalix.framework.core.api.biz.IBizService;
+import com.kalix.framework.core.api.persistence.JsonData;
 import com.kalix.schedule.plan.worksummary.entities.WorkSummaryBean;
 
 /**
@@ -13,4 +14,14 @@ import com.kalix.schedule.plan.worksummary.entities.WorkSummaryBean;
  */
 public interface IWorkSummaryBeanService extends IBizService<WorkSummaryBean> {
     //在此添加新的业务方法
+
+    /**
+     *  查询个人工作总结
+     *
+     * @param page
+     * @param limit
+     * @param jsonStr
+     * @return
+     */
+    JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr);
 }

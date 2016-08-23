@@ -19,6 +19,7 @@ public class InitActivator extends KalixBundleActivator {
         reference = bundleContext.getServiceReference(HttpService.class.getName());
         httpService = (HttpService) bundleContext.getService(reference);
         httpService.registerResources(contextPath + "/app/plan/worksummary", "/worksummary", null);
+        httpService.registerResources(contextPath + "/app/plan/worksummarysearch", "/worksummarysearch", null);
     }
 
     @Override
@@ -27,6 +28,7 @@ public class InitActivator extends KalixBundleActivator {
 
         if(httpService!=null){
             httpService.unregister(contextPath +"/app/plan/worksummary");
+            httpService.unregister(contextPath +"/app/plan/worksummarysearch");
         }
         if (reference != null)
             bundleContext.ungetService(reference);
