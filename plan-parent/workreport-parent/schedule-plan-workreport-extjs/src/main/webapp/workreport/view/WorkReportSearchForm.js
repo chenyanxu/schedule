@@ -32,20 +32,20 @@ Ext.define('kalix.plan.workreport.view.WorkReportSearchForm', {
         },
         {
             xtype: 'textfield',
-            fieldLabel: '部门id',
-            labelAlign: 'right',
-            labelWidth: 60,
-            width: 200,
-            name: 'orgId',
-            hidden: true
-        },
-        {
-            xtype: 'textfield',
             fieldLabel: '部门code',
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
             name: 'orgCode',
+            hidden: true
+        },
+        {
+            xtype: 'textfield',
+            fieldLabel: '部门id',
+            labelAlign: 'right',
+            labelWidth: 60,
+            width: 200,
+            name: 'orgId',
             hidden: true
         },
         {
