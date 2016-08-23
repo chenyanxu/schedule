@@ -17,7 +17,7 @@
             <!-- this is a rest GET to find all workreport -->
             <get id="route-getAllWorkReport" outType="com.kalix.framework.core.api.persistence.JsonData">
                 <description>Find all WorkReports</description>
-                <to uri="bean:workreportService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
+                <to uri="bean:workreportService?method=getSelfEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
             </get>
 
             <!-- this is a rest POST to create a workreport -->
@@ -74,6 +74,16 @@
             <get id="route-getDepartmentPlanByWorkReportId" outType="com.kalix.framework.core.api.persistence.JsonData">
                 <description>Find all WorkReports</description>
                 <to uri="bean:workreportService?method=getDepartmentPlanByWorkReportId(${header.id})"/>
+            </get>
+        </rest>
+
+        <rest path="/workreportsearchs" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+            <description>workreport rest service</description>
+
+            <!-- this is a rest GET to find All workreport -->
+            <get id="route-getWorkReportSearch" outType="com.kalix.framework.core.api.persistence.JsonData">
+                <description>Find all PersonalPlans</description>
+                <to uri="bean:workreportService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
             </get>
         </rest>
     </camelContext>

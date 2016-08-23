@@ -3,6 +3,7 @@ package com.kalix.schedule.plan.workreport.biz;
 import com.kalix.framework.core.api.persistence.JsonData;
 import com.kalix.framework.core.api.persistence.JsonStatus;
 import com.kalix.framework.core.impl.biz.ShiroGenericBizServiceImpl;
+import com.kalix.framework.core.util.SerializeUtil;
 import com.kalix.schedule.plan.departmentplan.api.dao.IDepartmentPlanBeanDao;
 import com.kalix.schedule.plan.personalplan.api.dao.IPersonalPlanBeanDao;
 import com.kalix.schedule.plan.workreport.api.biz.IWorkReportBeanService;
@@ -11,6 +12,7 @@ import com.kalix.schedule.plan.workreport.api.dao.IWorkReportPlanBeanDao;
 import com.kalix.schedule.plan.workreport.entities.WorkReportBean;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -55,7 +57,7 @@ public class WorkReportBeanServiceImpl extends ShiroGenericBizServiceImpl<IWorkR
                 .filter(n -> n.getPersonalplanId() != 0)
                 .map(n -> n.getPersonalplanId()).collect(Collectors.toList());
 
-        return JsonData.jsonData(personalplanBeanDao.findById(list));
+        return JsonData.toJsonData(personalplanBeanDao.findById(list));
     }
 
     /**
@@ -71,6 +73,47 @@ public class WorkReportBeanServiceImpl extends ShiroGenericBizServiceImpl<IWorkR
                 .filter(n -> n.getDepartmentplanId() != 0)
                 .map(n -> n.getDepartmentplanId()).collect(Collectors.toList());
 
-        return JsonData.jsonData(departmentplanBeanDao.findById(list));
+        return JsonData.toJsonData(departmentplanBeanDao.findById(list));
+    }
+
+    /**
+     * 查询个人工作汇报
+     *
+     * @param page
+     * @param limit
+     * @param jsonStr
+     * @return
+     */
+    @Override
+    public JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr) {
+        // 查询json串中添加，当前操作人员id
+        Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
+        jsonMap.put("userId", String.valueOf(this.getShiroService().getCurrentUserId()));
+
+        return super.getAllEntityByQuery(page, limit, SerializeUtil.serializeJson(jsonMap));
+    }
+
+    /**
+     * 查询全部工作汇报
+     * @param page
+     * @param limit
+     * @param jsonStr
+     * @return
+     */
+    @Override
+    public JsonData getAllEntityByQuery(Integer page, Integer limit, String jsonStr) {
+        Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
+        // 不允许查询全部计划，所以在没有code情况下，添加一个不可能存在的code，保证查询不出数据
+        if (jsonMap.get("orgCode") == null || "".equals(jsonMap.get("orgCode")))  {
+            jsonMap.put("orgCode", "-1");
+        }
+        return super.getAllEntityByQuery(page, limit, SerializeUtil.serializeJson(jsonMap));
+    }
+
+    @Override
+    public void beforeSaveEntity(WorkReportBean entity, JsonStatus status) {
+        entity.setUserId(this.getShiroService().getCurrentUserId());
+        entity.setUserName(this.getShiroService().getCurrentUserRealName());
+        super.beforeSaveEntity(entity,status);
     }
 }
