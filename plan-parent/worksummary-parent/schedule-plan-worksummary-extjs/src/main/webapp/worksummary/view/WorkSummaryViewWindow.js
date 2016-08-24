@@ -28,9 +28,8 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryViewWindow', {
                     }
                 },
                 {
-                    fieldLabel: '用户名',
+                    fieldLabel: '用户名称',
                     allowBlank: false,
-                    hidden: true,
                     bind: {
                         value: '{rec.userName}'
                     }
@@ -52,7 +51,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryViewWindow', {
                     }
                 },
                 {
-                    fieldLabel: '部门名',
+                    fieldLabel: '部门名称',
                     allowBlank: false,
                     bind: {
                         value: '{rec.orgName}'

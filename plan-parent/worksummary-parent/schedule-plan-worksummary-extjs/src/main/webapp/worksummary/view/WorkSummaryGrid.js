@@ -54,7 +54,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryGrid', {
             hidden: true
         },
         {
-            text: '部门名',
+            text: '部门名称',
             dataIndex: 'orgName'
         },
         {
@@ -84,7 +84,12 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryGrid', {
             xtype: 'datecolumn',
             format: 'Y-m-d', renderer: null
         },
-
+        {
+            text: '最近更新',
+            dataIndex: 'updateDate',
+            xtype: 'datecolumn',
+            format: 'Y-m-d', renderer: null
+        },
         {
             xtype: 'securityGridColumnCommon',
             //todo change permission

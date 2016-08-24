@@ -34,13 +34,9 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchGrid', {
             hidden: true
         },
         {
-            text: '用户id',
+            text: '用户ID',
             dataIndex: 'userId',
             hidden: true
-        },
-        {
-            text: '用户名',
-            dataIndex: 'userName'
         },
         {
             text: '部门id',
@@ -53,8 +49,12 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchGrid', {
             hidden: true
         },
         {
-            text: '部门名',
+            text: '部门名称',
             dataIndex: 'orgName'
+        },
+        {
+            text: '用户名称',
+            dataIndex: 'userName'
         },
         {
             text: '标题',
@@ -89,7 +89,12 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchGrid', {
             xtype: 'datecolumn',
             format: 'Y-m-d', renderer: null
         },
-
+        {
+            text: '最近更新',
+            dataIndex: 'updateDate',
+            xtype: 'datecolumn',
+            format: 'Y-m-d', renderer: null
+        },
         {
             xtype: 'securityGridColumnCommon',
             //todo change permission

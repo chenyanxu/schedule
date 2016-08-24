@@ -48,25 +48,10 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanViewWindow', {
                     }
                 },
                 {
-                    fieldLabel: '部门名',
+                    fieldLabel: '部门名称',
                     allowBlank: false,
                     bind: {
                         value: '{rec.orgName}'
-                    }
-                },
-                {
-                    fieldLabel: '标题',
-                    allowBlank: false,
-                    bind: {
-                        value: '{rec.title}'
-                    }
-                },
-                {
-                    fieldLabel: '内容',
-                    allowBlank: false,
-                    xtype: 'textarea',
-                    bind: {
-                        value: '{rec.content}'
                     }
                 },
                 {
@@ -103,6 +88,21 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanViewWindow', {
                     format: 'Y-m-d',
                     bind: {
                         value: '{rec.endDate}'
+                    }
+                },
+                {
+                    fieldLabel: '标题',
+                    allowBlank: false,
+                    bind: {
+                        value: '{rec.title}'
+                    }
+                },
+                {
+                    fieldLabel: '内容',
+                    allowBlank: false,
+                    xtype: 'textarea',
+                    bind: {
+                        value: '{rec.content}'
                     }
                 }
             ]

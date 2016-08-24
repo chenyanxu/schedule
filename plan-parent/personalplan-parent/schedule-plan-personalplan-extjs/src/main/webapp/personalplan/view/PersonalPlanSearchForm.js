@@ -43,7 +43,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchForm', {
         },
         {
             xtype: 'textfield',
-            fieldLabel: '部门',
+            fieldLabel: '部门名称',
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,

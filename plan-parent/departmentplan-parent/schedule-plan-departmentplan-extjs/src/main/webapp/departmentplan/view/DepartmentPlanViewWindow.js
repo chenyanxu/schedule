@@ -20,7 +20,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanViewWindow', {
             xtype: 'baseForm',
             items: [
                 {
-                    fieldLabel: '用户ID',
+                    fieldLabel: '用户id',
                     allowBlank: false,
                     hidden: true,
                     bind: {
@@ -28,15 +28,14 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanViewWindow', {
                     }
                 },
                 {
-                    fieldLabel: '用户姓名',
+                    fieldLabel: '用户名',
                     allowBlank: false,
-                    hidden: true,
                     bind: {
                         value: '{rec.userName}'
                     }
                 },
                 {
-                    fieldLabel: '部门ID',
+                    fieldLabel: '部门id',
                     allowBlank: false,
                     hidden: true,
                     bind: {
@@ -54,24 +53,8 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanViewWindow', {
                 {
                     fieldLabel: '部门名称',
                     allowBlank: false,
-                    hidden: true,
                     bind: {
                         value: '{rec.orgName}'
-                    }
-                },
-                {
-                    fieldLabel: '计划标题',
-                    allowBlank: false,
-                    bind: {
-                        value: '{rec.title}'
-                    }
-                },
-                {
-                    fieldLabel: '计划内容',
-                    allowBlank: false,
-                    xtype: 'textarea',
-                    bind: {
-                        value: '{rec.content}'
                     }
                 },
                 {
@@ -84,7 +67,16 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanViewWindow', {
                     }
                 },
                 {
-                    fieldLabel: '计划开始时间',
+                    fieldLabel: '计划状态',
+                    xtype: 'scheduleDictCombobox',
+                    dictType: '计划状态',
+                    allowBlank: false,
+                    bind: {
+                        value: '{rec.state}'
+                    }
+                },
+                {
+                    fieldLabel: '开始日期',
                     allowBlank: false,
                     xtype: 'datefield',
                     format: 'Y-m-d',
@@ -93,7 +85,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanViewWindow', {
                     }
                 },
                 {
-                    fieldLabel: '计划结束时间',
+                    fieldLabel: '结束日期',
                     allowBlank: false,
                     xtype: 'datefield',
                     format: 'Y-m-d',
@@ -102,12 +94,18 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanViewWindow', {
                     }
                 },
                 {
-                    fieldLabel: '计划状态',
-                    xtype: 'scheduleDictCombobox',
-                    dictType: '计划状态',
+                    fieldLabel: '标题',
                     allowBlank: false,
                     bind: {
-                        value: '{rec.state}'
+                        value: '{rec.title}'
+                    }
+                },
+                {
+                    fieldLabel: '内容',
+                    allowBlank: false,
+                    xtype: 'textarea',
+                    bind: {
+                        value: '{rec.content}'
                     }
                 }
             ]

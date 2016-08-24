@@ -14,7 +14,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchForm', {
     items: [
         {
             xtype: 'textfield',
-            fieldLabel: '用户ID',
+            fieldLabel: '用户id',
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
@@ -23,7 +23,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchForm', {
         },
         {
             xtype: 'textfield',
-            fieldLabel: '用户姓名',
+            fieldLabel: '用户',
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
@@ -33,6 +33,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchForm', {
         {
             xtype: 'textfield',
             fieldLabel: '部门code',
+            itemId: 'orgCode',
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
@@ -41,29 +42,29 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchForm', {
         },
         {
             xtype: 'textfield',
-            fieldLabel: '部门ID',
-            labelAlign: 'right',
-            labelWidth: 60,
-            width: 200,
-            name: 'orgId',
-            hidden: true
-        },
-        {
-            xtype: 'textfield',
             fieldLabel: '部门名称',
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
-            name: 'orgName',
+            name: 'departmentName',
             hidden: true
         },
         {
             xtype: 'textfield',
-            fieldLabel: '计划标题',
+            fieldLabel: '标题',
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
             name: 'title'
+        },
+        {
+            xtype: 'textfield',
+            fieldLabel: '内容',
+            labelAlign: 'right',
+            labelWidth: 60,
+            width: 200,
+            name: 'content',
+            hidden: true
         },
         {
             fieldLabel: '计划类型',
@@ -75,9 +76,18 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchForm', {
             name: 'planType'
         },
         {
+            fieldLabel: '计划状态',
+            xtype: 'scheduleDictCombobox',
+            dictType: '计划状态',
+            labelAlign: 'right',
+            labelWidth: 60,
+            width: 200,
+            name: 'state'
+        },
+        {
             xtype: 'datefield',
             format: 'Y-m-d',
-            fieldLabel: '计划开始时间:',
+            fieldLabel: '开始日期:',
             labelAlign: 'right',
             labelWidth: 120,
             width: 260,
@@ -98,14 +108,30 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchForm', {
             name: 'beginDate:end:lt'
         },
         {
-            xtype: 'textfield',
-            fieldLabel: '计划状态',
-            xtype: 'scheduleDictCombobox',
-            dictType: '计划状态',
+            xtype: 'datefield',
+            format: 'Y-m-d',
+            fieldLabel: '结束日期:',
             labelAlign: 'right',
-            labelWidth: 60,
-            width: 200,
-            name: 'state'
+            labelWidth: 120,
+            width: 260,
+            name: 'endDate:begin:gt',
+            hidden: true
+        },
+        {
+            xtype: 'displayfield',
+            hideLabel: true,
+            value: '-',
+            margin: '0 5 0 5',
+            hidden: true
+        },
+        {
+            xtype: 'datefield',
+            format: 'Y-m-d',
+            headLabel: true,
+            labelAlign: 'right',
+            width: 140,
+            name: 'endDate:end:lt',
+            hidden: true
         }
     ]
 });

@@ -72,21 +72,6 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanWindow', {
                     }
                 },
                 {
-                    fieldLabel: '标题',
-                    allowBlank: false,
-                    bind: {
-                        value: '{rec.title}'
-                    }
-                },
-                {
-                    fieldLabel: '内容',
-                    allowBlank: false,
-                    xtype: 'textarea',
-                    bind: {
-                        value: '{rec.content}'
-                    }
-                },
-                {
                     fieldLabel: '计划类型',
                     xtype: 'scheduleDictCombobox',
                     dictType: '计划类型',
@@ -120,6 +105,21 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanWindow', {
                     format: 'Y-m-d',
                     bind: {
                         value: '{rec.endDate}'
+                    }
+                },
+                {
+                    fieldLabel: '标题',
+                    allowBlank: false,
+                    bind: {
+                        value: '{rec.title}'
+                    }
+                },
+                {
+                    fieldLabel: '内容',
+                    allowBlank: false,
+                    xtype: 'textarea',
+                    bind: {
+                        value: '{rec.content}'
                     }
                 }
             ]

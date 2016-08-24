@@ -24,11 +24,19 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
             xtype: 'baseForm',
             items: [
                 {
-                    fieldLabel: '用户ID',
+                    fieldLabel: '用户id',
                     allowBlank: false,
                     hidden: true,
                     bind: {
                         value: '{rec.userId}'
+                    }
+                },
+                {
+                    fieldLabel: '用户名',
+                    allowBlank: false,
+                    hidden: true,
+                    bind: {
+                        value: '{rec.userName}'
                     }
                 },
                 {
@@ -40,10 +48,10 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
                     bind: {
                         value: '{rec.orgId}'
                     },
-                    listeners:{
-                        'change':function(e,t,options) {
-                            this.lookupViewModel().get('rec').set('orgName',e.displayTplData[0].orgName);
-                            this.lookupViewModel().get('rec').set('orgCode',e.displayTplData[0].orgCode);
+                    listeners: {
+                        'change': function (e, t, options) {
+                            this.lookupViewModel().get('rec').set('orgName', e.displayTplData[0].orgName);
+                            this.lookupViewModel().get('rec').set('orgCode', e.displayTplData[0].orgCode);
                         }
                     }
                 },
@@ -64,21 +72,6 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
                     }
                 },
                 {
-                    fieldLabel: '计划标题',
-                    allowBlank: false,
-                    bind: {
-                        value: '{rec.title}'
-                    }
-                },
-                {
-                    fieldLabel: '计划内容',
-                    allowBlank: false,
-                    xtype: 'textarea',
-                    bind: {
-                        value: '{rec.content}'
-                    }
-                },
-                {
                     fieldLabel: '计划类型',
                     xtype: 'scheduleDictCombobox',
                     dictType: '计划类型',
@@ -88,35 +81,47 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
                     }
                 },
                 {
-                    fieldLabel: '计划开始时间',
+                    fieldLabel: '计划状态',
+                    xtype: 'scheduleDictCombobox',
+                    dictType: '计划状态',
+                    allowBlank: false,
+                    bind: {
+                        value: '{rec.state}'
+                    }
+                },
+                {
+                    fieldLabel: '开始日期',
                     allowBlank: false,
                     xtype: 'datefield',
                     format: 'Y-m-d',
-                    minValue: new Date(),
                     bind: {
                         value: '{rec.beginDate}'
                     }
                 },
                 {
-                    fieldLabel: '计划结束时间',
+                    fieldLabel: '结束日期',
                     allowBlank: false,
                     xtype: 'datefield',
                     format: 'Y-m-d',
-                    minValue: new Date(),
                     bind: {
                         value: '{rec.endDate}'
                     }
+                },
+                {
+                    fieldLabel: '标题',
+                    allowBlank: false,
+                    bind: {
+                        value: '{rec.title}'
+                    }
+                },
+                {
+                    fieldLabel: '内容',
+                    allowBlank: false,
+                    xtype: 'textarea',
+                    bind: {
+                        value: '{rec.content}'
+                    }
                 }
-                //,
-                //{
-                //    fieldLabel: '计划状态',
-                //    xtype: 'scheduleDictCombobox',
-                //    dictType: '计划状态',
-                //    allowBlank: false,
-                //    bind: {
-                //        value: '{rec.state}'
-                //    }
-                //}
             ]
         }
     ]

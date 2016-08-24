@@ -44,11 +44,6 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchGrid', {
             dataIndex: 'userId'
         },
         {
-            text: '用户名',
-            hidden: true,
-            dataIndex: 'userName'
-        },
-        {
             text: '部门id',
             dataIndex: 'orgId',
             hidden: true
@@ -59,8 +54,12 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchGrid', {
             dataIndex: 'orgCode'
         },
         {
-            text: '部门名',
+            text: '部门名称',
             dataIndex: 'orgName'
+        },
+        {
+            text: '用户名称',
+            dataIndex: 'userName'
         },
         {
             text: '标题',
@@ -86,6 +85,12 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchGrid', {
         {
             text: '结束日期',
             dataIndex: 'endDate',
+            xtype: 'datecolumn',
+            format: 'Y-m-d', renderer: null
+        },
+        {
+            text: '最近更新',
+            dataIndex: 'updateDate',
             xtype: 'datecolumn',
             format: 'Y-m-d', renderer: null
         },

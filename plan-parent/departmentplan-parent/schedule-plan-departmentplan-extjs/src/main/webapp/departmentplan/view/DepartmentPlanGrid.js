@@ -53,24 +53,23 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
             hidden: true
         },
         {
-            text: '部门名',
+            text: '部门名称',
             dataIndex: 'orgName'
         },
         {
-            text: '计划标题',
+            text: '标题',
             dataIndex: 'title'
         },
         {
-            text: '计划开始时间',
-            dataIndex: 'beginDate',
-            xtype: 'datecolumn',
-            format: 'Y-m-d', renderer: null
+            text: '内容',
+            dataIndex: 'content',
+            hidden: true
         },
         {
-            text: '计划结束时间',
-            dataIndex: 'endDate',
-            xtype: 'datecolumn',
-            format: 'Y-m-d', renderer: null
+            text: '计划类型',
+            xtype: 'scheduleDictGridColumn',
+            dictType: '计划类型',
+            dataIndex: 'planType', renderer: null
         },
         {
             text: '计划状态',
@@ -79,16 +78,22 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
             dataIndex: 'state', renderer: null
         },
         {
-            text: '最近更新',
-            dataIndex: 'updateDate',
+            text: '开始日期',
+            dataIndex: 'beginDate',
             xtype: 'datecolumn',
             format: 'Y-m-d', renderer: null
         },
         {
-            text: '计划类型',
-            xtype: 'scheduleDictGridColumn',
-            dictType: '计划类型',
-            dataIndex: 'planType', renderer: null
+            text: '结束日期',
+            dataIndex: 'endDate',
+            xtype: 'datecolumn',
+            format: 'Y-m-d', renderer: null
+        },
+        {
+            text: '最近更新',
+            dataIndex: 'updateDate',
+            xtype: 'datecolumn',
+            format: 'Y-m-d', renderer: null
         },
         {
             xtype: 'securityGridColumnCommon',
