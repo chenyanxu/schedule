@@ -14,7 +14,6 @@
     <name>Kalix Schedule Core Parent</name>
     <modules>
         <module>schedule-core-extjs</module>
-        <module>schedule-core-web</module>
         <module>schedule-core-etc</module>
     </modules>
     <packaging>pom</packaging>
