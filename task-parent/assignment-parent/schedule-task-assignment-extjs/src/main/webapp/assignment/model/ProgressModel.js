@@ -17,7 +17,7 @@ Ext.define('kalix.task.assignment.model.ProgressModel', {
         },
         {
             name: 'percent',
-            type: 'int'
+            type: 'float'
         },
         {
             name: 'comment'

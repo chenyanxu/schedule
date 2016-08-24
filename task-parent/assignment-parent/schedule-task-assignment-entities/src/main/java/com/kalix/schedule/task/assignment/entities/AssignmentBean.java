@@ -35,7 +35,7 @@ public class AssignmentBean extends PersistentEntity {
     /**
      * @describe 部门代码
      */
-    private long orgCode;
+    private String orgCode;
     /**
      * @describe 部门名称
      */
@@ -95,7 +95,7 @@ public class AssignmentBean extends PersistentEntity {
     /**
      * @describe 任务进度
      */
-    private Integer percent;
+    private float percent;
     /**
      * @describe 进度说明
      */
@@ -133,11 +133,11 @@ public class AssignmentBean extends PersistentEntity {
         this.orgId = orgId;
     }
 
-    public long getOrgCode() {
+    public String getOrgCode() {
         return orgCode;
     }
 
-    public void setOrgCode(long orgCode) {
+    public void setOrgCode(String orgCode) {
         this.orgCode = orgCode;
     }
 
@@ -269,11 +269,11 @@ public class AssignmentBean extends PersistentEntity {
         this.advice = advice;
     }
 
-    public Integer getPercent() {
+    public float getPercent() {
         return percent;
     }
 
-    public void setPercent(Integer percent) {
+    public void setPercent(float percent) {
         this.percent = percent;
     }
 

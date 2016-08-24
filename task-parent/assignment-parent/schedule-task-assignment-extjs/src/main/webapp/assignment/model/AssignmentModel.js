@@ -28,9 +28,7 @@ Ext.define('kalix.task.assignment.model.AssignmentModel', {
         },
         {
             name: 'orgCode',
-            type: 'int',
-            defaultValue: 0,
-            validators: [{type: 'presence'}]
+            type: 'string'
         },
         {
             name: 'orgName',
@@ -103,7 +101,7 @@ Ext.define('kalix.task.assignment.model.AssignmentModel', {
         },
         {
             name: 'percent',
-            type: 'int'
+            type: 'float'
         },
         {
             name: 'comment',

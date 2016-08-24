@@ -20,20 +20,44 @@ Ext.define('kalix.task.assignment.view.ProgressWindow', {
         {
             xtype: 'baseForm',
             items: [
+                //{
+                //    fieldLabel: '任务进度(%)',
+                //    allowBlank: false,
+                //    xtype: 'numberfield',
+                //    maxValue: 100,
+                //    minValue: 0,
+                //    listeners: {
+                //        'afterrender': function(target,eOpts){
+                //            target.value = this.lookupViewModel().get('rec').get('percent')*100;
+                //        },
+                //        'change': function (target, newValue, oldValue, eOpts) {
+                //            this.lookupViewModel().get('rec').set('percent', newValue/100);
+                //        }
+                //    }
+                //},
                 {
                     fieldLabel: '任务进度(%)',
                     allowBlank: false,
                     xtype: 'numberfield',
                     maxValue: 100,
                     minValue: 0,
+                    value: 0,
                     bind: {
                         value: '{rec.percent}'
-                    }
+                    }//,
+                    //getValue:function(){
+                    //    return this.value*100;
+                    //}
+                    //,
+                    //setValue: function (value) {
+                    //    this.value=value/100;
+                    //}
                 },
                 {
                     fieldLabel: '进度说明',
                     allowBlank: false,
                     xtype: 'textarea',
+                    value: '',
                     bind: {
                         value: '{rec.comment}'
                     }
