@@ -1,9 +1,12 @@
 package com.kalix.schedule.task.assignment.biz;
 
 import com.kalix.admin.core.api.biz.IUserBeanService;
+import com.kalix.framework.core.api.persistence.ChartJsonData;
 import com.kalix.framework.core.api.persistence.JsonData;
 import com.kalix.framework.core.api.persistence.JsonStatus;
+import com.kalix.framework.core.api.web.model.BaseDTO;
 import com.kalix.framework.core.impl.biz.ShiroGenericBizServiceImpl;
+import com.kalix.framework.core.util.Assert;
 import com.kalix.framework.core.util.BeanUtil;
 import com.kalix.framework.core.util.SerializeUtil;
 import com.kalix.schedule.task.assignment.api.biz.IAssignmentBeanService;
@@ -11,12 +14,14 @@ import com.kalix.schedule.task.assignment.api.dao.IAssignmentBeanDao;
 import com.kalix.schedule.task.assignment.api.dao.IEventBeanDao;
 import com.kalix.schedule.task.assignment.api.dao.IProgressBeanDao;
 import com.kalix.schedule.task.assignment.api.dao.IReadingBeanDao;
+import com.kalix.schedule.task.assignment.api.query.AssignmentChartDTO;
 import com.kalix.schedule.task.assignment.entities.AssignmentBean;
 import com.kalix.schedule.task.assignment.entities.EventBean;
 import com.kalix.schedule.task.assignment.entities.ProgressBean;
 import com.kalix.schedule.task.assignment.entities.ReadingBean;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -100,18 +105,49 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
      * @return
      */
     @Override
-    public JsonData getAllEntityByQuery(Integer page, Integer limit, String jsonStr){
-        JsonData jsonData = super.getAllEntityByQuery(page,limit,jsonStr);
-        List creationList = jsonData.getData();
+    public JsonData getChartData(Integer page, Integer limit, String jsonStr){
+        Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
+        //获得查询的sql语句
+        String sql = getNativeQueryStr();
+        //获得返回的结果类
+        Class<? extends BaseDTO> cls = getResultClass();
+        Assert.notNull(cls, "返回查询结果类不能为空.");
 
-        //翻译任务负责人
-        List ids= BeanUtil.getBeanFieldValueList(creationList,"head");
-        List values=this.userBeanService.getFieldValuesByIds(ids.toArray(),"name");
-        BeanUtil.setBeanListFieldValues(creationList,"header",values);
+        for (Map.Entry<String, String> entry : jsonMap.entrySet()) {
+            if(entry.getValue() != null && !entry.getValue().equals("")) {
+                sql = sql + " and " + entry.getKey() + " = " + entry.getValue();
+            }
+        }
 
-        jsonData.setTotalCount((long)creationList.size());
-        jsonData.setData(creationList);
+        sql = sql + " order by orgName asc";
+
+        JsonData jsonData = new JsonData();
+        List<AssignmentChartDTO> chartList = dao.findByNativeSql(sql, AssignmentChartDTO.class,"");
+        for(int i = 0; i < chartList.size(); i++){
+            chartList.get(i).setId(i);
+        }
+        //chartJsonData.setFields(new String[]{"orgName","total","waiting","reject","process","complete","finish","failure","cancel"});
+        jsonData.setTotalCount((long)chartList.size());
+        jsonData.setData(chartList);
+
         return jsonData;
+    }
+
+    @Override
+    protected String getNativeQueryStr(){
+        return "select orgName,count(*) as total," +
+                "sum(case when state=0 then 1 else 0 end) as waiting," +
+                "sum(case when state=1 then 1 else 0 end) as reject," +
+                "sum(case when state=2 then 1 else 0 end) as process," +
+                "sum(case when state=3 then 1 else 0 end) as complete," +
+                "sum(case when state=4 then 1 else 0 end) as finish," +
+                "sum(case when state=5 then 1 else 0 end) as failure," +
+                "sum(case when state=6 then 1 else 0 end) as cancel " +
+                "from schedule_assignment group by orgName having 1=1";
+    }
+    @Override
+    protected Class<? extends BaseDTO> getResultClass() {
+        return AssignmentChartDTO.class;
     }
 
     /**
@@ -128,7 +164,30 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         entity.setUserId(userId);
         entity.setUserName(userName);
 
+        //设置进度
+        if(entity != null){
+            entity.setPercent(entity.getPercent()/100.0f);
+        }else{
+            entity.setPercent(0f);
+        }
+
         return super.saveEntity(entity);
+    }
+
+    /**
+     * 修改任务
+     * @param entity
+     * @return
+     */
+    @Override
+    public JsonStatus updateEntity(AssignmentBean entity){
+        //设置进度
+        if(entity != null){
+            entity.setPercent(entity.getPercent()/100.0f);
+        }else{
+            entity.setPercent(0f);
+        }
+        return super.updateEntity(entity);
     }
 
     /**

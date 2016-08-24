@@ -182,5 +182,12 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
         }else{
             vm.set('accept', true);
         }
+    },
+
+
+
+    onChart: function(){
+        var view = Ext.create('kalix.task.assignmentcharts.view.AssignmentChartView');
+        view.show();
     }
 });

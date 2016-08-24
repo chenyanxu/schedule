@@ -1,7 +1,9 @@
 package com.kalix.schedule.task.assignment.api.biz;
 
 import com.kalix.framework.core.api.biz.IBizService;
+import com.kalix.framework.core.api.persistence.ChartJsonData;
 import com.kalix.framework.core.api.persistence.JsonData;
+import com.kalix.framework.core.api.persistence.JsonStatus;
 import com.kalix.schedule.task.assignment.entities.AssignmentBean;
 
 /**
@@ -15,6 +17,7 @@ import com.kalix.schedule.task.assignment.entities.AssignmentBean;
 public interface IAssignmentBeanService extends IBizService<AssignmentBean> {
     //在此添加新的业务方法
     JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr);
+    JsonData getChartData(Integer page, Integer limit, String jsonStr);
     JsonData getAllProgressEntity(long assignmentId);
     JsonData getAllReadingEntity(long assignmentId);
     JsonData getAllEventEntity(long assignmentId);

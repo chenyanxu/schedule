@@ -69,5 +69,15 @@
                 <to uri="bean:assignmentService?method=getAllEventEntity(${header.assignmentId})"/>
             </get>
         </rest>
+
+        <rest path="/assignmentcharts" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+            <description>assignment rest service</description>
+
+            <!-- this is a rest GET to find all assignment -->
+            <get id="route-getAllAssignmentChart" outType="com.kalix.framework.core.api.persistence.JsonData">
+                <description>Find all AssignmentCharts</description>
+                <to uri="bean:assignmentService?method=getChartData(${header.page},${header.limit},${header.jsonStr})"/>
+            </get>
+        </rest>
     </camelContext>
 </blueprint>

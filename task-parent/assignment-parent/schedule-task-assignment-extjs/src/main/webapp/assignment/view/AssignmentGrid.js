@@ -76,6 +76,18 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                 renderer: null
             },
             {
+                text: '任务进度',
+                dataIndex: 'percent',
+                xtype: 'widgetcolumn',
+                widget: {
+                    xtype: 'progressbarwidget',
+                    textTpl: [
+                        '{percent}% 完成'
+                    ]
+                },
+                renderer: null
+            },
+            {
                 text: '布置人',
                 dataIndex: 'createBy'
             },
