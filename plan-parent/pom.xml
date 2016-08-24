@@ -15,6 +15,8 @@
     <modules>
         <module>departmentplan-parent</module>
         <module>personalplan-parent</module>
+        <module>workreport-parent</module>
+        <module>worksummary-parent</module>
     </modules>
     <packaging>pom</packaging>
 </project>

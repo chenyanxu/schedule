@@ -37,6 +37,22 @@ public class PersonalPlanBeanDaoImpl extends GenericDao<PersonalPlanBean, Long> 
     }
     //todo add custom query
 
+    /**
+     * 查询指定id内的个人计划信息
+     *
+     * @param id
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<PersonalPlanBean> findById(List<Long> id) {
+        if (id != null && !id.isEmpty()) {
+            return (List<PersonalPlanBean>) this.find("select ob from PersonalPlanBean ob where ob.id in (?1) ", id);
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
     @Override
     public CriteriaQuery buildCriteriaQuery(QueryDTO queryDTO) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress ALL -->
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.kalix.schedule.plan</groupId>
+        <artifactId>plan-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.kalix.schedule.plan.worksummary</groupId>
+    <artifactId>worksummary-parent</artifactId>
+    <name>Kalix Schedule Plan WorkSummary Parent</name>
+    <packaging>pom</packaging>
+    <modules>
+        <module>schedule-plan-worksummary-api</module>
+        <module>schedule-plan-worksummary-biz</module>
+        <module>schedule-plan-worksummary-dao</module>
+        <module>schedule-plan-worksummary-entities</module>
+        <module>schedule-plan-worksummary-extjs</module>
+        <module>schedule-plan-worksummary-rest</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.kalix.admin.core</groupId>
+                <artifactId>admin-core-entities</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.kalix.schedule.plan.worksummary</groupId>
+                <artifactId>schedule-plan-worksummary-api</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kalix.schedule.plan.worksummary</groupId>
+                <artifactId>schedule-plan-worksummary-entities</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
