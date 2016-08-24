@@ -68,13 +68,13 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchGrid', {
         {
             text: '计划类型',
             xtype: 'scheduleDictGridColumn',
-            dictType: '计划类型',
+            dictType: '个人计划类型',
             dataIndex: 'planType', renderer: null
         },
         {
             text: '计划状态',
             xtype: 'scheduleDictGridColumn',
-            dictType: '计划状态',
+            dictType: '个人计划状态',
             dataIndex: 'state', renderer: null
         },
         {

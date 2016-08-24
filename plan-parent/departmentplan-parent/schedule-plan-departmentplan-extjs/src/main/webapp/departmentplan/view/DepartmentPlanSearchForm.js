@@ -69,7 +69,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchForm', {
         {
             fieldLabel: '计划类型',
             xtype: 'scheduleDictCombobox',
-            dictType: '计划类型',
+            dictType: '部门计划类型',
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
@@ -78,7 +78,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchForm', {
         {
             fieldLabel: '计划状态',
             xtype: 'scheduleDictCombobox',
-            dictType: '计划状态',
+            dictType: '部门计划状态',
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,

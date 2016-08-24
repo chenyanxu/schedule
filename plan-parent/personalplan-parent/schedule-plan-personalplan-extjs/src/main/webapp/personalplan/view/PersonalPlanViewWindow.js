@@ -57,7 +57,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanViewWindow', {
                 {
                     fieldLabel: '计划类型',
                     xtype: 'scheduleDictCombobox',
-                    dictType: '计划类型',
+                    dictType: '个人计划类型',
                     allowBlank: false,
                     bind: {
                         value: '{rec.planType}'
@@ -66,7 +66,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanViewWindow', {
                 {
                     fieldLabel: '计划状态',
                     xtype: 'scheduleDictCombobox',
-                    dictType: '计划状态',
+                    dictType: '个人计划状态',
                     allowBlank: false,
                     bind: {
                         value: '{rec.state}'
