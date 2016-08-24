@@ -1,7 +1,6 @@
 package com.kalix.schedule.task.assignment.biz;
 
 import com.kalix.admin.core.api.biz.IUserBeanService;
-import com.kalix.framework.core.api.persistence.ChartJsonData;
 import com.kalix.framework.core.api.persistence.JsonData;
 import com.kalix.framework.core.api.persistence.JsonStatus;
 import com.kalix.framework.core.api.web.model.BaseDTO;

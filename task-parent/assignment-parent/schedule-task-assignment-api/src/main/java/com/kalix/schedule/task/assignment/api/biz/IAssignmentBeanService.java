@@ -1,9 +1,7 @@
 package com.kalix.schedule.task.assignment.api.biz;
 
 import com.kalix.framework.core.api.biz.IBizService;
-import com.kalix.framework.core.api.persistence.ChartJsonData;
 import com.kalix.framework.core.api.persistence.JsonData;
-import com.kalix.framework.core.api.persistence.JsonStatus;
 import com.kalix.schedule.task.assignment.entities.AssignmentBean;
 
 /**
