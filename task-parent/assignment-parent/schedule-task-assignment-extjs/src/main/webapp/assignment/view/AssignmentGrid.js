@@ -176,7 +176,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                         handler: 'onAttachmentManage',
                         getClass: function (v, meta, record) {
                             //如果当前登录用户是任务的创建人,则允许上传附件
-                            if (Ext.util.Cookies.get('currentUserId') == record.data.userId) {
+                            if (Ext.util.Cookies.get('currentUserId') == record.data.head) {
                                 return "iconfont icon-attachment-column";
                             }
                             //如果当前登录用户是任务的负责人,则允许上传附件
@@ -184,7 +184,10 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                                 return "iconfont icon-attachment-column";
                             }
 
-                            return "kalix_hidden";
+                            //需求说参与人也可以上传附件啦
+                            return "iconfont icon-attachment-column";
+
+                            //return "kalix_hidden";
                         }
                     }
                 ]
