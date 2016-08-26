@@ -148,24 +148,12 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
             AssignmentChartDTO tmpDTO = new AssignmentChartDTO();
             tmpDTO.setOrgName(organizatioBeen.get(i).getName());
             tmpDTO.setTotal(tmpList.get(0).getTotal());
-            if(tmpList.get(0).getWaiting() == null) {
-                tmpDTO.setWaiting(0);
-            }
-            if(tmpList.get(0).getReject() == null) {
-                tmpDTO.setReject(0);
-            }
-            if(tmpList.get(0).getComplete() == null) {
-                tmpDTO.setComplete(0);
-            }
-            if(tmpList.get(0).getFinish() == null) {
-                tmpDTO.setFinish(0);
-            }
-            if(tmpList.get(0).getFailure() == null) {
-                tmpDTO.setFailure(0);
-            }
-            if(tmpList.get(0).getCancel() == null) {
-                tmpDTO.setCancel(0);
-            }
+            tmpDTO.setWaiting(tmpList.get(0).getWaiting() == null?0:tmpList.get(0).getWaiting());
+            tmpDTO.setReject(tmpList.get(0).getReject() == null?0:tmpList.get(0).getReject());
+            tmpDTO.setComplete(tmpList.get(0).getComplete()==null?0:tmpList.get(0).getComplete());
+            tmpDTO.setFinish(tmpList.get(0).getFinish() == null?0:tmpList.get(0).getFinish());
+            tmpDTO.setFailure(tmpList.get(0).getFailure() == null?0:tmpList.get(0).getFailure());
+            tmpDTO.setCancel(tmpList.get(0).getCancel() == null?0:tmpList.get(0).getCancel());
 
             chartList.add(tmpDTO);
         }
