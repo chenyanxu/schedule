@@ -6,24 +6,16 @@ import com.kalix.framework.core.api.web.model.BaseDTO;
  * Created by sunlf on 2015/11/5.
  */
 public class AssignmentChartDTO extends BaseDTO {
-    private Long orgId;
     private String orgName;
     private Integer total;
     private Integer waiting;
     private Integer reject;
     private Integer process;
     private Integer complete;
+
     private Integer finish;
     private Integer failure;
     private Integer cancel;
-
-    public Long getOrgId() {
-        return orgId;
-    }
-
-    public void setOrgId(Long orgId) {
-        this.orgId = orgId;
-    }
 
     public String getOrgName() {
         return orgName;

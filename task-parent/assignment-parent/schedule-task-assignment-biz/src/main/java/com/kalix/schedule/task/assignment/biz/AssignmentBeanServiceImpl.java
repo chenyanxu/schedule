@@ -1,6 +1,8 @@
 package com.kalix.schedule.task.assignment.biz;
 
 import com.kalix.admin.core.api.biz.IUserBeanService;
+import com.kalix.admin.core.api.dao.IOrganizationBeanDao;
+import com.kalix.admin.core.entities.OrganizationBean;
 import com.kalix.framework.core.api.persistence.JsonData;
 import com.kalix.framework.core.api.persistence.JsonStatus;
 import com.kalix.framework.core.api.web.model.BaseDTO;
@@ -41,6 +43,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
     private IProgressBeanDao progressBeanDao;
     private IEventBeanDao eventBeanDao;
     private IReadingBeanDao readingBeanDao;
+    private IOrganizationBeanDao organizationBeanDao;
 
     /**
      * 根据登录用户的信息，查询任务
@@ -104,23 +107,70 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
      */
     @Override
     public JsonData getChartData(Integer page, Integer limit, String jsonStr){
+        JsonData jsonData = new JsonData();
         Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
+        String orgCode = null;
+        String condition = " where 1=1 ";
+        for (Map.Entry<String, String> entry : jsonMap.entrySet()) {
+            if(entry.getValue() != null && !entry.getValue().equals("")) {
+                //获取前台传入的orgCode
+                if(entry.getKey().equals("orgCode")){
+                    orgCode = entry.getValue();
+                    condition = condition + " and " + entry.getKey() + " like '" + entry.getValue() + "%'";
+                }else{
+                    condition = condition + " and " + entry.getKey() + " = " + entry.getValue();
+                }
+            }
+        }
+        //必须有orgCode作为查询条件
+        if(orgCode == null){
+            orgCode = "001";
+            condition = condition + " and orgCode like '001%'";
+        }
+
+        //1、先查找该中心代码所直属的部门信息
+        List<OrganizationBean> organizatioBeen = organizationBeanDao.find("select ob from OrganizationBean ob where ob.code like ?1 order by ob.name",orgCode+"___");
+
         //获得查询的sql语句
         String sql = getNativeQueryStr();
+
         //获得返回的结果类
         Class<? extends BaseDTO> cls = getResultClass();
         Assert.notNull(cls, "返回查询结果类不能为空.");
+        sql = sql + condition;
 
-        for (Map.Entry<String, String> entry : jsonMap.entrySet()) {
-            if(entry.getValue() != null && !entry.getValue().equals("")) {
-                sql = sql + " and " + entry.getKey() + " = " + entry.getValue();
+        // 循环查找该中心代码下的任务数，放到chartList中
+        List<AssignmentChartDTO> chartList = new ArrayList<>();
+        for(int i = 0; i < organizatioBeen.size(); i++){
+            sql = sql + " and orgCode like '"+ organizatioBeen.get(i).getCode() + "%'";
+            List<AssignmentChartDTO> tmpList = dao.findByNativeSql(sql, AssignmentChartDTO.class,"");
+            //如果数据为空，怎么插入0
+            AssignmentChartDTO tmpDTO = new AssignmentChartDTO();
+            tmpDTO.setOrgName(organizatioBeen.get(i).getName());
+            tmpDTO.setTotal(tmpList.get(0).getTotal());
+            if(tmpList.get(0).getWaiting() == null) {
+                tmpDTO.setWaiting(0);
             }
+            if(tmpList.get(0).getReject() == null) {
+                tmpDTO.setReject(0);
+            }
+            if(tmpList.get(0).getComplete() == null) {
+                tmpDTO.setComplete(0);
+            }
+            if(tmpList.get(0).getFinish() == null) {
+                tmpDTO.setFinish(0);
+            }
+            if(tmpList.get(0).getFailure() == null) {
+                tmpDTO.setFailure(0);
+            }
+            if(tmpList.get(0).getCancel() == null) {
+                tmpDTO.setCancel(0);
+            }
+
+            chartList.add(tmpDTO);
         }
 
-        sql = sql + " order by orgName asc";
-
-        JsonData jsonData = new JsonData();
-        List<AssignmentChartDTO> chartList = dao.findByNativeSql(sql, AssignmentChartDTO.class,"");
+        // 传到前台的id
         for(int i = 0; i < chartList.size(); i++){
             chartList.get(i).setId(i);
         }
@@ -133,7 +183,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
 
     @Override
     protected String getNativeQueryStr(){
-        return "select orgName,count(*) as total," +
+        return "select count(*) as total," +
                 "sum(case when state=0 then 1 else 0 end) as waiting," +
                 "sum(case when state=1 then 1 else 0 end) as reject," +
                 "sum(case when state=2 then 1 else 0 end) as process," +
@@ -141,7 +191,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
                 "sum(case when state=4 then 1 else 0 end) as finish," +
                 "sum(case when state=5 then 1 else 0 end) as failure," +
                 "sum(case when state=6 then 1 else 0 end) as cancel " +
-                "from schedule_assignment group by orgName having 1=1";
+                "from schedule_assignment ";
     }
     @Override
     protected Class<? extends BaseDTO> getResultClass() {
@@ -251,5 +301,9 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
 
     public void setReadingBeanDao(IReadingBeanDao readingBeanDao) {
         this.readingBeanDao = readingBeanDao;
+    }
+
+    public void setOrganizationBeanDao(IOrganizationBeanDao organizationBeanDao) {
+        this.organizationBeanDao = organizationBeanDao;
     }
 }
