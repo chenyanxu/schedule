@@ -213,6 +213,10 @@ Ext.define('kalix.task.assignment.view.AssignmentViewWindow', {
                                 {
                                     fieldLabel: '参与人',
                                     xtype: 'userTagField',
+                                    store:{
+                                        type:'userStore',
+                                        pageSize:0
+                                    },
                                     valueField: 'id',
                                     displayField: 'name',
                                     allowBlank: false,
