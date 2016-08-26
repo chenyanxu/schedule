@@ -3,13 +3,17 @@ package com.kalix.schedule.task.assignment.biz;
 import com.kalix.admin.core.api.biz.IUserBeanService;
 import com.kalix.admin.core.api.dao.IOrganizationBeanDao;
 import com.kalix.admin.core.entities.OrganizationBean;
+import com.kalix.common.message.api.Const;
 import com.kalix.framework.core.api.persistence.JsonData;
 import com.kalix.framework.core.api.persistence.JsonStatus;
 import com.kalix.framework.core.api.web.model.BaseDTO;
 import com.kalix.framework.core.impl.biz.ShiroGenericBizServiceImpl;
 import com.kalix.framework.core.util.Assert;
 import com.kalix.framework.core.util.BeanUtil;
+import com.kalix.framework.core.util.JNDIHelper;
 import com.kalix.framework.core.util.SerializeUtil;
+import com.kalix.schedule.system.dict.api.biz.IScheduleDictBeanService;
+import com.kalix.schedule.system.dict.entities.ScheduleDictBean;
 import com.kalix.schedule.task.assignment.api.biz.IAssignmentBeanService;
 import com.kalix.schedule.task.assignment.api.dao.IAssignmentBeanDao;
 import com.kalix.schedule.task.assignment.api.dao.IEventBeanDao;
@@ -20,15 +24,16 @@ import com.kalix.schedule.task.assignment.entities.AssignmentBean;
 import com.kalix.schedule.task.assignment.entities.EventBean;
 import com.kalix.schedule.task.assignment.entities.ProgressBean;
 import com.kalix.schedule.task.assignment.entities.ReadingBean;
+import org.osgi.service.event.Event;
+import org.osgi.service.event.EventAdmin;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+import java.util.*;
 
 /**
- * @类描述： 
- * @创建人：  
- * @创建时间： 
+ * @类描述：
+ * @创建人：
+ * @创建时间：
  * @修改人：
  * @修改时间：
  * @修改备注：
@@ -36,9 +41,14 @@ import java.util.Map;
 public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssignmentBeanDao, AssignmentBean> implements IAssignmentBeanService {
     private JsonStatus jsonStatus = new JsonStatus();
     private IUserBeanService userBeanService;
+    private EventAdmin eventAdmin;
+
     public AssignmentBeanServiceImpl() {
         super.init(AssignmentBean.class.getName());
     }
+
+    private IScheduleDictBeanService scheduleDictBeanService;
+
 
     private IProgressBeanDao progressBeanDao;
     private IEventBeanDao eventBeanDao;
@@ -47,36 +57,37 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
 
     /**
      * 根据登录用户的信息，查询任务
+     *
      * @param page
      * @param limit
      * @param jsonStr
      * @return
      */
     @Override
-    public JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr){
+    public JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr) {
         Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
         Long userId = this.getShiroService().getCurrentUserId();
         //String userName = this.getShiroService().getCurrentUserRealName();
-        jsonMap.put("userId",String.valueOf(userId));
+        jsonMap.put("userId", String.valueOf(userId));
         //jsonMap.put("userName",userName);
 
         //查找任务布置人是当前用户的数据
         String newJsonStr = SerializeUtil.serializeJson(jsonMap);
-        JsonData jsonData = super.getAllEntityByQuery(page,limit,newJsonStr);
+        JsonData jsonData = super.getAllEntityByQuery(page, limit, newJsonStr);
         List creationList = jsonData.getData();
 
         //查找任务负责人是当前用户的数据
         jsonMap.clear();
-        jsonMap.put("head",String.valueOf(userId));
+        jsonMap.put("head", String.valueOf(userId));
         newJsonStr = SerializeUtil.serializeJson(jsonMap);
-        jsonData = super.getAllEntityByQuery(page,limit,newJsonStr);
+        jsonData = super.getAllEntityByQuery(page, limit, newJsonStr);
         List headList = jsonData.getData();
 
         //查找任务参与人是当前用户的数据
         jsonMap.clear();
-        jsonMap.put("participant",String.valueOf(userId));
+        jsonMap.put("participant", String.valueOf(userId));
         newJsonStr = SerializeUtil.serializeJson(jsonMap);
-        jsonData = super.getAllEntityByQuery(page,limit,newJsonStr);
+        jsonData = super.getAllEntityByQuery(page, limit, newJsonStr);
         List participantList = jsonData.getData();
 
         List totalList = new ArrayList<>();
@@ -89,47 +100,48 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         totalList.addAll(participantList);
 
         //翻译任务负责人
-        List ids= BeanUtil.getBeanFieldValueList(totalList,"head");
-        List values=this.userBeanService.getFieldValuesByIds(ids.toArray(),"name");
-        BeanUtil.setBeanListFieldValues(totalList,"header",values);
+        List ids = BeanUtil.getBeanFieldValueList(totalList, "head");
+        List values = this.userBeanService.getFieldValuesByIds(ids.toArray(), "name");
+        BeanUtil.setBeanListFieldValues(totalList, "header", values);
 
-        jsonData.setTotalCount((long)totalList.size());
+        jsonData.setTotalCount((long) totalList.size());
         jsonData.setData(totalList);
         return jsonData;
     }
 
     /**
      * 根据登录用户的信息，查询任务
+     *
      * @param page
      * @param limit
      * @param jsonStr
      * @return
      */
     @Override
-    public JsonData getChartData(Integer page, Integer limit, String jsonStr){
+    public JsonData getChartData(Integer page, Integer limit, String jsonStr) {
         JsonData jsonData = new JsonData();
         Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
         String orgCode = null;
         String condition = " where 1=1 ";
         for (Map.Entry<String, String> entry : jsonMap.entrySet()) {
-            if(entry.getValue() != null && !entry.getValue().equals("")) {
+            if (entry.getValue() != null && !entry.getValue().equals("")) {
                 //获取前台传入的orgCode
-                if(entry.getKey().equals("orgCode")){
+                if (entry.getKey().equals("orgCode")) {
                     orgCode = entry.getValue();
                     condition = condition + " and " + entry.getKey() + " like '" + entry.getValue() + "%'";
-                }else{
+                } else {
                     condition = condition + " and " + entry.getKey() + " = " + entry.getValue();
                 }
             }
         }
         //必须有orgCode作为查询条件
-        if(orgCode == null){
+        if (orgCode == null) {
             orgCode = "001";
             condition = condition + " and orgCode like '001%'";
         }
 
         //1、先查找该中心代码所直属的部门信息
-        List<OrganizationBean> organizatioBeen = organizationBeanDao.find("select ob from OrganizationBean ob where ob.code like ?1 order by ob.name",orgCode+"___");
+        List<OrganizationBean> organizatioBeen = organizationBeanDao.find("select ob from OrganizationBean ob where ob.code like ?1 order by ob.name", orgCode + "___");
 
         //获得查询的sql语句
         String sql = getNativeQueryStr();
@@ -141,36 +153,36 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
 
         // 循环查找该中心代码下的任务数，放到chartList中
         List<AssignmentChartDTO> chartList = new ArrayList<>();
-        for(int i = 0; i < organizatioBeen.size(); i++){
-            sql = sql + " and orgCode like '"+ organizatioBeen.get(i).getCode() + "%'";
-            List<AssignmentChartDTO> tmpList = dao.findByNativeSql(sql, AssignmentChartDTO.class,"");
+        for (int i = 0; i < organizatioBeen.size(); i++) {
+            sql = sql + " and orgCode like '" + organizatioBeen.get(i).getCode() + "%'";
+            List<AssignmentChartDTO> tmpList = dao.findByNativeSql(sql, AssignmentChartDTO.class, "");
             //如果数据为空，怎么插入0
             AssignmentChartDTO tmpDTO = new AssignmentChartDTO();
             tmpDTO.setOrgName(organizatioBeen.get(i).getName());
             tmpDTO.setTotal(tmpList.get(0).getTotal());
-            tmpDTO.setWaiting(tmpList.get(0).getWaiting() == null?0:tmpList.get(0).getWaiting());
-            tmpDTO.setReject(tmpList.get(0).getReject() == null?0:tmpList.get(0).getReject());
-            tmpDTO.setComplete(tmpList.get(0).getComplete()==null?0:tmpList.get(0).getComplete());
-            tmpDTO.setFinish(tmpList.get(0).getFinish() == null?0:tmpList.get(0).getFinish());
-            tmpDTO.setFailure(tmpList.get(0).getFailure() == null?0:tmpList.get(0).getFailure());
-            tmpDTO.setCancel(tmpList.get(0).getCancel() == null?0:tmpList.get(0).getCancel());
+            tmpDTO.setWaiting(tmpList.get(0).getWaiting() == null ? 0 : tmpList.get(0).getWaiting());
+            tmpDTO.setReject(tmpList.get(0).getReject() == null ? 0 : tmpList.get(0).getReject());
+            tmpDTO.setComplete(tmpList.get(0).getComplete() == null ? 0 : tmpList.get(0).getComplete());
+            tmpDTO.setFinish(tmpList.get(0).getFinish() == null ? 0 : tmpList.get(0).getFinish());
+            tmpDTO.setFailure(tmpList.get(0).getFailure() == null ? 0 : tmpList.get(0).getFailure());
+            tmpDTO.setCancel(tmpList.get(0).getCancel() == null ? 0 : tmpList.get(0).getCancel());
 
             chartList.add(tmpDTO);
         }
 
         // 传到前台的id
-        for(int i = 0; i < chartList.size(); i++){
+        for (int i = 0; i < chartList.size(); i++) {
             chartList.get(i).setId(i);
         }
         //chartJsonData.setFields(new String[]{"orgName","total","waiting","reject","process","complete","finish","failure","cancel"});
-        jsonData.setTotalCount((long)chartList.size());
+        jsonData.setTotalCount((long) chartList.size());
         jsonData.setData(chartList);
 
         return jsonData;
     }
 
     @Override
-    protected String getNativeQueryStr(){
+    protected String getNativeQueryStr() {
         return "select count(*) as total," +
                 "sum(case when state=0 then 1 else 0 end) as waiting," +
                 "sum(case when state=1 then 1 else 0 end) as reject," +
@@ -181,6 +193,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
                 "sum(case when state=6 then 1 else 0 end) as cancel " +
                 "from schedule_assignment ";
     }
+
     @Override
     protected Class<? extends BaseDTO> getResultClass() {
         return AssignmentChartDTO.class;
@@ -188,6 +201,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
 
     /**
      * 新增任务
+     *
      * @param entity
      * @return
      */
@@ -201,26 +215,27 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         entity.setUserName(userName);
 
         //设置进度
-        if(entity != null){
-            entity.setPercent(entity.getPercent()/100.0f);
-        }else{
+        if (entity != null) {
+            entity.setPercent(entity.getPercent() / 100.0f);
+        } else {
             entity.setPercent(0f);
         }
-
+        postNewAssignmentEvent(entity);
         return super.saveEntity(entity);
     }
 
     /**
      * 修改任务
+     *
      * @param entity
      * @return
      */
     @Override
-    public JsonStatus updateEntity(AssignmentBean entity){
+    public JsonStatus updateEntity(AssignmentBean entity) {
         //设置进度
-        if(entity != null){
-            entity.setPercent(entity.getPercent()/100.0f);
-        }else{
+        if (entity != null) {
+            entity.setPercent(entity.getPercent() / 100.0f);
+        } else {
             entity.setPercent(0f);
         }
         return super.updateEntity(entity);
@@ -228,6 +243,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
 
     /**
      * 根据任务id查找进度
+     *
      * @param assignmentId
      * @return
      */
@@ -235,7 +251,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
     public JsonData getAllProgressEntity(long assignmentId) {
         JsonData jsonData = new JsonData();
         List<ProgressBean> progressList = progressBeanDao.find("select ob from ProgressBean ob where ob.assignmentId = ?1", assignmentId);
-        jsonData.setTotalCount((long)progressList.size());
+        jsonData.setTotalCount((long) progressList.size());
         jsonData.setData(progressList);
 
         return jsonData;
@@ -243,6 +259,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
 
     /**
      * 根据任务id查找任务已读和未读用户
+     *
      * @param assignmentId
      * @return
      */
@@ -250,7 +267,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
     public JsonData getAllReadingEntity(long assignmentId) {
         JsonData jsonData = new JsonData();
         List<ReadingBean> readingList = readingBeanDao.find("select ob from ReadingBean ob where ob.assignmentId=?1", assignmentId);
-        jsonData.setTotalCount((long)readingList.size());
+        jsonData.setTotalCount((long) readingList.size());
         jsonData.setData(readingList);
 
         return jsonData;
@@ -258,6 +275,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
 
     /**
      * 根据任务id查找任务的事件
+     *
      * @param assignmentId
      * @return
      */
@@ -265,10 +283,70 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
     public JsonData getAllEventEntity(long assignmentId) {
         JsonData jsonData = new JsonData();
         List<EventBean> eventList = eventBeanDao.find("select ob from EventBean ob where ob.assignmentId=?1", assignmentId);
-        jsonData.setTotalCount((long)eventList.size());
+        jsonData.setTotalCount((long) eventList.size());
         jsonData.setData(eventList);
 
         return jsonData;
+    }
+
+    /**
+     * 发送new消息通知
+     *
+     * @param bean
+     */
+    private void postNewAssignmentEvent(AssignmentBean bean) {
+        try {
+            eventAdmin = JNDIHelper.getJNDIServiceForName("org.osgi.service.event.EventAdmin");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Dictionary properties = new Hashtable();
+        properties.put("userName", bean.getUserName());//布置人
+        properties.put("head", bean.getHead());//负责人
+        properties.put("taskName", bean.getTitle());//任务名称
+        Event osgi_event = new Event(Const.SCHEDULE_ASSIGNMENT_NEW_TOPIC, properties);
+        System.out.println("Schedule User name: " + bean.getUserName() + " message is sent!");
+        eventAdmin.postEvent(osgi_event);
+    }
+
+    /**
+     * 处理任务状态修改
+     *
+     * @param entity
+     * @param status
+     */
+    @Override
+    public void beforeUpdateEntity(AssignmentBean entity, JsonStatus status) {
+        AssignmentBean oldEntity = dao.get(entity.getId());
+        if (oldEntity.getState() != (entity.getState()))
+            postChangeAssignmentEvent(entity, oldEntity.getState());
+        super.beforeUpdateEntity(entity, status);
+    }
+
+    /**
+     * 发送状态修改消息通知
+     *
+     * @param bean
+     */
+    private void postChangeAssignmentEvent(AssignmentBean bean, Integer oldState) {
+        try {
+            eventAdmin = JNDIHelper.getJNDIServiceForName("org.osgi.service.event.EventAdmin");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Dictionary properties = new Hashtable();
+        properties.put("userName", bean.getUserName());//布置人
+        properties.put("head", bean.getHead());//负责人
+        properties.put("taskName", bean.getTitle());//任务名称
+        String strNewState=scheduleDictBeanService.getByTypeAndValue("任务状态",bean.getState()).getLabel();
+        properties.put("state", strNewState);//任务状态
+
+        String strOldState=scheduleDictBeanService.getByTypeAndValue("任务状态",oldState).getLabel();
+        properties.put("oldState", strOldState);//任务旧状态
+
+        Event osgi_event = new Event(Const.SCHEDULE_ASSIGNMENT_CHANGE_TOPIC, properties);
+        System.out.println("User name: " + bean.getUserName() + " change status message is sent!");
+        eventAdmin.postEvent(osgi_event);
     }
 
     public IUserBeanService getUserBeanService() {
@@ -293,5 +371,9 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
 
     public void setOrganizationBeanDao(IOrganizationBeanDao organizationBeanDao) {
         this.organizationBeanDao = organizationBeanDao;
+    }
+
+    public void setScheduleDictBeanService(IScheduleDictBeanService scheduleDictBeanService) {
+        this.scheduleDictBeanService = scheduleDictBeanService;
     }
 }

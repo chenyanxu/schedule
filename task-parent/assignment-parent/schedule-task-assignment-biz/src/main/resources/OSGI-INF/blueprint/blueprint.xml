@@ -10,6 +10,8 @@
     <reference id="readingBeanDao" interface="com.kalix.schedule.task.assignment.api.dao.IReadingBeanDao"/>
     <reference id="organizationBeanDao" interface="com.kalix.admin.core.api.dao.IOrganizationBeanDao"/>
     <reference id="userBeanService" interface="com.kalix.admin.core.api.biz.IUserBeanService"/>
+    <reference id="scheduleDictBeanService" interface="com.kalix.schedule.system.dict.api.biz.IScheduleDictBeanService"/>
+
     <bean id="assignmentBeanServiceImpl" class="com.kalix.schedule.task.assignment.biz.AssignmentBeanServiceImpl">
         <property name="progressBeanDao" ref="progressBeanDao"/>
         <property name="eventBeanDao" ref="eventBeanDao"/>
@@ -18,6 +20,7 @@
         <property name="organizationBeanDao" ref="organizationBeanDao"/>
         <property name="shiroService" ref="shiroService"/>
         <property name="userBeanService" ref="userBeanService"/>
+        <property name="scheduleDictBeanService" ref="scheduleDictBeanService"/>
     </bean>
 
     <service id="assignmentBeanService" interface="com.kalix.schedule.task.assignment.api.biz.IAssignmentBeanService"
