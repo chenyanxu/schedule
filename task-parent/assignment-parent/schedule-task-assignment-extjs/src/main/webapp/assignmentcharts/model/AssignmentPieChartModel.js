@@ -6,34 +6,37 @@
  */
 
 
-Ext.define('kalix.task.assignmentcharts.model.AssignmentChartModel', {
+Ext.define('kalix.task.assignmentcharts.model.AssignmentColumnChartModel', {
     extend: 'kalix.model.BaseModel',
 
     //todo 在此修改模型定义
     fields: [
         {
-            name: 'total'
+            name: 'id'
         },
         {
-            name: 'waiting'
+            name: 'g0'
         },
         {
-            name: 'reject'
+            name: 'g1'
         },
         {
-            name: 'process'
+            name: 'g2'
         },
         {
-            name: 'complete'
+            name: 'g3'
         },
         {
-            name: 'finish'
+            name: 'g4'
         },
         {
-            name: 'failure'
+            name: 'g5'
         },
         {
-            name: 'cancel'
+            name: 'g6'
+        },
+        {
+            name:'name'
         }
     ]
 });

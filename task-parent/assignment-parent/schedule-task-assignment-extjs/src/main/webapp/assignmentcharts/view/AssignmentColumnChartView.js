@@ -6,10 +6,10 @@
  *
  * Tapping or hovering a column will highlight it.
  */
-Ext.define('kalix.task.assignmentcharts.view.AssignmentChartView', {
+Ext.define('kalix.task.assignmentcharts.view.AssignmentColumnChartView', {
     extend: 'Ext.Panel',
-    alias: 'widget.AssignmentChartView',
-    xtype: 'assignmentChartView',
+    alias: 'widget.AssignmentColumnChartView',
+    xtype: 'assignmentColumnChartView',
     requires: [
         'Ext.chart.theme.Muted',
         'Ext.chart.CartesianChart',
@@ -19,11 +19,11 @@ Ext.define('kalix.task.assignmentcharts.view.AssignmentChartView', {
         'Ext.chart.grid.HorizontalGrid3D',
         'Ext.chart.grid.VerticalGrid3D',
         'Ext.chart.interactions.ItemHighlight',
-        'kalix.task.assignmentcharts.store.AssignmentChartStore',
-        'kalix.task.assignmentcharts.controller.AssignmentChartController'
+        'kalix.task.assignmentcharts.store.AssignmentColumnChartStore',
+        'kalix.task.assignmentcharts.controller.AssignmentColumnChartController'
     ],
     controller: {
-        type: 'assignmentChartController'
+        type: 'assignmentColumnChartController'
     },
 
     //width: 650,
@@ -38,11 +38,11 @@ Ext.define('kalix.task.assignmentcharts.view.AssignmentChartView', {
     //],
 
     items: [
-        {
-            xtype:'button',
-            text: '重新加载',
-            handler:'onDownload'
-        },
+        //{
+        //    xtype:'button',
+        //    text: '重新加载',
+        //    handler:'onDownload'
+        //},
         {
             xtype: 'cartesian',
             reference: 'chart',
@@ -50,7 +50,7 @@ Ext.define('kalix.task.assignmentcharts.view.AssignmentChartView', {
                 type: 'muted'
             },
             store: {
-                type: 'assignmentChartStore'
+                type: 'assignmentColumnChartStore'
             },
             //width: 600,
             height: 900,

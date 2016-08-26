@@ -8,12 +8,13 @@ Ext.define('kalix.task.assignmentcharts.Main', {
     extend: 'kalix.view.components.common.AutoHPanel',
     requires: [
         'kalix.task.assignment.view.AssignmentSearchForm',
-        'kalix.task.assignmentcharts.view.AssignmentChartView',
+        'kalix.task.assignmentcharts.view.AssignmentColumnChartView',
+        'kalix.task.assignmentcharts.view.AssignmentPieChartView',
         'kalix.admin.org.view.UserOrgTreeList'
     ],
-    controller: {
-        type: 'assignmentChartController'
-    },
+    //controller: {
+    //    type: 'assignmentPieChartController'
+    //},
     items: [
         //{
         //    title: '布置任务查询',
@@ -28,9 +29,15 @@ Ext.define('kalix.task.assignmentcharts.Main', {
             }
         },
         {
-            xtype: 'assignmentChartView',
-            id: 'assignmentChartView',
+            xtype: 'assignmentColumnChartView',
+            id: 'assignmentColumnChartView',
             title: '柱状图',
+            flex: 3
+        },
+        {
+            xtype: 'assignmentPieChartView',
+            id: 'assignmentPieChartView',
+            title: '饼状图',
             flex: 3
         }
     ]

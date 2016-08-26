@@ -1,6 +1,6 @@
-Ext.define('kalix.task.assignmentcharts.controller.AssignmentChartController', {
+Ext.define('kalix.task.assignmentcharts.controller.AssignmentColumnChartController', {
     extend: 'Ext.app.ViewController',
-    alias: 'controller.assignmentChartController',
+    alias: 'controller.assignmentColumnChartController',
 
     onDownload: function () {
         var chart = this.lookupReference('chart');

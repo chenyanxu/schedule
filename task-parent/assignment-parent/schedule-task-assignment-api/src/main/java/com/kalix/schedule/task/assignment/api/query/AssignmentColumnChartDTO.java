@@ -5,7 +5,7 @@ import com.kalix.framework.core.api.web.model.BaseDTO;
 /**
  * Created by sunlf on 2015/11/5.
  */
-public class AssignmentChartDTO extends BaseDTO {
+public class AssignmentColumnChartDTO extends BaseDTO {
     private String orgName;
     private Integer total;
     private Integer waiting;

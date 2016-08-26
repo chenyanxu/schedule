@@ -2,13 +2,13 @@
  * Nominal GDP sector composition, 2011 (in millions of dollars).
  * Source: http://en.wikipedia.org/wiki/List_of_countries_by_GDP_sector_composition
  */
-Ext.define('kalix.task.assignmentcharts.store.AssignmentChartStore', {
+Ext.define('kalix.task.assignmentcharts.store.AssignmentColumnChartStore', {
     extend: 'kalix.store.BaseStore',
-    alias: 'store.assignmentChartStore',
-    xtype: 'assignmentChartStore',
-    storeId: 'assignmentChartStore',
+    alias: 'store.assignmentColumnChartStore',
+    xtype: 'assignmentColumnChartStore',
+    storeId: 'assignmentColumnChartStore',
     autoLoad: true,
-    proxyUrl: '/kalix/camel/rest/assignmentcharts'//,
+    proxyUrl: '/kalix/camel/rest/assignmentcharts/column'//,
     //fields : [ "orgName", "total", "waiting", "reject", "process", "complete", "finish", "failure", "cancel" ],
     //fields: ['country', 'agr', 'ind', 'ser'],
     //data: [
