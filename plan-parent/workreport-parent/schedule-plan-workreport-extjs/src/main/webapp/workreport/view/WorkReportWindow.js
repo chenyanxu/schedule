@@ -9,7 +9,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
     requires: [
         'kalix.controller.BaseWindowController',
         'kalix.schedule.scheduleDict.component.ScheduleDictCombobox',
-        'kalix.plan.personalplan.component.PersonalPlanComboBox',
+        'kalix.plan.workreport.component.PlanComboBox',
         'kalix.admin.user.component.UserTagField',
         'kalix.admin.user.component.UserOrgComboBox'
     ],
@@ -100,30 +100,38 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                 },
                 {
                     fieldLabel: '计划类型',
-                    xtype: 'scheduleDictCombobox',
-                    dictType: '计划类型',
+                    xtype: 'combobox',
+                    store: Ext.create("kalix.plan.workreport.store.PlanStore"),
+                    queryMode: 'local',
+                    displayField: 'name',
+                    valueField: 'value',
+                    autoSelect: true,
                     allowBlank: false,
+                    editable: false,
                     bind: {
                         value: '{rec.planType}'
                     },
                     listeners: {
                         'change': function(box, newValue, oldValue) {
                             var x = Ext.getCmp('workReportPersonalPlanComboBox');
-                            var jsonObjNew = {};
-
-                            jsonObjNew['planType'] = newValue;
-
-                            var jsonStr = Ext.JSON.encode(jsonObjNew);
-
                             x.clearValue();
-                            x.store.proxy.extraParams = {'jsonStr': jsonStr};
-                            x.store.load();
+                            x.store.removeAll();
+
+                            if (newValue == 1) {
+                                x.setStore(Ext.create("kalix.plan.personalplan.store.PersonalPlanStore"));
+                                x.store.load();
+                            }
+                            else if (newValue == 2) {
+                                x.setStore(Ext.create("kalix.plan.departmentplan.store.DepartmentPlanStore"));
+                                x.store.load();
+                            }
+
                         }
                     }
                 },
                 {
-                    fieldLabel: '个人计划',
-                    xtype: 'personalPlanComboBox',
+                    fieldLabel: '关联计划',
+                    xtype: 'planComboBox',
                     id: 'workReportPersonalPlanComboBox',
                     allowBlank: false,
                     bind: {
