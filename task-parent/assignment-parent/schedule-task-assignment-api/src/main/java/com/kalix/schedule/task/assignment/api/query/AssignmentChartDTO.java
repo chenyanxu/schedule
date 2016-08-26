@@ -12,6 +12,7 @@ public class AssignmentChartDTO extends BaseDTO {
     private Integer reject;
     private Integer process;
     private Integer complete;
+
     private Integer finish;
     private Integer failure;
     private Integer cancel;

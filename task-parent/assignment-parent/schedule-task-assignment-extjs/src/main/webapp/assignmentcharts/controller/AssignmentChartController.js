@@ -62,6 +62,18 @@ Ext.define('kalix.task.assignmentcharts.controller.AssignmentChartController', {
         // don't want to loose the formatting done by the native renderer,
         // we let the native renderer process the value first.
         return Ext.util.Format.number(layoutContext.renderer(label), '');
+    },
+    onItemClick: function (view, record, item, index, e) {
+        //var searchForm = this.getView().items.getAt(1).items.getAt(0);
+        //var orgCode = searchForm.items.getAt(2);
+        //orgCode.setValue(record.data.code);
+        var chart = this.getView().items.getAt(1).lookupReference('chart');
+        //this.getView().items.getAt(1).items.getAt(1).store
+        var jsonStr = {'orgCode':record.data.code};
+
+        jsonStr = Ext.JSON.encode(jsonStr);
+        chart.store.proxy.extraParams = {'jsonStr':jsonStr};
+        chart.store.reload();
     }
 
 });
