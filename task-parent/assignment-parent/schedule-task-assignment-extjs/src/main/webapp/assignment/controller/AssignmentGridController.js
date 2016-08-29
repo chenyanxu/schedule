@@ -10,6 +10,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
     mixins: {
         attachment: 'kalix.attachment.common.mixins.Attachment'
     },
+    //任务取消
     onCancel: function (grid, rowIndex, colIndex) {
         var model = grid.getStore().getData().items[rowIndex];
         var store = grid.getStore();
@@ -40,6 +41,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
             }
         });
     },
+    //任务失败
     onFailure: function (grid, rowIndex, colIndex) {
         var model = grid.getStore().getData().items[rowIndex];
         var store = grid.getStore();
@@ -70,6 +72,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
             }
         });
     },
+    //修改负责人
     onHeader: function (grid, rowIndex, colIndex) {
         var selModel = grid.getStore().getData().items[rowIndex];
         //状态为拒绝接受时，修改负责人后，状态是否可改为等待接收
@@ -87,6 +90,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
         view.show();
         grid.setSelection(selModel);
     },
+    //汇报进度
     onProgress: function (grid, rowIndex, colIndex) {
         var selModel = grid.getStore().getData().items[rowIndex];
         var view = Ext.create('kalix.task.assignment.view.ProgressWindow');
@@ -100,6 +104,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
         view.show();
         grid.setSelection(selModel);
     },
+    //任务督办，暂无此需求
     onSupervise: function (grid, rowIndex, colIndex) {
         var model = grid.getStore().getData().items[rowIndex];
         var store = grid.getStore();
@@ -110,6 +115,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
             }
         });
     },
+    //任务延迟
     onDelay: function (grid, rowIndex, colIndex) {
         var scope = this;
         Ext.Msg.confirm("警告", "确定延长本任务的完成时间吗？", function (button) {
@@ -128,6 +134,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
             }
         });
     },
+    //申请任务完成
     onComplete: function (grid, rowIndex, colIndex) {
         var model = grid.getStore().getData().items[rowIndex];
         var store = grid.getStore();
@@ -136,6 +143,8 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
                 store.proxy.extraParams = {};
                 // 设置任务状态为申请完成
                 model.set('state',3);
+                //需求说申请的同时，将进度
+                model.set('percent',1);
                 model.modified = model.data;
                 store.sync(
                     {
@@ -157,6 +166,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
             }
         });
     },
+    //审批任务完成
     onFinish: function (grid, rowIndex, colIndex) {
         var selModel = grid.getStore().getData().items[rowIndex];
         // 设置任务状态为完成
@@ -182,12 +192,5 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
         }else{
             vm.set('accept', true);
         }
-    },
-
-
-
-    onChart: function(){
-        var view = Ext.create('kalix.task.assignmentcharts.view.AssignmentChartView');
-        view.show();
     }
 });

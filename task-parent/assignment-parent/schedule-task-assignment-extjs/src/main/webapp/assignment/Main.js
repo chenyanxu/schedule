@@ -14,7 +14,8 @@ Ext.define('kalix.task.assignment.Main', {
         {
             title: '布置任务查询',
             xtype: 'assignmentSearchForm'
-        }, {
+        },
+        {
             xtype: 'assignmentGridPanel',
             id: 'assignmentGridPanel',
             title: '布置任务列表',

@@ -95,6 +95,11 @@ public class AssignmentBean extends PersistentEntity {
     /**
      * @describe 任务进度
      */
+    @Transient
+    private Integer percentNumber;
+    /**
+     * @describe 任务进度
+     */
     private float percent;
     /**
      * @describe 进度说明
@@ -267,6 +272,14 @@ public class AssignmentBean extends PersistentEntity {
 
     public void setAdvice(String advice) {
         this.advice = advice;
+    }
+
+    public Integer getPercentNumber() {
+        return percentNumber;
+    }
+
+    public void setPercentNumber(Integer percentNumber) {
+        this.percentNumber = percentNumber;
     }
 
     public float getPercent() {

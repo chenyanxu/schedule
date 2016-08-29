@@ -27,12 +27,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
     //    defaults: {flex: 1, renderer: 'addTooltip'},
         columns: [
             {
-                xtype: "rownumberer"//,
-                //text: "行号",
-                //width: 50,
-                //flex: 0,
-                //align: 'center',
-                //renderer: this.update
+                xtype: "rownumberer"
             },
             {
                 text: '编号',
@@ -82,7 +77,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                 widget: {
                     xtype: 'progressbarwidget',
                     textTpl: [
-                        '{percent}% 完成'
+                        '{percent}%'
                     ]
                 },
                 renderer: null
@@ -127,8 +122,8 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                 renderer: null
             },
             {
-                xtype: 'securityGridColumnCommon',
                 header: '常规操作',
+                xtype: 'securityGridColumnCommon',
                 //todo change permission
                 items: [
                     {
@@ -193,8 +188,8 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                 ]
             },
             {
-                xtype: 'securityGridColumnCommon',
                 header: '业务操作',
+                xtype: 'securityGridColumnCommon',
                 //todo change permission
                 items: [
                     {

@@ -99,6 +99,10 @@ Ext.define('kalix.task.assignment.model.AssignmentModel', {
             type: 'string'
         },
         {
+            name: 'percentNumber',
+            type: 'int'
+        },
+        {
             name: 'percent',
             type: 'float'
         },

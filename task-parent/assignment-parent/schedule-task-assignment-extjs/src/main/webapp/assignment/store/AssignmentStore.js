@@ -10,6 +10,6 @@ Ext.define('kalix.task.assignment.store.AssignmentStore', {
     alias: 'store.assignmentStore',
     xtype: 'assignmentStore',
     storeId: 'assignmentStore',
-    //autoLoad: true,
+    autoLoad: false,
     proxyUrl: '/kalix/camel/rest/assignments'
 });

@@ -68,45 +68,26 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
     public JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr) {
         Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
         Long userId = this.getShiroService().getCurrentUserId();
-        //String userName = this.getShiroService().getCurrentUserRealName();
         jsonMap.put("userId", String.valueOf(userId));
-        //jsonMap.put("userName",userName);
 
         //查找任务布置人是当前用户的数据
         String newJsonStr = SerializeUtil.serializeJson(jsonMap);
         JsonData jsonData = super.getAllEntityByQuery(page, limit, newJsonStr);
-        List creationList = jsonData.getData();
+        List<AssignmentBean> beanList = jsonData.getData();
 
-        //查找任务负责人是当前用户的数据
-        jsonMap.clear();
-        jsonMap.put("head", String.valueOf(userId));
-        newJsonStr = SerializeUtil.serializeJson(jsonMap);
-        jsonData = super.getAllEntityByQuery(page, limit, newJsonStr);
-        List headList = jsonData.getData();
-
-        //查找任务参与人是当前用户的数据
-        jsonMap.clear();
-        jsonMap.put("participant", String.valueOf(userId));
-        newJsonStr = SerializeUtil.serializeJson(jsonMap);
-        jsonData = super.getAllEntityByQuery(page, limit, newJsonStr);
-        List participantList = jsonData.getData();
-
-        List totalList = new ArrayList<>();
-        totalList.addAll(creationList);
-        //去重复数据
-        totalList.removeAll(headList);
-        totalList.addAll(headList);
-        //去重复数据
-        totalList.removeAll(participantList);
-        totalList.addAll(participantList);
+        //处理百分比显示 percentNumber
+        for(int i = 0; i <beanList.size(); i++){
+            beanList.get(i).setPercentNumber((int)(beanList.get(i).getPercent() * 100));
+        }
 
         //翻译任务负责人
-        List ids = BeanUtil.getBeanFieldValueList(totalList, "head");
+        List ids = BeanUtil.getBeanFieldValueList(beanList, "head");
         List values = this.userBeanService.getFieldValuesByIds(ids.toArray(), "name");
-        BeanUtil.setBeanListFieldValues(totalList, "header", values);
+        BeanUtil.setBeanListFieldValues(beanList, "header", values);
 
-        jsonData.setTotalCount((long) totalList.size());
-        jsonData.setData(totalList);
+        jsonData.setTotalCount(jsonData.getTotalCount());
+        jsonData.setData(beanList);
+
         return jsonData;
     }
 
@@ -325,7 +306,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
 
         //设置进度
         if (entity != null) {
-            entity.setPercent(entity.getPercent() / 100.0f);
+            entity.setPercent(entity.getPercent());
         } else {
             entity.setPercent(0f);
         }
@@ -343,7 +324,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
     public JsonStatus updateEntity(AssignmentBean entity) {
         //设置进度
         if (entity != null) {
-            entity.setPercent(entity.getPercent() / 100.0f);
+            entity.setPercent(entity.getPercent());
         } else {
             entity.setPercent(0f);
         }

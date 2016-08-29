@@ -7,7 +7,8 @@ Ext.define('kalix.task.assignment.view.AssignmentSearchForm', {
     extend: 'kalix.view.components.common.BaseSearchForm',
     alias: 'widget.assignmentSearchForm',
     requires: [
-        'kalix.schedule.scheduleDict.component.ScheduleDictCombobox'
+        'kalix.schedule.scheduleDict.component.ScheduleDictCombobox',
+        'kalix.admin.user.component.UserComboBox'
     ],
     xtype: 'assignmentSearchForm',
     storeId: 'assignmentStore',
@@ -58,20 +59,16 @@ Ext.define('kalix.task.assignment.view.AssignmentSearchForm', {
             name: 'state'
         },
         {
-            xtype: 'textfield',
+            //xtype: 'textfield',
             fieldLabel: '负责人',
+            xtype: 'userCombobox',
+            valueField: 'id',
+            displayField: 'name',
+            allowBlank: false,
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
             name: 'head'
-        },
-        {
-            xtype: 'textfield',
-            fieldLabel: '布置人',
-            labelAlign: 'right',
-            labelWidth: 60,
-            width: 200,
-            name: 'createBy'
         }
     ]
 });
