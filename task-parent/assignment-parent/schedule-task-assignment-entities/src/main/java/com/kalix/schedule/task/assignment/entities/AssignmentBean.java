@@ -45,13 +45,13 @@ public class AssignmentBean extends PersistentEntity {
      */
     private String title;
     /**
-     * @describe 来源
+     * @describe 来源 0部门计划；1母任务；2自定义
      */
-    private String sourceType;
+    private Integer sourceType;
     /**
-     * @describe 来源
+     * @describe 来源 sourceType为0时，sourceId为部门计划的id，为1时为母任务的id
      */
-    private String sourceId;
+    private Integer sourceId;
     /**
      * @describe 内容
      */
@@ -162,19 +162,19 @@ public class AssignmentBean extends PersistentEntity {
         this.title = title;
     }
 
-    public String getSourceType() {
-        return this.sourceType;
+    public Integer getSourceType() {
+        return sourceType;
     }
 
-    public void setSourceType(String sourceType) {
+    public void setSourceType(Integer sourceType) {
         this.sourceType = sourceType;
     }
 
-    public String getSourceId() {
-        return this.sourceId;
+    public Integer getSourceId() {
+        return sourceId;
     }
 
-    public void setSourceId(String sourceId) {
+    public void setSourceId(Integer sourceId) {
         this.sourceId = sourceId;
     }
 

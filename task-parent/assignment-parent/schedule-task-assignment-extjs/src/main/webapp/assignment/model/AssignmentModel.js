@@ -41,12 +41,12 @@ Ext.define('kalix.task.assignment.model.AssignmentModel', {
         },
         {
             name: 'sourceType',
-            type: 'string',
+            type: 'int',
             validators: [{type: 'presence'}]
         },
         {
             name: 'sourceId',
-            type: 'string'
+            type: 'int'
         },
         {
             name: 'content',

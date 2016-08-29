@@ -75,9 +75,16 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         JsonData jsonData = super.getAllEntityByQuery(page, limit, newJsonStr);
         List<AssignmentBean> beanList = jsonData.getData();
 
-        //处理百分比显示 percentNumber
         for(int i = 0; i <beanList.size(); i++){
+            //处理百分比显示 percentNumber
             beanList.get(i).setPercentNumber((int)(beanList.get(i).getPercent() * 100));
+            //统计子任务数
+            List<AssignmentBean> subTaskList = dao.find("select ob from AssignmentBean ob where ob.sourceId=" + beanList.get(i).getId(),null);
+            if(subTaskList.size() == 0){
+                beanList.get(i).setTitle("【0】"+beanList.get(i).getTitle());
+            }else {
+                beanList.get(i).setTitle("【"+subTaskList.size()+"】"+beanList.get(i).getTitle());
+            }
         }
 
         //翻译任务负责人
