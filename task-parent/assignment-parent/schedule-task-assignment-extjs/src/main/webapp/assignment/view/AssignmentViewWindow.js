@@ -179,7 +179,7 @@ Ext.define('kalix.task.assignment.view.AssignmentViewWindow', {
                                     maxValue: 100,
                                     minValue: 0,
                                     bind: {
-                                        value: '{rec.percent}'
+                                        value: '{rec.percentNumber}'
                                     }
                                 },
                                 {
