@@ -112,36 +112,37 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
 
     /**
      * 根据登录用户的信息，查询任务
+     *
      * @param page
      * @param limit
      * @param jsonStr
      * @return
      */
     @Override
-    public JsonData getColumnChartData(Integer page, Integer limit, String jsonStr){
+    public JsonData getColumnChartData(Integer page, Integer limit, String jsonStr) {
         JsonData jsonData = new JsonData();
         Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
         String orgCode = null;
         String condition = " where 1=1 ";
         for (Map.Entry<String, String> entry : jsonMap.entrySet()) {
-            if(entry.getValue() != null && !entry.getValue().equals("")) {
+            if (entry.getValue() != null && !entry.getValue().equals("")) {
                 //获取前台传入的orgCode
-                if(entry.getKey().equals("orgCode")){
+                if (entry.getKey().equals("orgCode")) {
                     orgCode = entry.getValue();
                     condition = condition + " and " + entry.getKey() + " like '" + entry.getValue() + "%'";
-                }else{
+                } else {
                     condition = condition + " and " + entry.getKey() + " = " + entry.getValue();
                 }
             }
         }
         //必须有orgCode作为查询条件
-        if(orgCode == null){
+        if (orgCode == null) {
             orgCode = "001";
             condition = condition + " and orgCode like '001%'";
         }
 
         //1、先查找该中心代码所直属的部门信息
-        List<OrganizationBean> organizatioBeen = organizationBeanDao.find("select ob from OrganizationBean ob where ob.code like ?1 order by ob.name",orgCode+"___");
+        List<OrganizationBean> organizatioBeen = organizationBeanDao.find("select ob from OrganizationBean ob where ob.code like ?1 order by ob.name", orgCode + "___");
 
         //2、获得查询的sql语句
         String sql = getNativeQueryStr();
@@ -153,22 +154,24 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
 
         //3、循环查找该中心代码下的任务数，放到chartList中
         List<AssignmentColumnChartDTO> chartList = new ArrayList<>();
-        for(int i = 0; i < organizatioBeen.size(); i++){
-            String tmpSql = sql+" where orgCode like '"+ organizatioBeen.get(i).getCode() + "%'";
+        for (int i = 0; i < organizatioBeen.size(); i++) {
+            String tmpSql = sql + " where orgCode like '" + organizatioBeen.get(i).getCode() + "%'";
             //sql = sql + " where orgCode like '"+ organizatioBeen.get(i).getCode() + "%'";
-            List<AssignmentColumnChartDTO> tmpList = dao.findByNativeSql(tmpSql, AssignmentColumnChartDTO.class,"");
+            List<AssignmentColumnChartDTO> tmpList = dao.findByNativeSql(tmpSql, AssignmentColumnChartDTO.class, "");
             //如果数据为空，那么初始为0
-            AssignmentColumnChartDTO tmpDTO = new AssignmentColumnChartDTO();
-            tmpDTO.setOrgName(organizatioBeen.get(i).getName());
-            tmpDTO.setTotal(tmpList.get(0).getTotal());
-            tmpDTO.setWaiting(tmpList.get(0).getWaiting() == null?0:tmpList.get(0).getWaiting());
-            tmpDTO.setReject(tmpList.get(0).getReject() == null?0:tmpList.get(0).getReject());
-            tmpDTO.setComplete(tmpList.get(0).getComplete()==null?0:tmpList.get(0).getComplete());
-            tmpDTO.setFinish(tmpList.get(0).getFinish() == null?0:tmpList.get(0).getFinish());
-            tmpDTO.setFailure(tmpList.get(0).getFailure() == null?0:tmpList.get(0).getFailure());
-            tmpDTO.setCancel(tmpList.get(0).getCancel() == null?0:tmpList.get(0).getCancel());
+            if (tmpList.get(0).getTotal() != 0) {
+                AssignmentColumnChartDTO tmpDTO = new AssignmentColumnChartDTO();
+                tmpDTO.setOrgName(organizatioBeen.get(i).getName());
+                tmpDTO.setTotal(tmpList.get(0).getTotal());
+                tmpDTO.setWaiting(tmpList.get(0).getWaiting() == null ? 0 : tmpList.get(0).getWaiting());
+                tmpDTO.setReject(tmpList.get(0).getReject() == null ? 0 : tmpList.get(0).getReject());
+                tmpDTO.setComplete(tmpList.get(0).getComplete() == null ? 0 : tmpList.get(0).getComplete());
+                tmpDTO.setFinish(tmpList.get(0).getFinish() == null ? 0 : tmpList.get(0).getFinish());
+                tmpDTO.setFailure(tmpList.get(0).getFailure() == null ? 0 : tmpList.get(0).getFailure());
+                tmpDTO.setCancel(tmpList.get(0).getCancel() == null ? 0 : tmpList.get(0).getCancel());
 
-            chartList.add(tmpDTO);
+                chartList.add(tmpDTO);
+            }
         }
 
         //4、查询该中心下的任务数
@@ -182,78 +185,80 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
                 "sum(case when state=6 then 1 else 0 end) as cancel " +
                 "from schedule_assignment " +
                 " where orgCode = '" + orgCode + "' group by orgName";
-        List<AssignmentColumnChartDTO> tmpList = dao.findByNativeSql(tmpSql, AssignmentColumnChartDTO.class,"");
-        if(tmpList.size() != 0){
+        List<AssignmentColumnChartDTO> tmpList = dao.findByNativeSql(tmpSql, AssignmentColumnChartDTO.class, "");
+        if (tmpList.size() != 0) {
             //如果数据为空，那么初始为0
-            AssignmentColumnChartDTO tmpDTO = new AssignmentColumnChartDTO();
-            tmpDTO.setOrgName(tmpList.get(0).getOrgName());
-            tmpDTO.setTotal(tmpList.get(0).getTotal());
-            tmpDTO.setWaiting(tmpList.get(0).getWaiting() == null?0:tmpList.get(0).getWaiting());
-            tmpDTO.setReject(tmpList.get(0).getReject() == null?0:tmpList.get(0).getReject());
-            tmpDTO.setComplete(tmpList.get(0).getComplete()==null?0:tmpList.get(0).getComplete());
-            tmpDTO.setFinish(tmpList.get(0).getFinish() == null?0:tmpList.get(0).getFinish());
-            tmpDTO.setFailure(tmpList.get(0).getFailure() == null?0:tmpList.get(0).getFailure());
-            tmpDTO.setCancel(tmpList.get(0).getCancel() == null?0:tmpList.get(0).getCancel());
+            if (tmpList.get(0).getTotal() != 0) {
+                AssignmentColumnChartDTO tmpDTO = new AssignmentColumnChartDTO();
+                tmpDTO.setOrgName(tmpList.get(0).getOrgName());
+                tmpDTO.setTotal(tmpList.get(0).getTotal());
+                tmpDTO.setWaiting(tmpList.get(0).getWaiting() == null ? 0 : tmpList.get(0).getWaiting());
+                tmpDTO.setReject(tmpList.get(0).getReject() == null ? 0 : tmpList.get(0).getReject());
+                tmpDTO.setComplete(tmpList.get(0).getComplete() == null ? 0 : tmpList.get(0).getComplete());
+                tmpDTO.setFinish(tmpList.get(0).getFinish() == null ? 0 : tmpList.get(0).getFinish());
+                tmpDTO.setFailure(tmpList.get(0).getFailure() == null ? 0 : tmpList.get(0).getFailure());
+                tmpDTO.setCancel(tmpList.get(0).getCancel() == null ? 0 : tmpList.get(0).getCancel());
 
-            chartList.add(tmpDTO);
+                chartList.add(tmpDTO);
+            }
         }
 
         // 传到前台的id
-        for(int i = 0; i < chartList.size(); i++){
+        for (int i = 0; i < chartList.size(); i++) {
             chartList.get(i).setId(i);
         }
         //chartJsonData.setFields(new String[]{"orgName","total","waiting","reject","process","complete","finish","failure","cancel"});
-        jsonData.setTotalCount((long)chartList.size());
+        jsonData.setTotalCount((long) chartList.size());
         jsonData.setData(chartList);
 
         return jsonData;
     }
 
     @Override
-    public JsonData getPieChartData(Integer page, Integer limit, String jsonStr){
+    public JsonData getPieChartData(Integer page, Integer limit, String jsonStr) {
         JsonData jsonData = new JsonData();
         Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
         String orgCode = null;
         String condition = " where 1=1 ";
         for (Map.Entry<String, String> entry : jsonMap.entrySet()) {
-            if(entry.getValue() != null && !entry.getValue().equals("")) {
+            if (entry.getValue() != null && !entry.getValue().equals("")) {
                 //获取前台传入的orgCode
-                if(entry.getKey().equals("orgCode")){
+                if (entry.getKey().equals("orgCode")) {
                     orgCode = entry.getValue();
                     condition = condition + " and " + entry.getKey() + " like '" + entry.getValue() + "%'";
-                }else{
+                } else {
                     condition = condition + " and " + entry.getKey() + " = " + entry.getValue();
                 }
             }
         }
 
         //必须有orgCode作为查询条件
-        if(orgCode == null){
+        if (orgCode == null) {
             orgCode = "001";
             condition = condition + " and orgCode like '001%'";
         }
 
         //1、先查询出人数总数
-        float total = dao.findByNativeSql("select * from schedule_assignment " + condition,AssignmentBean.class,null).size();
+        float total = dao.findByNativeSql("select * from schedule_assignment " + condition, AssignmentBean.class, null).size();
 
         //2、先查找该中心代码所直属的部门信息
-        List<OrganizationBean> organizatioBeen = organizationBeanDao.find("select ob from OrganizationBean ob where ob.code like ?1 order by ob.name",orgCode+"___");
+        List<OrganizationBean> organizatioBeen = organizationBeanDao.find("select ob from OrganizationBean ob where ob.code like ?1 order by ob.name", orgCode + "___");
 
         //3、循环查找该中心代码下的任务数，放到chartList中
         List<AssignmentPieChartDTO> chartList = new ArrayList<>();
-        for(int i = 0; i < organizatioBeen.size(); i++){
-            String tmpSql = "select * from schedule_assignment "+condition+" and orgCode like '"+ organizatioBeen.get(i).getCode() + "%'";
-            List<AssignmentBean> tmpList = dao.findByNativeSql(tmpSql, AssignmentBean.class,"");
+        for (int i = 0; i < organizatioBeen.size(); i++) {
+            String tmpSql = "select * from schedule_assignment " + condition + " and orgCode like '" + organizatioBeen.get(i).getCode() + "%'";
+            List<AssignmentBean> tmpList = dao.findByNativeSql(tmpSql, AssignmentBean.class, "");
             //如果数据为空,不加入
-            if(tmpList.size() != 0) {
-                float ft = (tmpList.size() / total)*100;
-                int   scale  =   2;//设置小数位数
-                int   roundingMode  =  4;//表示四舍五入，可以选择其他舍值方式，例如去尾
-                BigDecimal bd  =   new BigDecimal((double)ft);
-                bd   =  bd.setScale(scale,roundingMode);
-                ft   =  bd.floatValue();
+            if (tmpList.size() != 0) {
+                float ft = (tmpList.size() / total) * 100;
+                int scale = 2;//设置小数位数
+                int roundingMode = 4;//表示四舍五入，可以选择其他舍值方式，例如去尾
+                BigDecimal bd = new BigDecimal((double) ft);
+                bd = bd.setScale(scale, roundingMode);
+                ft = bd.floatValue();
                 AssignmentPieChartDTO tmpDTO = new AssignmentPieChartDTO();
-                tmpDTO.setOrgName(tmpList.get(i).getOrgName());
+                tmpDTO.setOrgName(organizatioBeen.get(i).getName());
                 tmpDTO.setPercent(ft);
                 chartList.add(tmpDTO);
             }
@@ -261,25 +266,25 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
 
         //4、查找本单位的
         String tmpSql = "select * from schedule_assignment where orgCode=?1";
-        List<AssignmentBean> tmpList = dao.findByNativeSql(tmpSql, AssignmentBean.class,orgCode);
-        if(tmpList.size() != 0) {
-            float ft = (tmpList.size() / total)*100;
-            int   scale  =   2;//设置小数位数
-            int   roundingMode  =  4;//表示四舍五入，可以选择其他舍值方式，例如去尾
-            BigDecimal   bd  =   new BigDecimal((double)ft);
-            bd   =  bd.setScale(scale,roundingMode);
-            ft   =  bd.floatValue();
+        List<AssignmentBean> tmpList = dao.findByNativeSql(tmpSql, AssignmentBean.class, orgCode);
+        if (tmpList.size() != 0) {
+            float ft = (tmpList.size() / total) * 100;
+            int scale = 2;//设置小数位数
+            int roundingMode = 4;//表示四舍五入，可以选择其他舍值方式，例如去尾
+            BigDecimal bd = new BigDecimal((double) ft);
+            bd = bd.setScale(scale, roundingMode);
+            ft = bd.floatValue();
             AssignmentPieChartDTO tmpDTO = new AssignmentPieChartDTO();
-            tmpDTO.setOrgName(organizatioBeen.get(0).getName());
+            tmpDTO.setOrgName(tmpList.get(0).getOrgName());
             tmpDTO.setPercent(ft);
             chartList.add(tmpDTO);
         }
 
         // 传到前台的id
-        for(int i = 0; i < chartList.size(); i++){
+        for (int i = 0; i < chartList.size(); i++) {
             chartList.get(i).setId(i);
         }
-        jsonData.setTotalCount((long)chartList.size());
+        jsonData.setTotalCount((long) chartList.size());
         jsonData.setData(chartList);
 
         return jsonData;
@@ -398,6 +403,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
      *
      * @param bean
      */
+
     private void postNewAssignmentEvent(AssignmentBean bean) {
         try {
             eventAdmin = JNDIHelper.getJNDIServiceForName("org.osgi.service.event.EventAdmin");
@@ -442,10 +448,10 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         properties.put("userName", bean.getUserName());//布置人
         properties.put("head", bean.getHead());//负责人
         properties.put("taskName", bean.getTitle());//任务名称
-        String strNewState=scheduleDictBeanService.getByTypeAndValue("任务状态",bean.getState()).getLabel();
+        String strNewState = scheduleDictBeanService.getByTypeAndValue("任务状态", bean.getState()).getLabel();
         properties.put("state", strNewState);//任务状态
 
-        String strOldState=scheduleDictBeanService.getByTypeAndValue("任务状态",oldState).getLabel();
+        String strOldState = scheduleDictBeanService.getByTypeAndValue("任务状态", oldState).getLabel();
         properties.put("oldState", strOldState);//任务旧状态
 
         Event osgi_event = new Event(Const.SCHEDULE_ASSIGNMENT_CHANGE_TOPIC, properties);

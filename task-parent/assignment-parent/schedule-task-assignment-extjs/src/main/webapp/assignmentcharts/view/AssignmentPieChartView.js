@@ -80,7 +80,7 @@ Ext.define('kalix.task.assignmentcharts.view.AssignmentPieChartView', {
             series: [
                 {
                     type: 'pie3d',
-                    angleField: 'total',
+                    angleField: 'percent',
                     donut: 30,
                     distortion: 0.6,
                     highlight: {

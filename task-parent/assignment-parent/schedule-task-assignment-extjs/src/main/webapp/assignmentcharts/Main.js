@@ -10,11 +10,12 @@ Ext.define('kalix.task.assignmentcharts.Main', {
         'kalix.task.assignment.view.AssignmentSearchForm',
         'kalix.task.assignmentcharts.view.AssignmentColumnChartView',
         'kalix.task.assignmentcharts.view.AssignmentPieChartView',
-        'kalix.admin.org.view.UserOrgTreeList'
+        'kalix.admin.org.view.UserOrgTreeList',
+        'kalix.task.assignmentcharts.controller.AssignmentChartController'
     ],
-    //controller: {
-    //    type: 'assignmentPieChartController'
-    //},
+    controller: {
+        type: 'assignmentChartController'
+    },
     items: [
         //{
         //    title: '布置任务查询',

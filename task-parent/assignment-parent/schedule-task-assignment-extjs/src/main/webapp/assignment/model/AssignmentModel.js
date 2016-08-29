@@ -88,8 +88,7 @@ Ext.define('kalix.task.assignment.model.AssignmentModel', {
         },
         {
             name: 'participant',
-            type: 'string',
-            validators: [{type: 'presence'}]
+            type: 'string'
         },
         {
             name: 'rewardStandard',

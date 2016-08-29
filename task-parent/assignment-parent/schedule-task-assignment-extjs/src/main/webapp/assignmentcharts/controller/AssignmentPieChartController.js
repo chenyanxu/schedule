@@ -3,7 +3,7 @@ Ext.define('kalix.task.assignmentcharts.controller.AssignmentPieChartController'
     alias: 'controller.assignmentPieChartController',
 
     onSeriesTooltipRender: function (tooltip, record, item) {
-        tooltip.setHtml(record.get('orgName') + ': ' + record.get('total') + '%');
+        tooltip.setHtml(record.get('orgName') + ': ' + record.get('percent') + '%');
     },
 
     onStyleToggle: function (segmentedButton, button, pressed) {

@@ -11,7 +11,7 @@ Ext.define('kalix.task.assignmentcharts.store.AssignmentPieChartStore', {
     autoLoad: true,
     proxyUrl: '/kalix/camel/rest/assignmentpiecharts/pie',
 
-    fields:["orgName","total"],
+    fields:["orgName","percent"],
     data:[
         {orgName:"Android",total:68.3},
         {orgName:"BlackBerry",total:1.7},
