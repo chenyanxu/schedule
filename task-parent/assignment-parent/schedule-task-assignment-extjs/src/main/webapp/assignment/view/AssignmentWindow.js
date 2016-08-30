@@ -25,7 +25,6 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
     //todo 在此修改表单
     items: [
         {
-            xtype: 'baseForm',
             items: [
                 {
                     fieldLabel: '用户id',
@@ -179,7 +178,6 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                     xtype: 'userCombobox',
                     valueField: 'id',
                     displayField: 'name',
-                    allowBlank: false,
                     bind: {
                         value: '{rec.head}'
                     }

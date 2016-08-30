@@ -79,7 +79,6 @@ Ext.define('kalix.task.assignment.model.AssignmentModel', {
         },
         {
             name: 'head',
-            type: 'int',
             validators: [{type: 'presence'}]
         },
         {
