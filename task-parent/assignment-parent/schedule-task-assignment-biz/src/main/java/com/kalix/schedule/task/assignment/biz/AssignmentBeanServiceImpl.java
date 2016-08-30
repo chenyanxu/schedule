@@ -268,6 +268,14 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
             chartList.add(tmpDTO);
         }
 
+        //判断没有数据的情况
+        if(chartList.size() == 0){
+            AssignmentPieChartDTO tmpDTO = new AssignmentPieChartDTO();
+            tmpDTO.setOrgName("没有数据");
+            tmpDTO.setPercent(100);
+            chartList.add(tmpDTO);
+        }
+
         // 传到前台的id
         for (int i = 0; i < chartList.size(); i++) {
             chartList.get(i).setId(i);

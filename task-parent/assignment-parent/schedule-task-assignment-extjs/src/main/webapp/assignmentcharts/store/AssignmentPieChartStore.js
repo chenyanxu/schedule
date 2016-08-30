@@ -13,11 +13,7 @@ Ext.define('kalix.task.assignmentcharts.store.AssignmentPieChartStore', {
 
     fields:["orgName","percent"],
     data:[
-        {orgName:"Android",total:68.3},
-        {orgName:"BlackBerry",total:1.7},
-        {orgName:"iOS",total:17.9},
-        {orgName:"Windows Phone",total:10.2},
-        {orgName:"Others",total:1.9}
+        {orgName:"没有数据",percent:100}
     ]//,
     //seed: 1.42,
     //
