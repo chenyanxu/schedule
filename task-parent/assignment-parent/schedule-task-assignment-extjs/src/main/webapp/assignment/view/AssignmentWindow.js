@@ -175,6 +175,7 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                 },
                 {
                     fieldLabel: '负责人',
+                    allowBlank: false,
                     xtype: 'userCombobox',
                     valueField: 'id',
                     displayField: 'name',
@@ -188,7 +189,6 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                     valueField: 'id',
                     displayField: 'name',
                     //queryParam: 'jsonStr',
-                    allowBlank: false,
                     bind: {
                         value: '{rec.participant}'
                     }
@@ -196,7 +196,6 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                 {
                     fieldLabel: '奖罚标准',
                     xtype: 'textarea',
-                    allowBlank: false,
                     bind: {
                         value: '{rec.rewardStandard}'
                     }
@@ -204,7 +203,6 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                 {
                     fieldLabel: '领导批示',
                     xtype: 'textarea',
-                    allowBlank: false,
                     bind: {
                         value: '{rec.instruction}'
                     }
