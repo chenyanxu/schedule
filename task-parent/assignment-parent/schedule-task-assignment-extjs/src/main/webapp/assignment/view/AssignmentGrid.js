@@ -61,7 +61,9 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
             },
             {
                 text: '任务名称',
-                dataIndex: 'title'
+                xtype: 'templatecolumn',
+                tpl: new Ext.XTemplate('<tpl>【{subTaskCount}】{title}</tpl>'),
+                renderer:null
             },
             {
                 text: '任务进度',

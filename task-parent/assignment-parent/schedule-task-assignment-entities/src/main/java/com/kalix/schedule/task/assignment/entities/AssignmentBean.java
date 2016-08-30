@@ -114,6 +114,10 @@ public class AssignmentBean extends PersistentEntity {
      */
     private String advice;
 
+    /*子任务数*/
+    @Transient
+    private Integer subTaskCount;
+
     public long getUserId() {
         return this.userId;
     }
@@ -296,5 +300,13 @@ public class AssignmentBean extends PersistentEntity {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public Integer getSubTaskCount() {
+        return subTaskCount;
+    }
+
+    public void setSubTaskCount(Integer subTaskCount) {
+        this.subTaskCount = subTaskCount;
     }
 }

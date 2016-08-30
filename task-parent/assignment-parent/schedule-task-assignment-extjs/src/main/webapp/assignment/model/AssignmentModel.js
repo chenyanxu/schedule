@@ -117,6 +117,10 @@ Ext.define('kalix.task.assignment.model.AssignmentModel', {
         {
             name: 'advice',
             type: 'string'
+        },
+        {
+            name: 'subTaskCount',
+            type: 'int'
         }
     ]
 });

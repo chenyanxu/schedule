@@ -33,13 +33,13 @@ Ext.define('kalix.task.assignmentcharts.Main', {
             xtype: 'assignmentColumnChartView',
             id: 'assignmentColumnChartView',
             title: '柱状图',
-            flex: 3
+            flex: 2
         },
         {
             xtype: 'assignmentPieChartView',
             id: 'assignmentPieChartView',
             title: '饼状图',
-            flex: 3
+            flex: 2
         }
     ]
 });

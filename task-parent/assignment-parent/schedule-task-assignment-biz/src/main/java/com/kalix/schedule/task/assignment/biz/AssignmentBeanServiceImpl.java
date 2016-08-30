@@ -81,9 +81,9 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
             //统计子任务数
             List<AssignmentBean> subTaskList = dao.find("select ob from AssignmentBean ob where ob.sourceId=" + beanList.get(i).getId(),null);
             if(subTaskList.size() == 0){
-                beanList.get(i).setTitle("【0】"+beanList.get(i).getTitle());
+                beanList.get(i).setSubTaskCount(0);
             }else {
-                beanList.get(i).setTitle("【"+subTaskList.size()+"】"+beanList.get(i).getTitle());
+                beanList.get(i).setSubTaskCount(subTaskList.size());
             }
         }
 

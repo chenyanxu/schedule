@@ -94,24 +94,27 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                     listeners: {
                         'change':function(e,t,options) {
                             if(t=='0'){
-                                Ext.getCmp("schedule_task_assignment_sourceId1").show();
-                                Ext.getCmp("schedule_task_assignment_sourceId1").store.proxy.url='/kalix/camel/rest/departmentplans';
-                                Ext.getCmp("schedule_task_assignment_sourceId1").store.load();
+                                Ext.getCmp("schedule_task_assignment_sourceId").show();
+                                Ext.getCmp("schedule_task_assignment_sourceId").store.proxy.url='/kalix/camel/rest/departmentplans';
+                                Ext.getCmp("schedule_task_assignment_sourceId").value="";
+                                Ext.getCmp("schedule_task_assignment_sourceId").store.load();
                             }
                             else if(t=='1'){
-                                Ext.getCmp("schedule_task_assignment_sourceId1").store.proxy.url='/kalix/camel/rest/assignments';
-                                Ext.getCmp("schedule_task_assignment_sourceId1").store.load();
-                                Ext.getCmp("schedule_task_assignment_sourceId1").show();
+                                Ext.getCmp("schedule_task_assignment_sourceId").store.proxy.url='/kalix/camel/rest/assignments';
+                                Ext.getCmp("schedule_task_assignment_sourceId").store.load();
+                                Ext.getCmp("schedule_task_assignment_sourceId").value="";
+                                Ext.getCmp("schedule_task_assignment_sourceId").show();
                             }
                             else{
-                                Ext.getCmp("schedule_task_assignment_sourceId1").hide();
+                                Ext.getCmp("schedule_task_assignment_sourceId").value="";
+                                Ext.getCmp("schedule_task_assignment_sourceId").hide();
                             }
                         }
                     }
                 },
                 {
                     fieldLabel: '来源于',
-                    id: 'schedule_task_assignment_sourceId1',
+                    id: 'schedule_task_assignment_sourceId',
                     xtype: 'baseComboBox',
                     valueField: 'id',
                     displayField: 'title',
