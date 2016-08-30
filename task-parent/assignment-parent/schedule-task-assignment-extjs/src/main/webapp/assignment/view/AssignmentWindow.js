@@ -137,6 +137,7 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                 {
                     fieldLabel: '开始日期',
                     allowBlank: false,
+                    editable: false,
                     xtype: 'datefield',
                     format: 'Y-m-d',
                     minValue: new Date(),
@@ -147,6 +148,7 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                 {
                     fieldLabel: '结束日期',
                     allowBlank: false,
+                    editable: false,
                     xtype: 'datefield',
                     format: 'Y-m-d',
                     minValue: new Date(),

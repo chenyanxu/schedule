@@ -14,6 +14,15 @@ Ext.define('kalix.task.assignment.controller.AssignmentWindowController', {
             Ext.Msg.alert(CONFIG.ALTER_TITLE_FAILURE, "来源于不能为空");
             return;
         }
+        if(model.get('beginDate') > model.get('endDate')){
+            Ext.Msg.alert(CONFIG.ALTER_TITLE_FAILURE, "结束日期不能小于开始日期");
+            return;
+        }
+        if(model.get('workHours') == 0){
+            Ext.Msg.alert(CONFIG.ALTER_TITLE_FAILURE, "评估工时不能为0");
+            return;
+        }
+
         this.callParent(arguments);
     },
     onAccept: function () {
