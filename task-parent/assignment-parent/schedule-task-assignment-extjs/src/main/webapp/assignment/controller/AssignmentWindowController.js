@@ -11,8 +11,10 @@ Ext.define('kalix.task.assignment.controller.AssignmentWindowController', {
         var viewModel = this.getViewModel();
         var model = viewModel.get('rec');
         if(model.get('sourceType') != 2){
-            Ext.Msg.alert(CONFIG.ALTER_TITLE_FAILURE, "来源于不能为空");
-            return;
+            if(model.get('sourceId') == null || model.get("sourceId") == "") {
+                Ext.Msg.alert(CONFIG.ALTER_TITLE_FAILURE, "来源于不能为空");
+                return;
+            }
         }
         if(model.get('beginDate') > model.get('endDate')){
             Ext.Msg.alert(CONFIG.ALTER_TITLE_FAILURE, "结束日期不能小于开始日期");
