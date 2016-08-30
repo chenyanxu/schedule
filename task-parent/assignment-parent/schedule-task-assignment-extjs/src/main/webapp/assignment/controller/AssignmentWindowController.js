@@ -7,6 +7,15 @@
 Ext.define('kalix.task.assignment.controller.AssignmentWindowController', {
     extend: 'kalix.controller.BaseWindowController',
     alias: 'controller.assignmentWindowController',
+    onSave: function(){
+        var viewModel = this.getViewModel();
+        var model = viewModel.get('rec');
+        if(model.get('sourceType') != 2){
+            Ext.Msg.alert(CONFIG.ALTER_TITLE_FAILURE, "来源于不能为空");
+            return;
+        }
+        this.callParent(arguments);
+    },
     onAccept: function () {
         var viewModel = this.getViewModel();
         var view = this.getView();

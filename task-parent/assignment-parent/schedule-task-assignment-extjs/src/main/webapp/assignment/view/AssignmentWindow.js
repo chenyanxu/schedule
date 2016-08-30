@@ -7,7 +7,7 @@
 Ext.define('kalix.task.assignment.view.AssignmentWindow', {
     extend: 'kalix.view.components.common.BaseWindow',
     requires: [
-        'kalix.controller.BaseWindowController',
+        'kalix.task.assignment.controller.AssignmentWindowController',
         'kalix.schedule.scheduleDict.component.ScheduleDictCombobox',
         'kalix.admin.user.component.UserComboBox',
         'kalix.admin.user.component.UserTagField',
@@ -18,7 +18,7 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
     ],
     alias: 'widget.assignmentWindow',
     controller: {
-        type: 'baseWindowController'
+        type: 'assignmentWindowController'
     },
     xtype: "assignmentWindow",
     width: 800,
@@ -113,6 +113,7 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                 },
                 {
                     fieldLabel: '来源于',
+                    allowBlank: false,
                     id: 'schedule_task_assignment_sourceId',
                     xtype: 'baseComboBox',
                     valueField: 'id',
@@ -133,15 +134,6 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                         value: '{rec.content}'
                     }
                 },
-                //{
-                //    fieldLabel: '任务状态',
-                //    xtype: 'scheduleDictCombobox',
-                //    dictType: '任务状态',
-                //    allowBlank: false,
-                //    bind: {
-                //        value: '{rec.state}'
-                //    }
-                //},
                 {
                     fieldLabel: '开始日期',
                     allowBlank: false,
