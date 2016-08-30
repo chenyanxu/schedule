@@ -106,23 +106,40 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
                     handler: 'onView'
                 },
                 {
-                    //bind: {icon: ''},
-                    iconCls: "iconfont icon-edit-column",
                     permission: '',
                     tooltip: '编辑',
-                    handler: 'onEdit'
+                    handler: 'onEdit',
+                    getClass: function (v, meta, record) {
+                        if (record.data.state == 2) {
+                            return "kalix_hidden";
+                        }else{
+                            return 'iconfont icon-edit-column';
+                        }
+                    }
                 },
                 {
-                    iconCls: "iconfont icon-delete",
                     permission: '',
                     tooltip: '删除',
-                    handler: 'onDelete'
+                    handler: 'onDelete',
+                    getClass: function (v, meta, record) {
+                        if (record.data.state == 2) {
+                            return "kalix_hidden";
+                        }else{
+                            return 'iconfont icon-delete';
+                        }
+                    }
                 },
                 {
-                    iconCls: 'iconfont icon-attachment-column',
                     permission: '',
                     tooltip: '附件管理',
-                    handler: 'onAttachmentManage'
+                    handler: 'onAttachmentManage',
+                    getClass: function (v, meta, record) {
+                        if (record.data.state == 2) {
+                            return "kalix_hidden";
+                        }else{
+                            return 'iconfont icon-attachment-column';
+                        }
+                    }
                 }
             ]
         }

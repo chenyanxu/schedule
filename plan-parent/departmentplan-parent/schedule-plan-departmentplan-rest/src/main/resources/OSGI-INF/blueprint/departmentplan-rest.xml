@@ -58,5 +58,15 @@
                 <to uri="bean:departmentplanService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
             </get>
         </rest>
+
+        <rest path="/departmentplancomboboxs" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+            <description>departmentplansearch rest service</description>
+
+            <!-- this is a rest GET to find all departmentplancombobox -->
+            <get id="route-getDepartmentPlanCombobox" outType="com.kalix.framework.core.api.persistence.JsonData">
+                <description>Find all DepartmentPlans</description>
+                <to uri="bean:departmentplanService?method=getDepPlanCombox(${header.page},${header.limit},${header.jsonStr})"/>
+            </get>
+        </rest>
     </camelContext>
 </blueprint>

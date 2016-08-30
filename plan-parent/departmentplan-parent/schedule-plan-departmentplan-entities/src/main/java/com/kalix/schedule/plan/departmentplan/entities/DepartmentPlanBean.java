@@ -50,7 +50,7 @@ public class DepartmentPlanBean extends PersistentEntity {
     /**
      * @describe 计划类型
      */
-    private String planType;
+    private Integer planType;
     /**
      * @describe 计划开始时间
      */
@@ -64,7 +64,7 @@ public class DepartmentPlanBean extends PersistentEntity {
     /**
      * @describe 计划状态
      */
-    private String state;
+    private Integer state;
 
     public long getUserId() {
         return userId;
@@ -122,11 +122,11 @@ public class DepartmentPlanBean extends PersistentEntity {
         this.content = content;
     }
 
-    public String getPlanType() {
+    public Integer getPlanType() {
         return planType;
     }
 
-    public void setPlanType(String planType) {
+    public void setPlanType(Integer planType) {
         this.planType = planType;
     }
 
@@ -146,11 +146,11 @@ public class DepartmentPlanBean extends PersistentEntity {
         this.endDate = endDate;
     }
 
-    public String getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 }

@@ -24,4 +24,14 @@ public interface IDepartmentPlanBeanService extends IBizService<DepartmentPlanBe
      * @return
      */
     JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr);
+
+    /**
+     * 查询个人的部门计划,提供给combobox使用,已经归档的任务不出现在combobox中
+     *
+     * @param page
+     * @param limit
+     * @param jsonStr
+     * @return
+     */
+    JsonData getDepPlanCombox(Integer page, Integer limit, String jsonStr);
 }

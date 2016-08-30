@@ -49,7 +49,7 @@ Ext.define('kalix.plan.departmentplan.model.DepartmentPlanModel', {
         },
         {
             name: 'planType',
-            type: 'string',
+            type: 'int',
             validators: [{type: 'presence'}]
         },
         {
@@ -66,8 +66,8 @@ Ext.define('kalix.plan.departmentplan.model.DepartmentPlanModel', {
         },
         {
             name: 'state',
-            type: 'string',
-            defaultValue: '0'
+            type: 'int',
+            defaultValue: 0
         }
     ]
 });
