@@ -7,14 +7,14 @@
 Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
     extend: 'kalix.view.components.common.BaseWindow',
     requires: [
-        'kalix.controller.BaseWindowController',
+        'kalix.plan.departmentplan.controller.DepartmentPlanWindowController',
         'kalix.schedule.scheduleDict.component.ScheduleDictCombobox',
         'kalix.admin.user.component.UserTagField',
         'kalix.admin.user.component.UserOrgComboBox'
     ],
     alias: 'widget.departmentplanWindow',
     controller: {
-        type: 'baseWindowController'
+        type: 'departmentPlanWindowController'
     },
     xtype: "departmentplanWindow",
     width: 400,
@@ -92,8 +92,10 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
                 {
                     fieldLabel: '开始日期',
                     allowBlank: false,
+                    editable: false,
                     xtype: 'datefield',
                     format: 'Y-m-d',
+                    minValue: new Date(),
                     bind: {
                         value: '{rec.beginDate}'
                     }
@@ -101,8 +103,10 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
                 {
                     fieldLabel: '结束日期',
                     allowBlank: false,
+                    editable: false,
                     xtype: 'datefield',
                     format: 'Y-m-d',
+                    minValue: new Date(),
                     bind: {
                         value: '{rec.endDate}'
                     }
