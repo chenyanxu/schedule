@@ -12,7 +12,8 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
     ],
     alias: 'widget.workreportViewWindow',
     xtype: "workreportViewWindow",
-    width: 400,
+    width: 800,
+    planTitle: 'test',
     //todo 在此修改查看字段
     items: [
         {
@@ -21,7 +22,6 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
             items: [
                 {
                     fieldLabel: '用户id',
-                    allowBlank: false,
                     hidden: true,
                     bind: {
                         value: '{rec.userId}'
@@ -29,14 +29,12 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
                 },
                 {
                     fieldLabel: '用户名称',
-                    allowBlank: false,
                     bind: {
                         value: '{rec.userName}'
                     }
                 },
                 {
                     fieldLabel: '部门id',
-                    allowBlank: false,
                     hidden: true,
                     bind: {
                         value: '{rec.orgId}'
@@ -44,7 +42,6 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
                 },
                 {
                     fieldLabel: '部门code',
-                    allowBlank: false,
                     hidden: true,
                     bind: {
                         value: '{rec.orgCode}'
@@ -52,7 +49,6 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
                 },
                 {
                     fieldLabel: '部门名称',
-                    allowBlank: false,
                     bind: {
                         value: '{rec.orgName}'
                     }
@@ -61,14 +57,12 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
                     fieldLabel: '汇报类型',
                     xtype: 'scheduleDictCombobox',
                     dictType: '汇报类型',
-                    allowBlank: false,
                     bind: {
                         value: '{rec.workType}'
                     }
                 },
                 {
                     fieldLabel: '开始日期',
-                    allowBlank: false,
                     xtype: 'datefield',
                     format: 'Y-m-d',
                     bind: {
@@ -77,7 +71,6 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
                 },
                 {
                     fieldLabel: '结束日期',
-                    allowBlank: false,
                     xtype: 'datefield',
                     format: 'Y-m-d',
                     bind: {
@@ -85,21 +78,72 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
                     }
                 },
                 {
+                    fieldLabel: '计划类型',
+                    hidden: true,
+                    bind: {
+                        value: '{rec.planType}'
+                    },
+                    listeners: {
+                        'render': function(target) {
+                            var sourceType = this.lookupViewModel().get('rec').get('planType');
+
+                            var store;
+
+                            if (sourceType == 1) {
+                                store = Ext.create("kalix.plan.personalplan.store.PersonalPlanStore");
+                            }
+                            else if (sourceType == 2) {
+                                store = Ext.create("kalix.plan.departmentplan.store.DepartmentPlanStore");
+                            }
+
+                            if (store != null) {
+                                var id = this.lookupViewModel().get('rec').get('planId');
+                                if (id != null && id != '') {
+                                    store.setProxy({
+                                        type: 'ajax',
+                                        url: store.proxyUrl + '/' + id
+                                    });
+
+                                    store.load({
+                                        'callback': function (records, options, success) {
+                                            Ext.getCmp('workReportPlanTitle').setValue(records[0].data.title);
+                                            Ext.getCmp('workReportPlanContent').setValue(records[0].data.content);
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                },
+                {
                     fieldLabel: '标题',
-                    allowBlank: false,
                     bind: {
                         value: '{rec.title}'
                     }
                 },
                 {
                     fieldLabel: '内容',
-                    allowBlank: false,
                     xtype: 'textarea',
                     bind: {
                         value: '{rec.content}'
                     }
                 }
             ]
+        },
+        {
+            defaults: {readOnly: true},
+            items: [
+                {
+                    fieldLabel: '关联计划',
+                    id: 'workReportPlanTitle'
+                },
+                {
+                    fieldLabel: '计划内容',
+                    xtype: 'textarea',
+                    id: 'workReportPlanContent'
+                }
+            ]
         }
     ]
+
 });
