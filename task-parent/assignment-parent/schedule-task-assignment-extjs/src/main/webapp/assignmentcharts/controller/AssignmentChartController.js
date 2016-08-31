@@ -55,15 +55,26 @@ Ext.define('kalix.task.assignmentcharts.controller.AssignmentChartController', {
         return Ext.util.Format.number(layoutContext.renderer(label), '');
     },
     onItemClick: function (view, record, item, index, e) {
-        //var searchForm = this.getView().items.getAt(1).items.getAt(0);
-        //var orgCode = searchForm.items.getAt(2);
-        //orgCode.setValue(record.data.code);
-        var columnChart = this.getView().items.getAt(1).lookupReference('chart');
-        var pieChart = this.getView().items.getAt(2).lookupReference('chart');
-        //this.getView().items.getAt(1).items.getAt(1).store
-        var jsonStr = {'orgCode':record.data.code};
+        var searchForm = this.getView().items.getAt(1).items.getAt(0);
+        var beginDateGt = searchForm.items.getAt(0).rawValue;
+        var beginDateLt = searchForm.items.getAt(2).rawValue;
+        var endDateGt = searchForm.items.getAt(3).rawValue;
+        var endDateLt = searchForm.items.getAt(5).rawValue;
+
+        var statistics = this.getView().items.getAt(1).items.getAt(1);
+        var columnChart = this.getView().items.getAt(1).items.getAt(2).items.getAt(0).lookupReference('chart');
+        var pieChart = this.getView().items.getAt(1).items.getAt(2).items.getAt(1).lookupReference('chart');
+        var jsonStr = {
+            'orgCode':record.data.code,
+            'beginDate:begin:gt':beginDateGt,
+            'beginDate:end:lt':beginDateLt,
+            'endDate:begin:gt':endDateGt,
+            'endDate:end:lt':endDateLt
+        };
 
         jsonStr = Ext.JSON.encode(jsonStr);
+        statistics.store.proxy.extraParams = {'jsonStr':jsonStr};
+        statistics.store.reload();
         columnChart.store.proxy.extraParams = {'jsonStr':jsonStr};
         columnChart.store.reload();
         pieChart.store.proxy.extraParams = {'jsonStr':jsonStr};
