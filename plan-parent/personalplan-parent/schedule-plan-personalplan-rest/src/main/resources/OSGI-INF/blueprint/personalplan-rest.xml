@@ -5,6 +5,7 @@
        http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
 
     <reference id="personalplanService" interface="com.kalix.schedule.plan.personalplan.api.biz.IPersonalPlanBeanService"/>
+    <reference id="workreportService" interface="com.kalix.schedule.plan.workreport.api.biz.IWorkReportBeanService"/>
     <camelContext id="personalplanCamel" xmlns="http://camel.apache.org/schema/blueprint">
         <restConfiguration component="servlet" bindingMode="json">
             <dataFormatProperty key="prettyPrint" value="true"/>
@@ -57,6 +58,15 @@
             <get id="route-getPersonalPlanSearch" outType="com.kalix.framework.core.api.persistence.JsonData">
                 <description>Find all PersonalPlans</description>
                 <to uri="bean:personalplanService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
+            </get>
+        </rest>
+
+        <!-- 查询个人计划关联的工作汇报信息 -->
+        <rest path="/personalplans/{id}/workreport" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+            <!-- this is a rest GET to view a personalplan by the given id -->
+            <get id="route-getEntityByPlanId" outType="com.kalix.framework.core.api.persistence.JsonData">
+                <description>Find all PersonalPlans</description>
+                <to uri="bean:workreportService?method=getEntityByPlanId(${header.id}, ${header.page}, ${header.limit})"/>
             </get>
         </rest>
     </camelContext>
