@@ -11,6 +11,7 @@ import com.kalix.schedule.plan.workreport.api.dao.IWorkReportBeanDao;
 import com.kalix.schedule.plan.workreport.api.dao.IWorkReportPlanBeanDao;
 import com.kalix.schedule.plan.workreport.entities.WorkReportBean;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -115,5 +116,21 @@ public class WorkReportBeanServiceImpl extends ShiroGenericBizServiceImpl<IWorkR
         entity.setUserId(this.getShiroService().getCurrentUserId());
         entity.setUserName(this.getShiroService().getCurrentUserRealName());
         super.beforeSaveEntity(entity,status);
+    }
+
+    /**
+     * 查询计划关联的工作汇报信息 2016-09-01 by p
+     *
+     * @param id
+     * @param page
+     * @param limit
+     * @return
+     */
+    @Override
+    public JsonData getEntityByPlanId(long id, Integer page, Integer limit) {
+        Map<String, String> jsonMap = new HashMap<>();
+        jsonMap.put("planId", String.valueOf(id));
+
+        return super.getAllEntityByQuery(page, limit, SerializeUtil.serializeJson(jsonMap));
     }
 }
