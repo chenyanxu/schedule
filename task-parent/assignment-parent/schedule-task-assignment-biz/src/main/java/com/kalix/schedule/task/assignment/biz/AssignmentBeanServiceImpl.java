@@ -184,7 +184,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
                 "sum(case when state=5 then 1 else 0 end) as failure," +
                 "sum(case when state=6 then 1 else 0 end) as cancel " +
                 "from schedule_assignment " +
-                " where 1=1 " + condition + " group by orgName";
+                " where 1=1 and orgCode='" + orgCode+"'" + condition + " group by orgName";
         List<AssignmentDTO> tmpList = dao.findByNativeSql(tmpSql, AssignmentDTO.class, "");
         if (tmpList.size() != 0) {
             //如果数据为空，那么初始为0
@@ -270,7 +270,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
                 "sum(case when state=5 then 1 else 0 end) as failure," +
                 "sum(case when state=6 then 1 else 0 end) as cancel " +
                 "from schedule_assignment " +
-                " where 1=1 " + condition + " group by orgName";
+                " where 1=1 and orgCode='" + orgCode+"'" + condition + " group by orgName";
         List<AssignmentColumnChartDTO> tmpList = dao.findByNativeSql(tmpSql, AssignmentColumnChartDTO.class, "");
         if (tmpList.size() != 0) {
             //如果数据为空，那么初始为0
@@ -334,7 +334,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         }
 
         //4、查找本单位的
-        String tmpSql = "select * from schedule_assignment where  1=1 " + condition;
+        String tmpSql = "select * from schedule_assignment where  1=1 and orgCode='" + orgCode+"'" + condition;
         List<AssignmentBean> tmpList = dao.findByNativeSql(tmpSql, AssignmentBean.class, null);
         if (tmpList.size() != 0) {
             float ft = (tmpList.size() / total) * 100;

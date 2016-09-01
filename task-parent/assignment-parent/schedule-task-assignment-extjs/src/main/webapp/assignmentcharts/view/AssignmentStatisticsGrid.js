@@ -16,7 +16,7 @@ Ext.define('kalix.task.assignmentcharts.view.AssignmentStatisticsGrid', {
     stripeRows: true,
     //todo 在此修改grid显示列
     defaults: {flex: 1, renderer: null},
-    height: 450,
+    height: 400,
     columns: [
         {
             xtype: "rownumberer"

@@ -21,7 +21,7 @@ Ext.define('kalix.task.assignmentcharts.Main', {
     items: [
         {
             flex:1,
-            margin: '10 10 0 10',
+            margin: '10 10 10 10',
             items: [
                 {
                     xtype: 'userorgtreelist',

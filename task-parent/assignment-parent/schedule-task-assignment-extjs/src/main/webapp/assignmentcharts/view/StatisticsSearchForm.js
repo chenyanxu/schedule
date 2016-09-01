@@ -13,7 +13,7 @@ Ext.define('kalix.task.assignmentcharts.view.StatisticsSearchForm', {
     controller:{
         type: 'statisticsSearchFormController'
     },
-    bodyPadding:0,
+    //bodyPadding:0,
     margin: '0 0 10 0',
     items: [
         {
