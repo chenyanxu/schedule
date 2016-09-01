@@ -99,7 +99,7 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                                 Ext.getCmp("schedule_task_assignment_sourceId").store.load();
                             }
                             else if(t=='1'){
-                                Ext.getCmp("schedule_task_assignment_sourceId").store.proxy.url='/kalix/camel/rest/assignments';
+                                Ext.getCmp("schedule_task_assignment_sourceId").store.proxy.url='/kalix/camel/rest/assignmentcomboboxs';
                                 Ext.getCmp("schedule_task_assignment_sourceId").store.load();
                                 Ext.getCmp("schedule_task_assignment_sourceId").value="";
                                 Ext.getCmp("schedule_task_assignment_sourceId").show();

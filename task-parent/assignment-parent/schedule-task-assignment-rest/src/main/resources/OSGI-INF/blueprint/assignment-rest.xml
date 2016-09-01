@@ -69,31 +69,14 @@
                 <to uri="bean:assignmentService?method=getAllEventEntity(${header.assignmentId})"/>
             </get>
         </rest>
-        <rest path="/assignmentstatistics/query" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+
+        <rest path="/assignmentcomboboxs" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
             <description>assignment rest service</description>
 
             <!-- this is a rest GET to find all assignment -->
-            <get id="route-getAllAssignmentStatistics" outType="com.kalix.framework.core.api.persistence.JsonData">
-                <description>Find all Assignments</description>
-                <to uri="bean:assignmentService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
-            </get>
-        </rest>
-        <rest path="/assignmentcharts/column" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
-            <description>assignment rest service</description>
-
-            <!-- this is a rest GET to find all assignment -->
-            <get id="route-getAllAssignmentColumnChart" outType="com.kalix.framework.core.api.persistence.JsonData">
-                <description>Find all AssignmentColumnCharts</description>
-                <to uri="bean:assignmentService?method=getColumnChartData(${header.page},${header.limit},${header.jsonStr})"/>
-            </get>
-        </rest>
-        <rest path="/assignmentpiecharts/pie" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
-            <description>assignment rest service</description>
-
-            <!-- this is a rest GET to find all assignment -->
-            <get id="route-getAllAssignmentPieChart" outType="com.kalix.framework.core.api.persistence.JsonData">
-                <description>Find all AssignmentPieCharts</description>
-                <to uri="bean:assignmentService?method=getPieChartData(${header.page},${header.limit},${header.jsonStr})"/>
+            <get id="route-getAllAssignmentCombobox" outType="com.kalix.framework.core.api.persistence.JsonData">
+                <description>Find all AssignmentCombobox</description>
+                <to uri="bean:assignmentService?method=getParentTaskCombox(${header.page},${header.limit},${header.jsonStr})"/>
             </get>
         </rest>
 
