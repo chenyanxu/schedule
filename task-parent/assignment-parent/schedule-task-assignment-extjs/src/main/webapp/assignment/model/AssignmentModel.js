@@ -120,6 +120,10 @@ Ext.define('kalix.task.assignment.model.AssignmentModel', {
         {
             name: 'subTaskCount',
             type: 'int'
+        },
+        {
+            name: 'eventType',
+            type: 'int'
         }
     ]
 });

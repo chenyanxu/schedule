@@ -33,6 +33,10 @@ public class EventBean extends PersistentEntity {
      * @describe 操作人
      */
     private long operator;
+    /**
+     * @describe 操作人
+     */
+    private String operatorName;
 
     public long getAssignmentId() {
         return assignmentId;
@@ -64,5 +68,13 @@ public class EventBean extends PersistentEntity {
 
     public void setOperator(long operator) {
         this.operator = operator;
+    }
+
+    public String getOperatorName() {
+        return operatorName;
+    }
+
+    public void setOperatorName(String operatorName) {
+        this.operatorName = operatorName;
     }
 }

@@ -38,6 +38,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentWindowController', {
         store.proxy.extraParams = {};
         // 设置任务状态为进行中
         model.set('state',2);
+        model.set('eventType',2);
         model.modified = model.data;
         store.sync(
             {
@@ -67,6 +68,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentWindowController', {
                 store.proxy.extraParams = {};
                 // 设置任务状态为拒绝
                 model.set('state', 1);
+                model.set('eventType', 1);
                 model.modified = model.data;
                 store.sync(
                     {

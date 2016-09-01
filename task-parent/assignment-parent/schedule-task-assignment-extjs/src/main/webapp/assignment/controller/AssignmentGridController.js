@@ -20,6 +20,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
                 store.proxy.extraParams = {};
                 // 设置任务状态为取消
                 model.set('state',6);
+                model.set('eventType',6);
                 model.modified = model.data;
                 store.sync(
                     {
@@ -51,6 +52,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
                 store.proxy.extraParams = {};
                 // 设置任务状态为失败
                 model.set('state',5);
+                model.set('eventType',5);
                 model.modified = model.data;
                 store.sync(
                     {
@@ -81,7 +83,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
         //}
         var view = Ext.create('kalix.task.assignment.view.HeaderWindow');
         var vm = view.lookupViewModel();
-
+        selModel.set('eventType',8);
         vm.set('rec', selModel);
         vm.set('iconCls', vm.get('editIconCls'));
         vm.set('title','修改负责人');
@@ -95,7 +97,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
         var selModel = grid.getStore().getData().items[rowIndex];
         var view = Ext.create('kalix.task.assignment.view.ProgressWindow');
         var vm = view.lookupViewModel();
-
+        selModel.set('eventType',9);
         vm.set('rec', selModel);
         vm.set('iconCls', vm.get('editIconCls'));
         vm.set('title','汇报进度');
@@ -123,7 +125,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
                 var selModel = grid.getStore().getData().items[rowIndex];
                 var view = Ext.create('kalix.task.assignment.view.DelayWindow');
                 var vm = view.lookupViewModel();
-
+                selModel.set('eventType',7);
                 vm.set('rec', selModel);
                 vm.set('iconCls', vm.get('editIconCls'));
                 vm.set('title',vm.get('editTitle'));
@@ -143,6 +145,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
                 store.proxy.extraParams = {};
                 // 设置任务状态为申请完成
                 model.set('state',3);
+                model.set('eventType',3);
                 //需求说申请的同时，将进度
                 model.set('percent',1);
                 model.modified = model.data;

@@ -30,6 +30,20 @@ Ext.define('kalix.task.assignment.view.HeaderWindow', {
                     allowBlank: false,
                     bind: {
                         value: '{rec.head}'
+                    },
+                    listeners: {
+                        'change':function(e,t,options) {
+                            if(e.displayTplData.length != 0) {
+                                this.lookupViewModel().get('rec').set('header', e.displayTplData[0].name);
+                            }
+                        }
+                    }
+                },
+                {
+                    fieldLabel: '选择负责人',
+                    hidden:true,
+                    bind: {
+                        value: '{rec.header}'
                     }
                 }
             ]

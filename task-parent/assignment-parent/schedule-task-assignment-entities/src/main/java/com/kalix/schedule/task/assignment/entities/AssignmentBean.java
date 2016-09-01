@@ -117,6 +117,11 @@ public class AssignmentBean extends PersistentEntity {
     /*子任务数*/
     @Transient
     private Integer subTaskCount;
+    /*
+    任务事件类型
+     */
+    @Transient
+    private Integer eventType;
 
     public long getUserId() {
         return this.userId;
@@ -308,5 +313,13 @@ public class AssignmentBean extends PersistentEntity {
 
     public void setSubTaskCount(Integer subTaskCount) {
         this.subTaskCount = subTaskCount;
+    }
+
+    public Integer getEventType() {
+        return eventType;
+    }
+
+    public void setEventType(Integer eventType) {
+        this.eventType = eventType;
     }
 }

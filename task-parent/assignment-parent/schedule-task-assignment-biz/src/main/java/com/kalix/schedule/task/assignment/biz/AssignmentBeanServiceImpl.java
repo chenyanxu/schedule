@@ -63,24 +63,24 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
     @Override
     public JsonData getParentTaskCombox(Integer page, Integer limit, String jsonStr) {
         Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
-        String condition=" where 1=1 ";
+        String condition = " where 1=1 ";
         for (Map.Entry<String, String> entry : jsonMap.entrySet()) {
             if (entry.getValue() != null && !entry.getValue().equals("")) {
                 condition = condition + " and " + entry.getKey() + " = " + entry.getValue();
             }
         }
         String userId = String.valueOf(this.getShiroService().getCurrentUserId());
-        condition += " and userId="+userId;
-        // 只有进行中的任务在新建任务时可作为母任务
-        condition += " and state = 2";
+        condition += " and userId=" + userId;
+        // 只有任务状态为进行中、等待接收、提交审核的任务在新建任务时可作为母任务
+        condition += " and (state = 0 or state = 2 or state = 3)";
         // 来源于部门计划的任务或者自定义的任务可作为母任务，已经来源于母任务的子任务就不能再作为母任务了
         condition += " and (sourceType = 0 or sourceType=2)";
 
-        List comboList = dao.findByNativeSql("select * from schedule_assignment" + condition,AssignmentBean.class,null);
+        List comboList = dao.findByNativeSql("select * from schedule_assignment" + condition, AssignmentBean.class, null);
 
         JsonData jsonData = new JsonData();
         jsonData.setData(comboList);
-        jsonData.setTotalCount((long)comboList.size());
+        jsonData.setTotalCount((long) comboList.size());
 
         return jsonData;
     }
@@ -149,7 +149,11 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
             entity.setPercent(0f);
         }
         postNewAssignmentEvent(entity);
-        return super.saveEntity(entity);
+
+        JsonStatus jsonStatus = super.saveEntity(entity);
+        //保存任务事件
+        saveEventEntity(entity);
+        return jsonStatus;
     }
 
     /**
@@ -160,6 +164,8 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
      */
     @Override
     public JsonStatus updateEntity(AssignmentBean entity) {
+        //保存任务事件
+        saveEventEntity(entity);
         //设置进度
         if (entity != null) {
             entity.setPercent(entity.getPercent());
@@ -210,11 +216,69 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
     @Override
     public JsonData getAllEventEntity(long assignmentId) {
         JsonData jsonData = new JsonData();
-        List<EventBean> eventList = eventBeanDao.find("select ob from EventBean ob where ob.assignmentId=?1", assignmentId);
-        jsonData.setTotalCount((long) eventList.size());
+        List<EventBean> eventList = eventBeanDao.find("select ob from EventBean ob where ob.assignmentId=?1 order by ob.creationDate desc", assignmentId);
+
+        //翻译任务负责人
+        List ids = BeanUtil.getBeanFieldValueList(eventList, "operator");
+        List values = this.userBeanService.getFieldValuesByIds(ids.toArray(), "name");
+        BeanUtil.setBeanListFieldValues(eventList, "operatorName", values);
+
+        jsonData.setTotalCount((long)eventList.size());
         jsonData.setData(eventList);
 
         return jsonData;
+    }
+
+    //保存任务事件
+    private void saveEventEntity(AssignmentBean assignmentBean) {
+        int eventType = assignmentBean.getEventType();
+        String eventContent;
+        switch (eventType) {
+            case 0:
+                eventContent = "布置了一个任务";
+                break;
+            case 1:
+                eventContent = "拒绝了一个任务";
+                break;
+            case 2:
+                eventContent = "接收了一个任务";
+                break;
+            case 3:
+                eventContent = "完成任务(申请审核)";
+                break;
+            case 4:
+                eventContent = "任务审核通过,评分为" + assignmentBean.getScore();
+                break;
+            case 5:
+                eventContent = "任务失败";
+                break;
+            case 6:
+                eventContent = "任务撤销";
+                break;
+            case 7:
+                eventContent = "任务延期至" + assignmentBean.getEndDate();
+                break;
+            case 8:
+                eventContent = "负责人修改为" + assignmentBean.getHeader();
+                break;
+            case 9:
+                eventContent = "进度修改为" + assignmentBean.getPercent();
+                break;
+            case 10:
+                eventContent = "审核未通过" + assignmentBean.getComment();
+                break;
+            default:
+                eventType = 100;
+                eventContent = "任务修改";
+        }
+
+        EventBean eventBean = new EventBean();
+        eventBean.setAssignmentId(assignmentBean.getId());
+        eventBean.setEventContent(eventContent);
+        eventBean.setEventType(eventType);
+        eventBean.setOperator(this.getShiroService().getCurrentUserId());
+
+        eventBeanDao.save(eventBean);
     }
 
     /**

@@ -12,7 +12,8 @@ Ext.define('kalix.task.assignment.view.AssignmentViewWindow', {
         'kalix.plan.departmentplan.component.DepartmentPlanComboBox',
         'kalix.task.assignment.component.AssignmentComboBox',
         'kalix.admin.user.component.UserTagField',
-        'kalix.task.assignment.view.EventGrid'
+        'kalix.task.assignment.view.EventGrid',
+        'kalix.task.assignment.view.AssignmentSubTaskGrid'
     ],
     alias: 'widget.assignmentViewWindow',
     xtype: "assignmentViewWindow",
@@ -25,6 +26,7 @@ Ext.define('kalix.task.assignment.view.AssignmentViewWindow', {
     items: [
         {
             xtype: 'tabpanel',
+            id: 'taskTabPanel',
             items: [
                 {
                     title: '基本资料',
@@ -263,6 +265,31 @@ Ext.define('kalix.task.assignment.view.AssignmentViewWindow', {
                     ]
                 },
                 {
+                    title: '子任务区',
+                    xtype: 'panel',
+                    align: 'center',
+                    border: false,
+                    items: [
+                        {
+                            xtype: 'assignmentSubTaskGridPanel',
+                            id: 'assignmentSubTaskGridPanel',
+                            margin: 10
+                        }
+                    ],
+                    listeners: {
+                        'activate': function (target, eOpts) {
+                            var assignmentId = Ext.getCmp('taskTabPanel').items.items[0].items.items[0].items.items[0].value;
+                            Ext.getCmp("assignmentSubTaskGridPanel").store.proxy.url = '/kalix/camel/rest/assignments/';
+                            var jsonStr = {
+                                'sourceId':assignmentId
+                            };
+                            jsonStr = Ext.JSON.encode(jsonStr);
+                            Ext.getCmp("assignmentSubTaskGridPanel").store.proxy.extraParams = {'jsonStr':jsonStr};
+                            Ext.getCmp("assignmentSubTaskGridPanel").store.load();
+                        }
+                    }
+                },
+                {
                     title: '事件列表',
                     xtype: 'panel',
                     align: 'center',
@@ -277,9 +304,13 @@ Ext.define('kalix.task.assignment.view.AssignmentViewWindow', {
                     ],
                     listeners: {
                         'activate': function (target, eOpts) {
-                            var assignmentId = eOpts.items.items[0].items.items[0].value;
+                            var assignmentId = Ext.getCmp('taskTabPanel').items.items[0].items.items[0].items.items[0].value;
+                            var jsonStr = {
+                                'assignmentId':assignmentId
+                            };
+                            jsonStr = Ext.JSON.encode(jsonStr);
                             Ext.getCmp("eventGridPanel").store.proxy.url = '/kalix/camel/rest/assignments/' + assignmentId + '/events';
-                            Ext.getCmp("eventGridPanel").store.proxy.extraParams = {'assignmentId': assignmentId};
+                            Ext.getCmp("eventGridPanel").store.proxy.extraParams = {'jsonStr':jsonStr};
                             Ext.getCmp("eventGridPanel").store.load();
                         }
                     }

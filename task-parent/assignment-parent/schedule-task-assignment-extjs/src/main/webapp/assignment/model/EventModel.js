@@ -25,6 +25,9 @@ Ext.define('kalix.task.assignment.model.EventModel', {
         {
             name: 'operator',
             type: 'int'
+        },
+        {
+            name: 'operatorName'
         }
     ]
 });

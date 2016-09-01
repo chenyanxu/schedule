@@ -50,7 +50,7 @@ Ext.define('kalix.task.assignment.view.CompleteWindow', {
         {
             text: '继续修改',
             iconCls: 'iconfont icon-edit-column',
-            handler: 'onEdit'
+            handler: 'onContinute'
         },
         {
             text: '任务完成',
