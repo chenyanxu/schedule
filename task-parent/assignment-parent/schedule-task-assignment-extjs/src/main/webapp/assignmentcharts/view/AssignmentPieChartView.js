@@ -23,9 +23,11 @@ Ext.define('kalix.task.assignmentcharts.view.AssignmentPieChartView', {
     controller: {
         type: 'assignmentPieChartController'
     },
+    //bodyPadding: 10,
+    //margin: 10,
     //layout: 'vbox',
     //width: 650,
-    height: 900,
+    //height: 500,
     //tbar: [
     //    '->',
     //    {
@@ -66,8 +68,8 @@ Ext.define('kalix.task.assignmentcharts.view.AssignmentPieChartView', {
             xtype: 'polar',
             reference: 'chart',
             innerPadding: 40,
-            width: '100%',
-            height: 900,
+            width: 700,
+            height: 500,
             store: {
                 type: 'assignmentPieChartStore'
             },

@@ -27,7 +27,7 @@ public class DepartmentPlanBeanServiceImpl extends ShiroGenericBizServiceImpl<ID
     }
 
     /**
-     * 查询个人的部门计划,提供给combobox使用,已经归档的任务不出现在combobox中
+     * 查询个人的部门计划,提供给combobox使用,已经完成的部门计划不出现在combobox中
      *
      * @param page
      * @param limit
@@ -45,6 +45,7 @@ public class DepartmentPlanBeanServiceImpl extends ShiroGenericBizServiceImpl<ID
         }
         String userId = String.valueOf(this.getShiroService().getCurrentUserId());
         condition += " and userId="+userId;
+        // 已完成的部门计划在新建任务时不显示
         condition += " and state <> 2";
 
         List comboList = dao.findByNativeSql("select * from schedule_departmentplan" + condition,DepartmentPlanBean.class,null);

@@ -17,6 +17,13 @@
         <property name="eventBeanDao" ref="eventBeanDao"/>
         <property name="readingBeanDao" ref="readingBeanDao"/>
         <property name="dao" ref="assignmentBeanDao"/>
+        <property name="shiroService" ref="shiroService"/>
+        <property name="userBeanService" ref="userBeanService"/>
+        <property name="scheduleDictBeanService" ref="scheduleDictBeanService"/>
+    </bean>
+
+    <bean id="assignmentStatisticsBeanServiceImpl" class="com.kalix.schedule.task.assignment.biz.AssignmentStatisticsBeanServiceImpl">
+        <property name="dao" ref="assignmentBeanDao"/>
         <property name="organizationBeanDao" ref="organizationBeanDao"/>
         <property name="shiroService" ref="shiroService"/>
         <property name="userBeanService" ref="userBeanService"/>
@@ -25,6 +32,10 @@
 
     <service id="assignmentBeanService" interface="com.kalix.schedule.task.assignment.api.biz.IAssignmentBeanService"
              ref="assignmentBeanServiceImpl">
+    </service>
+
+    <service id="assignmentStatisticsBeanService" interface="com.kalix.schedule.task.assignment.api.biz.IAssignmentStatisticsBeanService"
+             ref="assignmentStatisticsBeanServiceImpl">
     </service>
 </blueprint>
 
