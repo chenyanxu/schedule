@@ -90,6 +90,12 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanGrid', {
             format: 'Y-m-d', renderer: null
         },
         {
+            text: '创建日期',
+            dataIndex: 'creationDate',
+            xtype: 'datecolumn',
+            format: 'Y-m-d', renderer: null
+        },
+        {
             text: '最近更新',
             dataIndex: 'updateDate',
             xtype: 'datecolumn',
