@@ -68,5 +68,14 @@
                 <to uri="bean:departmentplanService?method=getDepPlanCombox(${header.page},${header.limit},${header.jsonStr})"/>
             </get>
         </rest>
+
+        <!-- 查询部门计划关联的工作汇报信息 -->
+        <rest path="/departmentplans/{id}/workreport" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+            <!-- this is a rest GET to view a departmentplan by the given id -->
+            <get id="route-getEntityByPlanId" outType="com.kalix.framework.core.api.persistence.JsonData">
+                <description>Find WorkReport By DepartmentPlanId</description>
+                <to uri="bean:workreportService?method=getEntityByPlanId(${header.id}, ${header.page}, ${header.limit})"/>
+            </get>
+        </rest>
     </camelContext>
 </blueprint>
