@@ -13,26 +13,12 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanViewWindow', {
         'kalix.plan.workreport.view.WorkReportViewGrid'
     ],
     width: 600,
-    //todo 在此修改查看字段
-    listeners:{
-        render:function(){
-        //    var planId = this.lookupViewModel().get('rec').id;
-        //    var gridConfig={
-        //        xtype: 'workreportviewGridPanel',
-        //        title: '工作汇报列表',
-        //        margin: 10,
-        //        planId: planId
-        //    };
-        //
-        //    this.items.getAt(0).add(gridConfig);
-        }
-    },
     items: [
         {
             xtype: 'tabpanel',
             items: [
                 {
-                    title: '基本资料',
+                    title: '基本信息',
                     xtype: 'panel',
                     align: 'center',
                     border: false,
@@ -47,34 +33,10 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanViewWindow', {
                             xtype: 'baseForm',
                             items: [
                                 {
-                                    fieldLabel: '用户id',
-                                    allowBlank: false,
-                                    hidden: true,
-                                    bind: {
-                                        value: '{rec.userId}'
-                                    }
-                                },
-                                {
                                     fieldLabel: '用户名',
                                     allowBlank: false,
                                     bind: {
                                         value: '{rec.userName}'
-                                    }
-                                },
-                                {
-                                    fieldLabel: '部门id',
-                                    allowBlank: false,
-                                    hidden: true,
-                                    bind: {
-                                        value: '{rec.orgId}'
-                                    }
-                                },
-                                {
-                                    fieldLabel: '部门code',
-                                    allowBlank: false,
-                                    hidden: true,
-                                    bind: {
-                                        value: '{rec.orgCode}'
                                     }
                                 },
                                 {
