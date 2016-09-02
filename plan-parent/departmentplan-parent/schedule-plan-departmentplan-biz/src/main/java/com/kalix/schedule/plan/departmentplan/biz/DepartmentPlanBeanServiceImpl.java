@@ -48,7 +48,7 @@ public class DepartmentPlanBeanServiceImpl extends ShiroGenericBizServiceImpl<ID
         // 已完成的部门计划在新建任务时不显示
         condition += " and state <> 2";
 
-        List comboList = dao.findByNativeSql("select * from schedule_departmentplan" + condition,DepartmentPlanBean.class,null);
+        List comboList = dao.findByNativeSql("select * from " + dao.getTableName() + condition,DepartmentPlanBean.class,null);
 
         JsonData jsonData = new JsonData();
         jsonData.setData(comboList);

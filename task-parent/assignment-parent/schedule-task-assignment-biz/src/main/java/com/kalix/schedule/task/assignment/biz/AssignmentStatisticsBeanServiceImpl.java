@@ -127,7 +127,7 @@ public class AssignmentStatisticsBeanServiceImpl extends ShiroGenericBizServiceI
                 "sum(case when state=4 then 1 else 0 end) as finish," +
                 "sum(case when state=5 then 1 else 0 end) as failure," +
                 "sum(case when state=6 then 1 else 0 end) as cancel " +
-                "from schedule_assignment " +
+                "from " + dao.getTableName() +
                 " where 1=1 and orgCode='" + orgCode+"'" + condition + " group by orgName";
         List<AssignmentDTO> tmpList = dao.findByNativeSql(tmpSql, AssignmentDTO.class, "");
         if (tmpList.size() != 0) {
@@ -213,7 +213,7 @@ public class AssignmentStatisticsBeanServiceImpl extends ShiroGenericBizServiceI
                 "sum(case when state=4 then 1 else 0 end) as finish," +
                 "sum(case when state=5 then 1 else 0 end) as failure," +
                 "sum(case when state=6 then 1 else 0 end) as cancel " +
-                "from schedule_assignment " +
+                "from " + dao.getTableName() +
                 " where 1=1 and orgCode='" + orgCode+"'" + condition + " group by orgName";
         List<AssignmentColumnChartDTO> tmpList = dao.findByNativeSql(tmpSql, AssignmentColumnChartDTO.class, "");
         if (tmpList.size() != 0) {
@@ -252,7 +252,7 @@ public class AssignmentStatisticsBeanServiceImpl extends ShiroGenericBizServiceI
         String condition = result[1];
 
         //1、先查询出任务总数
-        float total = dao.findByNativeSql("select * from schedule_assignment where 1=1 " + condition, AssignmentBean.class, null).size();
+        float total = dao.findByNativeSql("select * from " + dao.getTableName() + " where 1=1 " + condition, AssignmentBean.class, null).size();
 
         //2、先查找该中心代码所直属的部门信息
         List<OrganizationBean> organizatioBeen = organizationBeanDao.find("select ob from OrganizationBean ob where ob.code like ?1 order by ob.name", orgCode + "___");
@@ -260,7 +260,7 @@ public class AssignmentStatisticsBeanServiceImpl extends ShiroGenericBizServiceI
         //3、循环查找该中心代码下各个组织机构下的任务数，放到chartList中
         List<AssignmentPieChartDTO> chartList = new ArrayList<>();
         for (int i = 0; i < organizatioBeen.size(); i++) {
-            String tmpSql = "select * from schedule_assignment where 1=1 " + condition + " and orgCode like '" + organizatioBeen.get(i).getCode() + "%'";
+            String tmpSql = "select * from " + dao.getTableName() + " where 1=1 " + condition + " and orgCode like '" + organizatioBeen.get(i).getCode() + "%'";
             List<AssignmentBean> tmpList = dao.findByNativeSql(tmpSql, AssignmentBean.class, "");
             //如果数据为空,不加入
             if (tmpList.size() != 0) {
@@ -278,7 +278,7 @@ public class AssignmentStatisticsBeanServiceImpl extends ShiroGenericBizServiceI
         }
 
         //4、查找本单位的
-        String tmpSql = "select * from schedule_assignment where  1=1 and orgCode='" + orgCode+"'" + condition;
+        String tmpSql = "select * from " + dao.getTableName() + " where  1=1 and orgCode='" + orgCode+"'" + condition;
         List<AssignmentBean> tmpList = dao.findByNativeSql(tmpSql, AssignmentBean.class, null);
         if (tmpList.size() != 0) {
             float ft = (tmpList.size() / total) * 100;
@@ -321,7 +321,7 @@ public class AssignmentStatisticsBeanServiceImpl extends ShiroGenericBizServiceI
                 "sum(case when state=4 then 1 else 0 end) as finish," +
                 "sum(case when state=5 then 1 else 0 end) as failure," +
                 "sum(case when state=6 then 1 else 0 end) as cancel " +
-                "from schedule_assignment ";
+                "from " + dao.getTableName();
     }
 
     @Override

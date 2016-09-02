@@ -76,7 +76,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         // 来源于部门计划的任务或者自定义的任务可作为母任务，已经来源于母任务的子任务就不能再作为母任务了
         condition += " and (sourceType = 0 or sourceType=2)";
 
-        List comboList = dao.findByNativeSql("select * from schedule_assignment" + condition, AssignmentBean.class, null);
+        List comboList = dao.findByNativeSql("select * from " + dao.getTableName() + condition, AssignmentBean.class, null);
 
         JsonData jsonData = new JsonData();
         jsonData.setData(comboList);
@@ -215,7 +215,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
      */
     @Override
     public JsonData getAllEventEntity(Integer page, Integer limit,long assignmentId) {
-        JsonData jsonData = eventBeanDao.findByNativeSql("select * from schedule_event ob where ob.assignmentId=?1 order by ob.creationDate desc", page,limit,EventBean.class,assignmentId);
+        JsonData jsonData = eventBeanDao.findByNativeSql("select * from " + eventBeanDao.getTableName() +" ob where ob.assignmentId=?1 order by ob.creationDate desc", page,limit,EventBean.class,assignmentId);
         //翻译任务事件操作人
         List eventList = jsonData.getData();
         List ids = BeanUtil.getBeanFieldValueList(eventList, "operator");
@@ -236,7 +236,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
      */
     @Override
     public JsonData getAllTaskEntityByDepartmentPlanId(Integer page, Integer limit,long departmentPlanId) {
-        JsonData jsonData = dao.findByNativeSql("select * from schedule_assignment ob where ob.sourceId=?1 order by ob.creationDate desc", page,limit,AssignmentBean.class,departmentPlanId);
+        JsonData jsonData = dao.findByNativeSql("select * from " + dao.getTableName() + " ob where ob.sourceId=?1 order by ob.creationDate desc", page,limit,AssignmentBean.class,departmentPlanId);
         //翻译任务负责人
         List taskList = jsonData.getData();
         List ids = BeanUtil.getBeanFieldValueList(taskList, "head");
