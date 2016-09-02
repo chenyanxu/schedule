@@ -15,7 +15,7 @@ Ext.define('kalix.task.assignment.view.AssignmentSubTaskGrid', {
     controller: {
         type: 'assignmentGridController',
         cfgForm: 'kalix.task.assignment.view.AssignmentWindow',
-        cfgViewForm: 'kalix.task.assignment.view.AssignmentViewWindow',
+        cfgViewForm: 'kalix.task.assignment.view.AssignmentSubTaskViewWindow',
         cfgModel: 'kalix.task.assignment.model.AssignmentModel'
     },
     store: {
@@ -91,6 +91,19 @@ Ext.define('kalix.task.assignment.view.AssignmentSubTaskGrid', {
             xtype: 'datecolumn',
             format: 'Y-m-d',
             renderer: null
+        },
+        {
+            header: '操作',
+            xtype: 'securityGridColumnCommon',
+            //todo change permission
+            items: [
+                {
+                    tooltip: '查看',
+                    permission: '',
+                    iconCls: "iconfont icon-view-column",
+                    handler: 'onView'
+                }
+            ]
         }
     ]
 });

@@ -80,5 +80,12 @@
             </get>
         </rest>
 
+        <rest path="/assignments/{departmentPlanId}/tasks" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+            <!-- this is a rest GET events by the given departmentPlanId -->
+            <get id="route-getTasks" outType="com.kalix.framework.core.api.persistence.JsonData">
+                <description>Find Tasks by departmentPlanId</description>
+                <to uri="bean:assignmentService?method=getAllTaskEntityByDepartmentPlanId(${header.page},${header.limit},${header.departmentPlanId})"/>
+            </get>
+        </rest>
     </camelContext>
 </blueprint>

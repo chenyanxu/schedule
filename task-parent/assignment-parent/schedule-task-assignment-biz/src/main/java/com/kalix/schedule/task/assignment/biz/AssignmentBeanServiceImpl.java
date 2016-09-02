@@ -216,7 +216,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
     @Override
     public JsonData getAllEventEntity(Integer page, Integer limit,long assignmentId) {
         JsonData jsonData = eventBeanDao.findByNativeSql("select * from schedule_event ob where ob.assignmentId=?1 order by ob.creationDate desc", page,limit,EventBean.class,assignmentId);
-        //翻译任务负责人
+        //翻译任务事件操作人
         List eventList = jsonData.getData();
         List ids = BeanUtil.getBeanFieldValueList(eventList, "operator");
         List values = this.userBeanService.getFieldValuesByIds(ids.toArray(), "name");
@@ -224,6 +224,27 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
 
         jsonData.setTotalCount(jsonData.getTotalCount());
         jsonData.setData(eventList);
+
+        return jsonData;
+    }
+
+    /**
+     * 根据任务id查找任务的事件
+     *
+     * @param departmentPlanId
+     * @return
+     */
+    @Override
+    public JsonData getAllTaskEntityByDepartmentPlanId(Integer page, Integer limit,long departmentPlanId) {
+        JsonData jsonData = dao.findByNativeSql("select * from schedule_assignment ob where ob.sourceId=?1 order by ob.creationDate desc", page,limit,AssignmentBean.class,departmentPlanId);
+        //翻译任务负责人
+        List taskList = jsonData.getData();
+        List ids = BeanUtil.getBeanFieldValueList(taskList, "head");
+        List values = this.userBeanService.getFieldValuesByIds(ids.toArray(), "name");
+        BeanUtil.setBeanListFieldValues(taskList, "header", values);
+
+        jsonData.setTotalCount(jsonData.getTotalCount());
+        jsonData.setData(taskList);
 
         return jsonData;
     }

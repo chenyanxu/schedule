@@ -45,8 +45,6 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                 {
                     fieldLabel: '部门名称',
                     xtype: 'userOrgComboBox',
-                    valueField: 'orgId',
-                    displayField: 'orgName',
                     allowBlank: false,
                     bind: {
                         value: '{rec.orgId}'
@@ -54,8 +52,8 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                     listeners:{
                         'change':function(e,t,options) {
                             if(e.displayTplData.length != 0) {
-                                this.lookupViewModel().get('rec').set('orgName', e.displayTplData[0].orgName);
-                                this.lookupViewModel().get('rec').set('orgCode', e.displayTplData[0].orgCode);
+                                this.lookupViewModel().get('rec').set('orgName', e.displayTplData[0].name);
+                                this.lookupViewModel().get('rec').set('orgCode', e.displayTplData[0].code);
                             }
                         }
                     }
@@ -115,7 +113,7 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                     fieldLabel: '来源于',
                     allowBlank: false,
                     id: 'schedule_task_assignment_sourceId',
-                    xtype: 'baseComboBox',
+                    xtype: 'combo',
                     valueField: 'id',
                     displayField: 'title',
                     queryParam: 'title',

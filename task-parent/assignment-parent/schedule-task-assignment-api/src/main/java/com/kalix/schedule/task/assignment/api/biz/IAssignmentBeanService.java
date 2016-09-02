@@ -18,5 +18,6 @@ public interface IAssignmentBeanService extends IBizService<AssignmentBean> {
     JsonData getAllProgressEntity(long assignmentId);
     JsonData getAllReadingEntity(long assignmentId);
     JsonData getAllEventEntity(Integer page, Integer limit,long assignmentId);
+    JsonData getAllTaskEntityByDepartmentPlanId(Integer page, Integer limit,long departmentPlanId);
     JsonData getParentTaskCombox(Integer page, Integer limit, String jsonStr);
 }
