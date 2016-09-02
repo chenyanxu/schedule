@@ -42,16 +42,14 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanWindow', {
                 {
                     fieldLabel: '部门名称',
                     xtype: 'userOrgComboBox',
-                    valueField: 'orgId',
-                    displayField: 'orgName',
                     allowBlank: false,
                     bind: {
                         value: '{rec.orgId}'
                     },
                     listeners: {
                         'change': function (e, t, options) {
-                            this.lookupViewModel().get('rec').set('orgName', e.displayTplData[0].orgName);
-                            this.lookupViewModel().get('rec').set('orgCode', e.displayTplData[0].orgCode);
+                            this.lookupViewModel().get('rec').set('orgName', e.displayTplData[0].name);
+                            this.lookupViewModel().get('rec').set('orgCode', e.displayTplData[0].code);
                         }
                     }
                 },
