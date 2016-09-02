@@ -17,6 +17,9 @@ Ext.define('kalix.plan.workreport.controller.WorkReportSearchController', {
         if (nodes.data.length > 0) {
             var node = nodes.data.items[0];
             orgCode.setValue(node.data.code);
+
+            var grid = this.getView().items.getAt(1).items.getAt(1);
+            grid.store.reload();
         }
     }
 });
