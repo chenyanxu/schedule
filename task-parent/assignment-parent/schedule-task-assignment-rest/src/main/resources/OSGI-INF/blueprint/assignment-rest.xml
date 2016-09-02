@@ -66,7 +66,7 @@
             <!-- this is a rest GET events by the given assignmentId -->
             <get id="route-getEvents" outType="com.kalix.framework.core.api.persistence.JsonData">
                 <description>Find Progress by assignmentId</description>
-                <to uri="bean:assignmentService?method=getAllEventEntity(${header.assignmentId})"/>
+                <to uri="bean:assignmentService?method=getAllEventEntity(${header.page},${header.limit},${header.assignmentId})"/>
             </get>
         </rest>
 

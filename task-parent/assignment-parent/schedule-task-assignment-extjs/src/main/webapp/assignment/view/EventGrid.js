@@ -20,7 +20,7 @@ Ext.define('kalix.task.assignment.view.EventGrid', {
     store: {
         type: 'eventStore'
     },
-    bbar:null,
+    //bbar:null,
     //todo 在此修改grid显示列
     columns: {
         defaults: {flex: 1, renderer: 'addTooltip'},

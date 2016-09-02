@@ -214,16 +214,15 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
      * @return
      */
     @Override
-    public JsonData getAllEventEntity(long assignmentId) {
-        JsonData jsonData = new JsonData();
-        List<EventBean> eventList = eventBeanDao.find("select ob from EventBean ob where ob.assignmentId=?1 order by ob.creationDate desc", assignmentId);
-
+    public JsonData getAllEventEntity(Integer page, Integer limit,long assignmentId) {
+        JsonData jsonData = eventBeanDao.findByNativeSql("select * from schedule_event ob where ob.assignmentId=?1 order by ob.creationDate desc", page,limit,EventBean.class,assignmentId);
         //翻译任务负责人
+        List eventList = jsonData.getData();
         List ids = BeanUtil.getBeanFieldValueList(eventList, "operator");
         List values = this.userBeanService.getFieldValuesByIds(ids.toArray(), "name");
         BeanUtil.setBeanListFieldValues(eventList, "operatorName", values);
 
-        jsonData.setTotalCount((long)eventList.size());
+        jsonData.setTotalCount(jsonData.getTotalCount());
         jsonData.setData(eventList);
 
         return jsonData;
@@ -262,7 +261,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
                 eventContent = "负责人修改为" + assignmentBean.getHeader();
                 break;
             case 9:
-                eventContent = "进度修改为" + assignmentBean.getPercent();
+                eventContent = "进度修改为" + (int)assignmentBean.getPercent()*100+"%";
                 break;
             case 10:
                 eventContent = "审核未通过" + assignmentBean.getComment();
