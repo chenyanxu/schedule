@@ -7,7 +7,7 @@
 Ext.define('kalix.task.assignment.controller.CompleteWindowController', {
     extend: 'kalix.controller.BaseWindowController',
     alias: 'controller.completeWindowController',
-    onEdit: function () {
+    onContinute: function () {
         var viewModel = this.getViewModel();
         var view = this.getView();
         var model = viewModel.get('rec');
@@ -16,6 +16,7 @@ Ext.define('kalix.task.assignment.controller.CompleteWindowController', {
         store.proxy.extraParams = {};
         // 设置任务状态为进行中
         model.set('state',2);
+        model.set('eventType',10);
         model.modified = model.data;
         store.sync(
             {
@@ -45,6 +46,7 @@ Ext.define('kalix.task.assignment.controller.CompleteWindowController', {
                 store.proxy.extraParams = {};
                 // 设置任务状态为完成
                 model.set('state', 4);
+                model.set('eventType', 4);
                 model.modified = model.data;
                 store.sync(
                     {
@@ -76,6 +78,7 @@ Ext.define('kalix.task.assignment.controller.CompleteWindowController', {
                 store.proxy.extraParams = {};
                 // 设置任务状态为失败
                 model.set('state', 5);
+                model.set('eventType', 5);
                 model.modified = model.data;
                 store.sync(
                     {

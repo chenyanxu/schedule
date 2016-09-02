@@ -6,7 +6,8 @@
 Ext.define('kalix.task.assignment.view.EventGrid', {
     extend: 'kalix.view.components.common.BaseGrid',
     requires: [
-        'kalix.task.assignment.store.EventStore'
+        'kalix.task.assignment.store.EventStore',
+        'kalix.schedule.scheduleDict.component.ScheduleDictGridColumn'
     ],
     alias: 'widget.eventGrid',
     xtype: 'eventGridPanel',
@@ -19,7 +20,7 @@ Ext.define('kalix.task.assignment.view.EventGrid', {
     store: {
         type: 'eventStore'
     },
-
+    bbar:null,
     //todo 在此修改grid显示列
     columns: {
         defaults: {flex: 1, renderer: 'addTooltip'},
@@ -44,7 +45,10 @@ Ext.define('kalix.task.assignment.view.EventGrid', {
             },
             {
                 text: '类型',
-                dataIndex: 'eventType'
+                xtype: 'scheduleDictGridColumn',
+                dictType: '任务事件类型',
+                dataIndex: 'eventType',
+                renderer: null
             },
             {
                 text: '事件标题/内容',
@@ -52,13 +56,13 @@ Ext.define('kalix.task.assignment.view.EventGrid', {
             },
             {
                 text: '操作人',
-                dataIndex: 'operator'
+                dataIndex: 'operatorName'
             },
             {
                 text: '时间',
                 dataIndex: 'creationDate',
-                xtype: 'datecolumn',
-                format: 'Y-m-d',
+                //xtype: 'datecolumn',
+                //format: 'Y-m-d',
                 renderer: null
             }
         ]
