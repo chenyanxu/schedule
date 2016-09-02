@@ -18,7 +18,7 @@
       * 1 拒绝接受,此状态可以跳转到任务失败和任务已撤销
       * 2 进行中,此状态可以跳转到提交审核、任务失败和任务已撤销
       * 3 提交审核,此状态可以跳转到进行中、任务已失败和任务完成
-      * 4 任务完成,终态
+      * 4 任务已完成,终态
       * 5 任务已失败,终态
       * 6 任务已撤销,终态
 
@@ -33,10 +33,4 @@
         Long userId = this.getShiroService().getCurrentUserId();
         String userName = this.getShiroService().getCurrentUserRealName();
 
-  * List去重方法
-
-        List totalList = new ArrayList<>();
-        totalList.addAll(creationList);
-        //去重复数据
-        totalList.removeAll(headList);
-        totalList.addAll(headList);
+  * 任务终态时，对任务不能进行任何操作
