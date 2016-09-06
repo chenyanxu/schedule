@@ -107,12 +107,12 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
             items: [
                 {
                     iconCls: "iconfont icon-view-column",
-                    permission: '',
+                    permission: 'view',
                     tooltip: '查看',
                     handler: 'onView'
                 },
                 {
-                    permission: '',
+                    permission: 'edit',
                     tooltip: '编辑',
                     handler: 'onEdit',
                     getClass: function (v, meta, record) {
@@ -124,7 +124,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
                     }
                 },
                 {
-                    permission: '',
+                    permission: 'delete',
                     tooltip: '删除',
                     handler: 'onDelete',
                     getClass: function (v, meta, record) {
@@ -136,7 +136,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
                     }
                 },
                 {
-                    permission: '',
+                    permission: 'attachement',
                     tooltip: '附件管理',
                     handler: 'onAttachmentManage',
                     getClass: function (v, meta, record) {
@@ -157,7 +157,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
                 text: '添加',
                 xtype: 'button',
                 iconCls: 'iconfont icon-add',
-                permission: '',
+                permission: 'add',
                 handler: 'onAdd'
             }
         ]

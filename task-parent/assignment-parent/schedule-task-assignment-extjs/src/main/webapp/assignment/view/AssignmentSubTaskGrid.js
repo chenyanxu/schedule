@@ -99,7 +99,7 @@ Ext.define('kalix.task.assignment.view.AssignmentSubTaskGrid', {
             items: [
                 {
                     tooltip: '查看',
-                    permission: '',
+                    permission: 'view',
                     iconCls: "iconfont icon-view-column",
                     handler: 'onView'
                 }

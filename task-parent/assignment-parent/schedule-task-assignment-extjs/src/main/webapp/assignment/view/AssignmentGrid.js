@@ -134,13 +134,13 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                 items: [
                     {
                         tooltip: '查看',
-                        permission: '',
+                        permission: 'view',
                         iconCls: "iconfont icon-view-column",
                         handler: 'onView'
                     },
                     {
                         tooltip: '编辑',
-                        permission: '',
+                        permission: 'edit',
                         handler: 'onEdit',
                         getClass: function (v, meta, record) {
                             if (Ext.util.Cookies.get('currentUserId') == record.data.userId){
@@ -155,7 +155,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                     },
                     {
                         tooltip: '删除',
-                        permission: '',
+                        permission: 'delete',
                         handler: 'onDelete',
                         getClass: function (v, meta, record) {
                             //如果当前登录用户是任务的创建人
@@ -173,7 +173,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                     },
                     {
                         tooltip: '附件管理',
-                        permission: '',
+                        permission: 'attachement',
                         handler: 'onAttachmentManage',
                         getClass: function (v, meta, record) {
                             //如果当前登录用户是任务的创建人,则允许上传附件
@@ -200,7 +200,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                 items: [
                     {
                         tooltip: '修改负责人',
-                        permission: '',
+                        permission: 'header',
                         handler: 'onHeader',
                         getClass: function (v, meta, record) {
                             //如果当前登录用户是任务的创建人,那么可以修改任务的负责人
@@ -216,7 +216,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                     },
                     {
                         tooltip: '撤销',
-                        permission: '',
+                        permission: 'cancel',
                         handler: 'onCancel',
                         getClass: function (v, meta, record) {
                             //如果当前登录用户是任务的创建人,那么可以撤销任务
@@ -232,7 +232,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                     },
                     {
                         tooltip: '督办',
-                        permission: '',
+                        permission: 'supervise',
                         handler: 'onSupervise',
                         getClass: function (v, meta, record) {
                             //如果当前登录用户是任务的创建人,那么可以督办任务
@@ -249,7 +249,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                     },
                     {
                         tooltip: '延期',
-                        permission: '',
+                        permission: 'delay',
                         handler: 'onDelay',
                         getClass: function (v, meta, record) {
                             //如果当前登录用户是任务的创建人,那么可以延期任务
@@ -265,7 +265,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                     },
                     {
                         tooltip: '失败',
-                        permission: '',
+                        permission: 'failure',
                         handler: 'onFailure',
                         getClass: function (v, meta, record) {
                             //如果当前登录用户是任务的创建人,那么可以失败任务
@@ -282,7 +282,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                     {
                         tooltip: '汇报进度',
                         iconCls: 'iconfont icon-attachment-column',
-                        permission: '',
+                        permission: 'progress',
                         handler: 'onProgress',
                         getClass: function (v, meta, record) {
                             //如果当前登录用户是任务的负责人,那么可以汇报进度
@@ -298,7 +298,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                     },
                     {
                         tooltip: '申请完成',
-                        permission: '',
+                        permission: 'complete',
                         handler: 'onComplete',
                         getClass: function (v, meta, record) {
                             //如果当前登录用户是任务的负责人,那么可以申请任务完成
@@ -314,7 +314,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                     },
                     {
                         tooltip: '审批任务完成',
-                        permission: '',
+                        permission: 'finish',
                         handler: 'onFinish',
                         getClass: function (v, meta, record) {
                             //如果当前登录用户是任务的创建人,那么可以审批任务完成
@@ -339,7 +339,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                 text: '添加',
                 xtype: 'button',
                 iconCls: 'iconfont icon-add',
-                permission: '',
+                permission: 'add',
                 handler: 'onAdd'
             }
         ]
