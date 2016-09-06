@@ -110,8 +110,10 @@ public class AssignmentStatisticsBeanServiceImpl extends ShiroGenericBizServiceI
             tmpDTO.setWaiting(tmpList.get(0).getWaiting() == null ? 0 : tmpList.get(0).getWaiting());
             tmpDTO.setReject(tmpList.get(0).getReject() == null ? 0 : tmpList.get(0).getReject());
             tmpDTO.setProcess(tmpList.get(0).getProcess() == null ? 0 : tmpList.get(0).getProcess());
+            tmpDTO.setProcessDelay(tmpList.get(0).getProcessDelay() == null ? 0 : tmpList.get(0).getProcessDelay());
             tmpDTO.setComplete(tmpList.get(0).getComplete() == null ? 0 : tmpList.get(0).getComplete());
             tmpDTO.setFinish(tmpList.get(0).getFinish() == null ? 0 : tmpList.get(0).getFinish());
+            tmpDTO.setFinishDelay(tmpList.get(0).getFinishDelay() == null ? 0 : tmpList.get(0).getFinishDelay());
             tmpDTO.setFailure(tmpList.get(0).getFailure() == null ? 0 : tmpList.get(0).getFailure());
             tmpDTO.setCancel(tmpList.get(0).getCancel() == null ? 0 : tmpList.get(0).getCancel());
 
@@ -123,8 +125,10 @@ public class AssignmentStatisticsBeanServiceImpl extends ShiroGenericBizServiceI
                 "sum(case when state=0 then 1 else 0 end) as waiting," +
                 "sum(case when state=1 then 1 else 0 end) as reject," +
                 "sum(case when state=2 then 1 else 0 end) as process," +
+                "sum(case when state=2 and endDate < now() then 1 else 0 end) as processDelay," +
                 "sum(case when state=3 then 1 else 0 end) as complete," +
                 "sum(case when state=4 then 1 else 0 end) as finish," +
+                "sum(case when state=4 and endDate < finishDate then 1 else 0 end) as finishDelay," +
                 "sum(case when state=5 then 1 else 0 end) as failure," +
                 "sum(case when state=6 then 1 else 0 end) as cancel " +
                 "from " + dao.getTableName() +
@@ -138,8 +142,10 @@ public class AssignmentStatisticsBeanServiceImpl extends ShiroGenericBizServiceI
             tmpDTO.setWaiting(tmpList.get(0).getWaiting() == null ? 0 : tmpList.get(0).getWaiting());
             tmpDTO.setReject(tmpList.get(0).getReject() == null ? 0 : tmpList.get(0).getReject());
             tmpDTO.setProcess(tmpList.get(0).getProcess() == null ? 0 : tmpList.get(0).getProcess());
+            tmpDTO.setProcessDelay(tmpList.get(0).getProcessDelay() == null ? 0 : tmpList.get(0).getProcessDelay());
             tmpDTO.setComplete(tmpList.get(0).getComplete() == null ? 0 : tmpList.get(0).getComplete());
             tmpDTO.setFinish(tmpList.get(0).getFinish() == null ? 0 : tmpList.get(0).getFinish());
+            tmpDTO.setFinishDelay(tmpList.get(0).getFinishDelay() == null ? 0 : tmpList.get(0).getFinishDelay());
             tmpDTO.setFailure(tmpList.get(0).getFailure() == null ? 0 : tmpList.get(0).getFailure());
             tmpDTO.setCancel(tmpList.get(0).getCancel() == null ? 0 : tmpList.get(0).getCancel());
 
@@ -195,8 +201,10 @@ public class AssignmentStatisticsBeanServiceImpl extends ShiroGenericBizServiceI
                 tmpDTO.setWaiting(tmpList.get(0).getWaiting() == null ? 0 : tmpList.get(0).getWaiting());
                 tmpDTO.setReject(tmpList.get(0).getReject() == null ? 0 : tmpList.get(0).getReject());
                 tmpDTO.setProcess(tmpList.get(0).getProcess() == null ? 0 : tmpList.get(0).getProcess());
+                tmpDTO.setProcessDelay(tmpList.get(0).getProcessDelay() == null ? 0 : tmpList.get(0).getProcessDelay());
                 tmpDTO.setComplete(tmpList.get(0).getComplete() == null ? 0 : tmpList.get(0).getComplete());
                 tmpDTO.setFinish(tmpList.get(0).getFinish() == null ? 0 : tmpList.get(0).getFinish());
+                tmpDTO.setFinishDelay(tmpList.get(0).getFinishDelay() == null ? 0 : tmpList.get(0).getFinishDelay());
                 tmpDTO.setFailure(tmpList.get(0).getFailure() == null ? 0 : tmpList.get(0).getFailure());
                 tmpDTO.setCancel(tmpList.get(0).getCancel() == null ? 0 : tmpList.get(0).getCancel());
 
@@ -209,8 +217,10 @@ public class AssignmentStatisticsBeanServiceImpl extends ShiroGenericBizServiceI
                 "sum(case when state=0 then 1 else 0 end) as waiting," +
                 "sum(case when state=1 then 1 else 0 end) as reject," +
                 "sum(case when state=2 then 1 else 0 end) as process," +
+                "sum(case when state=2 and endDate < now() then 1 else 0 end) as processDelay," +
                 "sum(case when state=3 then 1 else 0 end) as complete," +
                 "sum(case when state=4 then 1 else 0 end) as finish," +
+                "sum(case when state=4 and endDate < finishDate then 1 else 0 end) as finishDelay," +
                 "sum(case when state=5 then 1 else 0 end) as failure," +
                 "sum(case when state=6 then 1 else 0 end) as cancel " +
                 "from " + dao.getTableName() +
@@ -225,8 +235,10 @@ public class AssignmentStatisticsBeanServiceImpl extends ShiroGenericBizServiceI
                 tmpDTO.setWaiting(tmpList.get(0).getWaiting() == null ? 0 : tmpList.get(0).getWaiting());
                 tmpDTO.setReject(tmpList.get(0).getReject() == null ? 0 : tmpList.get(0).getReject());
                 tmpDTO.setProcess(tmpList.get(0).getProcess() == null ? 0 : tmpList.get(0).getProcess());
+                tmpDTO.setProcessDelay(tmpList.get(0).getProcessDelay() == null ? 0 : tmpList.get(0).getProcessDelay());
                 tmpDTO.setComplete(tmpList.get(0).getComplete() == null ? 0 : tmpList.get(0).getComplete());
                 tmpDTO.setFinish(tmpList.get(0).getFinish() == null ? 0 : tmpList.get(0).getFinish());
+                tmpDTO.setFinishDelay(tmpList.get(0).getFinishDelay() == null ? 0 : tmpList.get(0).getFinishDelay());
                 tmpDTO.setFailure(tmpList.get(0).getFailure() == null ? 0 : tmpList.get(0).getFailure());
                 tmpDTO.setCancel(tmpList.get(0).getCancel() == null ? 0 : tmpList.get(0).getCancel());
 

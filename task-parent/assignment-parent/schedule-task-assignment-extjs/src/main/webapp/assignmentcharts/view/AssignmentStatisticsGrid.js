@@ -32,35 +32,44 @@ Ext.define('kalix.task.assignmentcharts.view.AssignmentStatisticsGrid', {
             flex: 2
         },
         {
-            text: '任务总数',
+            text: '所有任务',
             dataIndex: 'total'
         },
         {
-            text: '等待接收',
-            dataIndex: 'waiting'
-        },
-        {
-            text: '拒绝接受',
-            dataIndex: 'reject'
-        },
-        {
-            text: '进行中',
-            dataIndex: 'process'
-        }, {
-            text: '提交审核',
-            dataIndex: 'complete'
-        },
-        {
-            text: '已完成',
+            text: '任务完成数',
             dataIndex: 'finish'
         },
         {
-            text: '已失败',
-            dataIndex: 'failure'
+            text: '等待接收数',
+            dataIndex: 'waiting'
         },
         {
-            text: '已取消',
+            text: '进行中的任务',
+            dataIndex: 'process'
+        },
+        {
+            text: '进行中的超期数',
+            dataIndex: 'processDelay'
+        },
+        {
+            text: '完成已超期数',
+            dataIndex: 'finishDelay'
+        },
+        {
+            text: '撤销数',
             dataIndex: 'cancel'
+        },
+        {
+            text: '拒绝接受数',
+            dataIndex: 'reject'
+        },
+        {
+            text: '提交审核数',
+            dataIndex: 'complete'
+        },
+        {
+            text: '已失败数',
+            dataIndex: 'failure'
         }
     ]
 });

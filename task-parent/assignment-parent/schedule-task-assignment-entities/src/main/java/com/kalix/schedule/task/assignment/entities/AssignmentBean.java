@@ -106,6 +106,10 @@ public class AssignmentBean extends PersistentEntity {
      */
     private String comment;
     /**
+     * @describe  完成时间
+     */
+    private Date finishDate;
+    /**
      * @describe 完成任务打分
      */
     private Integer score;
@@ -265,6 +269,14 @@ public class AssignmentBean extends PersistentEntity {
 
     public void setInstruction(String instruction) {
         this.instruction = instruction;
+    }
+
+    public Date getFinishDate() {
+        return finishDate;
+    }
+
+    public void setFinishDate(Date finishDate) {
+        this.finishDate = finishDate;
     }
 
     public Integer getScore() {

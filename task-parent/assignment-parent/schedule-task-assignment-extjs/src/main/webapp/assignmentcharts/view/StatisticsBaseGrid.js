@@ -12,7 +12,7 @@ Ext.define('kalix.task.assignmentcharts.view.StatisticsBaseGrid', {
     alias: 'widget.baseGrid',
     xtype: 'baseGrid',
     autoLoad: true,
-    bodyPadding: 10,
+    //bodyPadding: 10,
     stripeRows: true,
     bind: {
         iconCls: '{grid_iconCls}'

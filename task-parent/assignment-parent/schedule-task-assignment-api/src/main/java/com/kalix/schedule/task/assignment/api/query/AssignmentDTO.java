@@ -12,8 +12,10 @@ public class AssignmentDTO extends BaseDTO {
     private Integer waiting;
     private Integer reject;
     private Integer process;
+    private Integer processDelay;
     private Integer complete;
 
+    private Integer finishDelay;
     private Integer finish;
     private Integer failure;
     private Integer cancel;
@@ -58,6 +60,14 @@ public class AssignmentDTO extends BaseDTO {
         this.process = process;
     }
 
+    public Integer getProcessDelay() {
+        return processDelay;
+    }
+
+    public void setProcessDelay(Integer processDelay) {
+        this.processDelay = processDelay;
+    }
+
     public Integer getComplete() {
         return complete;
     }
@@ -72,6 +82,14 @@ public class AssignmentDTO extends BaseDTO {
 
     public void setFinish(Integer finish) {
         this.finish = finish;
+    }
+
+    public Integer getFinishDelay() {
+        return finishDelay;
+    }
+
+    public void setFinishDelay(Integer finishDelay) {
+        this.finishDelay = finishDelay;
     }
 
     public Integer getFailure() {
