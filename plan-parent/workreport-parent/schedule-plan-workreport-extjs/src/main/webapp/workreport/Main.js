@@ -17,8 +17,7 @@ Ext.define('kalix.plan.workreport.Main', {
         }, {
             xtype: 'workreportGridPanel',
             id: 'workreportGridPanel',
-            title: '工作汇报列表',
-            margin: 10
+            title: '工作汇报列表'
         }
     ]
 });

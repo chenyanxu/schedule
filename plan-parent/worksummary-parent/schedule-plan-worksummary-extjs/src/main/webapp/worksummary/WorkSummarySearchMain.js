@@ -19,8 +19,7 @@ Ext.define('kalix.plan.worksummary.WorkSummarySearchMain', {
         {
             xtype: 'worksummarysearchGridPanel',
             id: 'worksummarysearchGridPanel',
-            title: '工作汇报列表',
-            margin: 10
+            title: '工作汇报列表'
         }
     ]
 });

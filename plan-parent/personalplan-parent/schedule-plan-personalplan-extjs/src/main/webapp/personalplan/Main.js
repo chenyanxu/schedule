@@ -22,8 +22,7 @@ Ext.define('kalix.plan.personalplan.Main', {
         {
             xtype: 'personalplanGridPanel',
             id: 'personalplanGridPanel',
-            title: '个人计划列表',
-            margin: 10
+            title: '个人计划列表'
         }
     ]
 });
