@@ -113,7 +113,27 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
 
         Ext.Msg.confirm("警告", "确定督办本任务吗？", function (button) {
             if (button == "yes") {
+                store.proxy.extraParams = {};
+                // 设置任务事件类型为督办
+                model.set('eventType',11);
+                model.modified = model.data;
+                store.sync(
+                    {
+                        callback: function (batch) {
+                            store.currentPage = 1;
+                            store.load();
 
+                            var res = Ext.JSON.decode(batch.operations[0].getResponse().responseText);
+
+                            if (batch.operations[0].success) {
+                                kalix.Notify.success(res.msg, CONFIG.ALTER_TITLE_SUCCESS);
+                            }
+                            else {
+                                Ext.Msg.alert(CONFIG.ALTER_TITLE_FAILURE, res.msg);
+                            }
+                        }
+                    }
+                );
             }
         });
     },

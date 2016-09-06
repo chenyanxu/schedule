@@ -237,13 +237,13 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                         getClass: function (v, meta, record) {
                             //如果当前登录用户是任务的创建人,那么可以督办任务
                             //特别注意的，暂时不放开督办功能，因为没有任务的审批人
-                            //if (Ext.util.Cookies.get('currentUserId') == record.data.userId) {
-                            //    if(record.data.state == 2) {
-                            //        return "iconfont icon-schedule-task-supervise";
-                            //    }else{
-                            //        return "kalix_hidden";
-                            //    }
-                            //}
+                            if (Ext.util.Cookies.get('currentUserId') == record.data.userId) {
+                                if(record.data.state == 2) {
+                                    return "iconfont icon-schedule-task-supervise";
+                                }else{
+                                    return "kalix_hidden";
+                                }
+                            }
                             return "kalix_hidden";
                         }
                     },

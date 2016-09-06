@@ -287,9 +287,13 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
             case 10:
                 eventContent = "审核未通过" + assignmentBean.getComment();
                 break;
+            case 11:
+                eventContent = "督办了一个任务";
+                postSuperviseAssignmentEvent(assignmentBean);
+                break;
             default:
                 eventType = 100;
-                eventContent = "任务修改";
+                eventContent = "修改了一个任务";
         }
 
         EventBean eventBean = new EventBean();
@@ -318,6 +322,27 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         properties.put("head", bean.getHead());//负责人
         properties.put("taskName", bean.getTitle());//任务名称
         Event osgi_event = new Event(Const.SCHEDULE_ASSIGNMENT_NEW_TOPIC, properties);
+        System.out.println("Schedule User name: " + bean.getUserName() + " message is sent!");
+        eventAdmin.postEvent(osgi_event);
+    }
+
+    /**
+     * 发送new消息通知
+     *
+     * @param bean
+     */
+
+    private void postSuperviseAssignmentEvent(AssignmentBean bean) {
+        try {
+            eventAdmin = JNDIHelper.getJNDIServiceForName("org.osgi.service.event.EventAdmin");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Dictionary properties = new Hashtable();
+        properties.put("userName", bean.getUserName());//布置人
+        properties.put("head", bean.getHead());//负责人
+        properties.put("taskName", bean.getTitle());//任务名称
+        Event osgi_event = new Event(Const.SCHEDULE_ASSIGNMENT_SUPERVISE_TOPIC, properties);
         System.out.println("Schedule User name: " + bean.getUserName() + " message is sent!");
         eventAdmin.postEvent(osgi_event);
     }
