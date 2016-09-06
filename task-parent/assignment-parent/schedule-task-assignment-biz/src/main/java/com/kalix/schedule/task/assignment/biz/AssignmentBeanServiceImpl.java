@@ -23,10 +23,7 @@ import org.osgi.service.event.Event;
 import org.osgi.service.event.EventAdmin;
 
 import java.io.IOException;
-import java.util.Dictionary;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @类描述：
@@ -338,10 +335,20 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        String info;
+        Date endDate = bean.getEndDate();
+        Date nowDate = new Date();
+        if(nowDate.compareTo(endDate) > 0){
+            info = "该任务已经逾期，请尽快处理";
+        }else{
+            info = "请抓紧任务进度";
+        }
         Dictionary properties = new Hashtable();
         properties.put("userName", bean.getUserName());//布置人
         properties.put("head", bean.getHead());//负责人
         properties.put("taskName", bean.getTitle());//任务名称
+        properties.put("info", info);//任务名称
         Event osgi_event = new Event(Const.SCHEDULE_ASSIGNMENT_SUPERVISE_TOPIC, properties);
         System.out.println("Schedule User name: " + bean.getUserName() + " message is sent!");
         eventAdmin.postEvent(osgi_event);
