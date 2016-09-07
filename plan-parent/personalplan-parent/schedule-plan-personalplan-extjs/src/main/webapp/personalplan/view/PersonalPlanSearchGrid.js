@@ -107,13 +107,13 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchGrid', {
             items: [
                 {
                     iconCls: "iconfont icon-view-column",
-                    permission: '',
+                    permission: 'view',
                     tooltip: '查看',
                     handler: 'onView'
                 },
                 {
                     iconCls: 'iconfont icon-attachment-column',
-                    permission: '',
+                    permission: 'attachement',
                     tooltip: '附件管理',
                     handler: 'onAttachmentManage'
                 }
