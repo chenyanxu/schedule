@@ -23,13 +23,14 @@ Ext.define('kalix.task.assignmentcharts.view.AssignmentPieChartView', {
     controller: {
         type: 'assignmentPieChartController'
     },
+    margin:'0 0 0 5',
     items: [
         {
             xtype: 'polar',
             reference: 'chart',
             innerPadding: 40,
-            width: 700,
-            height: 500,
+            width: (Ext.Element.getViewportWidth() - 250 - 400 - 30)/2,
+            height: ((Ext.Element.getViewportHeight() - 66 - 100 - 400 - 45 - 30) < 300) ? 300 : (Ext.Element.getViewportHeight() - 66 - 100 - 400 - 45 - 30),
             store: {
                 type: 'assignmentPieChartStore'
             },

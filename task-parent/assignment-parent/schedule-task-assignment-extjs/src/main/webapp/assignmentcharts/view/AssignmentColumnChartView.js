@@ -52,8 +52,8 @@ Ext.define('kalix.task.assignmentcharts.view.AssignmentColumnChartView', {
             store: {
                 type: 'assignmentColumnChartStore'
             },
-            width: 700,
-            height: 500,
+            width: (Ext.Element.getViewportWidth() - 250 - 400 - 30)/2,
+            height: ((Ext.Element.getViewportHeight() - 66 - 100 - 400 - 45 - 30) < 300) ? 300 : (Ext.Element.getViewportHeight() - 66 - 100 - 400 - 45 - 30),
             insetPadding: '40 40 40 20',
             animation: Ext.isIE8 ? false : {
                 easing: 'backOut',

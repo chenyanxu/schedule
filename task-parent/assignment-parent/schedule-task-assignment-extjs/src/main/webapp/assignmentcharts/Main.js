@@ -1,5 +1,5 @@
 /**
- * 布置任务首页
+ * 任务统计首页
  *
  * @author
  * @version 1.0.0
@@ -13,29 +13,38 @@ Ext.define('kalix.task.assignmentcharts.Main', {
         'kalix.admin.org.view.UserOrgTreeList',
         'kalix.task.assignmentcharts.controller.AssignmentChartController',
         'kalix.task.assignmentcharts.view.AssignmentStatisticsGrid',
-        'kalix.task.assignmentcharts.view.StatisticsSearchForm'
+        'kalix.task.assignmentcharts.view.StatisticsSearchForm',
+        'kalix.container.BaseTreeContainer'
     ],
     controller: {
         type: 'assignmentChartController'
     },
     items: [
+        //{
+        //    xtype: 'userorgtreelist',
+        //    reference:'userorgtreelist',
+        //    flex: 0,
+        //    width: 400,
+        //    listeners: {
+        //        itemClick: 'onItemClick'
+        //    }
+        //},
         {
-            flex:1,
-            margin: '10 10 10 10',
-            items: [
-                {
-                    xtype: 'userorgtreelist',
-                    reference:'userorgtreelist',
-                    flex: 1,
-                    listeners: {
-                        itemClick: 'onItemClick'
-                    }
+            xtype:'baseTreeContainer',
+            width:400,
+            childItemMargin:0,
+            tree: {
+                xtype: 'userorgtreelist',
+                reference:'userorgtreelist',
+                listeners: {
+                    select: 'onItemClick'
+
                 }
-            ]
+            }
         },
         {
-            flex: 3,
-            bodyPadding: 10,
+            flex: 1,
+            border:0,
             items: [
                 {
                     title: '布置任务查询',
@@ -48,6 +57,8 @@ Ext.define('kalix.task.assignmentcharts.Main', {
                 },
                 {
                     layout: 'hbox',
+                    border: 0,
+                    margin:'5 0 0 0',
                     items: [
                         {
                             xtype: 'assignmentColumnChartView',
