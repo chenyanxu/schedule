@@ -107,26 +107,26 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanGrid', {
             items: [
                 {
                     iconCls: "iconfont icon-view-column",
-                    permission: '',
+                    permission: 'view',
                     tooltip: '查看',
                     handler: 'onView'
                 },
                 {
                     //bind: {icon: ''},
                     iconCls: "iconfont icon-edit-column",
-                    permission: '',
+                    permission: 'edit',
                     tooltip: '编辑',
                     handler: 'onEdit'
                 },
                 {
                     iconCls: "iconfont icon-delete",
-                    permission: '',
+                    permission: 'delete',
                     tooltip: '删除',
                     handler: 'onDelete'
                 },
                 {
                     iconCls: 'iconfont icon-attachment-column',
-                    permission: '',
+                    permission: 'attachement',
                     tooltip: '附件管理',
                     handler: 'onAttachmentManage'
                 }
@@ -140,7 +140,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanGrid', {
                 text: '添加',
                 xtype: 'button',
                 iconCls: 'iconfont icon-add',
-                permission: '',
+                permission: 'add',
                 handler: 'onAdd'
             }
         ]
