@@ -1,7 +1,6 @@
 package com.kalix.schedule.task.assignment.biz;
 
 import com.kalix.admin.core.api.biz.IUserBeanService;
-import com.kalix.admin.core.api.dao.IOrganizationBeanDao;
 import com.kalix.common.message.api.Const;
 import com.kalix.framework.core.api.persistence.JsonData;
 import com.kalix.framework.core.api.persistence.JsonStatus;
@@ -125,7 +124,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
     }
 
     /**
-     * 新增任务
+     * 添加任务
      *
      * @param entity
      * @return
@@ -135,7 +134,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         // 获取登录用户id及用户名
         Long userId = this.getShiroService().getCurrentUserId();
         String userName = this.getShiroService().getCurrentUserRealName();
-        // 新增时，写入用户id及用户名
+        // 添加时，写入用户id及用户名
         entity.setUserId(userId);
         entity.setUserName(userName);
 
