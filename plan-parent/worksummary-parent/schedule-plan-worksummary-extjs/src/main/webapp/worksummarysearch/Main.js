@@ -6,22 +6,26 @@ Ext.define('kalix.plan.worksummarysearch.Main', {
     requires: [
         'kalix.plan.worksummary.controller.WorkSummarySearchController',
         'kalix.plan.worksummary.component.WorkSummaryUserOrgTreeList',
-        'kalix.plan.worksummary.WorkSummarySearchMain'
+        'kalix.plan.worksummary.WorkSummarySearchMain',
+        'kalix.container.BaseTreeContainer'
     ],
     xtype: 'worksummarysearchPanel',
     controller: 'worksummarysearchController',
     items: [
         {
-            xtype: 'worksummaryuserorgtreeList',
-            flex: 1,
-            listeners: {
-                itemClick: 'onItemClick',
-                load: 'onLoad'
+            xtype:'baseTreeContainer',
+            width:400,
+            childItemMargin:0,
+            tree: {
+                xtype: 'worksummaryuserorgtreeList',
+                listeners: {
+                    select: 'onItemClick',
+                    load: 'onLoad'
+                }
             }
         },
         {
-            xtype: 'worksummarysearchMain',
-            flex: 3
+            xtype: 'worksummarysearchMain'
         }
     ]
 });

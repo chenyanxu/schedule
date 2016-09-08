@@ -6,22 +6,26 @@ Ext.define('kalix.plan.departmentplansearch.Main', {
     requires: [
         'kalix.plan.departmentplan.controller.DepartmentPlanSearchController',
         'kalix.plan.departmentplan.component.DepartmentPlanUserOrgTreeList',
-        'kalix.plan.departmentplan.DepartmentPlanSearchMain'
+        'kalix.plan.departmentplan.DepartmentPlanSearchMain',
+        'kalix.container.BaseTreeContainer'
     ],
     xtype: 'departmentplansearchPanel',
     controller: 'departmentplansearchController',
     items: [
         {
-            xtype: 'departmentplanuserorgtreeList',
-            flex: 1,
-            listeners: {
-                itemClick: 'onItemClick',
-                load: 'onLoad'
+            xtype:'baseTreeContainer',
+            width:400,
+            childItemMargin:0,
+            tree: {
+                xtype: 'departmentplanuserorgtreeList',
+                listeners: {
+                    select: 'onItemClick',
+                    load: 'onLoad'
+                }
             }
         },
         {
-            xtype: 'departmentplansearchMain',
-            flex: 3
+            xtype: 'departmentplansearchMain'
         }
     ]
 });

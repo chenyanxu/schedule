@@ -6,22 +6,26 @@ Ext.define('kalix.plan.personalplansearch.Main', {
     requires: [
         'kalix.plan.personalplan.controller.PersonalPlanSearchController',
         'kalix.plan.personalplan.component.PersonalPlanUserOrgTreeList',
-        'kalix.plan.personalplan.PersonalPlanSearchMain'
+        'kalix.plan.personalplan.PersonalPlanSearchMain',
+        'kalix.container.BaseTreeContainer'
     ],
     xtype: 'personalplansearchPanel',
     controller: 'personalplansearchController',
     items: [
         {
-            xtype: 'personalplanuserorgtreeList',
-            flex: 1,
-            listeners: {
-                itemClick: 'onItemClick',
-                load: 'onLoad'
+            xtype:'baseTreeContainer',
+            width:400,
+            childItemMargin:0,
+            tree: {
+                xtype: 'personalplanuserorgtreeList',
+                listeners: {
+                    select: 'onItemClick',
+                    load: 'onLoad'
+                }
             }
         },
         {
-            xtype: 'personalplansearchMain',
-            flex: 3
+            xtype: 'personalplansearchMain'
         }
     ]
 });

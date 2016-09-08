@@ -6,22 +6,26 @@ Ext.define('kalix.plan.workreportsearch.Main', {
     requires: [
         'kalix.plan.workreport.controller.WorkReportSearchController',
         'kalix.plan.workreport.component.WorkReportUserOrgTreeList',
-        'kalix.plan.workreport.WorkReportSearchMain'
+        'kalix.plan.workreport.WorkReportSearchMain',
+        'kalix.container.BaseTreeContainer'
     ],
     xtype: 'workreportsearchPanel',
     controller: 'workreportsearchController',
     items: [
         {
-            xtype: 'workreportuserorgtreeList',
-            flex: 1,
-            listeners: {
-                itemClick: 'onItemClick',
-                load: 'onLoad'
+            xtype:'baseTreeContainer',
+            width:400,
+            childItemMargin:0,
+            tree: {
+                xtype: 'workreportuserorgtreeList',
+                listeners: {
+                    select: 'onItemClick',
+                    load: 'onLoad'
+                }
             }
         },
         {
-            xtype: 'workreportsearchMain',
-            flex: 3
+            xtype: 'workreportsearchMain'
         }
     ]
 });
