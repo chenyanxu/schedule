@@ -14,7 +14,8 @@ Ext.define('kalix.schedule.template.Main', {
         {
             title: '任务模板查询',
             xtype: 'templateSearchForm'
-        }, {
+        },
+        {
             xtype: 'templateGridPanel',
             id: 'templateGridPanel',
             title: '任务模板列表',

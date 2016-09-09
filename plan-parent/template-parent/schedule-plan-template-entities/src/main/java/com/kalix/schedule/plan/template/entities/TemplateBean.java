@@ -1,4 +1,5 @@
 package com.kalix.schedule.plan.template.entities;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.kalix.framework.core.api.persistence.PersistentEntity;
 
@@ -19,6 +20,10 @@ import java.util.Date;
 @Entity
 @Table(name = "schedule_template")
 public class TemplateBean extends PersistentEntity {
+    /**
+     * @describe 模板名称
+     */
+    private String templateName;
     /**
      * @describe 用户ID
      */
@@ -69,6 +74,14 @@ public class TemplateBean extends PersistentEntity {
      * @describe 任务ID
      */
     private String taskIds;
+
+    public String getTemplateName() {
+        return templateName;
+    }
+
+    public void setTemplateName(String templateName) {
+        this.templateName = templateName;
+    }
 
     public long getUserId() {
         return this.userId;
