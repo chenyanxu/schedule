@@ -17,6 +17,7 @@
         <module>personalplan-parent</module>
         <module>workreport-parent</module>
         <module>worksummary-parent</module>
+        <module>template-parent</module>
     </modules>
     <packaging>pom</packaging>
 </project>
