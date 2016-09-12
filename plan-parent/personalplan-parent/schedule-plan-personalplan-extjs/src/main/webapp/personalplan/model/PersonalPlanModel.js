@@ -48,12 +48,14 @@ Ext.define('kalix.plan.personalplan.model.PersonalPlanModel', {
         },
         {
             name: 'planType',
-            type: 'string',
+            type: 'int',
+            defaultValue: 0,
             validators: [{type: 'presence'}]
         },
         {
             name: 'state',
-            type: 'string',
+            type: 'int',
+            defaultValue: 0,
             validators: [{type: 'presence'}]
         },
         {
