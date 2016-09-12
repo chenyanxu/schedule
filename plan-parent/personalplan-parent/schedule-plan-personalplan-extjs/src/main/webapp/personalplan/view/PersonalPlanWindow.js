@@ -92,6 +92,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanWindow', {
                     allowBlank: false,
                     xtype: 'datefield',
                     format: 'Y-m-d',
+                    minValue: new Date(),
                     bind: {
                         value: '{rec.beginDate}'
                     }
@@ -101,6 +102,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanWindow', {
                     allowBlank: false,
                     xtype: 'datefield',
                     format: 'Y-m-d',
+                    minValue: new Date(),
                     bind: {
                         value: '{rec.endDate}'
                     }
