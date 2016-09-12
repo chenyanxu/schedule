@@ -85,16 +85,20 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
                     },
                     listeners: {
                         'render': function(target) {
+                            // 计划类型
                             var sourceType = this.lookupViewModel().get('rec').get('planType');
 
                             var store;
 
                             if (sourceType == 1) {
+                                // 个人计划
                                 store = Ext.create("kalix.plan.personalplan.store.PersonalPlanStore");
                             }
                             else if (sourceType == 2) {
+                                // 部门计划
                                 store = Ext.create("kalix.plan.departmentplan.store.DepartmentPlanStore");
                             }
+
 
                             if (store != null) {
                                 var id = this.lookupViewModel().get('rec').get('planId');
@@ -111,6 +115,12 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
                                         }
                                     });
                                 }
+                            }
+                            else {
+                                var x = Ext.getCmp('xx');
+                                x.setVisible(false);
+                                var parent = this.findParentByType('workreportViewWindow');
+                                parent.width = 400;
                             }
                         }
                     }
@@ -132,6 +142,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
         },
         {
             defaults: {readOnly: true},
+            id: 'xx',
             items: [
                 {
                     fieldLabel: '关联计划',
