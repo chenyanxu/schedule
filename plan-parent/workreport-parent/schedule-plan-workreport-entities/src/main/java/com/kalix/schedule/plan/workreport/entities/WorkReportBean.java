@@ -50,12 +50,12 @@ public class WorkReportBean extends PersistentEntity {
     /**
      * @describe 汇报类型
      */
-    private String workType;
+    private Integer workType;
 
     /**
      * @describe 计划类型
      */
-    private String planType;
+    private Integer planType;
 
     /**
      * @describe 计划id
@@ -128,19 +128,19 @@ public class WorkReportBean extends PersistentEntity {
         this.content = content;
     }
 
-    public String getWorkType() {
+    public Integer getWorkType() {
         return this.workType;
     }
 
-    public void setWorkType(String workType) {
+    public void setWorkType(Integer workType) {
         this.workType = workType;
     }
 
-    public String getPlanType() {
+    public Integer getPlanType() {
         return planType;
     }
 
-    public void setPlanType(String planType) {
+    public void setPlanType(Integer planType) {
         this.planType = planType;
     }
 

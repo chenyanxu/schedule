@@ -48,13 +48,14 @@ Ext.define('kalix.plan.workreport.model.WorkReportModel', {
         },
         {
             name: 'workType',
-            type: 'string',
+            type: 'int',
+            defaultValue: 0,
             validators: [{type: 'presence'}]
         },
         {
             name: 'planType',
-            type: 'string',
-            defaultValue: '0'
+            type: 'int',
+            defaultValue: 0
         },
         {
             name: 'planId',
