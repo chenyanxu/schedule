@@ -48,7 +48,8 @@ Ext.define('kalix.plan.worksummary.model.WorkSummaryModel', {
         },
         {
             name: 'workType',
-            type: 'string',
+            type: 'int',
+            defaultValue: 0,
             validators: [{type: 'presence'}]
         },
         {

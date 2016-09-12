@@ -50,7 +50,7 @@ public class WorkSummaryBean extends PersistentEntity {
     /**
      * @describe 总结类型
      */
-    private String workType;
+    private Integer workType;
     /**
      * @describe 开始日期
      */
@@ -118,11 +118,11 @@ public class WorkSummaryBean extends PersistentEntity {
         this.content = content;
     }
 
-    public String getWorkType() {
+    public Integer getWorkType() {
         return this.workType;
     }
 
-    public void setWorkType(String workType) {
+    public void setWorkType(Integer workType) {
         this.workType = workType;
     }
 
