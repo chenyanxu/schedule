@@ -7,7 +7,7 @@
 Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
     extend: 'kalix.view.components.common.BaseWindow',
     requires: [
-        'kalix.controller.BaseWindowController',
+        'kalix.plan.workreport.controller.WorkReportController',
         'kalix.schedule.scheduleDict.component.ScheduleDictCombobox',
         'kalix.plan.workreport.component.PlanComboBox',
         'kalix.admin.user.component.UserTagField',
@@ -15,7 +15,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
     ],
     alias: 'widget.workreportWindow',
     controller: {
-        type: 'baseWindowController'
+        type: 'workReportController'
     },
     xtype: "workreportWindow",
     width: 400,
@@ -83,6 +83,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                     allowBlank: false,
                     xtype: 'datefield',
                     format: 'Y-m-d',
+                    minValue: new Date(),
                     bind: {
                         value: '{rec.beginDate}'
                     }
@@ -92,6 +93,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                     allowBlank: false,
                     xtype: 'datefield',
                     format: 'Y-m-d',
+                    minValue: new Date(),
                     bind: {
                         value: '{rec.endDate}'
                     }
@@ -99,6 +101,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                 {
                     fieldLabel: '计划类型',
                     xtype: 'combobox',
+                    id: 'workReportPlanType',
                     store: Ext.create("kalix.plan.workreport.store.PlanStore"),
                     queryMode: 'local',
                     displayField: 'name',
@@ -111,17 +114,20 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                     },
                     listeners: {
                         'change': function(box, newValue, oldValue) {
-                            var x = Ext.getCmp('workReportPersonalPlanComboBox');
+                            var x = Ext.getCmp('workReportPlanComboBox');
                             x.clearValue();
                             x.store.removeAll();
+                            x.setVisible(false);
 
                             if (newValue == 1) {
                                 x.setStore(Ext.create("kalix.plan.personalplan.store.PersonalPlanStore"));
                                 x.store.load();
+                                x.setVisible(true);
                             }
                             else if (newValue == 2) {
                                 x.setStore(Ext.create("kalix.plan.departmentplan.store.DepartmentPlanStore"));
                                 x.store.load();
+                                x.setVisible(true);
                             }
 
                         }
@@ -130,7 +136,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                 {
                     fieldLabel: '关联计划',
                     xtype: 'planComboBox',
-                    id: 'workReportPersonalPlanComboBox',
+                    id: 'workReportPlanComboBox',
                     allowBlank: false,
                     bind: {
                         value: '{rec.planId}'

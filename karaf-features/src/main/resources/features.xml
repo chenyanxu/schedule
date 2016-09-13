@@ -10,6 +10,7 @@
 
     <feature name="core-parent" version="1.0">
         <bundle>mvn:com.kalix.schedule.core/schedule-core-extjs/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.core/schedule-core-etc/${parent.version}</bundle>
     </feature>
 
     <feature name="system-parent" version="1.0">

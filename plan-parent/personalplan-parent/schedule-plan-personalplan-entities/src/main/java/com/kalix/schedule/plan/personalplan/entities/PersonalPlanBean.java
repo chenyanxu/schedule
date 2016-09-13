@@ -50,11 +50,11 @@ public class PersonalPlanBean extends PersistentEntity {
     /**
      * @describe 计划类型
      */
-    private String planType;
+    private Integer planType;
     /**
      * @describe 计划状态
      */
-    private String state;
+    private Integer state;
     /**
      * @describe 开始日期
      */
@@ -67,7 +67,7 @@ public class PersonalPlanBean extends PersistentEntity {
     private Date endDate;
 
     public long getUserId() {
-        return this.userId;
+        return userId;
     }
 
     public void setUserId(long userId) {
@@ -75,7 +75,7 @@ public class PersonalPlanBean extends PersistentEntity {
     }
 
     public String getUserName() {
-        return this.userName;
+        return userName;
     }
 
     public void setUserName(String userName) {
@@ -107,7 +107,7 @@ public class PersonalPlanBean extends PersistentEntity {
     }
 
     public String getTitle() {
-        return this.title;
+        return title;
     }
 
     public void setTitle(String title) {
@@ -115,31 +115,31 @@ public class PersonalPlanBean extends PersistentEntity {
     }
 
     public String getContent() {
-        return this.content;
+        return content;
     }
 
     public void setContent(String content) {
         this.content = content;
     }
 
-    public String getPlanType() {
-        return this.planType;
+    public Integer getPlanType() {
+        return planType;
     }
 
-    public void setPlanType(String planType) {
+    public void setPlanType(Integer planType) {
         this.planType = planType;
     }
 
-    public String getState() {
-        return this.state;
+    public Integer getState() {
+        return state;
     }
 
-    public void setState(String state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 
     public Date getBeginDate() {
-        return this.beginDate;
+        return beginDate;
     }
 
     public void setBeginDate(Date beginDate) {
@@ -147,12 +147,10 @@ public class PersonalPlanBean extends PersistentEntity {
     }
 
     public Date getEndDate() {
-        return this.endDate;
+        return endDate;
     }
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-
-
 }
