@@ -60,6 +60,15 @@ Ext.define('kalix.task.assignmentcharts.view.StatisticsSearchForm', {
             labelAlign: 'right',
             width: 140,
             name: 'endDate:end:lt'
+        },
+        {
+            xtype: 'textfield',
+            fieldLabel: '部门code',
+            itemId: 'orgCode',
+            labelAlign: 'right',
+            labelWidth: 60,
+            width: 200,
+            hidden: true
         }
     ]
 });

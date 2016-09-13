@@ -81,6 +81,29 @@ Ext.define('kalix.task.assignmentcharts.controller.AssignmentChartController', {
         pieChart.store.reload();
     },
 
+    onLoad: function(nodes){
+        var searchForm = this.getView().items.getAt(1).items.getAt(0);
+        var orgCode = searchForm.items.getAt(6);
+        if (nodes.data.length > 0) {
+            orgCode.setValue(nodes.data.items[0].data.code);
+            var jsonStr = {
+                'orgCode': nodes.data.items[0].data.code
+            };
+
+            var statistics = this.getView().items.getAt(1).items.getAt(1);
+            var columnChart = this.getView().items.getAt(1).items.getAt(2).items.getAt(0).lookupReference('chart');
+            var pieChart = this.getView().items.getAt(1).items.getAt(2).items.getAt(1).lookupReference('chart');
+
+            jsonStr = Ext.JSON.encode(jsonStr);
+            statistics.store.proxy.extraParams = {'jsonStr':jsonStr};
+            statistics.store.reload();
+            columnChart.store.proxy.extraParams = {'jsonStr':jsonStr};
+            columnChart.store.reload();
+            pieChart.store.proxy.extraParams = {'jsonStr':jsonStr};
+            pieChart.store.reload();
+        }
+    },
+
     onSeriesTooltipRender: function (tooltip, record, item) {
         tooltip.setHtml(record.get('orgName') + ': ' + record.get('percent') + '%');
     }

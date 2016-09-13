@@ -8,7 +8,7 @@ Ext.define('kalix.task.assignmentcharts.controller.StatisticsSearchFormControlle
         var beginDateLt = searchForm.items.getAt(2).rawValue;
         var endDateGt = searchForm.items.getAt(3).rawValue;
         var endDateLt = searchForm.items.getAt(5).rawValue;
-        var orgCode = '001';
+        var orgCode = searchForm.items.getAt(6).rawValue;
 
         var selectTree = mainPanel.controller.getReferences().userorgtreelist.getSelection();
         if(selectTree.length==1){
@@ -34,6 +34,10 @@ Ext.define('kalix.task.assignmentcharts.controller.StatisticsSearchFormControlle
         pieChart.store.reload();
     },
     onReset: function () {
+        var mainPanel = Ext.app.Application.instance.getApplication()._mainView.controller.getReferences().mainCardPanel.items.getAt(0);
+        var searchForm = mainPanel.items.getAt(1).items.getAt(0);
+        var code = searchForm.items.getAt(6).rawValue;
         this.getView().getForm().reset();
+        searchForm.items.getAt(6).setValue(code);
     }
 });

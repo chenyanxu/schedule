@@ -37,8 +37,8 @@ Ext.define('kalix.task.assignmentcharts.Main', {
                 xtype: 'userorgtreelist',
                 reference:'userorgtreelist',
                 listeners: {
-                    select: 'onItemClick'
-
+                    select: 'onItemClick',
+                    load: 'onLoad'
                 }
             }
         },

@@ -9,5 +9,8 @@ Ext.define('kalix.plan.departmentplan.controller.DepartmentPlanGridController', 
     alias: 'controller.departmentplanGridController',
     mixins: {
         attachment: 'kalix.attachment.common.mixins.Attachment'
+    },
+    onSaveTemplate: function (grid, rowIndex, colIndex) {
+        Ext.Msg.alert(CONFIG.ALTER_TITLE_INFO,'TEST');
     }
 });

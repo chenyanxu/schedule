@@ -25,7 +25,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
     //todo 在此修改grid显示列
     columns: [
         {
-            xtype: "rownumberer",
+            xtype: "rownumberer"
         },
         {
             text: '编号',
@@ -139,6 +139,18 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
                     permission: 'attachement',
                     tooltip: '附件管理',
                     handler: 'onAttachmentManage',
+                    getClass: function (v, meta, record) {
+                        if (record.data.state == 2) {
+                            return "kalix_hidden";
+                        }else{
+                            return 'iconfont icon-attachment-column';
+                        }
+                    }
+                },
+                {
+                    permission: 'attachement',
+                    tooltip: '存为模板',
+                    handler: 'onSaveTemplate',
                     getClass: function (v, meta, record) {
                         if (record.data.state == 2) {
                             return "kalix_hidden";
