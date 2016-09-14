@@ -28,9 +28,10 @@
 
     <feature name="plan-parent" version="1.0">
         <feature>departmentplan-parent</feature>
-    </feature>
-    <feature name="task-parent" version="1.0">
-        <feature>assignment-parent</feature>
+        <feature>personalplan-parent</feature>
+        <feature>workreport-parent</feature>
+        <feature>worksummary-parent</feature>
+        <feature>template-parent</feature>
     </feature>
 
     <feature name="departmentplan-parent" version="1.0">
@@ -41,6 +42,47 @@
         <bundle>mvn:com.kalix.schedule.plan.departmentplan/schedule-plan-departmentplan-rest/${parent.version}</bundle>
         <bundle>mvn:com.kalix.schedule.plan.departmentplan/schedule-plan-departmentplan-extjs/${parent.version}</bundle>
     </feature>
+
+    <feature name="personalplan-parent" version="1.0">
+        <bundle>mvn:com.kalix.schedule.plan.personalplan/schedule-plan-personalplan-entities/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.personalplan/schedule-plan-personalplan-api/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.personalplan/schedule-plan-personalplan-dao/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.personalplan/schedule-plan-personalplan-biz/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.personalplan/schedule-plan-personalplan-rest/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.personalplan/schedule-plan-personalplan-extjs/${parent.version}</bundle>
+    </feature>
+
+    <feature name="workreport-parent" version="1.0">
+        <bundle>mvn:com.kalix.schedule.plan.workreport/schedule-plan-workreport-entities/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.workreport/schedule-plan-workreport-api/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.workreport/schedule-plan-workreport-dao/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.workreport/schedule-plan-workreport-biz/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.workreport/schedule-plan-workreport-rest/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.workreport/schedule-plan-workreport-extjs/${parent.version}</bundle>
+    </feature>
+
+    <feature name="worksummary-parent" version="1.0">
+        <bundle>mvn:com.kalix.schedule.plan.worksummary/schedule-plan-worksummary-entities/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.worksummary/schedule-plan-worksummary-api/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.worksummary/schedule-plan-worksummary-dao/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.worksummary/schedule-plan-worksummary-biz/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.worksummary/schedule-plan-worksummary-rest/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.worksummary/schedule-plan-worksummary-extjs/${parent.version}</bundle>
+    </feature>
+
+    <feature name="template-parent" version="1.0">
+        <bundle>mvn:com.kalix.schedule.plan.template/schedule-plan-template-entities/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.template/schedule-plan-template-api/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.template/schedule-plan-template-dao/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.template/schedule-plan-template-biz/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.template/schedule-plan-template-rest/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.template/schedule-plan-template-extjs/${parent.version}</bundle>
+    </feature>
+
+    <feature name="task-parent" version="1.0">
+        <feature>assignment-parent</feature>
+    </feature>
+
     <feature name="assignment-parent" version="1.0">
         <bundle>mvn:com.kalix.schedule.task.assignment/schedule-task-assignment-entities/${parent.version}</bundle>
         <bundle>mvn:com.kalix.schedule.task.assignment/schedule-task-assignment-api/${parent.version}</bundle>
