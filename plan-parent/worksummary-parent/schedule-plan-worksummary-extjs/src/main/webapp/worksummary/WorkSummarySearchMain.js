@@ -13,13 +13,13 @@ Ext.define('kalix.plan.worksummary.WorkSummarySearchMain', {
 
     items: [
         {
-            title: '工作汇报查询',
+            title: '工作总结查询',
             xtype: 'worksummarySearchForm'
         },
         {
             xtype: 'worksummarysearchGridPanel',
             id: 'worksummarysearchGridPanel',
-            title: '工作汇报列表'
+            title: '工作总结列表'
         }
     ]
 });
