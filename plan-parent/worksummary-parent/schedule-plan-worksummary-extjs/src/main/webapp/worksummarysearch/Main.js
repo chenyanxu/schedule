@@ -25,7 +25,8 @@ Ext.define('kalix.plan.worksummarysearch.Main', {
             }
         },
         {
-            xtype: 'worksummarysearchMain'
+            xtype: 'worksummarysearchMain',
+            flex: 1
         }
     ]
 });
