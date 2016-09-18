@@ -83,7 +83,6 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                     allowBlank: false,
                     xtype: 'datefield',
                     format: 'Y-m-d',
-                    minValue: new Date(),
                     bind: {
                         value: '{rec.beginDate}'
                     }
@@ -93,7 +92,6 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                     allowBlank: false,
                     xtype: 'datefield',
                     format: 'Y-m-d',
-                    minValue: new Date(),
                     bind: {
                         value: '{rec.endDate}'
                     }
