@@ -25,7 +25,8 @@ Ext.define('kalix.plan.departmentplansearch.Main', {
             }
         },
         {
-            xtype: 'departmentplansearchMain'
+            xtype: 'departmentplansearchMain',
+            flex: 1
         }
     ]
 });

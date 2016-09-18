@@ -25,7 +25,8 @@ Ext.define('kalix.plan.personalplansearch.Main', {
             }
         },
         {
-            xtype: 'personalplansearchMain'
+            xtype: 'personalplansearchMain',
+            flex: 1
         }
     ]
 });

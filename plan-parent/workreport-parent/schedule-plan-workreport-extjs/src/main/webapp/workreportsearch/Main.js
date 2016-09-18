@@ -25,7 +25,8 @@ Ext.define('kalix.plan.workreportsearch.Main', {
             }
         },
         {
-            xtype: 'workreportsearchMain'
+            xtype: 'workreportsearchMain',
+            flex: 1
         }
     ]
 });
