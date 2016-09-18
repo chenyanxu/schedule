@@ -92,14 +92,20 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
     @Override
     public JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr) {
         Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
+        String condition=" where 1=1 ";
+        for (Map.Entry<String, String> entry : jsonMap.entrySet()) {
+            if (entry.getValue() != null && !entry.getValue().equals("")) {
+                condition = condition + " and " + entry.getKey() + " = " + entry.getValue();
+            }
+        }
+
         Long userId = this.getShiroService().getCurrentUserId();
-        jsonMap.put("userId", String.valueOf(userId));
+        condition += " and (userId = " + userId + " or head = " + userId + ")";
 
-        //查找任务布置人是当前用户的数据
-        String newJsonStr = SerializeUtil.serializeJson(jsonMap);
-        JsonData jsonData = super.getAllEntityByQuery(page, limit, newJsonStr);
+        //查找任务布置人或者任务负责人是当前用户的数据
+        JsonData jsonData = dao.findByNativeSql("select * from " + dao.getTableName() + condition,page,limit,AssignmentBean.class,null);
+
         List<AssignmentBean> beanList = jsonData.getData();
-
         for (int i = 0; i < beanList.size(); i++) {
             //处理百分比显示 percentNumber
             beanList.get(i).setPercentNumber((int) (beanList.get(i).getPercent() * 100));
@@ -379,6 +385,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
             e.printStackTrace();
         }
         Dictionary properties = new Hashtable();
+        properties.put("userId", bean.getUserId());//布置人ID
         properties.put("userName", bean.getUserName());//布置人
         properties.put("head", bean.getHead());//负责人
         properties.put("taskName", bean.getTitle());//任务名称
