@@ -89,15 +89,14 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchForm', {
             format: 'Y-m-d',
             fieldLabel: '开始日期:',
             labelAlign: 'right',
-            labelWidth: 120,
-            width: 260,
+            labelWidth: 60,
+            width: 200,
             name: 'beginDate:begin:gt'
         },
         {
-            xtype: 'displayfield',
-            hideLabel: true,
-            value: '-',
-            margin: '0 5 0 5'
+            xtype: 'label',
+            text: '-',
+            margin: '5 5 0 5'
         },
         {
             xtype: 'datefield',

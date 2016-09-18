@@ -103,8 +103,9 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
         },
         {
             xtype: 'securityGridColumnCommon',
-            //todo change permission
-            items: [
+            flex: 0,
+            width: 150,
+            verifyItems: [
                 {
                     iconCls: "iconfont icon-view-column",
                     permission: 'view',
