@@ -86,15 +86,11 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryGrid', {
         },
         {
             text: '创建日期',
-            dataIndex: 'creationDate',
-            xtype: 'datecolumn',
-            format: 'Y-m-d', renderer: null
+            dataIndex: 'creationDate'
         },
         {
             text: '最近更新',
-            dataIndex: 'updateDate',
-            xtype: 'datecolumn',
-            format: 'Y-m-d', renderer: null
+            dataIndex: 'updateDate'
         },
         {
             xtype: 'securityGridColumnCommon',
