@@ -385,6 +385,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
             e.printStackTrace();
         }
         Dictionary properties = new Hashtable();
+        properties.put("userId", bean.getUserId());//布置人ID
         properties.put("userName", bean.getUserName());//布置人
         properties.put("head", bean.getHead());//负责人
         properties.put("taskName", bean.getTitle());//任务名称
