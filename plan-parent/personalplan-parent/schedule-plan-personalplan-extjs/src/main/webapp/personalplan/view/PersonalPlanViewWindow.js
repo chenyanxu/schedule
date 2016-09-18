@@ -12,7 +12,8 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanViewWindow', {
     requires: [
         'kalix.plan.workreport.view.WorkReportViewGrid'
     ],
-    width: 600,
+    width: 700,
+    height: 600,
     items: [
         {
             xtype: 'tabpanel',
@@ -26,7 +27,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanViewWindow', {
                         type: 'hbox',
                         align: 'stretch'
                     },
-                    defaults: {width: 600},
+                    defaults: {width: 700},
                     items: [
                         {
                             defaults: {readOnly: true},
