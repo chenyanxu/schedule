@@ -10,7 +10,9 @@ Ext.define('kalix.plan.personalplan.PersonalPlanSearchMain', {
         'kalix.plan.personalplan.view.PersonalPlanSearchForm',
         'kalix.schedule.scheduleDict.component.ScheduleDictCombobox'
     ],
-
+    //==custom property
+    notMargin: true, //config the true for parent not margin this container
+    //custom property
     items: [
         {
             title: '个人计划查询',

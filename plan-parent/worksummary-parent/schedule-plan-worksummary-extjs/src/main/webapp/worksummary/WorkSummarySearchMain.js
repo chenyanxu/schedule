@@ -10,7 +10,9 @@ Ext.define('kalix.plan.worksummary.WorkSummarySearchMain', {
         'kalix.plan.worksummary.view.WorkSummarySearchForm',
         'kalix.schedule.scheduleDict.component.ScheduleDictCombobox'
     ],
-
+    //==custom property
+    notMargin: true, //config the true for parent not margin this container
+    //custom property
     items: [
         {
             title: '工作总结查询',
