@@ -84,6 +84,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
         var view = Ext.create('kalix.task.assignment.view.HeaderWindow');
         var vm = view.lookupViewModel();
         selModel.set('eventType',8);
+        selModel.dirty = false;
         vm.set('rec', selModel);
         vm.set('iconCls', vm.get('editIconCls'));
         vm.set('title','修改负责人');
@@ -98,8 +99,10 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
         var view = Ext.create('kalix.task.assignment.view.ProgressWindow');
         var vm = view.lookupViewModel();
         selModel.set('eventType',9);
+        selModel.set('comment','');
+        selModel.dirty = false;
         vm.set('rec', selModel);
-        vm.set('iconCls', vm.get('editIconCls'));
+        vm.set('iconCls', 'iconfont icon-schedule-task-progress');
         vm.set('title','汇报进度');
         vm.set('store',this.getView().store);
 

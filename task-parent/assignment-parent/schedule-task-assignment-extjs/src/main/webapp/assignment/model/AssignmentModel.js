@@ -107,7 +107,8 @@ Ext.define('kalix.task.assignment.model.AssignmentModel', {
         },
         {
             name: 'comment',
-            type: 'string'
+            type: 'string',
+            validators: [{type: 'presence'}]
         },
         {
             name: 'score',
