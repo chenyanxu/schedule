@@ -3,6 +3,7 @@ package com.kalix.schedule.plan.workreport.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.kalix.framework.core.api.persistence.PersistentEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
@@ -46,6 +47,7 @@ public class WorkReportBean extends PersistentEntity {
     /**
      * @describe 内容
      */
+    @Column (length=500)
     private String content;
     /**
      * @describe 汇报类型
