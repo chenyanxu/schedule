@@ -100,9 +100,9 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         }
 
         Long userId = this.getShiroService().getCurrentUserId();
-        condition += " and (userId = " + userId + " or head = " + userId + ")";
+        condition += " and (userId = " + userId + " or head = " + userId + " or participant like '%" + userId + "%')";
 
-        //查找任务布置人或者任务负责人是当前用户的数据
+        //查找任务布置人或者任务负责人或者参与人是当前用户的数据
         JsonData jsonData = dao.findByNativeSql("select * from " + dao.getTableName() + condition,page,limit,AssignmentBean.class,null);
 
         List<AssignmentBean> beanList = jsonData.getData();
