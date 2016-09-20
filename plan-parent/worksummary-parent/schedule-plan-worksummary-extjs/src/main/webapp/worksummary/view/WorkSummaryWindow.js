@@ -56,8 +56,10 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryWindow', {
                     },
                     listeners: {
                         'change': function (e, t, options) {
-                            this.lookupViewModel().get('rec').set('orgName', e.displayTplData[0].name);
-                            this.lookupViewModel().get('rec').set('orgCode', e.displayTplData[0].code);
+                            if(e.displayTplData[0]) {//增加判断，否则在用户有多个部门的情况下重置会有问题
+                                this.lookupViewModel().get('rec').set('orgName', e.displayTplData[0].name);
+                                this.lookupViewModel().get('rec').set('orgCode', e.displayTplData[0].code);
+                            }
                         }
                     }
                 },
@@ -86,6 +88,9 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryWindow', {
                     },
                     listeners: {
                         'change': function (e, t, options) {
+                            var model = this.lookupViewModel().get('rec');
+                            if(model.get('id') != 0)
+                                return;
                             var nowDate = new Date();
                             var year = nowDate.getFullYear();
                             var beginDate = new Date();
@@ -109,9 +114,13 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryWindow', {
                                 endDate.setDate(31);
                             }
                             var title = year + '-' + e.lastMutatedValue;
-                            this.lookupViewModel().get('rec').set('title', title);
-                            this.lookupViewModel().get('rec').set('beginDate', beginDate);
-                            this.lookupViewModel().get('rec').set('endDate', endDate);
+                            model.set('title', title);
+                            model.set('beginDate', beginDate);
+                            model.set('endDate', endDate);
+                            //重置时不要清空已经改的数据
+                            model.modified = {};
+                            //关闭编辑，没改的情况下不要提示保存修改
+                            model.dirty=false;
                         }
                     }
                 },
@@ -125,12 +134,15 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryWindow', {
                     },
                     listeners: {
                         'change': function (e, t, options) {
+                            var model = this.lookupViewModel().get('rec');
+                            if(model.get('id') != 0)
+                                return;
                             var nowDate = t;
                             var year = nowDate.getFullYear();
                             var beginDate = new Date(t);
                             var endDate = new Date(t);
                             var title;
-                            var workType = this.lookupViewModel().get('rec').get('workType');
+                            var workType = model.get('workType');
                             if(workType==0){
                                 beginDate.setMonth(0);
                                 beginDate.setDate(1);
@@ -152,9 +164,13 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryWindow', {
                                 endDate.setDate(31);
                                 title = year + '-年总结';
                             }
-                            this.lookupViewModel().get('rec').set('title', title);
-                            this.lookupViewModel().get('rec').set('beginDate', beginDate);
-                            this.lookupViewModel().get('rec').set('endDate', endDate);
+                            model.set('title', title);
+                            model.set('beginDate', beginDate);
+                            model.set('endDate', endDate);
+                            //重置时不要清空已经改的数据
+                            model.modified = {};
+                            //关闭编辑，没改的情况下不要提示保存修改
+                            model.dirty=false;
                         }
                     }
                 },

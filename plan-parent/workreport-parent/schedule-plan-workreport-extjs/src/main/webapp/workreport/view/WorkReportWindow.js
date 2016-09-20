@@ -57,8 +57,10 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                     },
                     listeners: {
                         'change': function (e, t, options) {
-                            this.lookupViewModel().get('rec').set('orgName', e.displayTplData[0].name);
-                            this.lookupViewModel().get('rec').set('orgCode', e.displayTplData[0].code);
+                            if(e.displayTplData[0]) {
+                                this.lookupViewModel().get('rec').set('orgName', e.displayTplData[0].name);
+                                this.lookupViewModel().get('rec').set('orgCode', e.displayTplData[0].code);
+                            }
                         }
                     }
                 },
@@ -87,6 +89,9 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                     },
                     listeners: {
                         'change': function (e, t, options) {
+                            var model = this.lookupViewModel().get('rec');
+                            if(model.get('id') != 0)
+                                return;
                             var nowDate = new Date();
                             var year = nowDate.getFullYear();
                             var month = nowDate.getMonth() + 1;
@@ -112,9 +117,11 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                                 beginDate = Ext.Date.getFirstDateOfMonth(nowDate);
                                 endDate = Ext.Date.getLastDateOfMonth(nowDate);
                             }
-                            this.lookupViewModel().get('rec').set('beginDate', beginDate);
-                            this.lookupViewModel().get('rec').set('endDate', endDate);
-                            this.lookupViewModel().get('rec').set('title', title);
+                            model.set('beginDate', beginDate);
+                            model.set('endDate', endDate);
+                            model.set('title', title);
+                            model.modified = {};
+                            model.dirty=false;
                         }
                     }
                 },
@@ -128,6 +135,9 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                     },
                     listeners: {
                         'change': function (e, t, options) {
+                            var model = this.lookupViewModel().get('rec');
+                            if(model.get('id') != 0)
+                                return;
                             var nowDate = t;
                             var year = nowDate.getFullYear();
                             var month = nowDate.getMonth() + 1;
@@ -155,9 +165,11 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                                 beginDate = Ext.Date.getFirstDateOfMonth(nowDate);
                                 endDate = Ext.Date.getLastDateOfMonth(nowDate);
                             }
-                            this.lookupViewModel().get('rec').set('beginDate', beginDate);
-                            this.lookupViewModel().get('rec').set('endDate', endDate);
-                            this.lookupViewModel().get('rec').set('title', title);
+                            model.set('beginDate', beginDate);
+                            model.set('endDate', endDate);
+                            model.set('title', title);
+                            model.modified = {};
+                            model.dirty = false;
                         }
                     }
                 },
@@ -218,6 +230,9 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                     fieldLabel: '内容',
                     allowBlank: false,
                     xtype: 'textarea',
+                    enforceMaxLength: true,
+                    maxLength: 500,
+                    maxLengthText: '文本超长了',
                     bind: {
                         value: '{rec.content}'
                     }
