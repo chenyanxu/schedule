@@ -90,23 +90,25 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                             var nowDate = new Date();
                             var year = nowDate.getFullYear();
                             var month = nowDate.getMonth() + 1;
+                            if (month < 10) month = '0' + month;
                             var day = nowDate.getDate();
+                            if (day < 10) day = '0' + day;
                             var week = Ext.Date.getWeekOfYear(nowDate);
                             var weekDay = nowDate.getDay();
 
                             var beginDate = new Date();
                             var endDate = new Date();
                             var title = '';
-                            if(t==0) {//日报
-                                title = year + '年' + month + '月' + day + '日 日报';
+                            if (t == 0) {//日报
+                                title = year + month + day + '-日报';
                             }
-                            if(t==1) {//周报
-                                title = year + '年第' + week + '周 周报';
+                            if (t == 1) {//周报
+                                title = year + '第' + week + '周-周报';
                                 beginDate.setDate(beginDate.getDate() - weekDay + 1);
                                 endDate.setDate(beginDate.getDate() + 4);
                             }
-                            if(t==2) {//月报
-                                title = year + '年' + month + '月 月报';
+                            if (t == 2) {//月报
+                                title = year + month + '-月报';
                                 beginDate = Ext.Date.getFirstDateOfMonth(nowDate);
                                 endDate = Ext.Date.getLastDateOfMonth(nowDate);
                             }
@@ -129,7 +131,9 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                             var nowDate = t;
                             var year = nowDate.getFullYear();
                             var month = nowDate.getMonth() + 1;
+                            if (month < 10) month = '0' + month;
                             var day = nowDate.getDate();
+                            if (day < 10) day = '0' + day;
                             var week = Ext.Date.getWeekOfYear(nowDate);
                             var weekDay = nowDate.getDay();
 
@@ -139,15 +143,15 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
 
                             var workType = this.lookupViewModel().get('rec').get('workType');
                             if (workType == 0) {//日报
-                                title = year + '年' + month + '月' + day + '日 日报';
+                                title = year + month + day + '-日报';
                             }
                             if (workType == 1) {//周报
-                                title = year + '年第' + week + '周 周报';
+                                title = year + '第' + week + '周-周报';
                                 beginDate.setDate(beginDate.getDate() - weekDay + 1);
                                 endDate.setDate(beginDate.getDate() + 4);
                             }
                             if (workType == 2) {//月报
-                                title = year + '年' + month + '月 月报';
+                                title = year + month + '-月报';
                                 beginDate = Ext.Date.getFirstDateOfMonth(nowDate);
                                 endDate = Ext.Date.getLastDateOfMonth(nowDate);
                             }
@@ -181,7 +185,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                         value: '{rec.planType}'
                     },
                     listeners: {
-                        'change': function(box, newValue, oldValue) {
+                        'change': function (box, newValue, oldValue) {
                             var x = Ext.getCmp('workReportPlanComboBox');
                             x.clearValue();
                             x.store.removeAll();

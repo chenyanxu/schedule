@@ -108,7 +108,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryWindow', {
                                 endDate.setMonth(11);
                                 endDate.setDate(31);
                             }
-                            var title = year + '年' + e.lastMutatedValue;
+                            var title = year + '-' + e.lastMutatedValue;
                             this.lookupViewModel().get('rec').set('title', title);
                             this.lookupViewModel().get('rec').set('beginDate', beginDate);
                             this.lookupViewModel().get('rec').set('endDate', endDate);
@@ -136,21 +136,21 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryWindow', {
                                 beginDate.setDate(1);
                                 endDate.setMonth(5);
                                 endDate.setDate(30);
-                                title = year + '年上半年总结';
+                                title = year + '-上半年总结';
                             }
                             if(workType==1){
                                 beginDate.setMonth(6);
                                 beginDate.setDate(1);
                                 endDate.setMonth(11);
                                 endDate.setDate(31);
-                                title = year + '年下半年总结';
+                                title = year + '-下半年总结';
                             }
                             if(workType==2){
                                 beginDate.setMonth(0);
                                 beginDate.setDate(1);
                                 endDate.setMonth(11);
                                 endDate.setDate(31);
-                                title = year + '年年总结';
+                                title = year + '-年总结';
                             }
                             this.lookupViewModel().get('rec').set('title', title);
                             this.lookupViewModel().get('rec').set('beginDate', beginDate);
