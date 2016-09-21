@@ -11,6 +11,17 @@ Ext.define('kalix.plan.departmentplan.controller.DepartmentPlanGridController', 
         attachment: 'kalix.attachment.common.mixins.Attachment'
     },
     onSaveTemplate: function (grid, rowIndex, colIndex) {
-        Ext.Msg.alert(CONFIG.ALTER_TITLE_INFO,'TEST');
+        var selModel = grid.getStore().getData().items[rowIndex];
+        var newModel = Ext.create('kalix.schedule.template.model.TemplateModel');
+        var view = Ext.create('kalix.schedule.template.view.TemplateWindow');
+        newModel.set('templateName', '');
+        newModel.set('departmentplanId', selModel.id);
+        newModel.dirty = false;
+        var vm = view.lookupViewModel();
+        vm.set('rec', newModel);
+        vm.set('iconCls', vm.get('editIconCls'));
+        vm.set('title', '新增模板');
+        vm.set('store', Ext.create('kalix.schedule.template.store.TemplateStore'));
+        view.show();
     }
 });

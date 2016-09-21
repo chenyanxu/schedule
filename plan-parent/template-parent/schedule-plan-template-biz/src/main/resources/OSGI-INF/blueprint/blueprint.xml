@@ -5,10 +5,12 @@
 
     <reference id="shiroService" interface="com.kalix.framework.core.api.security.IShiroService"/>
     <reference id="templateBeanDao" interface="com.kalix.schedule.plan.template.api.dao.ITemplateBeanDao"/>
+    <reference id="departmentplanBeanService" interface="com.kalix.schedule.plan.departmentplan.api.biz.IDepartmentPlanBeanService"/>
 
     <bean id="templateBeanServiceImpl" class="com.kalix.schedule.plan.template.biz.TemplateBeanServiceImpl">
         <property name="dao" ref="templateBeanDao"/>
         <property name="shiroService" ref="shiroService"/>
+        <property name="departmentplanBeanService" ref="departmentplanBeanService"/>
     </bean>
 
     <service id="templateBeanService" interface="com.kalix.schedule.plan.template.api.biz.ITemplateBeanService"

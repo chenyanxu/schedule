@@ -7,7 +7,8 @@ Ext.define('kalix.schedule.template.view.TemplateGrid', {
     extend: 'kalix.view.components.common.BaseGrid',
     requires: [
         'kalix.schedule.template.controller.TemplateGridController',
-        'kalix.schedule.template.store.TemplateStore'
+        'kalix.schedule.template.store.TemplateStore',
+        'kalix.schedule.scheduleDict.component.ScheduleDictGridColumn'
     ],
     alias: 'widget.templateGrid',
     xtype: 'templateGridPanel',
@@ -48,27 +49,9 @@ Ext.define('kalix.schedule.template.view.TemplateGrid', {
             },
             {
                 text: '计划类型',
-                dataIndex: 'planType'
-            },
-            {
-                text: '计划开始时间',
-                dataIndex: 'beginDate',
-                xtype: 'datecolumn',
-                format: 'Y-m-d', renderer: null
-            },
-            {
-                text: '计划结束时间',
-                dataIndex: 'endDate',
-                xtype: 'datecolumn',
-                format: 'Y-m-d', renderer: null
-            },
-            {
-                text: '计划状态',
-                dataIndex: 'state'
-            },
-            {
-                text: '任务ID',
-                dataIndex: 'taskIds'
+                xtype: 'scheduleDictGridColumn',
+                dictType: '部门计划类型',
+                dataIndex: 'planType', renderer: null
             },
             {
                 xtype: 'securityGridColumnCommon',

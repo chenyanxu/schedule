@@ -2,6 +2,8 @@ package com.kalix.schedule.plan.template.biz;
 
 import com.kalix.framework.core.api.persistence.JsonStatus;
 import com.kalix.framework.core.impl.biz.ShiroGenericBizServiceImpl;
+import com.kalix.schedule.plan.departmentplan.api.biz.IDepartmentPlanBeanService;
+import com.kalix.schedule.plan.departmentplan.entities.DepartmentPlanBean;
 import com.kalix.schedule.plan.template.api.biz.ITemplateBeanService;
 import com.kalix.schedule.plan.template.api.dao.ITemplateBeanDao;
 import com.kalix.schedule.plan.template.entities.TemplateBean;
@@ -16,8 +18,20 @@ import com.kalix.schedule.plan.template.entities.TemplateBean;
  */
 public class TemplateBeanServiceImpl extends ShiroGenericBizServiceImpl<ITemplateBeanDao, TemplateBean> implements ITemplateBeanService {
     private JsonStatus jsonStatus = new JsonStatus();
-
+    private IDepartmentPlanBeanService departmentplanBeanService;
     public TemplateBeanServiceImpl() {
         super.init(TemplateBean.class.getName());
+    }
+
+    @Override
+    public JsonStatus saveEntity(TemplateBean entity) {
+        int departmentplanId = entity.getDepartmentplanId();
+
+        DepartmentPlanBean departmentplanBean = departmentplanBeanService.getEntity(departmentplanId);
+        return super.saveEntity(entity);
+    }
+
+    public void setDepartmentplanBeanService(IDepartmentPlanBeanService departmentplanBeanService) {
+        this.departmentplanBeanService = departmentplanBeanService;
     }
 }

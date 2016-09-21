@@ -45,6 +45,10 @@ public class TemplateBean extends PersistentEntity {
      */
     private String orgName;
     /**
+     * @describe 部门计划ID
+     */
+    private Integer departmentplanId;
+    /**
      * @describe 计划标题
      */
     private String title;
@@ -121,6 +125,14 @@ public class TemplateBean extends PersistentEntity {
 
     public void setOrgName(String orgName) {
         this.orgName = orgName;
+    }
+
+    public Integer getDepartmentplanId() {
+        return departmentplanId;
+    }
+
+    public void setDepartmentplanId(Integer departmentplanId) {
+        this.departmentplanId = departmentplanId;
     }
 
     public String getTitle() {

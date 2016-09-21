@@ -13,42 +13,34 @@ Ext.define('kalix.schedule.template.model.TemplateModel', {
     fields: [
         {
             name: 'templateName',
-            type: 'string'
+            validators: [{type: 'presence'}]
         },
         {
-            name: 'userId',
-            type: 'int',
-            defaultValue: 0
+            name: 'userId'
         },
         {
-            name: 'userName',
-            type: 'string'
+            name: 'userName'
         },
         {
-            name: 'orgId',
-            type: 'int',
-            defaultValue: 0
+            name: 'orgId'
         },
         {
-            name: 'orgCode',
-            type: 'string'
+            name: 'orgCode'
         },
         {
-            name: 'orgName',
-            type: 'string'
+            name: 'orgName'
         },
         {
-            name: 'title',
-            type: 'string'
+            name: 'departmentplanId'
         },
         {
-            name: 'content',
-            type: 'string'
+            name: 'title'
         },
         {
-            name: 'planType',
-            type: 'int',
-            defaultValue: 0
+            name: 'content'
+        },
+        {
+            name: 'planType'
         },
         {
             name: 'beginDate',
@@ -61,13 +53,10 @@ Ext.define('kalix.schedule.template.model.TemplateModel', {
             dateFormat: 'Y-m-d H:i:s'
         },
         {
-            name: 'state',
-            type: 'int',
-            defaultValue: 0
+            name: 'state'
         },
         {
-            name: 'taskIds',
-            type: 'string'
+            name: 'taskIds'
         }
     ]
 });
