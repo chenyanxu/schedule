@@ -284,7 +284,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
                 eventContent = "负责人修改为" + assignmentBean.getHeader();
                 break;
             case 9:
-                eventContent = "进度修改为" + (int)assignmentBean.getPercent()*100+"%";
+                eventContent = "进度修改为" + ((int)(assignmentBean.getPercent()*100))+"%";
                 break;
             case 10:
                 eventContent = "审核未通过" + assignmentBean.getComment();
