@@ -45,7 +45,6 @@ Ext.define('kalix.task.assignment.view.ProgressWindow', {
                 },
                 {
                     fieldLabel: '进度说明',
-                    allowBlank: false,
                     xtype: 'textarea',
                     value: '',
                     bind: {
