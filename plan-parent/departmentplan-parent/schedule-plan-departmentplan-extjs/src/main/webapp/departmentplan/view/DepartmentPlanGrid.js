@@ -152,7 +152,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
                         if (record.data.state == 2) {
                             return "kalix_hidden";
                         }else{
-                            return 'iconfont icon-attachment-column';
+                            return 'iconfont icon-schedule-plantemplate';
                         }
                     }
                 }
