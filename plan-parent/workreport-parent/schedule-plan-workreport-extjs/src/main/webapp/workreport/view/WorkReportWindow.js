@@ -241,6 +241,8 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                             },
                             listeners: {
                                 'change': function (box, newValue, oldValue) {
+                                    var vm = this.lookupViewModel();
+                                    vm.get('rec').set('planId', 0);
                                     var x = Ext.getCmp('workReportPlanComboBox');
                                     x.clearValue();
                                     x.store.removeAll();
