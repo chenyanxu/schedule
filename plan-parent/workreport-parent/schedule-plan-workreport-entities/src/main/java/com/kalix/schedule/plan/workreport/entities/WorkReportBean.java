@@ -47,7 +47,7 @@ public class WorkReportBean extends PersistentEntity {
     /**
      * @describe 内容
      */
-    @Column (length=500)
+    @Column(columnDefinition = "TEXT")
     private String content;
     /**
      * @describe 汇报类型

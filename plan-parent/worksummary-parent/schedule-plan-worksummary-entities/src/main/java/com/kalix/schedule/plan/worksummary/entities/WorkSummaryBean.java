@@ -3,6 +3,7 @@ package com.kalix.schedule.plan.worksummary.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.kalix.framework.core.api.persistence.PersistentEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
@@ -46,6 +47,7 @@ public class WorkSummaryBean extends PersistentEntity {
     /**
      * @describe 内容
      */
+    @Column(columnDefinition = "TEXT")
     private String content;
     /**
      * @describe 总结类型
