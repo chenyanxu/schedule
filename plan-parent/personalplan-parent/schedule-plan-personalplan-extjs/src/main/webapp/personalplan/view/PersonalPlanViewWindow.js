@@ -12,57 +12,101 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanViewWindow', {
     requires: [
         'kalix.plan.workreport.view.WorkReportViewGrid'
     ],
-    width: 700,
+    width: 940,
     height: 600,
     items: [
         {
             xtype: 'tabpanel',
             items: [
                 {
-                    title: '基本信息',
                     xtype: 'panel',
-                    align: 'center',
-                    border: false,
+                    title: '基本信息',
                     layout: {
-                        type: 'hbox',
-                        align: 'stretch'
+                        type: 'vbox',
+                        align: 'center'
                     },
-                    defaults: {width: 700},
+                    border: false,
+                    width: '100%',
                     items: [
                         {
-                            defaults: {readOnly: true},
-                            xtype: 'baseForm',
+                            xtype: 'panel',
+                            layout: {
+                                type: 'hbox',
+                            },
+                            width: '100%',
+                            border: false,
                             items: [
                                 {
-                                    fieldLabel: '用户名',
+                                    fieldLabel: '标题',
+                                    xtype: 'textfield',
                                     allowBlank: false,
+                                    labelAlign: 'right',
+                                    labelWidth: 80,
+                                    width: 910,
+                                    margin: '10 5 5 5',
+                                    readOnly: true,
                                     bind: {
-                                        value: '{rec.userName}'
+                                        value: '{rec.title}'
                                     }
-                                },
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'panel',
+                            layout: {
+                                type: 'hbox',
+                            },
+                            width: '100%',
+                            border: false,
+                            items: [
                                 {
                                     fieldLabel: '部门名称',
+                                    xtype: 'textfield',
                                     allowBlank: false,
+                                    labelAlign: 'right',
+                                    labelWidth: 80,
+                                    width: 450,
+                                    margin: 5,
+                                    readOnly: true,
                                     bind: {
                                         value: '{rec.orgName}'
                                     }
                                 },
                                 {
+                                    fieldLabel: '用户姓名',
+                                    xtype: 'textfield',
+                                    allowBlank: false,
+                                    labelAlign: 'right',
+                                    labelWidth: 80,
+                                    width: 450,
+                                    margin: 5,
+                                    readOnly: true,
+                                    bind: {
+                                        value: '{rec.userName}'
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'panel',
+                            layout: {
+                                type: 'hbox',
+                            },
+                            width: '100%',
+                            border: false,
+                            items: [
+                                {
                                     fieldLabel: '计划类型',
                                     xtype: 'scheduleDictCombobox',
                                     dictType: '个人计划类型',
                                     allowBlank: false,
+                                    labelAlign: 'right',
+                                    labelWidth: 80,
+                                    width: 450,
+                                    margin: 5,
+                                    readOnly: true,
                                     bind: {
                                         value: '{rec.planType}'
-                                    }
-                                },
-                                {
-                                    fieldLabel: '计划状态',
-                                    xtype: 'scheduleDictCombobox',
-                                    dictType: '个人计划状态',
-                                    allowBlank: false,
-                                    bind: {
-                                        value: '{rec.state}'
                                     }
                                 },
                                 {
@@ -70,8 +114,38 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanViewWindow', {
                                     allowBlank: false,
                                     xtype: 'datefield',
                                     format: 'Y-m-d',
+                                    minValue: new Date(),
+                                    labelAlign: 'right',
+                                    labelWidth: 80,
+                                    width: 450,
+                                    margin: 5,
+                                    readOnly: true,
                                     bind: {
                                         value: '{rec.beginDate}'
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'panel',
+                            layout: {
+                                type: 'hbox',
+                            },
+                            width: '100%',
+                            border: false,
+                            items: [
+                                {
+                                    fieldLabel: '计划状态',
+                                    xtype: 'scheduleDictCombobox',
+                                    dictType: '个人计划状态',
+                                    allowBlank: false,
+                                    labelAlign: 'right',
+                                    labelWidth: 80,
+                                    width: 450,
+                                    margin: 5,
+                                    readOnly: true,
+                                    bind: {
+                                        value: '{rec.state}'
                                     }
                                 },
                                 {
@@ -79,21 +153,35 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanViewWindow', {
                                     allowBlank: false,
                                     xtype: 'datefield',
                                     format: 'Y-m-d',
+                                    minValue: new Date(),
+                                    labelAlign: 'right',
+                                    labelWidth: 80,
+                                    width: 450,
+                                    margin: 5,
+                                    readOnly: true,
                                     bind: {
                                         value: '{rec.endDate}'
                                     }
-                                },
-                                {
-                                    fieldLabel: '标题',
-                                    allowBlank: false,
-                                    bind: {
-                                        value: '{rec.title}'
-                                    }
-                                },
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'panel',
+                            layout: {
+                                type: 'hbox',
+                            },
+                            width: '100%',
+                            border: false,
+                            items: [
                                 {
                                     fieldLabel: '内容',
+                                    xtype: 'htmleditor',
                                     allowBlank: false,
-                                    xtype: 'textarea',
+                                    labelAlign: 'right',
+                                    labelWidth: 80,
+                                    margin: 5,
+                                    height: 270,
+                                    readOnly: true,
                                     bind: {
                                         value: '{rec.content}'
                                     }
@@ -101,6 +189,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanViewWindow', {
                             ]
                         }
                     ]
+
                 },
                 {
                     xtype: 'workreportviewGridPanel',
