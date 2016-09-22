@@ -255,7 +255,6 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
     }
 
     //保存任务事件
-    @Transactional
     private void saveEventEntity(AssignmentBean assignmentBean) {
         int eventType = assignmentBean.getEventType();
         String eventContent;
@@ -316,7 +315,6 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
      *
      * @param bean
      */
-    @Transactional
     private void postNewAssignmentEvent(AssignmentBean bean) {
         try {
             eventAdmin = JNDIHelper.getJNDIServiceForName("org.osgi.service.event.EventAdmin");
@@ -337,7 +335,6 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
      *
      * @param bean
      */
-    @Transactional
     private void postSuperviseAssignmentEvent(AssignmentBean bean) {
         try {
             eventAdmin = JNDIHelper.getJNDIServiceForName("org.osgi.service.event.EventAdmin");
@@ -382,7 +379,6 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
      *
      * @param bean
      */
-    @Transactional
     private void postChangeAssignmentEvent(AssignmentBean bean, Integer oldState) {
         try {
             eventAdmin = JNDIHelper.getJNDIServiceForName("org.osgi.service.event.EventAdmin");
