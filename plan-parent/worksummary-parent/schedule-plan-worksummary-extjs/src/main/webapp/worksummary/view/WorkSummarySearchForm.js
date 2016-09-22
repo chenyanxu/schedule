@@ -23,12 +23,11 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchForm', {
         },
         {
             xtype: 'textfield',
-            fieldLabel: '用户名',
+            fieldLabel: '用户姓名',
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
-            name: 'userName',
-            hidden: true
+            name: 'userName'
         },
         {
             xtype: 'textfield',
@@ -63,7 +62,8 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchForm', {
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
-            name: 'title'
+            name: 'title',
+            hidden: true
         },
         {
             xtype: 'textfield',

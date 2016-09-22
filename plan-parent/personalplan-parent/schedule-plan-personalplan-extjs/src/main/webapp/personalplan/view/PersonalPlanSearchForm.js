@@ -24,12 +24,11 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchForm', {
         },
         {
             xtype: 'textfield',
-            fieldLabel: '用户',
+            fieldLabel: '用户姓名',
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
-            name: 'userName',
-            hidden: true
+            name: 'userName'
         },
         {
             xtype: 'textfield',
@@ -56,7 +55,8 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchForm', {
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
-            name: 'title'
+            name: 'title',
+            hidden: true
         },
         {
             xtype: 'textfield',
