@@ -8,6 +8,8 @@ import com.kalix.schedule.plan.template.api.biz.ITemplateBeanService;
 import com.kalix.schedule.plan.template.api.dao.ITemplateBeanDao;
 import com.kalix.schedule.plan.template.entities.TemplateBean;
 
+import javax.transaction.Transactional;
+
 /**
  * @类描述： 
  * @创建人：  
@@ -24,6 +26,7 @@ public class TemplateBeanServiceImpl extends ShiroGenericBizServiceImpl<ITemplat
     }
 
     @Override
+    @Transactional
     public JsonStatus saveEntity(TemplateBean entity) {
         int departmentplanId = entity.getDepartmentplanId();
 

@@ -21,6 +21,7 @@ import com.kalix.schedule.task.assignment.entities.ReadingBean;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventAdmin;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.*;
 
@@ -136,6 +137,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
      * @return
      */
     @Override
+    @Transactional
     public JsonStatus saveEntity(AssignmentBean entity) {
         // 获取登录用户id及用户名
         Long userId = this.getShiroService().getCurrentUserId();
@@ -165,6 +167,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
      * @return
      */
     @Override
+    @Transactional
     public JsonStatus updateEntity(AssignmentBean entity) {
         //保存任务事件
         saveEventEntity(entity);
@@ -252,6 +255,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
     }
 
     //保存任务事件
+    @Transactional
     private void saveEventEntity(AssignmentBean assignmentBean) {
         int eventType = assignmentBean.getEventType();
         String eventContent;
@@ -312,7 +316,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
      *
      * @param bean
      */
-
+    @Transactional
     private void postNewAssignmentEvent(AssignmentBean bean) {
         try {
             eventAdmin = JNDIHelper.getJNDIServiceForName("org.osgi.service.event.EventAdmin");
@@ -333,7 +337,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
      *
      * @param bean
      */
-
+    @Transactional
     private void postSuperviseAssignmentEvent(AssignmentBean bean) {
         try {
             eventAdmin = JNDIHelper.getJNDIServiceForName("org.osgi.service.event.EventAdmin");
@@ -378,6 +382,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
      *
      * @param bean
      */
+    @Transactional
     private void postChangeAssignmentEvent(AssignmentBean bean, Integer oldState) {
         try {
             eventAdmin = JNDIHelper.getJNDIServiceForName("org.osgi.service.event.EventAdmin");

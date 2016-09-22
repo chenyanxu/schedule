@@ -8,6 +8,7 @@ import com.kalix.schedule.plan.departmentplan.api.biz.IDepartmentPlanBeanService
 import com.kalix.schedule.plan.departmentplan.api.dao.IDepartmentPlanBeanDao;
 import com.kalix.schedule.plan.departmentplan.entities.DepartmentPlanBean;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Map;
 
@@ -92,6 +93,7 @@ public class DepartmentPlanBeanServiceImpl extends ShiroGenericBizServiceImpl<ID
     }
 
     @Override
+    @Transactional
     public JsonStatus saveEntity(DepartmentPlanBean entity) {
         entity.setUserId(this.getShiroService().getCurrentUserId());
         entity.setUserName(this.getShiroService().getCurrentUserRealName());
