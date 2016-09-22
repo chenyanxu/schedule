@@ -145,7 +145,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
                     }
                 },
                 {
-                    permission: 'attachement',
+                    permission: 'template',
                     tooltip: '存为模板',
                     handler: 'onSaveTemplate',
                     getClass: function (v, meta, record) {
