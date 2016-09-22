@@ -16,5 +16,8 @@ Ext.define('kalix.plan.departmentplan.controller.DepartmentPlanWindowController'
         }
 
         this.callParent(arguments);
+    },
+    onSaveTemplate: function(){
+        alert('aaa');
     }
 });

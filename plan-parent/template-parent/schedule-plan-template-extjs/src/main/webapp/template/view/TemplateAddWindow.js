@@ -18,7 +18,6 @@ Ext.define('kalix.schedule.template.view.TemplateAddWindow', {
     //todo 在此修改表单
     items: [
         {
-            //xtype: 'baseForm',
             items: [
                 {
                     fieldLabel: '模板名称',
