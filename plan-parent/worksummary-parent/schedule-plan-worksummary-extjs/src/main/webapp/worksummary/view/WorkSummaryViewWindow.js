@@ -28,6 +28,13 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryViewWindow', {
                     }
                 },
                 {
+                    fieldLabel: '标题',
+                    allowBlank: false,
+                    bind: {
+                        value: '{rec.title}'
+                    }
+                },
+                {
                     fieldLabel: '用户名称',
                     allowBlank: false,
                     bind: {
@@ -82,13 +89,6 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryViewWindow', {
                     format: 'Y-m-d',
                     bind: {
                         value: '{rec.endDate}'
-                    }
-                },
-                {
-                    fieldLabel: '标题',
-                    allowBlank: false,
-                    bind: {
-                        value: '{rec.title}'
                     }
                 },
                 {

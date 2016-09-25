@@ -40,6 +40,14 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryWindow', {
                     }
                 },
                 {
+                    fieldLabel: '标题',
+                    editable: false,
+                    allowBlank: false,
+                    bind: {
+                        value: '{rec.title}'
+                    }
+                },
+                {
                     fieldLabel: '部门名称',
                     xtype: 'userOrgComboBox',
                     allowBlank: false,
@@ -75,6 +83,36 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryWindow', {
                     dictType: '总结类型',
                     bind: {
                         value: '{rec.workType}'
+                    },
+                    listeners: {
+                        'change': function (e, t, options) {
+                            var nowDate = new Date();
+                            var year = nowDate.getFullYear();
+                            var beginDate = new Date();
+                            var endDate = new Date();
+                            if(t==0){
+                                beginDate.setMonth(0);
+                                beginDate.setDate(1);
+                                endDate.setMonth(5);
+                                endDate.setDate(30);
+                            }
+                            if(t==1){
+                                beginDate.setMonth(6);
+                                beginDate.setDate(1);
+                                endDate.setMonth(11);
+                                endDate.setDate(31);
+                            }
+                            if(t==2){
+                                beginDate.setMonth(0);
+                                beginDate.setDate(1);
+                                endDate.setMonth(11);
+                                endDate.setDate(31);
+                            }
+                            var title = year + '年' + e.lastMutatedValue;
+                            this.lookupViewModel().get('rec').set('title', title);
+                            this.lookupViewModel().get('rec').set('beginDate', beginDate);
+                            this.lookupViewModel().get('rec').set('endDate', endDate);
+                        }
                     }
                 },
                 {
@@ -84,6 +122,40 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryWindow', {
                     format: 'Y-m-d',
                     bind: {
                         value: '{rec.beginDate}'
+                    },
+                    listeners: {
+                        'change': function (e, t, options) {
+                            var nowDate = t;
+                            var year = nowDate.getFullYear();
+                            var beginDate = new Date(t);
+                            var endDate = new Date(t);
+                            var title;
+                            var workType = this.lookupViewModel().get('rec').get('workType');
+                            if(workType==0){
+                                beginDate.setMonth(0);
+                                beginDate.setDate(1);
+                                endDate.setMonth(5);
+                                endDate.setDate(30);
+                                title = year + '年上半年总结';
+                            }
+                            if(workType==1){
+                                beginDate.setMonth(6);
+                                beginDate.setDate(1);
+                                endDate.setMonth(11);
+                                endDate.setDate(31);
+                                title = year + '年下半年总结';
+                            }
+                            if(workType==2){
+                                beginDate.setMonth(0);
+                                beginDate.setDate(1);
+                                endDate.setMonth(11);
+                                endDate.setDate(31);
+                                title = year + '年年总结';
+                            }
+                            this.lookupViewModel().get('rec').set('title', title);
+                            this.lookupViewModel().get('rec').set('beginDate', beginDate);
+                            this.lookupViewModel().get('rec').set('endDate', endDate);
+                        }
                     }
                 },
                 {
@@ -93,13 +165,6 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryWindow', {
                     format: 'Y-m-d',
                     bind: {
                         value: '{rec.endDate}'
-                    }
-                },
-                {
-                    fieldLabel: '标题',
-                    allowBlank: false,
-                    bind: {
-                        value: '{rec.title}'
                     }
                 },
                 {
