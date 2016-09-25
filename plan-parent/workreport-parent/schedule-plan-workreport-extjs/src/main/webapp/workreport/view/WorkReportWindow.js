@@ -41,6 +41,14 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                     }
                 },
                 {
+                    fieldLabel: '标题',
+                    editable: false,
+                    allowBlank: false,
+                    bind: {
+                        value: '{rec.title}'
+                    }
+                },
+                {
                     fieldLabel: '部门名称',
                     xtype: 'userOrgComboBox',
                     allowBlank: false,
@@ -76,6 +84,36 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                     dictType: '汇报类型',
                     bind: {
                         value: '{rec.workType}'
+                    },
+                    listeners: {
+                        'change': function (e, t, options) {
+                            var nowDate = new Date();
+                            var year = nowDate.getFullYear();
+                            var month = nowDate.getMonth() + 1;
+                            var day = nowDate.getDate();
+                            var week = Ext.Date.getWeekOfYear(nowDate);
+                            var weekDay = nowDate.getDay();
+
+                            var beginDate = new Date();
+                            var endDate = new Date();
+                            var title = '';
+                            if(t==0) {//日报
+                                title = year + '年' + month + '月' + day + '日 日报';
+                            }
+                            if(t==1) {//周报
+                                title = year + '年第' + week + '周 周报';
+                                beginDate.setDate(beginDate.getDate() - weekDay + 1);
+                                endDate.setDate(beginDate.getDate() + 4);
+                            }
+                            if(t==2) {//月报
+                                title = year + '年' + month + '月 月报';
+                                beginDate = Ext.Date.getFirstDateOfMonth(nowDate);
+                                endDate = Ext.Date.getLastDateOfMonth(nowDate);
+                            }
+                            this.lookupViewModel().get('rec').set('beginDate', beginDate);
+                            this.lookupViewModel().get('rec').set('endDate', endDate);
+                            this.lookupViewModel().get('rec').set('title', title);
+                        }
                     }
                 },
                 {
@@ -85,6 +123,38 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                     format: 'Y-m-d',
                     bind: {
                         value: '{rec.beginDate}'
+                    },
+                    listeners: {
+                        'change': function (e, t, options) {
+                            var nowDate = t;
+                            var year = nowDate.getFullYear();
+                            var month = nowDate.getMonth() + 1;
+                            var day = nowDate.getDate();
+                            var week = Ext.Date.getWeekOfYear(nowDate);
+                            var weekDay = nowDate.getDay();
+
+                            var beginDate = new Date(t);
+                            var endDate = new Date(t);
+                            var title = '';
+
+                            var workType = this.lookupViewModel().get('rec').get('workType');
+                            if (workType == 0) {//日报
+                                title = year + '年' + month + '月' + day + '日 日报';
+                            }
+                            if (workType == 1) {//周报
+                                title = year + '年第' + week + '周 周报';
+                                beginDate.setDate(beginDate.getDate() - weekDay + 1);
+                                endDate.setDate(beginDate.getDate() + 4);
+                            }
+                            if (workType == 2) {//月报
+                                title = year + '年' + month + '月 月报';
+                                beginDate = Ext.Date.getFirstDateOfMonth(nowDate);
+                                endDate = Ext.Date.getLastDateOfMonth(nowDate);
+                            }
+                            this.lookupViewModel().get('rec').set('beginDate', beginDate);
+                            this.lookupViewModel().get('rec').set('endDate', endDate);
+                            this.lookupViewModel().get('rec').set('title', title);
+                        }
                     }
                 },
                 {
@@ -138,13 +208,6 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                     allowBlank: false,
                     bind: {
                         value: '{rec.planId}'
-                    }
-                },
-                {
-                    fieldLabel: '标题',
-                    allowBlank: false,
-                    bind: {
-                        value: '{rec.title}'
                     }
                 },
                 {

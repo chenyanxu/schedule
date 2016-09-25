@@ -28,6 +28,12 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
                     }
                 },
                 {
+                    fieldLabel: '标题',
+                    bind: {
+                        value: '{rec.title}'
+                    }
+                },
+                {
                     fieldLabel: '用户名称',
                     bind: {
                         value: '{rec.userName}'
@@ -123,12 +129,6 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
                                 parent.width = 400;
                             }
                         }
-                    }
-                },
-                {
-                    fieldLabel: '标题',
-                    bind: {
-                        value: '{rec.title}'
                     }
                 },
                 {
