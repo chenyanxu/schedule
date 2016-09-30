@@ -6,20 +6,27 @@
 Ext.define('kalix.plan.worksummary.view.WorkSummarySearchForm', {
     extend: 'kalix.view.components.common.BaseSearchForm',
     requires: [
-        'kalix.schedule.scheduleDict.component.ScheduleDictCombobox'
+        'kalix.schedule.scheduleDict.component.ScheduleDictCombobox',
+        'kalix.view.MultiComboBox'
     ],
     alias: 'widget.worksummarySearchForm',
     xtype: 'worksummarySearchForm',
     storeId: 'worksummaryStore',
     items: [
         {
-            xtype: 'textfield',
-            fieldLabel: '用户id',
-            labelAlign: 'right',
-            labelWidth: 60,
-            width: 200,
-            name: 'userId',
-            hidden: true
+            xtype: 'multiComboBox',
+            valueFieldName: 'userId:in',
+            displayText: '用    户',
+            menuItemValue: 'id',
+            menuItemText: 'name',
+            storeUrl: '/kalix/camel/rest/users/' + Ext.util.Cookies.get('currentUserId') + '/orgs/all/users',
+            'callback': function () {
+                var store = this.findParentByType('worksummarySearchForm').gridStore;
+                if (store) {
+                    store.currentPage = 1;
+                    store.load();
+                }
+            }
         },
         {
             xtype: 'textfield',
@@ -27,7 +34,8 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchForm', {
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
-            name: 'userName'
+            name: 'userName',
+            hidden: true
         },
         {
             xtype: 'textfield',
@@ -35,7 +43,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchForm', {
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
-            name: 'orgCode',
+            name: 'orgCode%',
             hidden: true
         },
         {
