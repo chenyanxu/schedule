@@ -13,7 +13,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanViewWindow', {
         'kalix.plan.workreport.view.WorkReportViewGrid',
         'kalix.task.assignment.view.DepartmentTaskGrid'
     ],
-    width: 700,
+    width: 930,
     height: 600,
     items: [
         {
@@ -21,80 +21,169 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanViewWindow', {
             id: 'departmentPlanTaskTabPanel',
             items: [
                 {
-                    title: '基本信息',
                     xtype: 'panel',
-                    align: 'center',
-                    border: false,
+                    title: '基本信息',
                     layout: {
-                        type: 'hbox',
-                        align: 'stretch'
+                        type: 'vbox',
+                        align: 'center'
                     },
-                    defaults: {width: 700},
+                    border: false,
+                    width: '100%',
                     items: [
                         {
-                            defaults: {readOnly: true},
-                            xtype: 'baseForm',
+                            xtype: 'panel',
+                            layout: {
+                                type: 'hbox',
+                            },
+                            width: '100%',
+                            border: false,
                             items: [
                                 {
-                                    fieldLabel: 'id',
-                                    hidden: true,
+                                    fieldLabel: '标题',
+                                    xtype: 'textfield',
+                                    allowBlank: false,
+                                    labelAlign: 'right',
+                                    labelWidth: 80,
+                                    width: 910,
+                                    margin: '10 5 5 5',
+                                    readOnly: true,
                                     bind: {
-                                        value: '{rec.id}'
+                                        value: '{rec.title}'
                                     }
-                                },
-                                {
-                                    fieldLabel: '用户名',
-                                    bind: {
-                                        value: '{rec.userName}'
-                                    }
-                                },
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'panel',
+                            layout: {
+                                type: 'hbox',
+                            },
+                            width: '100%',
+                            border: false,
+                            items: [
                                 {
                                     fieldLabel: '部门名称',
+                                    xtype: 'textfield',
+                                    allowBlank: false,
+                                    labelAlign: 'right',
+                                    labelWidth: 80,
+                                    width: 450,
+                                    margin: 5,
+                                    readOnly: true,
                                     bind: {
                                         value: '{rec.orgName}'
                                     }
                                 },
                                 {
+                                    fieldLabel: '用户姓名',
+                                    xtype: 'textfield',
+                                    allowBlank: false,
+                                    labelAlign: 'right',
+                                    labelWidth: 80,
+                                    width: 450,
+                                    margin: 5,
+                                    readOnly: true,
+                                    bind: {
+                                        value: '{rec.userName}'
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'panel',
+                            layout: {
+                                type: 'hbox',
+                            },
+                            width: '100%',
+                            border: false,
+                            items: [
+                                {
                                     fieldLabel: '计划类型',
                                     xtype: 'scheduleDictCombobox',
                                     dictType: '部门计划类型',
+                                    allowBlank: false,
+                                    labelAlign: 'right',
+                                    labelWidth: 80,
+                                    width: 450,
+                                    margin: 5,
+                                    readOnly: true,
                                     bind: {
                                         value: '{rec.planType}'
                                     }
                                 },
                                 {
+                                    fieldLabel: '开始日期',
+                                    allowBlank: false,
+                                    xtype: 'datefield',
+                                    format: 'Y-m-d',
+                                    minValue: new Date(),
+                                    labelAlign: 'right',
+                                    labelWidth: 80,
+                                    width: 450,
+                                    margin: 5,
+                                    readOnly: true,
+                                    bind: {
+                                        value: '{rec.beginDate}'
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'panel',
+                            layout: {
+                                type: 'hbox',
+                            },
+                            width: '100%',
+                            border: false,
+                            items: [
+                                {
                                     fieldLabel: '计划状态',
                                     xtype: 'scheduleDictCombobox',
                                     dictType: '部门计划状态',
+                                    allowBlank: false,
+                                    labelAlign: 'right',
+                                    labelWidth: 80,
+                                    width: 450,
+                                    margin: 5,
+                                    readOnly: true,
                                     bind: {
                                         value: '{rec.state}'
                                     }
                                 },
                                 {
-                                    fieldLabel: '开始日期',
-                                    xtype: 'datefield',
-                                    format: 'Y-m-d',
-                                    bind: {
-                                        value: '{rec.beginDate}'
-                                    }
-                                },
-                                {
                                     fieldLabel: '结束日期',
+                                    allowBlank: false,
                                     xtype: 'datefield',
                                     format: 'Y-m-d',
+                                    minValue: new Date(),
+                                    labelAlign: 'right',
+                                    labelWidth: 80,
+                                    width: 450,
+                                    margin: 5,
+                                    readOnly: true,
                                     bind: {
                                         value: '{rec.endDate}'
                                     }
-                                },
-                                {
-                                    fieldLabel: '标题',
-                                    bind: {
-                                        value: '{rec.title}'
-                                    }
-                                },
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'panel',
+                            layout: {
+                                type: 'hbox',
+                            },
+                            width: '100%',
+                            border: false,
+                            items: [
                                 {
                                     fieldLabel: '内容',
-                                    xtype: 'textarea',
+                                    xtype: 'htmleditor',
+                                    allowBlank: false,
+                                    labelAlign: 'right',
+                                    labelWidth: 80,
+                                    margin: 5,
+                                    height: 270,
+                                    readOnly: true,
                                     bind: {
                                         value: '{rec.content}'
                                     }
@@ -102,6 +191,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanViewWindow', {
                             ]
                         }
                     ]
+
                 },
                 {
                     xtype: 'workreportviewGridPanel',
@@ -118,7 +208,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanViewWindow', {
                     margin: 10,
                     listeners: {
                         'activate': function (target, eOpts) {
-                            var departmentPlanId = Ext.getCmp('departmentPlanTaskTabPanel').items.items[0].items.items[0].items.items[0].value;
+                            var departmentPlanId = this.lookupViewModel().get('rec').get('id');
                             var jsonStr = {
                                 'sourceId':departmentPlanId
                             };

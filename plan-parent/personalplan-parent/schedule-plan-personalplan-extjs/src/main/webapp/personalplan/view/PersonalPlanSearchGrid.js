@@ -115,5 +115,16 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchGrid', {
                 }
             ]
         }
-    ]
+    ],
+    plugins: [{
+        ptype: 'rowexpander',
+        rowBodyTpl: new Ext.XTemplate(
+            '<p><b>内容:</b> {content}</p>',
+            {
+                formatChange: function (v) {
+                    var color = v >= 0 ? 'green' : 'red';
+                    return '<span style="color: ' + color + ';">' + Ext.util.Format.usMoney(v) + '</span>';
+                }
+            })
+    }],
 });

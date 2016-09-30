@@ -17,112 +17,163 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanWindow', {
         type: 'baseWindowController'
     },
     xtype: "personalplanWindow",
-    width: 400,
+    width: 930,
     //todo 在此修改表单
     items: [
         {
-            xtype: 'baseForm',
+            xtype: 'panel',
+            layout: {
+                type: 'vbox',
+                align: 'center'
+            },
+            border: false,
+            width: '100%',
             items: [
                 {
-                    fieldLabel: '用户id',
-                    allowBlank: false,
-                    hidden: true,
-                    bind: {
-                        value: '{rec.userId}'
-                    }
-                },
-                {
-                    fieldLabel: '用户名',
-                    allowBlank: false,
-                    hidden: true,
-                    bind: {
-                        value: '{rec.userName}'
-                    }
-                },
-                {
-                    fieldLabel: '部门名称',
-                    xtype: 'userOrgComboBox',
-                    allowBlank: false,
-                    bind: {
-                        value: '{rec.orgId}'
+                    xtype: 'panel',
+                    layout: {
+                        type: 'hbox',
                     },
-                    listeners: {
-                        'change': function (e, t, options) {
-                            this.lookupViewModel().get('rec').set('orgName', e.displayTplData[0].name);
-                            this.lookupViewModel().get('rec').set('orgCode', e.displayTplData[0].code);
+                    width: '100%',
+                    border: false,
+                    items: [
+                        {
+                            fieldLabel: '标题',
+                            beforeLabelTextTpl: '<span class="field-required" data-qtip="必填选项">*</span>',
+                            xtype: 'textfield',
+                            allowBlank: false,
+                            labelAlign: 'right',
+                            labelWidth: 80,
+                            width: 450,
+                            margin: '10 5 5 5',
+                            bind: {
+                                value: '{rec.title}'
+                            }
+                        },
+                        {
+                            fieldLabel: '部门名称',
+                            beforeLabelTextTpl: '<span class="field-required" data-qtip="必填选项">*</span>',
+                            xtype: 'userOrgComboBox',
+                            allowBlank: false,
+                            labelAlign: 'right',
+                            labelWidth: 80,
+                            width: 450,
+                            margin: '10 5 5 5',
+                            bind: {
+                                value: '{rec.orgId}'
+                            },
+                            listeners: {
+                                'change': function (e, t, options) {
+                                    this.lookupViewModel().get('rec').set('orgName', e.displayTplData[0].name);
+                                    this.lookupViewModel().get('rec').set('orgCode', e.displayTplData[0].code);
+                                }
+                            }
                         }
-                    }
+                    ]
                 },
                 {
-                    fieldLabel: '部门code',
-                    allowBlank: false,
-                    hidden: true,
-                    bind: {
-                        value: '{rec.orgCode}'
-                    }
+                    xtype: 'panel',
+                    layout: {
+                        type: 'hbox',
+                    },
+                    width: '100%',
+                    border: false,
+                    items: [
+                        {
+                            fieldLabel: '计划类型',
+                            beforeLabelTextTpl: '<span class="field-required" data-qtip="必填选项">*</span>',
+                            xtype: 'scheduleDictCombobox',
+                            dictType: '个人计划类型',
+                            allowBlank: false,
+                            labelAlign: 'right',
+                            labelWidth: 80,
+                            width: 450,
+                            margin: 5,
+                            bind: {
+                                value: '{rec.planType}'
+                            }
+                        },
+                        {
+                            fieldLabel: '开始日期',
+                            beforeLabelTextTpl: '<span class="field-required" data-qtip="必填选项">*</span>',
+                            allowBlank: false,
+                            xtype: 'datefield',
+                            format: 'Y-m-d',
+                            minValue: new Date(),
+                            labelAlign: 'right',
+                            labelWidth: 80,
+                            width: 450,
+                            margin: 5,
+                            bind: {
+                                value: '{rec.beginDate}'
+                            }
+                        }
+                    ]
                 },
                 {
-                    fieldLabel: '部门名称',
-                    allowBlank: false,
-                    hidden: true,
-                    bind: {
-                        value: '{rec.orgName}'
-                    }
+                    xtype: 'panel',
+                    layout: {
+                        type: 'hbox',
+                    },
+                    width: '100%',
+                    border: false,
+                    items: [
+                        {
+                            fieldLabel: '计划状态',
+                            beforeLabelTextTpl: '<span class="field-required" data-qtip="必填选项">*</span>',
+                            xtype: 'scheduleDictCombobox',
+                            dictType: '个人计划状态',
+                            allowBlank: false,
+                            labelAlign: 'right',
+                            labelWidth: 80,
+                            width: 450,
+                            margin: 5,
+                            bind: {
+                                value: '{rec.state}'
+                            }
+                        },
+                        {
+                            fieldLabel: '结束日期',
+                            beforeLabelTextTpl: '<span class="field-required" data-qtip="必填选项">*</span>',
+                            allowBlank: false,
+                            xtype: 'datefield',
+                            format: 'Y-m-d',
+                            minValue: new Date(),
+                            labelAlign: 'right',
+                            labelWidth: 80,
+                            width: 450,
+                            margin: 5,
+                            bind: {
+                                value: '{rec.endDate}'
+                            }
+                        }
+                    ]
                 },
                 {
-                    fieldLabel: '计划类型',
-                    xtype: 'scheduleDictCombobox',
-                    dictType: '个人计划类型',
-                    allowBlank: false,
-                    bind: {
-                        value: '{rec.planType}'
-                    }
-                },
-                {
-                    fieldLabel: '计划状态',
-                    xtype: 'scheduleDictCombobox',
-                    dictType: '个人计划状态',
-                    allowBlank: false,
-                    bind: {
-                        value: '{rec.state}'
-                    }
-                },
-                {
-                    fieldLabel: '开始日期',
-                    allowBlank: false,
-                    xtype: 'datefield',
-                    format: 'Y-m-d',
-                    minValue: new Date(),
-                    bind: {
-                        value: '{rec.beginDate}'
-                    }
-                },
-                {
-                    fieldLabel: '结束日期',
-                    allowBlank: false,
-                    xtype: 'datefield',
-                    format: 'Y-m-d',
-                    minValue: new Date(),
-                    bind: {
-                        value: '{rec.endDate}'
-                    }
-                },
-                {
-                    fieldLabel: '标题',
-                    allowBlank: false,
-                    bind: {
-                        value: '{rec.title}'
-                    }
-                },
-                {
-                    fieldLabel: '内容',
-                    allowBlank: false,
-                    xtype: 'textarea',
-                    bind: {
-                        value: '{rec.content}'
-                    }
+                    xtype: 'panel',
+                    layout: {
+                        type: 'hbox',
+                    },
+                    width: '100%',
+                    border: false,
+                    items: [
+                        {
+                            fieldLabel: '内容',
+                            beforeLabelTextTpl: '<span class="field-required" data-qtip="必填选项">*</span>',
+                            xtype: 'htmleditor',
+                            allowBlank: false,
+                            labelAlign: 'right',
+                            labelWidth: 80,
+                            margin: 5,
+                            bind: {
+                                value: '{rec.content}'
+                            }
+                        }
+                    ]
                 }
             ]
+
         }
     ]
-});
+})
+;

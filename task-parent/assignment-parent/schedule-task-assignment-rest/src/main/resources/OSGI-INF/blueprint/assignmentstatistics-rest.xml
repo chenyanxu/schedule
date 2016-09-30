@@ -7,7 +7,7 @@
     <reference id="assignmentStatisticsService" interface="com.kalix.schedule.task.assignment.api.biz.IAssignmentStatisticsBeanService"/>
     <camelContext id="assignmentStatisticsCamel" xmlns="http://camel.apache.org/schema/blueprint">
         <restConfiguration component="servlet" bindingMode="json">
-            <dataFormatProperty key="prettyPrint" value="true"/>
+            <dataFormatProperty key="prettyPrint" value="${rest.pretty}"/>
         </restConfiguration>
 
         <rest path="/assignmentstatistics/query" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">

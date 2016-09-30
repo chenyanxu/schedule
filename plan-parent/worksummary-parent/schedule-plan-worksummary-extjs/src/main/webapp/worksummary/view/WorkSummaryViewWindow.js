@@ -12,92 +12,152 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryViewWindow', {
     ],
     alias: 'widget.worksummaryViewWindow',
     xtype: "worksummaryViewWindow",
-    width: 400,
+    width: 930,
+    height: 510,
     //todo 在此修改查看字段
     items: [
         {
-            defaults: {readOnly: true},
-            xtype: 'baseForm',
+            xtype: 'panel',
+            layout: {
+                type: 'vbox',
+                align: 'center'
+            },
+            border: false,
+            width: '100%',
             items: [
                 {
-                    fieldLabel: '用户id',
-                    allowBlank: false,
-                    hidden: true,
-                    bind: {
-                        value: '{rec.userId}'
-                    }
+                    xtype: 'panel',
+                    layout: {
+                        type: 'hbox',
+                    },
+                    width: '100%',
+                    border: false,
+                    items: [
+                        {
+                            fieldLabel: '标题',
+                            xtype: 'textfield',
+                            allowBlank: false,
+                            labelAlign: 'right',
+                            labelWidth: 80,
+                            width: 450,
+                            margin: '10 5 5 5',
+                            readOnly: true,
+                            bind: {
+                                value: '{rec.title}'
+                            }
+                        },
+                        {
+                            fieldLabel: '总结类型',
+                            xtype: 'scheduleDictCombobox',
+                            dictType: '总结类型',
+                            allowBlank: false,
+                            labelAlign: 'right',
+                            labelWidth: 80,
+                            width: 450,
+                            margin: '10 5 5 5',
+                            readOnly: true,
+                            bind: {
+                                value: '{rec.workType}'
+                            }
+                        }
+                    ]
                 },
                 {
-                    fieldLabel: '标题',
-                    allowBlank: false,
-                    bind: {
-                        value: '{rec.title}'
-                    }
+                    xtype: 'panel',
+                    layout: {
+                        type: 'hbox',
+                    },
+                    width: '100%',
+                    border: false,
+                    items: [
+                        {
+                            fieldLabel: '部门名称',
+                            xtype: 'textfield',
+                            allowBlank: false,
+                            labelAlign: 'right',
+                            labelWidth: 80,
+                            width: 450,
+                            margin: 5,
+                            readOnly: true,
+                            bind: {
+                                value: '{rec.orgName}'
+                            }
+                        },
+                        {
+                            fieldLabel: '用户姓名',
+                            xtype: 'textfield',
+                            allowBlank: false,
+                            labelAlign: 'right',
+                            labelWidth: 80,
+                            width: 450,
+                            margin: 5,
+                            readOnly: true,
+                            bind: {
+                                value: '{rec.userName}'
+                            }
+                        }
+                    ]
                 },
                 {
-                    fieldLabel: '用户名称',
-                    allowBlank: false,
-                    bind: {
-                        value: '{rec.userName}'
-                    }
+                    xtype: 'panel',
+                    layout: {
+                        type: 'hbox',
+                    },
+                    width: '100%',
+                    border: false,
+                    items: [
+                        {
+                            fieldLabel: '开始日期',
+                            allowBlank: false,
+                            xtype: 'datefield',
+                            format: 'Y-m-d',
+                            labelAlign: 'right',
+                            labelWidth: 80,
+                            width: 450,
+                            margin: 5,
+                            readOnly: true,
+                            bind: {
+                                value: '{rec.beginDate}'
+                            }
+                        },
+                        {
+                            fieldLabel: '结束日期',
+                            allowBlank: false,
+                            xtype: 'datefield',
+                            format: 'Y-m-d',
+                            labelAlign: 'right',
+                            labelWidth: 80,
+                            width: 450,
+                            margin: 5,
+                            readOnly: true,
+                            bind: {
+                                value: '{rec.endDate}'
+                            }
+                        }
+                    ]
                 },
                 {
-                    fieldLabel: '部门id',
-                    allowBlank: false,
-                    hidden: true,
-                    bind: {
-                        value: '{rec.orgId}'
-                    }
-                },
-                {
-                    fieldLabel: '部门code',
-                    allowBlank: false,
-                    hidden: true,
-                    bind: {
-                        value: '{rec.orgCode}'
-                    }
-                },
-                {
-                    fieldLabel: '部门名称',
-                    allowBlank: false,
-                    bind: {
-                        value: '{rec.orgName}'
-                    }
-                },
-                {
-                    fieldLabel: '总结类型',
-                    xtype: 'scheduleDictCombobox',
-                    dictType: '总结类型',
-                    allowBlank: false,
-                    bind: {
-                        value: '{rec.workType}'
-                    }
-                },
-                {
-                    fieldLabel: '开始日期',
-                    allowBlank: false,
-                    xtype: 'datefield',
-                    format: 'Y-m-d',
-                    bind: {
-                        value: '{rec.beginDate}'
-                    }
-                },
-                {
-                    fieldLabel: '结束日期',
-                    allowBlank: false,
-                    xtype: 'datefield',
-                    format: 'Y-m-d',
-                    bind: {
-                        value: '{rec.endDate}'
-                    }
-                },
-                {
-                    fieldLabel: '内容',
-                    allowBlank: false,
-                    xtype: 'textarea',
-                    bind: {
-                        value: '{rec.content}'
-                    }
+                    xtype: 'panel',
+                    layout: {
+                        type: 'hbox',
+                    },
+                    width: '100%',
+                    border: false,
+                    items: [
+                        {
+                            fieldLabel: '内容',
+                            xtype: 'htmleditor',
+                            allowBlank: false,
+                            labelAlign: 'right',
+                            labelWidth: 80,
+                            margin: 5,
+                            height: 270,
+                            readOnly: true,
+                            bind: {
+                                value: '{rec.content}'
+                            }
+                        }
+                    ]
                 }
             ]
         }

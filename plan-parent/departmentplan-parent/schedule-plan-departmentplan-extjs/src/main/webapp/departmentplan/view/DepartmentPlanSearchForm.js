@@ -7,23 +7,30 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchForm', {
     extend: 'kalix.view.components.common.BaseSearchForm',
     alias: 'widget.departmentplanSearchForm',
     requires: [
-        'kalix.schedule.scheduleDict.component.ScheduleDictCombobox'
+        'kalix.schedule.scheduleDict.component.ScheduleDictCombobox',
+        'kalix.view.MultiComboBox'
     ],
     xtype: 'departmentplanSearchForm',
     storeId: 'departmentplanStore',
     items: [
         {
-            xtype: 'textfield',
-            fieldLabel: '用户id',
-            labelAlign: 'right',
-            labelWidth: 60,
-            width: 200,
-            name: 'userId',
-            hidden: true
+            xtype: 'multiComboBox',
+            valueFieldName: 'userId:in',
+            displayText: '用    户',
+            menuItemValue: 'id',
+            menuItemText: 'name',
+            storeUrl: '/kalix/camel/rest/users/' + Ext.util.Cookies.get('currentUserId') + '/orgs/all/users',
+            'callback': function () {
+                var store = this.findParentByType('departmentplanSearchForm').gridStore;
+                if (store) {
+                    store.currentPage = 1;
+                    store.load();
+                }
+            }
         },
         {
             xtype: 'textfield',
-            fieldLabel: '用户',
+            fieldLabel: '用户姓名',
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
@@ -55,7 +62,8 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchForm', {
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
-            name: 'title'
+            name: 'title',
+            hidden: true
         },
         {
             xtype: 'textfield',
