@@ -51,7 +51,8 @@ Ext.define('kalix.schedule.template.view.TemplateGrid', {
                 text: '计划类型',
                 xtype: 'scheduleDictGridColumn',
                 dictType: '部门计划类型',
-                dataIndex: 'planType', renderer: null
+                dataIndex: 'planType',
+                renderer: null
             },
             {
                 xtype: 'securityGridColumnCommon',

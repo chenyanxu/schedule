@@ -7,6 +7,9 @@
 
 Ext.define('kalix.schedule.template.view.TemplateViewWindow', {
     extend: 'kalix.view.components.common.BaseWindow',
+    requires: [
+        'kalix.schedule.scheduleDict.component.ScheduleDictCombobox'
+    ],
     alias: 'widget.templateViewWindow',
     xtype: "templateViewWindow",
     width: 400,
@@ -40,33 +43,25 @@ Ext.define('kalix.schedule.template.view.TemplateViewWindow', {
                 {
                     fieldLabel: '计划类型',
                     allowBlank: false,
-                    xtype: 'numberfield',
+                    xtype: 'scheduleDictCombobox',
+                    dictType: '部门计划类型',
                     bind: {
                         value: '{rec.planType}'
                     }
                 },
                 {
-                    fieldLabel: '计划开始时间',
+                    fieldLabel: '计划天数',
                     allowBlank: false,
-                    xtype: 'datefield',
-                    format: 'Y-m-d',
+                    xtype: 'numberfield',
                     bind: {
-                        value: '{rec.beginDate}'
-                    }
-                },
-                {
-                    fieldLabel: '计划结束时间',
-                    allowBlank: false,
-                    xtype: 'datefield',
-                    format: 'Y-m-d',
-                    bind: {
-                        value: '{rec.endDate}'
+                        value: '{rec.planDate}'
                     }
                 },
                 {
                     fieldLabel: '计划状态',
                     allowBlank: false,
-                    xtype: 'numberfield',
+                    xtype: 'scheduleDictCombobox',
+                    dictType: '部门计划状态',
                     bind: {
                         value: '{rec.state}'
                     }
@@ -74,6 +69,7 @@ Ext.define('kalix.schedule.template.view.TemplateViewWindow', {
                 {
                     fieldLabel: '任务ID',
                     allowBlank: false,
+                    hidden: true,
                     bind: {
                         value: '{rec.taskIds}'
                     }

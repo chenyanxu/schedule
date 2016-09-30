@@ -33,5 +33,10 @@
             <artifactId>schedule-plan-departmentplan-api</artifactId>
             <version>${globle.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.kalix.schedule.task.assignment</groupId>
+            <artifactId>schedule-task-assignment-api</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>

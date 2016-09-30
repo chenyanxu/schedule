@@ -147,7 +147,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
                 {
                     permission: 'template',
                     tooltip: '存为模板',
-                    handler: 'onSaveTemplate',
+                    handler: 'onTemplate',
                     getClass: function (v, meta, record) {
                         if (record.data.state == 2) {
                             return "kalix_hidden";

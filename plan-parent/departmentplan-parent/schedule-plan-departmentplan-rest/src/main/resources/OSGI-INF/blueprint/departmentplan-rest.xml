@@ -77,5 +77,14 @@
                 <to uri="bean:workreportService?method=getEntityByPlanId(${header.id}, ${header.page}, ${header.limit})"/>
             </get>
         </rest>
+        <!-- 添加部门计划模板信息 -->
+        <rest path="/departmentplans/{id}/templete" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+            <!-- this is a rest POST to create a departmentplan template -->
+            <post id="route-addDepartmentPlanTemplate" type="com.kalix.schedule.plan.departmentplan.entities.DepartmentPlanBean"
+                  outType="com.kalix.framework.core.api.persistence.JsonStatus">
+                <description>Create a DepartmentPlanTemplate</description>
+                <to uri="bean:departmentplanService?method=saveTemplate"/>
+            </post>
+        </rest>
     </camelContext>
 </blueprint>

@@ -48,5 +48,15 @@
                 <to uri="bean:templateService?method=deleteEntity(${header.id})"/>
             </delete>
         </rest>
+
+        <rest path="/templates/departmentplan/new" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+            <description>template rest service</description>
+            <!-- this is a rest POST to create a template -->
+            <post id="route-addTemplateByDepartmentPlanId" type="com.kalix.schedule.plan.template.entities.TemplateBean"
+                  outType="com.kalix.framework.core.api.persistence.JsonStatus">
+                <description>Create a Template</description>
+                <to uri="bean:templateService?method=saveTemplateEntity"/>
+            </post>
+        </rest>
     </camelContext>
 </blueprint>

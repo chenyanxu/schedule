@@ -13,5 +13,11 @@
     </bean>
 
     <service interface="com.kalix.schedule.plan.template.api.dao.ITemplateBeanDao" ref="templateBeanDaoImpl"/>
+
+    <bean id="assignmentTemplateBeanDaoImpl" class="com.kalix.schedule.plan.template.dao.AssignmentTemplateBeanDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+    </bean>
+
+    <service interface="com.kalix.schedule.plan.template.api.dao.IAssignmentTemplateBeanDao" ref="assignmentTemplateBeanDaoImpl"/>
 </blueprint>
 
