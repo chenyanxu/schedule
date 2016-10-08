@@ -86,7 +86,7 @@ public class DepartmentPlanBeanServiceImpl extends ShiroGenericBizServiceImpl<ID
     public JsonData getAllEntityByQuery(Integer page, Integer limit, String jsonStr) {
         Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
         // 不允许查询全部计划，所以在没有code情况下，添加一个不可能存在的code，保证查询不出数据
-        if (jsonMap.get("orgCode") == null || "".equals(jsonMap.get("orgCode")))  {
+        if (jsonMap.get("orgCode%") == null || "".equals(jsonMap.get("orgCode%")))  {
             jsonMap.put("orgCode", "-1");
         }
         return super.getAllEntityByQuery(page, limit, SerializeUtil.serializeJson(jsonMap));
