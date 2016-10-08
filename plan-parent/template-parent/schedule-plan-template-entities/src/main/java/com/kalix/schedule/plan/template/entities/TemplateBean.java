@@ -5,6 +5,7 @@ import com.kalix.framework.core.api.persistence.PersistentEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import java.util.Date;
 
@@ -45,9 +46,10 @@ public class TemplateBean extends PersistentEntity {
      */
     private String orgName;
     /**
-     * @describe 部门计划ID
+     * @describe 部门计划ID，不需要存到数据库
      */
-    private Integer departmentplanId;
+    @Transient
+    private Long departmentplanId;
     /**
      * @describe 计划标题
      */
@@ -61,21 +63,15 @@ public class TemplateBean extends PersistentEntity {
      */
     private Integer planType;
     /**
-     * @describe 计划开始时间
+     * @describe 计划天数
      */
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Date beginDate;
-    /**
-     * @describe 计划结束时间
-     */
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Date endDate;
+    private Integer planDate;
     /**
      * @describe 计划状态
      */
     private Integer state;
     /**
-     * @describe 任务ID
+     * @describe 模板管理的任务模板ID
      */
     private String taskIds;
 
@@ -127,11 +123,11 @@ public class TemplateBean extends PersistentEntity {
         this.orgName = orgName;
     }
 
-    public Integer getDepartmentplanId() {
+    public Long getDepartmentplanId() {
         return departmentplanId;
     }
 
-    public void setDepartmentplanId(Integer departmentplanId) {
+    public void setDepartmentplanId(Long departmentplanId) {
         this.departmentplanId = departmentplanId;
     }
 
@@ -159,20 +155,12 @@ public class TemplateBean extends PersistentEntity {
         this.planType = planType;
     }
 
-    public Date getBeginDate() {
-        return this.beginDate;
+    public Integer getPlanDate() {
+        return planDate;
     }
 
-    public void setBeginDate(Date beginDate) {
-        this.beginDate = beginDate;
-    }
-
-    public Date getEndDate() {
-        return this.endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setPlanDate(Integer planDate) {
+        this.planDate = planDate;
     }
 
     public Integer getState() {

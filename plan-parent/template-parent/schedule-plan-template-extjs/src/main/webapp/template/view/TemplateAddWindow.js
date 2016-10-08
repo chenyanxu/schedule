@@ -7,11 +7,11 @@
 Ext.define('kalix.schedule.template.view.TemplateAddWindow', {
     extend: 'kalix.view.components.common.BaseWindow',
     requires: [
-        'kalix.controller.BaseWindowController'
+        'kalix.schedule.template.controller.TemplateAddWindowController'
     ],
     alias: 'widget.templateAddWindow',
     controller: {
-        type: 'baseWindowController'
+        type: 'templateAddWindowController'
     },
     xtype: "templateAddWindow",
     width: 400,

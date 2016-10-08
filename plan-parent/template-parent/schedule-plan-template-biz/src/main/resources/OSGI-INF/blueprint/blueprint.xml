@@ -7,15 +7,28 @@
     <reference id="shiroService" interface="com.kalix.framework.core.api.security.IShiroService"/>
     <reference id="templateBeanDao" interface="com.kalix.schedule.plan.template.api.dao.ITemplateBeanDao"/>
     <reference id="departmentplanBeanService" interface="com.kalix.schedule.plan.departmentplan.api.biz.IDepartmentPlanBeanService"/>
+    <reference id="assignmentBeanService" interface="com.kalix.schedule.task.assignment.api.biz.IAssignmentBeanService"/>
+
+    <reference id="assignmentTemplateBeanDao" interface="com.kalix.schedule.plan.template.api.dao.IAssignmentTemplateBeanDao"/>
 
     <bean id="templateBeanServiceImpl" class="com.kalix.schedule.plan.template.biz.TemplateBeanServiceImpl">
         <property name="dao" ref="templateBeanDao"/>
         <property name="shiroService" ref="shiroService"/>
         <property name="departmentplanBeanService" ref="departmentplanBeanService"/>
+        <property name="assignmentBeanService" ref="assignmentBeanService"/>
+        <property name="assignmentTemplateBeanService" ref="assignmentTemplateBeanServiceImpl"/>
     </bean>
 
     <service id="templateBeanService" interface="com.kalix.schedule.plan.template.api.biz.ITemplateBeanService"
              ref="templateBeanServiceImpl">
+    </service>
+
+    <bean id="assignmentTemplateBeanServiceImpl" class="com.kalix.schedule.plan.template.biz.AssignmentTemplateBeanServiceImpl">
+        <property name="dao" ref="assignmentTemplateBeanDao"/>
+        <property name="shiroService" ref="shiroService"/>
+    </bean>
+    <service id="assignmentTemplateBeanService" interface="com.kalix.schedule.plan.template.api.biz.IAssignmentTemplateBeanService"
+             ref="assignmentTemplateBeanServiceImpl">
     </service>
 </blueprint>
 

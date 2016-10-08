@@ -2,6 +2,7 @@ package com.kalix.schedule.plan.departmentplan.api.biz;
 
 import com.kalix.framework.core.api.biz.IBizService;
 import com.kalix.framework.core.api.persistence.JsonData;
+import com.kalix.framework.core.api.persistence.JsonStatus;
 import com.kalix.schedule.plan.departmentplan.entities.DepartmentPlanBean;
 
 /**

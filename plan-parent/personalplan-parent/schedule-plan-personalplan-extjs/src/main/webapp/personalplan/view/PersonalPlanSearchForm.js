@@ -9,18 +9,25 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchForm', {
     xtype: 'personalplanSearchForm',
     requires: [
         'kalix.admin.user.component.UserTagField',
-        'kalix.admin.user.component.UserOrgComboBox'
+        'kalix.admin.user.component.UserOrgComboBox',
+        'kalix.view.MultiComboBox'
     ],
     storeId: 'personalplanStore',
     items: [
         {
-            xtype: 'textfield',
-            fieldLabel: '用户id',
-            labelAlign: 'right',
-            labelWidth: 60,
-            width: 200,
-            name: 'userId',
-            hidden: true
+            xtype: 'multiComboBox',
+            valueFieldName: 'userId:in',
+            displayText: '用    户',
+            menuItemValue: 'id',
+            menuItemText: 'name',
+            storeUrl: '/kalix/camel/rest/users/' + Ext.util.Cookies.get('currentUserId') + '/orgs/all/users',
+            'callback': function () {
+                var store = this.findParentByType('personalplanSearchForm').gridStore;
+                if (store) {
+                    store.currentPage = 1;
+                    store.load();
+                }
+            }
         },
         {
             xtype: 'textfield',
@@ -28,7 +35,8 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchForm', {
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
-            name: 'userName'
+            name: 'userName',
+            hidden: true
         },
         {
             xtype: 'textfield',

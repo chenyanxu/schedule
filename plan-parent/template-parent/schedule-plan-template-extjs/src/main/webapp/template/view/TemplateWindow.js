@@ -31,12 +31,14 @@ Ext.define('kalix.schedule.template.view.TemplateWindow', {
                 {
                     fieldLabel: '用户ID',
                     allowBlank: false,
+                    hidden: true,
                     bind: {
                         value: '{rec.userId}'
                     }
                 },
                 {
                     fieldLabel: '用户姓名',
+                    hidden: true,
                     allowBlank: false,
                     bind: {
                         value: '{rec.userName}'
@@ -44,6 +46,7 @@ Ext.define('kalix.schedule.template.view.TemplateWindow', {
                 },
                 {
                     fieldLabel: '组织机构ID',
+                    hidden: true,
                     allowBlank: false,
                     bind: {
                         value: '{rec.orgId}'
@@ -51,6 +54,7 @@ Ext.define('kalix.schedule.template.view.TemplateWindow', {
                 },
                 {
                     fieldLabel: '组织机构编码',
+                    hidden: true,
                     allowBlank: false,
                     bind: {
                         value: '{rec.orgCode}'
@@ -58,6 +62,7 @@ Ext.define('kalix.schedule.template.view.TemplateWindow', {
                 },
                 {
                     fieldLabel: '组织机构名称',
+                    hidden: true,
                     allowBlank: false,
                     bind: {
                         value: '{rec.orgName}'
@@ -82,28 +87,16 @@ Ext.define('kalix.schedule.template.view.TemplateWindow', {
                     xtype: 'scheduleDictCombobox',
                     dictType: '部门计划类型',
                     allowBlank: false,
-                    xtype: 'numberfield',
                     bind: {
                         value: '{rec.planType}'
                     },
                     renderer: null
                 },
                 {
-                    fieldLabel: '计划开始时间',
+                    fieldLabel: '计划天数',
                     allowBlank: false,
-                    xtype: 'datefield',
-                    format: 'Y-m-d',
                     bind: {
-                        value: '{rec.beginDate}'
-                    }
-                },
-                {
-                    fieldLabel: '计划结束时间',
-                    allowBlank: false,
-                    xtype: 'datefield',
-                    format: 'Y-m-d',
-                    bind: {
-                        value: '{rec.endDate}'
+                        value: '{rec.planDate}'
                     }
                 },
                 {
@@ -111,7 +104,6 @@ Ext.define('kalix.schedule.template.view.TemplateWindow', {
                     xtype: 'scheduleDictCombobox',
                     dictType: '部门计划状态',
                     allowBlank: false,
-                    xtype: 'numberfield',
                     bind: {
                         value: '{rec.state}'
                     },
@@ -119,6 +111,7 @@ Ext.define('kalix.schedule.template.view.TemplateWindow', {
                 },
                 {
                     fieldLabel: '任务ID',
+                    hidden: true,
                     allowBlank: false,
                     bind: {
                         value: '{rec.taskIds}'

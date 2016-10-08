@@ -1,8 +1,7 @@
 package com.kalix.schedule.plan.template.api.biz;
 
 import com.kalix.framework.core.api.biz.IBizService;
-import com.kalix.framework.core.api.persistence.JsonStatus;
-import com.kalix.schedule.plan.template.entities.TemplateBean;
+import com.kalix.schedule.plan.template.entities.AssignmentTemplateBean;
 
 /**
  * @类描述：应用服务接口.
@@ -12,7 +11,6 @@ import com.kalix.schedule.plan.template.entities.TemplateBean;
  * @修改时间：
  * @修改备注：
  */
-public interface ITemplateBeanService extends IBizService<TemplateBean> {
+public interface IAssignmentTemplateBeanService extends IBizService<AssignmentTemplateBean> {
     //在此添加新的业务方法
-    JsonStatus saveTemplateEntity(TemplateBean entity);
 }

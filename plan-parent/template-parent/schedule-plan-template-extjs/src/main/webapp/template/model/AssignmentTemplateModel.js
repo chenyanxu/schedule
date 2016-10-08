@@ -6,13 +6,13 @@
  */
 
 
-Ext.define('kalix.schedule.template.model.TemplateModel', {
+Ext.define('kalix.schedule.template.model.AssignmentTemplateModel', {
     extend: 'kalix.model.BaseModel',
 
     //todo 在此修改模型定义
     fields: [
         {
-            name: 'templateName',
+            name: 'planTemplateId',
             validators: [{type: 'presence'}]
         },
         {
@@ -31,25 +31,40 @@ Ext.define('kalix.schedule.template.model.TemplateModel', {
             name: 'orgName'
         },
         {
-            name: 'departmentplanId'
+            name: 'title'
         },
         {
-            name: 'title'
+            name: 'sourceType'
+        },
+        {
+            name: 'sourceId'
         },
         {
             name: 'content'
         },
         {
-            name: 'planType'
-        },
-        {
-            name: 'planDate'
-        },
-        {
             name: 'state'
         },
         {
-            name: 'taskIds'
+            name: 'taskDate'
+        },
+        {
+            name: 'workHours'
+        },
+        {
+            name: 'head'
+        },
+        {
+            name: 'header'
+        },
+        {
+            name: 'participant'
+        },
+        {
+            name: 'rewardStandard'
+        },
+        {
+            name: 'instruction'
         }
     ]
 });
