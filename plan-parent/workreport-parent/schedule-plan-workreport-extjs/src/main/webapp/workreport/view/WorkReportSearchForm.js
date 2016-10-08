@@ -14,21 +14,6 @@ Ext.define('kalix.plan.workreport.view.WorkReportSearchForm', {
     storeId: 'workreportStore',
     items: [
         {
-            xtype: 'multiComboBox',
-            valueFieldName: 'userId:in',
-            displayText: '用    户',
-            menuItemValue: 'id',
-            menuItemText: 'name',
-            storeUrl: '/kalix/camel/rest/users/' + Ext.util.Cookies.get('currentUserId') + '/orgs/all/users',
-            'callback': function () {
-                var store = this.findParentByType('workreportSearchForm').gridStore;
-                if (store) {
-                    store.currentPage = 1;
-                    store.load();
-                }
-            }
-        },
-        {
             xtype: 'textfield',
             fieldLabel: '用户姓名',
             labelAlign: 'right',

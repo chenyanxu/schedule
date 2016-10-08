@@ -9,26 +9,10 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchForm', {
     xtype: 'personalplanSearchForm',
     requires: [
         'kalix.admin.user.component.UserTagField',
-        'kalix.admin.user.component.UserOrgComboBox',
-        'kalix.view.MultiComboBox'
+        'kalix.admin.user.component.UserOrgComboBox'
     ],
     storeId: 'personalplanStore',
     items: [
-        {
-            xtype: 'multiComboBox',
-            valueFieldName: 'userId:in',
-            displayText: '用    户',
-            menuItemValue: 'id',
-            menuItemText: 'name',
-            storeUrl: '/kalix/camel/rest/users/' + Ext.util.Cookies.get('currentUserId') + '/orgs/all/users',
-            'callback': function () {
-                var store = this.findParentByType('personalplanSearchForm').gridStore;
-                if (store) {
-                    store.currentPage = 1;
-                    store.load();
-                }
-            }
-        },
         {
             xtype: 'textfield',
             fieldLabel: '用户姓名',

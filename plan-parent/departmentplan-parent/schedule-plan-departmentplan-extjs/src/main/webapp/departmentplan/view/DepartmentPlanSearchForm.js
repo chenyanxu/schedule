@@ -7,27 +7,11 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchForm', {
     extend: 'kalix.view.components.common.BaseSearchForm',
     alias: 'widget.departmentplanSearchForm',
     requires: [
-        'kalix.schedule.scheduleDict.component.ScheduleDictCombobox',
-        'kalix.view.MultiComboBox'
+        'kalix.schedule.scheduleDict.component.ScheduleDictCombobox'
     ],
     xtype: 'departmentplanSearchForm',
     storeId: 'departmentplanStore',
     items: [
-        {
-            xtype: 'multiComboBox',
-            valueFieldName: 'userId:in',
-            displayText: '用    户',
-            menuItemValue: 'id',
-            menuItemText: 'name',
-            storeUrl: '/kalix/camel/rest/users/' + Ext.util.Cookies.get('currentUserId') + '/orgs/all/users',
-            'callback': function () {
-                var store = this.findParentByType('departmentplanSearchForm').gridStore;
-                if (store) {
-                    store.currentPage = 1;
-                    store.load();
-                }
-            }
-        },
         {
             xtype: 'textfield',
             fieldLabel: '用户姓名',
