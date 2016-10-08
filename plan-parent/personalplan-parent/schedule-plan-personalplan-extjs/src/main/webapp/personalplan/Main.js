@@ -10,8 +10,7 @@ Ext.define('kalix.plan.personalplan.Main', {
     xtype: 'personalplanMain',
     requires: [
         'kalix.plan.personalplan.view.PersonalPlanGrid',
-        'kalix.plan.personalplan.view.PersonalPlanSearchForm',
-        'kalix.schedule.scheduleDict.component.ScheduleDictCombobox'
+        'kalix.plan.personalplan.view.PersonalPlanSearchForm'
     ],
 
     items: [

@@ -6,7 +6,7 @@ Ext.define('kalix.plan.workreport.controller.WorkReportSearchController', {
     alias: 'controller.workreportsearchController',
     onItemClick: function (view, record, item, index, e) {
         var searchForm = this.getView().items.getAt(1).items.getAt(0);
-        var orgCode = searchForm.items.getAt(2);
+        var orgCode = searchForm.items.getAt(0);
         orgCode.originalValue = record.data.code;
         orgCode.setValue(record.data.code);
 
@@ -15,7 +15,7 @@ Ext.define('kalix.plan.workreport.controller.WorkReportSearchController', {
     },
     onLoad: function(nodes){
         var searchForm = this.getView().items.getAt(1).items.getAt(0);
-        var orgCode = searchForm.items.getAt(2);
+        var orgCode = searchForm.items.getAt(0);
         if (nodes.data.length > 0) {
             var node = nodes.data.items[0];
             orgCode.originalValue = node.data.code;

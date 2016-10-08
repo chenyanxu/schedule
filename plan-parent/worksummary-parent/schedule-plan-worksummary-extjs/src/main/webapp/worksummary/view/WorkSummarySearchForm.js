@@ -12,16 +12,10 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchForm', {
     alias: 'widget.worksummarySearchForm',
     xtype: 'worksummarySearchForm',
     storeId: 'worksummaryStore',
+    //==custom property
+    isHiddenMultiComboBox: true,
+    //custom property
     items: [
-        {
-            xtype: 'textfield',
-            fieldLabel: '用户姓名',
-            labelAlign: 'right',
-            labelWidth: 60,
-            width: 200,
-            name: 'userName',
-            hidden: true
-        },
         {
             xtype: 'textfield',
             fieldLabel: '部门code',
@@ -32,40 +26,27 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchForm', {
             hidden: true
         },
         {
-            xtype: 'textfield',
-            fieldLabel: '部门id',
-            labelAlign: 'right',
-            labelWidth: 60,
-            width: 200,
-            name: 'orgId',
-            hidden: true
-        },
-        {
-            xtype: 'textfield',
-            fieldLabel: '部门名',
-            labelAlign: 'right',
-            labelWidth: 60,
-            width: 200,
-            name: 'orgName',
-            hidden: true
-        },
-        {
-            xtype: 'textfield',
-            fieldLabel: '标题',
-            labelAlign: 'right',
-            labelWidth: 60,
-            width: 200,
-            name: 'title',
-            hidden: true
-        },
-        {
-            xtype: 'textfield',
-            fieldLabel: '内容',
-            labelAlign: 'right',
-            labelWidth: 60,
-            width: 200,
-            name: 'content',
-            hidden: true
+            xtype: 'multiComboBox',
+            valueFieldName: 'userId:in',
+            displayText: '用    户',
+            menuItemValue: 'id',
+            menuItemText: 'name',
+            storeUrl: '/kalix/camel/rest/users/' + Ext.util.Cookies.get('currentUserId') + '/orgs/all/users',
+            'callback': function () {
+                var store = this.findParentByType('worksummarySearchForm').gridStore;
+                if (store) {
+                    store.currentPage = 1;
+                    store.load();
+                }
+            },
+            listeners: {
+                'render': function() {
+                    var isHidden = this.findParentByType('worksummarySearchForm').isHiddenMultiComboBox;
+                    if (isHidden) {
+                        this.hidden = true;
+                    }
+                }
+            }
         },
         {
             fieldLabel: '总结类型',
@@ -97,32 +78,6 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchForm', {
             labelAlign: 'right',
             width: 140,
             name: 'beginDate:end:lt'
-        },
-        {
-            xtype: 'datefield',
-            format: 'Y-m-d',
-            fieldLabel: '结束日期:',
-            labelAlign: 'right',
-            labelWidth: 120,
-            width: 260,
-            name: 'endDate:begin:gt',
-            hidden: true
-        },
-        {
-            xtype: 'displayfield',
-            hideLabel: true,
-            value: '-',
-            margin: '0 5 0 5',
-            hidden: true
-        },
-        {
-            xtype: 'datefield',
-            format: 'Y-m-d',
-            headLabel: true,
-            labelAlign: 'right',
-            width: 140,
-            name: 'endDate:end:lt',
-            hidden: true
         }
     ]
 });
