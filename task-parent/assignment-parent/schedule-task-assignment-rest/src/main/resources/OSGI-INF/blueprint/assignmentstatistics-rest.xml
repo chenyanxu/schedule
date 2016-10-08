@@ -16,7 +16,7 @@
             <!-- this is a rest GET to find all assignment -->
             <get id="route-getAllAssignmentStatistics" outType="com.kalix.framework.core.api.persistence.JsonData">
                 <description>Find all Assignments</description>
-                <to uri="bean:assignmentStatisticsService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
+                <to uri="bean:assignmentStatisticsService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr},${header.sort})"/>
             </get>
         </rest>
         <rest path="/assignmentcharts/column" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">

@@ -57,7 +57,7 @@
             <!-- this is a rest GET to find All personalplan -->
             <get id="route-getPersonalPlanSearch" outType="com.kalix.framework.core.api.persistence.JsonData">
                 <description>Find all PersonalPlans</description>
-                <to uri="bean:personalplanService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
+                <to uri="bean:personalplanService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr},${header.sort})"/>
             </get>
         </rest>
 

@@ -16,7 +16,7 @@
 
             <get id="route-getAllScheduleDict" outType="com.kalix.framework.core.api.persistence.JsonData">
                 <description>Find all ScheduleDict</description>
-                <to uri="bean:scheduleDictBeanService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
+                <to uri="bean:scheduleDictBeanService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr},${header.sort})"/>
             </get>
 
             <post id="route-addScheduleDict" type="com.kalix.schedule.system.dict.entities.ScheduleDictBean"

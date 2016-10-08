@@ -55,7 +55,7 @@
             <!-- this is a rest GET to find all departmentplansearch -->
             <get id="route-getDepartmentPlanSearch" outType="com.kalix.framework.core.api.persistence.JsonData">
                 <description>Find all DepartmentPlans</description>
-                <to uri="bean:departmentplanService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
+                <to uri="bean:departmentplanService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr},${header.sort})"/>
             </get>
         </rest>
 

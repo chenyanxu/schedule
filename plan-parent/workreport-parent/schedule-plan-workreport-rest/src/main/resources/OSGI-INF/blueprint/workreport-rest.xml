@@ -83,7 +83,7 @@
             <!-- this is a rest GET to find All workreport -->
             <get id="route-getWorkReportSearch" outType="com.kalix.framework.core.api.persistence.JsonData">
                 <description>Find all PersonalPlans</description>
-                <to uri="bean:workreportService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
+                <to uri="bean:workreportService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr},${header.sort})"/>
             </get>
         </rest>
     </camelContext>

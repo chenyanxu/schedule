@@ -17,7 +17,7 @@
             <!-- this is a rest GET to find all template -->
             <get id="route-getAllTemplate" outType="com.kalix.framework.core.api.persistence.JsonData">
                 <description>Find all Templates</description>
-                <to uri="bean:templateService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
+                <to uri="bean:templateService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr},${header.sort})"/>
             </get>
 
             <!-- this is a rest POST to create a template -->

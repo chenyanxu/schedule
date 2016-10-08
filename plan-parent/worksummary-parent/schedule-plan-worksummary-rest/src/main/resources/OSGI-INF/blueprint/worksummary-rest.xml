@@ -55,7 +55,7 @@
             <!-- this is a rest GET to find All worksummary -->
             <get id="route-getWorkSummarySearch" outType="com.kalix.framework.core.api.persistence.JsonData">
                 <description>Find all PersonalPlans</description>
-                <to uri="bean:worksummaryService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
+                <to uri="bean:worksummaryService?method=getAllEntityByQuery(${header.page},${header.limit},${header.jsonStr},${header.sort})"/>
             </get>
         </rest>
     </camelContext>
