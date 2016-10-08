@@ -23,7 +23,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchForm', {
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
-            name: 'orgCode',
+            name: 'orgCode%',
             hidden: true
         },
         {
