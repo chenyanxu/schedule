@@ -32,10 +32,15 @@ Ext.define('kalix.task.assignmentcharts.Main', {
         {
             xtype:'baseTreeContainer',
             width:400,
+            title:'机构列表',
+            iconCls: 'iconfont icon-organization-management',
             childItemMargin:0,
             tree: {
                 xtype: 'userorgtreelist',
                 reference:'userorgtreelist',
+                title:'',
+                iconCls:'',
+                tbar:null,
                 listeners: {
                     select: 'onItemClick',
                     load: 'onLoad'

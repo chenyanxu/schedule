@@ -15,9 +15,14 @@ Ext.define('kalix.plan.departmentplansearch.Main', {
         {
             xtype:'baseTreeContainer',
             width:400,
+            title:'机构列表',
+            iconCls: 'iconfont icon-organization-management',
             childItemMargin:0,
             tree: {
                 xtype: 'departmentplanuserorgtreeList',
+                title:'',
+                iconCls:'',
+                tbar:null,
                 listeners: {
                     select: 'onItemClick',
                     load: 'onLoad'
