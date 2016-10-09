@@ -2,10 +2,12 @@ package com.kalix.schedule.plan.personalplan.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.kalix.framework.core.api.persistence.PersistentEntity;
+import org.dozer.DozerBeanMapper;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.Date;
 
 /**
@@ -20,6 +22,14 @@ import java.util.Date;
 @Entity
 @Table(name = "schedule_personalplan")
 public class PersonalPlanBean extends PersistentEntity {
+
+    public PersonalPlanBean(PersonalPlanBean personalPlanBean, String userName, String orgName) {
+        new DozerBeanMapper().map(personalPlanBean, this);
+        this.userName = userName;
+        this.orgName = orgName;
+
+    }
+
     /**
      * @describe 用户id
      */
@@ -27,6 +37,7 @@ public class PersonalPlanBean extends PersistentEntity {
     /**
      * @describe 用户名
      */
+    @Transient
     private String userName;
     /**
      * @describe 组织机构id
@@ -39,6 +50,7 @@ public class PersonalPlanBean extends PersistentEntity {
     /**
      * @describe 组织机构名
      */
+    @Transient
     private String orgName;
     /**
      * @describe 标题
