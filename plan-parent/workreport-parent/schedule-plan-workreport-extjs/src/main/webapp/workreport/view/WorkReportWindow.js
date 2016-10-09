@@ -115,7 +115,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
 
                                     var workType = this.lookupViewModel().get('rec').get('workType');
                                     if (workType == 0) {//日报
-                                        title = year + month + day + '-日报';
+                                        title = year + '' + month + '' + day + '-日报';
                                     }
                                     if (workType == 1) {//周报
                                         title = year + '第' + week + '周-周报';
