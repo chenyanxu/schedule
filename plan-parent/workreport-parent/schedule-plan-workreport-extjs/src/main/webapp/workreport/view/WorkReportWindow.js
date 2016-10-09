@@ -123,7 +123,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                                         endDate.setDate(beginDate.getDate() + 4);
                                     }
                                     if (workType == 2) {//月报
-                                        title = year + month + '-月报';
+                                        title = year + '' + month + '-月报';
                                         beginDate = Ext.Date.getFirstDateOfMonth(nowDate);
                                         endDate = Ext.Date.getLastDateOfMonth(nowDate);
                                     }
