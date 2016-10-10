@@ -20,7 +20,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportSearchGrid', {
     },
     store: {
         type: 'workreportStore',
-        proxyUrl: '/kalix/camel/rest/workreportsearchs'
+        proxyUrl: CONFIG.restRoot + '/camel/rest/workreportsearchs'
     },
 
     //todo 在此修改grid显示列

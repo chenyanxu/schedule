@@ -32,7 +32,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchForm', {
             displayText: '用    户',
             menuItemValue: 'id',
             menuItemText: 'name',
-            storeUrl: '/kalix/camel/rest/users/' + Ext.util.Cookies.get('currentUserId') + '/orgs/all/users',
+            storeUrl: CONFIG.restRoot + '/camel/rest/users/' + Ext.util.Cookies.get('currentUserId') + '/orgs/all/users',
             'callback': function () {
                 var store = this.findParentByType('personalplanSearchForm').gridStore;
                 if (store) {

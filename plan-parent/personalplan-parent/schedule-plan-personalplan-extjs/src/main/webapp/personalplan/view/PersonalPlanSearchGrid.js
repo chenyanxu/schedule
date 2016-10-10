@@ -20,7 +20,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchGrid', {
     },
     store: {
         type: 'personalplanStore',
-        proxyUrl: '/kalix/camel/rest/personalplansearchs'
+        proxyUrl: CONFIG.restRoot + '/camel/rest/personalplansearchs'
     },
 
     //todo 在此修改grid显示列

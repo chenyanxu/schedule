@@ -11,5 +11,5 @@ Ext.define('kalix.task.assignment.store.ProgressStore', {
     xtype: 'progressStore',
     storeId: 'progressStore',
     autoLoad: true,
-    proxyUrl: '/kalix/camel/rest/progresss'
+    proxyUrl: CONFIG.restRoot + '/camel/rest/progresss'
 });

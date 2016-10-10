@@ -118,7 +118,7 @@ Ext.define('kalix.plan.departmentplan.view.PlanTemplateWindow', {
                                 'sourceId': departmentPlanId
                             };
                             jsonStr = Ext.JSON.encode(jsonStr);
-                            Ext.getCmp("planTemplateTaskPanel").store.proxy.url = '/kalix/camel/rest/assignments/' + departmentPlanId + '/tasks';
+                            Ext.getCmp("planTemplateTaskPanel").store.proxy.url = CONFIG.restRoot + '/camel/rest/assignments/' + departmentPlanId + '/tasks';
                             Ext.getCmp("planTemplateTaskPanel").store.proxy.extraParams = {'jsonStr': jsonStr};
                             Ext.getCmp("planTemplateTaskPanel").store.load();
                         }

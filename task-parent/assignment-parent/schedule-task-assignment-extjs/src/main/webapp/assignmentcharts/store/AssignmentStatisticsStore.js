@@ -5,5 +5,5 @@ Ext.define('kalix.task.assignmentcharts.store.AssignmentStatisticsStore', {
     xtype: 'assignmentStatisticsStore',
     storeId: 'assignmentStatisticsStore',
     autoLoad: true,
-    proxyUrl: '/kalix/camel/rest/assignmentstatistics/query'
+    proxyUrl: CONFIG.restRoot + '/camel/rest/assignmentstatistics/query'
 });

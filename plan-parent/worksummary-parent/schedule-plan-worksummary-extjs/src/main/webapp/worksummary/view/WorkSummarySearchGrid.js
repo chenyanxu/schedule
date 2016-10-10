@@ -20,7 +20,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchGrid', {
     },
     store: {
         type: 'worksummaryStore',
-        proxyUrl: '/kalix/camel/rest/worksummarysearchs'
+        proxyUrl: CONFIG.restRoot + '/camel/rest/worksummarysearchs'
     },
 
     //todo 在此修改grid显示列

@@ -11,5 +11,5 @@ Ext.define('kalix.task.assignment.store.ReadingStore', {
     xtype: 'readingStore',
     storeId: 'readingStore',
     autoLoad: true,
-    proxyUrl: '/kalix/camel/rest/assignments/-1/readings'
+    proxyUrl: CONFIG.restRoot + '/camel/rest/assignments/-1/readings'
 });

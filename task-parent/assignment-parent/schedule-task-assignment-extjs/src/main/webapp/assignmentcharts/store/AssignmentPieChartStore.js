@@ -9,7 +9,7 @@ Ext.define('kalix.task.assignmentcharts.store.AssignmentPieChartStore', {
     xtype: 'assignmentPieChartStore',
     storeId: 'assignmentPieChartStore',
     autoLoad: true,
-    proxyUrl: '/kalix/camel/rest/assignmentpiecharts/pie',
+    proxyUrl: CONFIG.restRoot + '/camel/rest/assignmentpiecharts/pie',
 
     fields:["orgName","percent"],
     data:[

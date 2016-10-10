@@ -10,5 +10,5 @@ Ext.define('kalix.plan.personalplan.store.PersonalPlanStore', {
     alias: 'store.personalplanStore',
     xtype: 'personalplanStore',
     storeId: "personalplanStore",
-    proxyUrl: '/kalix/camel/rest/personalplans'
+    proxyUrl: CONFIG.restRoot + '/camel/rest/personalplans'
 });
