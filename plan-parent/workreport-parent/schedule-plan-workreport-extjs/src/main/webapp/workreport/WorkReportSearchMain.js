@@ -7,8 +7,7 @@ Ext.define('kalix.plan.workreport.WorkReportSearchMain', {
     xtype: 'workreportsearchMain',
     requires: [
         'kalix.plan.workreport.view.WorkReportSearchGrid',
-        'kalix.plan.workreport.view.WorkReportSearchForm',
-        'kalix.schedule.scheduleDict.component.ScheduleDictCombobox'
+        'kalix.plan.workreport.view.WorkReportSearchForm'
     ],
     //==custom property
     notMargin: true, //config the true for parent not margin this container
@@ -16,7 +15,8 @@ Ext.define('kalix.plan.workreport.WorkReportSearchMain', {
     items: [
         {
             title: '工作汇报查询',
-            xtype: 'workreportSearchForm'
+            xtype: 'workreportSearchForm',
+            isHiddenMultiComboBox: false
         },
         {
             xtype: 'workreportsearchGridPanel',

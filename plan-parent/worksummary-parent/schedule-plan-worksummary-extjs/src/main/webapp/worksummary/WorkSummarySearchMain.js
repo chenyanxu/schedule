@@ -7,8 +7,7 @@ Ext.define('kalix.plan.worksummary.WorkSummarySearchMain', {
     xtype: 'worksummarysearchMain',
     requires: [
         'kalix.plan.worksummary.view.WorkSummarySearchGrid',
-        'kalix.plan.worksummary.view.WorkSummarySearchForm',
-        'kalix.schedule.scheduleDict.component.ScheduleDictCombobox'
+        'kalix.plan.worksummary.view.WorkSummarySearchForm'
     ],
     //==custom property
     notMargin: true, //config the true for parent not margin this container
@@ -16,7 +15,8 @@ Ext.define('kalix.plan.worksummary.WorkSummarySearchMain', {
     items: [
         {
             title: '工作总结查询',
-            xtype: 'worksummarySearchForm'
+            xtype: 'worksummarySearchForm',
+            isHiddenMultiComboBox: false
         },
         {
             xtype: 'worksummarysearchGridPanel',

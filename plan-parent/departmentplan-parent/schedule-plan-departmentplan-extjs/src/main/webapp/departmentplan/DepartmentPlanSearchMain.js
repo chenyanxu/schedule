@@ -7,8 +7,7 @@ Ext.define('kalix.plan.departmentplan.DepartmentPlanSearchMain', {
     xtype: 'departmentplansearchMain',
     requires: [
         'kalix.plan.departmentplan.view.DepartmentPlanSearchGrid',
-        'kalix.plan.departmentplan.view.DepartmentPlanSearchForm',
-        'kalix.schedule.scheduleDict.component.ScheduleDictCombobox'
+        'kalix.plan.departmentplan.view.DepartmentPlanSearchForm'
     ],
     //==custom property
     notMargin: true, //config the true for parent not margin this container
@@ -16,7 +15,8 @@ Ext.define('kalix.plan.departmentplan.DepartmentPlanSearchMain', {
     items: [
         {
             title: '部门计划查询',
-            xtype: 'departmentplanSearchForm'
+            xtype: 'departmentplanSearchForm',
+            isHiddenMultiComboBox: false
         },
         {
             xtype: 'departmentplansearchGridPanel',

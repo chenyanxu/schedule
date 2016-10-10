@@ -7,8 +7,7 @@ Ext.define('kalix.plan.personalplan.PersonalPlanSearchMain', {
     xtype: 'personalplansearchMain',
     requires: [
         'kalix.plan.personalplan.view.PersonalPlanSearchGrid',
-        'kalix.plan.personalplan.view.PersonalPlanSearchForm',
-        'kalix.schedule.scheduleDict.component.ScheduleDictCombobox'
+        'kalix.plan.personalplan.view.PersonalPlanSearchForm'
     ],
     //==custom property
     notMargin: true, //config the true for parent not margin this container
@@ -16,7 +15,8 @@ Ext.define('kalix.plan.personalplan.PersonalPlanSearchMain', {
     items: [
         {
             title: '个人计划查询',
-            xtype: 'personalplanSearchForm'
+            xtype: 'personalplanSearchForm',
+            isHiddenMultiComboBox: false
         },
         {
             xtype: 'personalplansearchGridPanel',

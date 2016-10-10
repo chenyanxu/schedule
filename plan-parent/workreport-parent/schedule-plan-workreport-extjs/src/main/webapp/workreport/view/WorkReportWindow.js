@@ -115,7 +115,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
 
                                     var workType = this.lookupViewModel().get('rec').get('workType');
                                     if (workType == 0) {//日报
-                                        title = year + month + day + '-日报';
+                                        title = year + '' + month + '' + day + '-日报';
                                     }
                                     if (workType == 1) {//周报
                                         title = year + '第' + week + '周-周报';
@@ -123,7 +123,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                                         endDate.setDate(beginDate.getDate() + 4);
                                     }
                                     if (workType == 2) {//月报
-                                        title = year + month + '-月报';
+                                        title = year + '' + month + '-月报';
                                         beginDate = Ext.Date.getFirstDateOfMonth(nowDate);
                                         endDate = Ext.Date.getLastDateOfMonth(nowDate);
                                     }
