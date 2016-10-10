@@ -20,7 +20,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchGrid', {
   },
   store: {
     type: 'departmentplanStore',
-    proxyUrl: '/kalix/camel/rest/departmentplansearchs'
+    proxyUrl: CONFIG.restRoot + '/camel/rest/departmentplansearchs'
   },
   viewConfig:{
     getRowClass:function(){

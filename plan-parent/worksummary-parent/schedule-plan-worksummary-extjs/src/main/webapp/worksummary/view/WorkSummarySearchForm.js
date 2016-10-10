@@ -31,7 +31,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchForm', {
             displayText: '用    户',
             menuItemValue: 'id',
             menuItemText: 'name',
-            storeUrl: '/kalix/camel/rest/users/' + Ext.util.Cookies.get('currentUserId') + '/orgs/all/users',
+            storeUrl: CONFIG.restRoot + '/camel/rest/users/' + Ext.util.Cookies.get('currentUserId') + '/orgs/all/users',
             'callback': function () {
                 var store = this.findParentByType('worksummarySearchForm').gridStore;
                 if (store) {

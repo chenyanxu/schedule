@@ -8,7 +8,7 @@ Ext.define('kalix.task.assignmentcharts.store.AssignmentColumnChartStore', {
     xtype: 'assignmentColumnChartStore',
     storeId: 'assignmentColumnChartStore',
     autoLoad: true,
-    proxyUrl: '/kalix/camel/rest/assignmentcharts/column'//,
+    proxyUrl: CONFIG.restRoot + '/camel/rest/assignmentcharts/column'//,
     //fields : [ "orgName", "total", "waiting", "reject", "process", "complete", "finish", "failure", "cancel" ],
     //fields: ['country', 'agr', 'ind', 'ser'],
     //data: [
