@@ -2,6 +2,8 @@ package com.kalix.schedule.plan.personalplan.dao;
 
 import com.kalix.admin.core.entities.OrganizationBean;
 import com.kalix.admin.core.entities.UserBean;
+import com.kalix.framework.core.api.persistence.Relation;
+import com.kalix.framework.core.api.persistence.TableRelation;
 import com.kalix.framework.core.api.web.model.QueryDTO;
 import com.kalix.framework.core.impl.dao.GenericDao;
 import com.kalix.framework.core.util.DateUtil;
@@ -56,21 +58,61 @@ public class PersonalPlanBeanDaoImpl extends GenericDao<PersonalPlanBean, Long> 
     @Override
     public CriteriaQuery buildCriteriaQuery(QueryDTO queryDTO) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<PersonalPlanBean> criteriaQuery = criteriaBuilder.createQuery(PersonalPlanBean.class);
-        Root<PersonalPlanBean> root = criteriaQuery.from(PersonalPlanBean.class);
-
-        //CriteriaQuery<UserBean> criteriaUserQuery = criteriaBuilder.createQuery(UserBean.class);
-
-        //sunlf added begin
-        Root<UserBean> userRoot = criteriaQuery.from(UserBean.class);
-        Root<OrganizationBean> orgRoot = criteriaQuery.from(OrganizationBean.class);
-        //sunlf added end
-
+        CriteriaQuery<PersonalPlanBean> criteriaQuery = criteriaBuilder.createQuery(this.persistentClass);
+        Root<PersonalPlanBean> root = criteriaQuery.from(this.persistentClass);
         EntityType<PersonalPlanBean> bean_ = root.getModel(); //实体元数据
         List<Predicate> predicatesList = new ArrayList<Predicate>();
+        List<Selection<?>> selectionList= new ArrayList<>();
         Map<String, String> jsonMap = queryDTO.getJsonMap();
         String sortField = "updateDate";
         String sortDirection = "DESC";
+
+        selectionList.add(root);
+
+        TableRelation tr = this.persistentClass.getAnnotation(TableRelation.class);
+
+        if(tr!=null){
+            Object[] managedTypes= entityManager.getMetamodel().getManagedTypes().toArray();
+            Relation[] relations=tr.relations();
+
+            for (Relation relation:relations) {
+                String beanName=relation.BeanName();
+
+                for(Object managedType:managedTypes){
+                    String fullName=managedType.toString();
+
+                    if(fullName.contains(beanName)){
+                        try {
+                            Root relationRoot=criteriaQuery.from(Class.forName(fullName));
+                            String[] pFields=relation.PFields();
+                            String[] fFields=relation.FFields();
+                            predicatesList.add(criteriaBuilder.equal(root.get(relation.FK()),relationRoot.get(relation.PK())));
+
+                            if(pFields.length==fFields.length){
+                                for(int fIndex=0;fIndex<pFields.length;++fIndex){
+                                    selectionList.add(relationRoot.get(pFields[fIndex]).alias(fFields[fIndex]));
+                                }
+                            }
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+
+                        break;
+                    }
+                }
+            }
+        }
+
+
+
+
+
+        //sunlf added begin
+        //Root<UserBean> userRoot = criteriaQuery.from(UserBean.class);
+        //Root<OrganizationBean> orgRoot = criteriaQuery.from(OrganizationBean.class);
+        //sunlf added end
+
+
 
 
         for (Map.Entry<String, String> entry : jsonMap.entrySet()) {
@@ -160,16 +202,16 @@ public class PersonalPlanBeanDaoImpl extends GenericDao<PersonalPlanBean, Long> 
                 }
             }
             //sunlf added begin
-            predicatesList.add(criteriaBuilder.equal(root.get("userId"), userRoot.get("id")));
-            predicatesList.add(criteriaBuilder.equal(root.get("orgId"), orgRoot.get("id")));
+            //predicatesList.add(criteriaBuilder.equal(root.get("userId"), userRoot.get("id")));
+            //predicatesList.add(criteriaBuilder.equal(root.get("orgId"), orgRoot.get("id")));
             //sunlf added end
         }
 
         criteriaQuery.where(predicatesList.toArray(new Predicate[predicatesList.size()]));
-        List<Selection> selectionList = new ArrayList<Selection>
-                (Arrays.asList(root, userRoot));
-        CriteriaQuery select = criteriaQuery.multiselect(root, userRoot.get("name").alias("userName"), orgRoot.get("name").alias("orgName"));//select(root);elect(root);
-
+       // List<Selection> selectionList = new ArrayList<Selection>
+         //       (Arrays.asList(root, userRoot));
+        //CriteriaQuery select = criteriaQuery.multiselect(root, userRoot.get("name").alias("userName"), orgRoot.get("name").alias("orgName"));//select(root);elect(root);
+        CriteriaQuery select = criteriaQuery.multiselect(selectionList);
         //排序
         switch (sortDirection) {
             case "DESC":

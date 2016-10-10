@@ -2,13 +2,13 @@ package com.kalix.schedule.plan.personalplan.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.kalix.framework.core.api.persistence.PersistentEntity;
+import com.kalix.framework.core.api.persistence.Relation;
+import com.kalix.framework.core.api.persistence.TableRelation;
 import org.dozer.DozerBeanMapper;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @类描述：
@@ -21,7 +21,18 @@ import java.util.Date;
 //todo 修改模型定义
 @Entity
 @Table(name = "schedule_personalplan")
+@TableRelation(relations = {
+        @Relation(BeanName = "UserBean", PK = "id", PFields ={"name"}, FK = "userId", FFields = {"userName"}),
+        @Relation(BeanName = "OrganizationBean", PK = "id", PFields = {"name"}, FK = "orgId", FFields = {"orgName"})
+})
 public class PersonalPlanBean extends PersistentEntity {
+
+    public PersonalPlanBean() {
+    }
+
+    public PersonalPlanBean(PersonalPlanBean personalPlanBean) {
+        new DozerBeanMapper().map(personalPlanBean, this);
+    }
 
     public PersonalPlanBean(PersonalPlanBean personalPlanBean, String userName, String orgName) {
         new DozerBeanMapper().map(personalPlanBean, this);
