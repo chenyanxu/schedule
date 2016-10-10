@@ -131,7 +131,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                 header: '常规操作',
                 xtype: 'securityGridColumnCommon',
                 //todo change permission
-                items: [
+                verifyItems: [
                     {
                         tooltip: '查看',
                         permission: 'view',
@@ -197,7 +197,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                 header: '业务操作',
                 xtype: 'securityGridColumnCommon',
                 //todo change permission
-                items: [
+                verifyItems: [
                     {
                         tooltip: '修改负责人',
                         permission: 'header',

@@ -111,7 +111,7 @@ Ext.define('kalix.schedule.template.view.AssignmentTemplateGrid', {
                 header: '常规操作',
                 xtype: 'securityGridColumnCommon',
                 //todo change permission
-                items: [
+                verifyItems: [
                     {
                         tooltip: '查看',
                         permission: 'view',

@@ -57,7 +57,7 @@ Ext.define('kalix.schedule.template.view.TemplateGrid', {
             {
                 xtype: 'securityGridColumnCommon',
                 //todo change permission
-                items: [
+                verifyItems: [
                     {
                         iconCls: "iconfont icon-view-column",
                         permission: 'view',

@@ -100,7 +100,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchGrid', {
         {
             xtype: 'securityGridColumnCommon',
             //todo change permission
-            items: [
+            verifyItems: [
                 {
                     iconCls: "iconfont icon-view-column",
                     permission: 'view',
