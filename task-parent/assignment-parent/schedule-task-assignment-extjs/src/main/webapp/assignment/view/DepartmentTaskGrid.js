@@ -26,7 +26,7 @@ Ext.define('kalix.task.assignment.view.DepartmentTaskGrid', {
 
     columns: [
         {
-            xtype: "rownumberer"
+            xtype: 'rownumberer'
         },
         {
             text: '编号',

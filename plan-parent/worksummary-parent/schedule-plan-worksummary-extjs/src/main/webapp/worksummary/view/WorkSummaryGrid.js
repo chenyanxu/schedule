@@ -25,7 +25,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryGrid', {
     //todo 在此修改grid显示列
     columns: [
         {
-            xtype: "rownumberer",
+            xtype: 'rownumberer',
         },
         {
             text: '编号',

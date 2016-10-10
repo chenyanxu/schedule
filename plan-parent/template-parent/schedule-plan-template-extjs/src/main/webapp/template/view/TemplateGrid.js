@@ -27,7 +27,7 @@ Ext.define('kalix.schedule.template.view.TemplateGrid', {
         defaults: {flex: 1, renderer: 'addTooltip'},
         items: [
             {
-                xtype: "rownumberer",
+                xtype: 'rownumberer',
                 text: "行号",
                 width: 50,
                 flex: 0,

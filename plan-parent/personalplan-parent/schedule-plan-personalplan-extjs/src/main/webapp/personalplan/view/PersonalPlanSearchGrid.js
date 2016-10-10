@@ -26,7 +26,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchGrid', {
     //todo 在此修改grid显示列
     columns: [
         {
-            xtype: "rownumberer",
+            xtype: 'rownumberer',
         },
         {
             text: '编号',

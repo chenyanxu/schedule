@@ -35,7 +35,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewGrid', {
     },
     columns: [
         {
-            xtype: "rownumberer",
+            xtype: 'rownumberer',
             text: "行号",
             width: 50,
             flex: 0,

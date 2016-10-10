@@ -26,7 +26,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportSearchGrid', {
     //todo 在此修改grid显示列
     columns: [
         {
-            xtype: "rownumberer",
+            xtype: 'rownumberer',
             text: "行号",
             width: 50,
             flex: 0,

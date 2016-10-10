@@ -27,7 +27,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
     //    defaults: {flex: 1, renderer: 'addTooltip'},
         columns: [
             {
-                xtype: "rownumberer"
+                xtype: 'rownumberer'
             },
             {
                 text: '编号',
