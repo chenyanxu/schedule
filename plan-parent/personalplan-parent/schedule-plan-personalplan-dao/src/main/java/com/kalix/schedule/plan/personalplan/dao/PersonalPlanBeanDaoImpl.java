@@ -58,8 +58,8 @@ public class PersonalPlanBeanDaoImpl extends GenericDao<PersonalPlanBean, Long> 
     @Override
     public CriteriaQuery buildCriteriaQuery(QueryDTO queryDTO) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<PersonalPlanBean> criteriaQuery = criteriaBuilder.createQuery(this.persistentClass);
-        Root<PersonalPlanBean> root = criteriaQuery.from(this.persistentClass);
+        CriteriaQuery<PersonalPlanBean> criteriaQuery = criteriaBuilder.createQuery(PersonalPlanBean.class);
+        Root<PersonalPlanBean> root = criteriaQuery.from(PersonalPlanBean.class);
         EntityType<PersonalPlanBean> bean_ = root.getModel(); //实体元数据
         List<Predicate> predicatesList = new ArrayList<Predicate>();
         List<Selection<?>> selectionList= new ArrayList<>();
