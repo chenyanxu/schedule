@@ -96,7 +96,7 @@ Ext.define('kalix.task.assignment.view.AssignmentSubTaskGrid', {
             header: '操作',
             xtype: 'securityGridColumnCommon',
             //todo change permission
-            items: [
+            verifyItems: [
                 {
                     tooltip: '查看',
                     permission: 'view',
