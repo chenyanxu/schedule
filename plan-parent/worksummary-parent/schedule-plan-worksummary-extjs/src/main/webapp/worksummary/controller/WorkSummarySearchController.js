@@ -11,7 +11,9 @@ Ext.define('kalix.plan.worksummary.controller.WorkSummarySearchController', {
         orgCode.setValue(record.data.code);
 
         var grid = this.getView().items.getAt(1).items.getAt(1);
-        grid.store.reload();
+        if (grid.canLoad) {
+            grid.store.reload();
+        }
     },
     onLoad: function(nodes){
         var searchForm = this.getView().items.getAt(1).items.getAt(0);
@@ -25,10 +27,13 @@ Ext.define('kalix.plan.worksummary.controller.WorkSummarySearchController', {
             var root = tree.store;
             var nodeExpand = root.getNodeById(node.data.id);
 
-            tree.setSelection(nodeExpand)
-
             var grid = this.getView().items.getAt(1).items.getAt(1);
             grid.store.reload();
+
+            // 阻止选择默认值时，触发
+            grid.canLoad = false;
+            tree.setSelection(nodeExpand);
+            grid.canLoad = true;
         }
     }
 });

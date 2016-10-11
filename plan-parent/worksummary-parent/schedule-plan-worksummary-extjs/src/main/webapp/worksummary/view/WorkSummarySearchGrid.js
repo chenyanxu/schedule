@@ -22,8 +22,8 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchGrid', {
         type: 'worksummaryStore',
         proxyUrl: '/kalix/camel/rest/worksummarysearchs'
     },
+    autoLoad: false,
 
-    //todo 在此修改grid显示列
     columns: [
         {
             xtype: "rownumberer",

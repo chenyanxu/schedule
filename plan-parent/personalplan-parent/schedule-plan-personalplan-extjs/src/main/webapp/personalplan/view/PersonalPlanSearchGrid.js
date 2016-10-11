@@ -22,8 +22,8 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchGrid', {
         type: 'personalplanStore',
         proxyUrl: '/kalix/camel/rest/personalplansearchs'
     },
+    autoLoad: false,
 
-    //todo 在此修改grid显示列
     columns: [
         {
             xtype: "rownumberer",

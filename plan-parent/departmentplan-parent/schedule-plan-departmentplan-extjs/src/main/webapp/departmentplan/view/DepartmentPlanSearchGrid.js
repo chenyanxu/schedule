@@ -22,8 +22,8 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchGrid', {
         type: 'departmentplanStore',
         proxyUrl: '/kalix/camel/rest/departmentplansearchs'
     },
-
-    //todo 在此修改grid显示列
+    autoLoad: false,
+    
     columns: [
         {
             xtype: "rownumberer",

@@ -22,8 +22,8 @@ Ext.define('kalix.plan.workreport.view.WorkReportSearchGrid', {
         type: 'workreportStore',
         proxyUrl: '/kalix/camel/rest/workreportsearchs'
     },
+    autoLoad: false,
 
-    //todo 在此修改grid显示列
     columns: [
         {
             xtype: "rownumberer",
