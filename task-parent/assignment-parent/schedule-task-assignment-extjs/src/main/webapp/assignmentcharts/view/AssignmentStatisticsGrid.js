@@ -19,7 +19,7 @@ Ext.define('kalix.task.assignmentcharts.view.AssignmentStatisticsGrid', {
     height: 400,
     columns: [
         {
-            xtype: "rownumberer"
+            xtype: 'rownumberer'
         },
         {
             text: '编号',

@@ -92,12 +92,12 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                         'change':function(e,t,options) {
                             if(t=='0'){
                                 Ext.getCmp("schedule_task_assignment_sourceId").show();
-                                Ext.getCmp("schedule_task_assignment_sourceId").store.proxy.url='/kalix/camel/rest/departmentplancomboboxs';
+                                Ext.getCmp("schedule_task_assignment_sourceId").store.proxy.url = CONFIG.restRoot + '/camel/rest/departmentplancomboboxs';
                                 Ext.getCmp("schedule_task_assignment_sourceId").value="";
                                 Ext.getCmp("schedule_task_assignment_sourceId").store.load();
                             }
                             else if(t=='1'){
-                                Ext.getCmp("schedule_task_assignment_sourceId").store.proxy.url='/kalix/camel/rest/assignmentcomboboxs';
+                                Ext.getCmp("schedule_task_assignment_sourceId").store.proxy.url = CONFIG.restRoot + '/camel/rest/assignmentcomboboxs';
                                 Ext.getCmp("schedule_task_assignment_sourceId").store.load();
                                 Ext.getCmp("schedule_task_assignment_sourceId").value="";
                                 Ext.getCmp("schedule_task_assignment_sourceId").show();
@@ -122,7 +122,10 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                     bind: {
                         value: '{rec.sourceId}'
                     },
-                    store:Ext.create('kalix.store.BaseStore',{autoLoad:false,proxyUrl: '/kalix/camel/rest/departmentplancomboboxs'})
+                    store: Ext.create('kalix.store.BaseStore', {
+                        autoLoad: false,
+                        proxyUrl: CONFIG.restRoot + '/camel/rest/departmentplancomboboxs'
+                    })
                 },
                 {
                     fieldLabel: '内容',

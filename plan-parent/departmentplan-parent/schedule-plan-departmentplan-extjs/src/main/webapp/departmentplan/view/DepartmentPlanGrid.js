@@ -25,7 +25,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
     //todo 在此修改grid显示列
     columns: [
         {
-            xtype: "rownumberer"
+            xtype: 'rownumberer'
         },
         {
             text: '编号',

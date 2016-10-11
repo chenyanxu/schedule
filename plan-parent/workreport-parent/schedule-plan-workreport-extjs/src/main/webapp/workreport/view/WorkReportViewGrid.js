@@ -23,7 +23,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewGrid', {
     },
     listeners:{
         'render': function() {
-            this.store.proxy.url = '/kalix/camel/rest/personalplans/' + this.getPlanId() + '/workreport';
+            this.store.proxy.url = CONFIG.restRoot + '/camel/rest/personalplans/' + this.getPlanId() + '/workreport';
             this.store.load();
         }
     },
@@ -35,7 +35,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewGrid', {
     },
     columns: [
         {
-            xtype: "rownumberer",
+            xtype: 'rownumberer',
             text: "行号",
             width: 50,
             flex: 0,

@@ -20,13 +20,13 @@ Ext.define('kalix.plan.workreport.view.WorkReportSearchGrid', {
     },
     store: {
         type: 'workreportStore',
-        proxyUrl: '/kalix/camel/rest/workreportsearchs'
+        proxyUrl: CONFIG.restRoot + '/camel/rest/workreportsearchs'
     },
     autoLoad: false,
 
     columns: [
         {
-            xtype: "rownumberer",
+            xtype: 'rownumberer',
             text: "行号",
             width: 50,
             flex: 0,
@@ -99,7 +99,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportSearchGrid', {
         {
             xtype: 'securityGridColumnCommon',
             //todo change permission
-            items: [
+            verifyItems: [
                 {
                     iconCls: "iconfont icon-view-column",
                     permission: 'view',

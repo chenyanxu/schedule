@@ -96,18 +96,18 @@ Ext.define('kalix.task.assignment.view.DepartmentTaskViewWindow', {
                     },
                     store: Ext.create('kalix.store.BaseStore', {
                         autoLoad: false,
-                        proxyUrl: '/kalix/camel/rest/departmentplans'
+                        proxyUrl: CONFIG.restRoot + '/camel/rest/departmentplans'
                     }),
                     listeners: {
                         render: function (target) {
                             var sourceType = this.lookupViewModel().get('rec').get('sourceType');
 
                             if (sourceType == "0") {
-                                target.store.proxy.url = '/kalix/camel/rest/departmentplans';
+                                target.store.proxy.url = CONFIG.restRoot + '/camel/rest/departmentplans';
                                 target.store.load();
                             }
                             else if (sourceType == "1") {
-                                target.store.proxy.url = '/kalix/camel/rest/assignments';
+                                target.store.proxy.url = CONFIG.restRoot + '/camel/rest/assignments';
                                 target.store.load();
                             }
                             else {

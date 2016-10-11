@@ -25,12 +25,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportGrid', {
     //todo 在此修改grid显示列
     columns: [
         {
-            xtype: "rownumberer",
-            text: "行号",
-            width: 50,
-            flex: 0,
-            align: 'center',
-            renderer: this.update
+            xtype: 'rownumberer'
         },
         {
             text: '编号',

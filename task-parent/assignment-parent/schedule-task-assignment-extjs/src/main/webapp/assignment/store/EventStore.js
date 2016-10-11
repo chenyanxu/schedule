@@ -11,5 +11,5 @@ Ext.define('kalix.task.assignment.store.EventStore', {
     xtype: 'eventStore',
     storeId: 'eventStore',
     autoLoad: true,
-    proxyUrl: '/kalix/camel/rest/assignments/-1/events'
+    proxyUrl: CONFIG.restRoot + '/camel/rest/assignments/-1/events'
 });

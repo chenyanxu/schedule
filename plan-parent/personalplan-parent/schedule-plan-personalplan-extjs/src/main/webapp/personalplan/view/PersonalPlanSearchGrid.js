@@ -20,13 +20,13 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchGrid', {
     },
     store: {
         type: 'personalplanStore',
-        proxyUrl: '/kalix/camel/rest/personalplansearchs'
+        proxyUrl: CONFIG.restRoot + '/camel/rest/personalplansearchs'
     },
     autoLoad: false,
 
     columns: [
         {
-            xtype: "rownumberer",
+            xtype: 'rownumberer',
         },
         {
             text: '编号',
@@ -100,7 +100,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchGrid', {
         {
             xtype: 'securityGridColumnCommon',
             //todo change permission
-            items: [
+            verifyItems: [
                 {
                     iconCls: "iconfont icon-view-column",
                     permission: 'view',
