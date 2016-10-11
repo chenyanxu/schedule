@@ -27,7 +27,8 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchGrid', {
       return 'custom-grid-row';
     }
   },
-  //todo 在此修改grid显示列
+  autoLoad: false,
+
   columns: [
     {
       xtype: 'rownumberer',
