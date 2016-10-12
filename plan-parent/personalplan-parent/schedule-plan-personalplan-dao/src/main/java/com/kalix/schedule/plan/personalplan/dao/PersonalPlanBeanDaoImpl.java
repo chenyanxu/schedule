@@ -69,7 +69,7 @@ public class PersonalPlanBeanDaoImpl extends GenericDao<PersonalPlanBean, Long> 
 
         selectionList.add(root);
 
-        TableRelation tr = this.persistentClass.getAnnotation(TableRelation.class);
+        TableRelation tr = PersonalPlanBean.class.getAnnotation(TableRelation.class);
 
         if(tr!=null){
             Object[] managedTypes= entityManager.getMetamodel().getManagedTypes().toArray();
