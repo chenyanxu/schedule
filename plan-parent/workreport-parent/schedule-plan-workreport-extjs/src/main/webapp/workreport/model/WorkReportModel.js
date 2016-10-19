@@ -12,6 +12,9 @@ Ext.define('kalix.plan.workreport.model.WorkReportModel', {
     //todo 在此修改模型定义
     fields: [
         {
+            name:'userIcon'
+        },
+        {
             name: 'userId',
             type: 'int',
             defaultValue: 0
@@ -27,14 +30,8 @@ Ext.define('kalix.plan.workreport.model.WorkReportModel', {
             validators: [{type: 'presence'}]
         },
         {
-            name: 'orgCode',
-            type: 'string',
-            validators: [{type: 'presence'}]
-        },
-        {
             name: 'orgName',
-            type: 'string',
-            validators: [{type: 'presence'}]
+            type: 'string'
         },
         {
             name: 'title',

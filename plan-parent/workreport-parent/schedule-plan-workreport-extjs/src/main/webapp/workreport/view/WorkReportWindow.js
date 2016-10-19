@@ -76,8 +76,8 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                             listeners: {
                                 'change': function (e, t, options) {
                                     if (e.displayTplData[0]) {
-                                        this.lookupViewModel().get('rec').set('orgName', e.displayTplData[0].name);
-                                        this.lookupViewModel().get('rec').set('orgCode', e.displayTplData[0].code);
+                                        //this.lookupViewModel().get('rec').set('orgName', e.displayTplData[0].name);
+                                        //this.lookupViewModel().get('rec').set('orgCode', e.displayTplData[0].code);
                                     }
                                 }
                             }

@@ -105,9 +105,10 @@ public class WorkReportBeanServiceImpl extends ShiroGenericBizServiceImpl<IWorkR
     public JsonData getAllEntityByQuery(Integer page, Integer limit, String jsonStr) {
         Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
         // 不允许查询全部计划，所以在没有code情况下，添加一个不可能存在的code，保证查询不出数据
-        if (jsonMap.get("orgCode%") == null || "".equals(jsonMap.get("orgCode%")))  {
-            jsonMap.put("orgCode", "-1");
+        if (jsonMap.get("code%:relation:OrganizationBean") == null || jsonMap.get("code%:relation:OrganizationBean").isEmpty())  {
+            jsonMap.put("code:relation:OrganizationBean", "-1");
         }
+
         return super.getAllEntityByQuery(page, limit, SerializeUtil.serializeJson(jsonMap));
     }
 
