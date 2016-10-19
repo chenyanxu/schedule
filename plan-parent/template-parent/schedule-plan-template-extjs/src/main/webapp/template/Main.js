@@ -23,11 +23,11 @@ Ext.define('kalix.schedule.template.Main', {
                 {
                     title: '计划模板查询',
                     xtype: 'templateSearchForm',
-                    width: 400
+                    width: 460
                 },
                 {
                     xtype: 'templateGridPanel',
-                    width:400,
+                    width:460,
                     id: 'templateGridPanel',
                     title: '计划模板列表',
                     listeners: {

@@ -19,7 +19,7 @@
         <property name="assignmentTemplateBeanService" ref="assignmentTemplateBeanServiceImpl"/>
     </bean>
 
-    <service id="templateBeanService" interface="com.kalix.schedule.plan.template.api.biz.ITemplateBeanService"
+    <service id="templateBeanService" interface="com.kalix.schedule.task.assignment.api.biz.ITemplateBeanService"
              ref="templateBeanServiceImpl">
     </service>
 
@@ -27,7 +27,7 @@
         <property name="dao" ref="assignmentTemplateBeanDao"/>
         <property name="shiroService" ref="shiroService"/>
     </bean>
-    <service id="assignmentTemplateBeanService" interface="com.kalix.schedule.plan.template.api.biz.IAssignmentTemplateBeanService"
+    <service id="assignmentTemplateBeanService" interface="com.kalix.schedule.task.assignment.api.biz.IAssignmentTemplateBeanService"
              ref="assignmentTemplateBeanServiceImpl">
     </service>
 </blueprint>

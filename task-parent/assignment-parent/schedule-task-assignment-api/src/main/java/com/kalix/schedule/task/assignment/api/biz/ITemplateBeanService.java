@@ -1,8 +1,8 @@
-package com.kalix.schedule.plan.template.api.biz;
+package com.kalix.schedule.task.assignment.api.biz;
 
 import com.kalix.framework.core.api.biz.IBizService;
 import com.kalix.framework.core.api.persistence.JsonStatus;
-import com.kalix.schedule.plan.template.entities.TemplateBean;
+import com.kalix.schedule.task.assignment.entities.TemplateBean;
 
 /**
  * @类描述：应用服务接口.

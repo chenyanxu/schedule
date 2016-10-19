@@ -22,6 +22,17 @@
         <tx:transaction method="*" value="Required"/>
     </bean>
 
+    <bean id="templateBeanDaoImpl" class="com.kalix.schedule.task.assignment.dao.TemplateBeanDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+    </bean>
+
+    <service interface="com.kalix.schedule.task.assignment.api.dao.ITemplateBeanDao" ref="templateBeanDaoImpl"/>
+
+    <bean id="assignmentTemplateBeanDaoImpl" class="com.kalix.schedule.task.assignment.dao.AssignmentTemplateBeanDaoImpl">
+        <tx:transaction method="*" value="Required"/>
+    </bean>
+
+    <service interface="com.kalix.schedule.task.assignment.api.dao.IAssignmentTemplateBeanDao" ref="assignmentTemplateBeanDaoImpl"/>
     <service interface="com.kalix.schedule.task.assignment.api.dao.IAssignmentBeanDao" ref="assignmentBeanDaoImpl"/>
     <service interface="com.kalix.schedule.task.assignment.api.dao.IProgressBeanDao" ref="progressBeanDaoImpl"/>
     <service interface="com.kalix.schedule.task.assignment.api.dao.IEventBeanDao" ref="eventBeanDaoImpl"/>

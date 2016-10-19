@@ -8,16 +8,17 @@ import com.kalix.framework.core.impl.biz.ShiroGenericBizServiceImpl;
 import com.kalix.framework.core.util.BeanUtil;
 import com.kalix.framework.core.util.JNDIHelper;
 import com.kalix.framework.core.util.SerializeUtil;
+import com.kalix.schedule.plan.departmentplan.api.biz.IDepartmentPlanBeanService;
+import com.kalix.schedule.plan.departmentplan.entities.DepartmentPlanBean;
+import com.kalix.schedule.task.assignment.api.biz.IAssignmentTemplateBeanService;
+import com.kalix.schedule.task.assignment.api.biz.ITemplateBeanService;
+import com.kalix.schedule.task.assignment.entities.*;
 import com.kalix.schedule.system.dict.api.biz.IScheduleDictBeanService;
 import com.kalix.schedule.task.assignment.api.biz.IAssignmentBeanService;
 import com.kalix.schedule.task.assignment.api.dao.IAssignmentBeanDao;
 import com.kalix.schedule.task.assignment.api.dao.IEventBeanDao;
 import com.kalix.schedule.task.assignment.api.dao.IProgressBeanDao;
 import com.kalix.schedule.task.assignment.api.dao.IReadingBeanDao;
-import com.kalix.schedule.task.assignment.entities.AssignmentBean;
-import com.kalix.schedule.task.assignment.entities.EventBean;
-import com.kalix.schedule.task.assignment.entities.ProgressBean;
-import com.kalix.schedule.task.assignment.entities.ReadingBean;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventAdmin;
 
@@ -43,8 +44,9 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
     }
 
     private IScheduleDictBeanService scheduleDictBeanService;
-
-
+    private ITemplateBeanService templateBeanService;
+    private IAssignmentTemplateBeanService assignmentTemplateBeanService;
+    private IDepartmentPlanBeanService departmentplanBeanService;
     private IProgressBeanDao progressBeanDao;
     private IEventBeanDao eventBeanDao;
     private IReadingBeanDao readingBeanDao;
@@ -142,21 +144,84 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         // 获取登录用户id及用户名
         Long userId = this.getShiroService().getCurrentUserId();
         String userName = this.getShiroService().getCurrentUserRealName();
-        // 添加时，写入用户id及用户名
-        entity.setUserId(userId);
-        entity.setUserName(userName);
 
-        //设置进度
-        if (entity != null) {
-            entity.setPercent(entity.getPercent());
-        } else {
-            entity.setPercent(0f);
+        // 先判断是否是从计划模板创建的任务
+        if(entity.getTemplateId() != 0){//根据模板生成部门计划，部门计划下的任务
+            // 查询该计划模板
+            TemplateBean templateBean = templateBeanService.getEntity(entity.getTemplateId());
+            // 利用计划模板新建计划
+
+            // 查看该计划下是否有任务
+            JsonData jsonData = assignmentTemplateBeanService.getAllEntityByQuery(1,100,"{planTemplateId:" + templateBean.getId() + "}");
+            List<AssignmentTemplateBean> assignmentTemplateList = jsonData.getData();
+            for(int i = 0; i < assignmentTemplateList.size(); i++){
+                AssignmentBean newAssignment = new AssignmentBean();
+                newAssignment.setId(0);
+                newAssignment.setTitle(assignmentTemplateList.get(i).getTitle());
+                newAssignment.setInstruction(assignmentTemplateList.get(i).getInstruction());
+                newAssignment.setPercentNumber(0);
+                newAssignment.setRewardStandard(assignmentTemplateList.get(i).getRewardStandard());
+                newAssignment.setBeginDate(new Date());
+                newAssignment.setContent(assignmentTemplateList.get(i).getContent());
+
+                Date endDate = new Date();
+                newAssignment.setEndDate(new Date(endDate.getTime() + assignmentTemplateList.get(i).getTaskDate()*24*60*60*1000));
+                newAssignment.setHead(assignmentTemplateList.get(i).getHead());
+                newAssignment.setOrgCode(assignmentTemplateList.get(i).getOrgCode());
+                newAssignment.setOrgId(assignmentTemplateList.get(i).getOrgId());
+                newAssignment.setOrgName(assignmentTemplateList.get(i).getOrgName());
+                newAssignment.setParticipant(assignmentTemplateList.get(i).getParticipant());
+                newAssignment.setPercent(0);
+                newAssignment.setRewardStandard(assignmentTemplateList.get(i).getRewardStandard());
+                newAssignment.setSourceId(assignmentTemplateList.get(i).getSourceId());
+                newAssignment.setTemplateId(templateBean.getId());
+                newAssignment.setWorkHours(assignmentTemplateList.get(i).getWorkHours());
+                // 添加时，写入用户id及用户名
+                newAssignment.setUserId(userId);
+                newAssignment.setUserName(userName);
+
+                postNewAssignmentEvent(entity);
+                //新增部门计划下的任务
+                super.saveEntity(entity);
+                //保存任务事件
+                saveEventEntity(entity);
+            }
+
+            DepartmentPlanBean departmentPlanBean = new DepartmentPlanBean();
+            departmentPlanBean.setId(0);
+            departmentPlanBean.setUserName(userName);
+            departmentPlanBean.setUserId(userId);
+            departmentPlanBean.setOrgName(templateBean.getOrgName());
+            departmentPlanBean.setBeginDate(new Date());
+            departmentPlanBean.setContent(templateBean.getContent());
+            Date endDate = new Date();
+            departmentPlanBean.setEndDate(new Date(endDate.getTime() + templateBean.getPlanDate()*24*60*60*1000));
+            departmentPlanBean.setOrgCode(templateBean.getOrgCode());
+            departmentPlanBean.setOrgId(templateBean.getOrgId());
+            departmentPlanBean.setPlanType(templateBean.getPlanType());
+            departmentPlanBean.setState(templateBean.getState());
+            departmentPlanBean.setTitle(templateBean.getTitle());
+
+            //新增部门计划
+            jsonStatus = departmentplanBeanService.saveEntity(departmentPlanBean);
+        }else {
+            // 添加时，写入用户id及用户名
+            entity.setUserId(userId);
+            entity.setUserName(userName);
+
+            //设置进度
+            if (entity != null) {
+                entity.setPercent(entity.getPercent());
+            } else {
+                entity.setPercent(0f);
+            }
+            postNewAssignmentEvent(entity);
+
+            jsonStatus = super.saveEntity(entity);
+            //保存任务事件
+            saveEventEntity(entity);
         }
-        postNewAssignmentEvent(entity);
 
-        JsonStatus jsonStatus = super.saveEntity(entity);
-        //保存任务事件
-        saveEventEntity(entity);
         return jsonStatus;
     }
 
@@ -423,5 +488,17 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
 
     public void setScheduleDictBeanService(IScheduleDictBeanService scheduleDictBeanService) {
         this.scheduleDictBeanService = scheduleDictBeanService;
+    }
+
+    public void setTemplateBeanService(ITemplateBeanService templateBeanService) {
+        this.templateBeanService = templateBeanService;
+    }
+
+    public void setAssignmentTemplateBeanService(IAssignmentTemplateBeanService assignmentTemplateBeanService) {
+        this.assignmentTemplateBeanService = assignmentTemplateBeanService;
+    }
+
+    public void setDepartmentplanBeanService(IDepartmentPlanBeanService departmentplanBeanService) {
+        this.departmentplanBeanService = departmentplanBeanService;
     }
 }
