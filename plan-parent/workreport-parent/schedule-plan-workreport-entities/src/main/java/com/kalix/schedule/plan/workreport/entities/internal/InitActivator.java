@@ -1,20 +1,17 @@
 package com.kalix.schedule.plan.workreport.entities.internal;
 
-import com.kalix.framework.core.util.SystemUtil;
+import com.kalix.framework.core.impl.system.BundleActivatorImpl;
+import com.kalix.schedule.plan.workreport.entities.WorkReportBean;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
 /**
  * Created by sunlf on 14-3-23.
  */
-public class InitActivator implements BundleActivator {
+public class InitActivator extends BundleActivatorImpl implements BundleActivator {
     @Override
     public void start(BundleContext bundleContext) throws Exception {
-        SystemUtil.startBundlePrintln(bundleContext);
-    }
-
-    @Override
-    public void stop(BundleContext bundleContext) throws Exception {
-        SystemUtil.stopBundlePrintln(bundleContext);
+        super.start(bundleContext);
+        registerCascade(WorkReportBean.class);
     }
 }

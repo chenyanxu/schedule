@@ -2,6 +2,7 @@ package com.kalix.schedule.plan.workreport.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.kalix.framework.core.api.persistence.PersistentEntity;
+import com.kalix.framework.core.util.KalixCascade;
 import org.dozer.DozerBeanMapper;
 
 import javax.persistence.Column;
@@ -32,6 +33,7 @@ public class WorkReportBean extends PersistentEntity {
     /**
      * @describe 用户id
      */
+    @KalixCascade(beans = "com.kalix.admin.core.entities.UserBean", deletable = true, foreignKey = "userId")
     private long userId;
     /**
      * @describe 用户名
@@ -41,6 +43,7 @@ public class WorkReportBean extends PersistentEntity {
     /**
      * @describe 部门id
      */
+    @KalixCascade(beans = "com.kalix.admin.core.entities.OrganizationBean", deletable = true, foreignKey = "orgId")
     private long orgId;
     /**
      * @describe 部门code

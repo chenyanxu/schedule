@@ -4,11 +4,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.kalix.framework.core.api.persistence.PersistentEntity;
 import com.kalix.framework.core.api.persistence.Relation;
 import com.kalix.framework.core.api.persistence.TableRelation;
+import com.kalix.framework.core.util.KalixCascade;
 import org.dozer.DozerBeanMapper;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @类描述：
@@ -44,6 +47,7 @@ public class PersonalPlanBean extends PersistentEntity {
     /**
      * @describe 用户id
      */
+    @KalixCascade(beans = "com.kalix.admin.core.entities.UserBean", deletable = true, foreignKey = "userId")
     private long userId;
     /**
      * @describe 用户名
@@ -53,6 +57,7 @@ public class PersonalPlanBean extends PersistentEntity {
     /**
      * @describe 组织机构id
      */
+    @KalixCascade(beans = "com.kalix.admin.core.entities.OrganizationBean", deletable = true, foreignKey = "orgId")
     private long orgId;
     /**
      * @describe 组织机构code
