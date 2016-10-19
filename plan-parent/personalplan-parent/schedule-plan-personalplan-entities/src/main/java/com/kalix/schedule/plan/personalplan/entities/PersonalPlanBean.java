@@ -1,16 +1,11 @@
 package com.kalix.schedule.plan.personalplan.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.kalix.framework.core.api.persistence.PersistentEntity;
+import com.kalix.framework.core.api.persistence.BusinessEntity;
 import com.kalix.framework.core.api.persistence.Relation;
 import com.kalix.framework.core.api.persistence.TableRelation;
-import com.kalix.framework.core.util.KalixCascade;
-import org.dozer.DozerBeanMapper;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -25,47 +20,22 @@ import java.util.Date;
 @Entity
 @Table(name = "schedule_personalplan")
 @TableRelation(relations = {
-        @Relation(BeanName = "UserBean", PK = "id", PFields ={"name"}, FK = "userId", FFields = {"userName"}),
+        @Relation(BeanName = "UserBean", PK = "id", PFields ={"name","icon"}, FK = "userId", FFields = {"userName","userIcon"}),
         @Relation(BeanName = "OrganizationBean", PK = "id", PFields = {"name"}, FK = "orgId", FFields = {"orgName"})
 })
-public class PersonalPlanBean extends PersistentEntity {
+public class PersonalPlanBean extends BusinessEntity {
+    public PersonalPlanBean() {}
 
-    public PersonalPlanBean() {
-    }
+    public PersonalPlanBean(PersonalPlanBean personalPlanBean, String userName,String userIcon, String orgName) {
+        super(personalPlanBean,userName,userIcon);
 
-    public PersonalPlanBean(PersonalPlanBean personalPlanBean) {
-        new DozerBeanMapper().map(personalPlanBean, this);
-    }
-
-    public PersonalPlanBean(PersonalPlanBean personalPlanBean, String userName, String orgName) {
-        new DozerBeanMapper().map(personalPlanBean, this);
-        this.userName = userName;
         this.orgName = orgName;
-
     }
 
-    /**
-     * @describe 用户id
-     */
-    @KalixCascade(beans = "com.kalix.admin.core.entities.UserBean", deletable = true, foreignKey = "userId")
-    private long userId;
-    /**
-     * @describe 用户名
-     */
-    @Transient
-    private String userName;
     /**
      * @describe 组织机构id
      */
-    @KalixCascade(beans = "com.kalix.admin.core.entities.OrganizationBean", deletable = true, foreignKey = "orgId")
     private long orgId;
-    /**
-     * @describe 组织机构code
-     */
-    private String orgCode;
-    /**
-     * @describe 组织机构名
-     */
     @Transient
     private String orgName;
     /**
@@ -75,7 +45,7 @@ public class PersonalPlanBean extends PersistentEntity {
     /**
      * @describe 内容
      */
-    @Column(columnDefinition = "TEXT")
+    @Lob
     private String content;
     /**
      * @describe 计划类型
@@ -96,36 +66,12 @@ public class PersonalPlanBean extends PersistentEntity {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date endDate;
 
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public long getOrgId() {
         return orgId;
     }
 
     public void setOrgId(long orgId) {
         this.orgId = orgId;
-    }
-
-    public String getOrgCode() {
-        return orgCode;
-    }
-
-    public void setOrgCode(String orgCode) {
-        this.orgCode = orgCode;
     }
 
     public String getOrgName() {

@@ -8,7 +8,8 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchGrid', {
     requires: [
         'kalix.plan.personalplan.controller.PersonalPlanGridController',
         'kalix.plan.personalplan.store.PersonalPlanStore',
-        'kalix.schedule.scheduleDict.component.ScheduleDictGridColumn'
+        'kalix.schedule.scheduleDict.component.ScheduleDictGridColumn',
+        'kalix.view.components.common.IconColumn'
     ],
     alias: 'widget.personalplansearchGrid',
     xtype: 'personalplansearchGridPanel',
@@ -22,8 +23,8 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchGrid', {
         type: 'personalplanStore',
         proxyUrl: CONFIG.restRoot + '/camel/rest/personalplansearchs'
     },
-    autoLoad: false,
-
+    autoLoad:false,
+    //todo 在此修改grid显示列
     columns: [
         {
             xtype: 'rownumberer',
@@ -47,6 +48,11 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchGrid', {
             text: '部门code',
             dataIndex: 'orgCode',
             hidden: true
+        },
+        {
+            text:'头像',
+            xtype:'iconcolumn',
+            dataIndex:'userIcon'
         },
         {
             text: '部门名称',
@@ -119,12 +125,12 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchGrid', {
     plugins: [{
         ptype: 'rowexpander',
         rowBodyTpl: new Ext.XTemplate(
-            '<p><b>内容:</b> {content}</p>',
-            {
-                formatChange: function (v) {
-                    var color = v >= 0 ? 'green' : 'red';
-                    return '<span style="color: ' + color + ';">' + Ext.util.Format.usMoney(v) + '</span>';
-                }
-            })
+          '<p><b>内容:</b> {content}</p>',
+          {
+              formatChange: function (v) {
+                  var color = v >= 0 ? 'green' : 'red';
+                  return '<span style="color: ' + color + ';">' + Ext.util.Format.usMoney(v) + '</span>';
+              }
+          })
     }],
 });
