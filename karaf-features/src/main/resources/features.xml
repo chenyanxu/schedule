@@ -31,7 +31,7 @@
         <feature>personalplan-parent</feature>
         <feature>workreport-parent</feature>
         <feature>worksummary-parent</feature>
-        <!--<feature>template-parent</feature>-->
+        <feature>template-parent</feature>
     </feature>
 
     <feature name="departmentplan-parent" version="1.0">
@@ -70,14 +70,14 @@
         <bundle>mvn:com.kalix.schedule.plan.worksummary/schedule-plan-worksummary-extjs/${parent.version}</bundle>
     </feature>
 
-    <!--<feature name="template-parent" version="1.0">-->
-        <!--<bundle>mvn:com.kalix.schedule.plan.template/schedule-plan-template-entities/${parent.version}</bundle>-->
-        <!--<bundle>mvn:com.kalix.schedule.plan.template/schedule-plan-template-api/${parent.version}</bundle>-->
-        <!--<bundle>mvn:com.kalix.schedule.plan.template/schedule-plan-template-dao/${parent.version}</bundle>-->
-        <!--<bundle>mvn:com.kalix.schedule.plan.template/schedule-plan-template-biz/${parent.version}</bundle>-->
-        <!--<bundle>mvn:com.kalix.schedule.plan.template/schedule-plan-template-rest/${parent.version}</bundle>-->
-        <!--<bundle>mvn:com.kalix.schedule.plan.template/schedule-plan-template-extjs/${parent.version}</bundle>-->
-    <!--</feature>-->
+    <feature name="template-parent" version="1.0">
+        <bundle>mvn:com.kalix.schedule.plan.template/schedule-plan-template-entities/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.template/schedule-plan-template-api/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.template/schedule-plan-template-dao/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.template/schedule-plan-template-biz/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.template/schedule-plan-template-rest/${parent.version}</bundle>
+        <bundle>mvn:com.kalix.schedule.plan.template/schedule-plan-template-extjs/${parent.version}</bundle>
+    </feature>
 
     <feature name="task-parent" version="1.0">
         <feature>assignment-parent</feature>

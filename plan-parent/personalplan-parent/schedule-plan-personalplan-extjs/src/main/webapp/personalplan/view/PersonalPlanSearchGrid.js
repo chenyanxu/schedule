@@ -45,6 +45,11 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchGrid', {
             hidden: true
         },
         {
+            text: '部门code',
+            dataIndex: 'orgCode',
+            hidden: true
+        },
+        {
             text:'头像',
             xtype:'iconcolumn',
             dataIndex:'userIcon'

@@ -2,7 +2,7 @@ package com.kalix.schedule.plan.template.biz;
 
 import com.kalix.framework.core.api.persistence.JsonStatus;
 import com.kalix.framework.core.impl.biz.ShiroGenericBizServiceImpl;
-import com.kalix.schedule.task.assignment.api.biz.IAssignmentTemplateBeanService;
+import com.kalix.schedule.plan.template.api.biz.IAssignmentTemplateBeanService;
 import com.kalix.schedule.plan.template.api.dao.IAssignmentTemplateBeanDao;
 import com.kalix.schedule.plan.template.entities.AssignmentTemplateBean;
 import com.kalix.schedule.plan.template.entities.TemplateBean;

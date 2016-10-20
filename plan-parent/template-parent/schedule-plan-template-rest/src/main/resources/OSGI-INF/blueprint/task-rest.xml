@@ -4,7 +4,7 @@
            xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
        http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
 
-    <reference id="assignmentTemplateService" interface="com.kalix.schedule.task.assignment.api.biz.IAssignmentTemplateBeanService"/>
+    <reference id="assignmentTemplateService" interface="com.kalix.schedule.plan.template.api.biz.IAssignmentTemplateBeanService"/>
     <camelContext id="assignmentTemplateCamel" xmlns="http://camel.apache.org/schema/blueprint">
         <restConfiguration component="servlet" bindingMode="json">
             <dataFormatProperty key="prettyPrint" value="true"/>

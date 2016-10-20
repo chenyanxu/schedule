@@ -19,7 +19,6 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
     items: [
         {
             xtype: 'tabpanel',
-            id: 'departmentPlanTaskTabPanel',
             items: [
                 {
                     xtype: 'panel',

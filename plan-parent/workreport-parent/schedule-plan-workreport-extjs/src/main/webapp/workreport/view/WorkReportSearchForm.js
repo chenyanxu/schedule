@@ -22,7 +22,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportSearchForm', {
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
-            name: 'code%:relation:OrganizationBean',
+            name: 'orgCode%',
             hidden: true
         },
         {

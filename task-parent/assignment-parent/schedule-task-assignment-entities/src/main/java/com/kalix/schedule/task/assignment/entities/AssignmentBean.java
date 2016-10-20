@@ -127,9 +127,6 @@ public class AssignmentBean extends PersistentEntity {
     @Transient
     private Integer eventType;
 
-    @Transient
-    private long templateId;
-
     public long getUserId() {
         return this.userId;
     }
@@ -336,13 +333,5 @@ public class AssignmentBean extends PersistentEntity {
 
     public void setEventType(Integer eventType) {
         this.eventType = eventType;
-    }
-
-    public long getTemplateId() {
-        return templateId;
-    }
-
-    public void setTemplateId(long templateId) {
-        this.templateId = templateId;
     }
 }

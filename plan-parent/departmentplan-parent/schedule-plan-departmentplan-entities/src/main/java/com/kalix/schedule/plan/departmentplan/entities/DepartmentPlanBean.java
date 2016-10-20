@@ -6,7 +6,6 @@ import com.kalix.framework.core.api.persistence.PersistentEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import java.util.Date;
 
 /**
@@ -68,9 +67,6 @@ public class DepartmentPlanBean extends PersistentEntity {
      * @describe 计划状态
      */
     private Integer state;
-
-    @Transient
-    private long templateId;
 
     public long getUserId() {
         return userId;
@@ -158,13 +154,5 @@ public class DepartmentPlanBean extends PersistentEntity {
 
     public void setState(Integer state) {
         this.state = state;
-    }
-
-    public long getTemplateId() {
-        return templateId;
-    }
-
-    public void setTemplateId(long templateId) {
-        this.templateId = templateId;
     }
 }
