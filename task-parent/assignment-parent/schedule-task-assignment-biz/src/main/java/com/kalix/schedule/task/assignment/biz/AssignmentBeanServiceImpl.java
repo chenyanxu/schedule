@@ -19,6 +19,8 @@ import com.kalix.schedule.task.assignment.api.dao.IAssignmentBeanDao;
 import com.kalix.schedule.task.assignment.api.dao.IEventBeanDao;
 import com.kalix.schedule.task.assignment.api.dao.IProgressBeanDao;
 import com.kalix.schedule.task.assignment.api.dao.IReadingBeanDao;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventAdmin;
 
@@ -155,53 +157,37 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
             JsonData jsonData = assignmentTemplateBeanService.getAllEntityByQuery(1,100,"{planTemplateId:" + templateBean.getId() + "}");
             List<AssignmentTemplateBean> assignmentTemplateList = jsonData.getData();
             for(int i = 0; i < assignmentTemplateList.size(); i++){
-                AssignmentBean newAssignment = new AssignmentBean();
+                Mapper mapper = new DozerBeanMapper();
+
+                AssignmentBean newAssignment = mapper.map(assignmentTemplateList.get(i), AssignmentBean.class);
                 newAssignment.setId(0);
-                newAssignment.setTitle(assignmentTemplateList.get(i).getTitle());
-                newAssignment.setInstruction(assignmentTemplateList.get(i).getInstruction());
                 newAssignment.setPercentNumber(0);
-                newAssignment.setRewardStandard(assignmentTemplateList.get(i).getRewardStandard());
                 newAssignment.setBeginDate(new Date());
-                newAssignment.setContent(assignmentTemplateList.get(i).getContent());
 
                 Date endDate = new Date();
                 newAssignment.setEndDate(new Date(endDate.getTime() + assignmentTemplateList.get(i).getTaskDate()*24*60*60*1000));
-                newAssignment.setHead(assignmentTemplateList.get(i).getHead());
-                newAssignment.setOrgCode(assignmentTemplateList.get(i).getOrgCode());
-                newAssignment.setOrgId(assignmentTemplateList.get(i).getOrgId());
-                newAssignment.setOrgName(assignmentTemplateList.get(i).getOrgName());
-                newAssignment.setParticipant(assignmentTemplateList.get(i).getParticipant());
                 newAssignment.setPercent(0);
-                newAssignment.setRewardStandard(assignmentTemplateList.get(i).getRewardStandard());
-                newAssignment.setSourceId(assignmentTemplateList.get(i).getSourceId());
-                newAssignment.setTemplateId(templateBean.getId());
-                newAssignment.setWorkHours(assignmentTemplateList.get(i).getWorkHours());
                 // 添加时，写入用户id及用户名
                 newAssignment.setUserId(userId);
                 newAssignment.setUserName(userName);
+                newAssignment.setCreationDate(new Date());
+                newAssignment.setUpdateDate(new Date());
 
                 postNewAssignmentEvent(entity);
                 //新增部门计划下的任务
                 super.saveEntity(entity);
-                //保存任务事件
-                saveEventEntity(entity);
             }
 
-            DepartmentPlanBean departmentPlanBean = new DepartmentPlanBean();
+            Mapper mapper = new DozerBeanMapper();
+            DepartmentPlanBean departmentPlanBean = mapper.map(templateBean,DepartmentPlanBean.class);
             departmentPlanBean.setId(0);
             departmentPlanBean.setUserName(userName);
             departmentPlanBean.setUserId(userId);
-            departmentPlanBean.setOrgName(templateBean.getOrgName());
             departmentPlanBean.setBeginDate(new Date());
-            departmentPlanBean.setContent(templateBean.getContent());
             Date endDate = new Date();
             departmentPlanBean.setEndDate(new Date(endDate.getTime() + templateBean.getPlanDate()*24*60*60*1000));
-            departmentPlanBean.setOrgCode(templateBean.getOrgCode());
-            departmentPlanBean.setOrgId(templateBean.getOrgId());
-            departmentPlanBean.setPlanType(templateBean.getPlanType());
-            departmentPlanBean.setState(templateBean.getState());
-            departmentPlanBean.setTitle(templateBean.getTitle());
-
+            departmentPlanBean.setCreationDate(new Date());
+            departmentPlanBean.setUpdateDate(new Date());
             //新增部门计划
             jsonStatus = departmentplanBeanService.saveEntity(departmentPlanBean);
         }else {
