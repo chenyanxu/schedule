@@ -10,6 +10,34 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
     mixins: {
         attachment: 'kalix.attachment.common.mixins.Attachment'
     },
+    /**
+     * 打开添加操作.
+     */
+    onAdd: function (target) {
+        var scope = this;
+        Ext.Msg.confirm("警告", "是否从模板新建任务？", function (button) {
+            if (button == "yes") {
+                var view = Ext.create('kalix.task.assignment.view.TemplateWindow');
+                var vm = view.lookupViewModel();
+                vm.set('rec', Ext.create('kalix.task.assignment.model.TemplateModel'));
+                vm.set('iconCls', vm.get('editIconCls'));
+                vm.set('title','从模板添加任务');
+                vm.set('store',this.getView().store);
+                view.show();
+            }else{
+                var view = Ext.create(this.cfgForm);
+                var vm = view.lookupViewModel();
+
+                vm.set('rec', Ext.create(this.cfgModel));
+                vm.set('iconCls', vm.get('addIconCls'));
+                vm.set('title', vm.get('addTitle'));
+                vm.set('store',this.getView().store);
+
+                this.viewModelExtraInit(vm);
+                view.show();
+            }
+        },scope);
+    },
     //任务取消
     onCancel: function (grid, rowIndex, colIndex) {
         var model = grid.getStore().getData().items[rowIndex];

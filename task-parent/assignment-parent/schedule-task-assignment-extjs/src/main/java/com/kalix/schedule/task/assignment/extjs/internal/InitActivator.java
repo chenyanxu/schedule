@@ -20,10 +20,12 @@ public class InitActivator extends KalixBundleActivator {
         httpService = (HttpService) bundleContext.getService(reference);
 
         if(deploy){
+            httpService.registerResources(contextPath + "/app/schedule/template", "/min/template", null);
             httpService.registerResources(contextPath + "/app/task/assignment", "/min/assignment", null);
             httpService.registerResources(contextPath + "/app/task/assignmentcharts", "/min/assignmentcharts", null);
         }
         else{
+            httpService.registerResources(contextPath + "/app/schedule/template", "/template", null);
             httpService.registerResources(contextPath + "/app/task/assignment", "/assignment", null);
             httpService.registerResources(contextPath + "/app/task/assignmentcharts", "/assignmentcharts", null);
         }
@@ -34,6 +36,7 @@ public class InitActivator extends KalixBundleActivator {
         SystemUtil.stopBundlePrintln(bundleContext);
 
         if(httpService!=null){
+            httpService.unregister(contextPath +"/app/schedule/template");
             httpService.unregister(contextPath +"/app/task/assignment");
             httpService.unregister(contextPath +"/app/task/assignmentcharts");
         }

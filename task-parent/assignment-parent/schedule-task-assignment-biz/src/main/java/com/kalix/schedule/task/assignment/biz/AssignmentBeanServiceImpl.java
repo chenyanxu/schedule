@@ -8,16 +8,19 @@ import com.kalix.framework.core.impl.biz.ShiroGenericBizServiceImpl;
 import com.kalix.framework.core.util.BeanUtil;
 import com.kalix.framework.core.util.JNDIHelper;
 import com.kalix.framework.core.util.SerializeUtil;
+import com.kalix.schedule.plan.departmentplan.api.biz.IDepartmentPlanBeanService;
+import com.kalix.schedule.plan.departmentplan.entities.DepartmentPlanBean;
+import com.kalix.schedule.task.assignment.api.biz.IAssignmentTemplateBeanService;
+import com.kalix.schedule.task.assignment.api.biz.ITemplateBeanService;
+import com.kalix.schedule.task.assignment.entities.*;
 import com.kalix.schedule.system.dict.api.biz.IScheduleDictBeanService;
 import com.kalix.schedule.task.assignment.api.biz.IAssignmentBeanService;
 import com.kalix.schedule.task.assignment.api.dao.IAssignmentBeanDao;
 import com.kalix.schedule.task.assignment.api.dao.IEventBeanDao;
 import com.kalix.schedule.task.assignment.api.dao.IProgressBeanDao;
 import com.kalix.schedule.task.assignment.api.dao.IReadingBeanDao;
-import com.kalix.schedule.task.assignment.entities.AssignmentBean;
-import com.kalix.schedule.task.assignment.entities.EventBean;
-import com.kalix.schedule.task.assignment.entities.ProgressBean;
-import com.kalix.schedule.task.assignment.entities.ReadingBean;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventAdmin;
 
@@ -43,8 +46,9 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
     }
 
     private IScheduleDictBeanService scheduleDictBeanService;
-
-
+    private ITemplateBeanService templateBeanService;
+    private IAssignmentTemplateBeanService assignmentTemplateBeanService;
+    private IDepartmentPlanBeanService departmentplanBeanService;
     private IProgressBeanDao progressBeanDao;
     private IEventBeanDao eventBeanDao;
     private IReadingBeanDao readingBeanDao;
@@ -142,21 +146,68 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         // 获取登录用户id及用户名
         Long userId = this.getShiroService().getCurrentUserId();
         String userName = this.getShiroService().getCurrentUserRealName();
-        // 添加时，写入用户id及用户名
-        entity.setUserId(userId);
-        entity.setUserName(userName);
 
-        //设置进度
-        if (entity != null) {
-            entity.setPercent(entity.getPercent());
-        } else {
-            entity.setPercent(0f);
+        // 先判断是否是从计划模板创建的任务
+        if(entity.getTemplateId() != 0){//根据模板生成部门计划，部门计划下的任务
+            // 查询该计划模板
+            TemplateBean templateBean = templateBeanService.getEntity(entity.getTemplateId());
+            // 利用计划模板新建计划
+
+            // 查看该计划下是否有任务
+            JsonData jsonData = assignmentTemplateBeanService.getAllEntityByQuery(1,100,"{planTemplateId:" + templateBean.getId() + "}");
+            List<AssignmentTemplateBean> assignmentTemplateList = jsonData.getData();
+            for(int i = 0; i < assignmentTemplateList.size(); i++){
+                Mapper mapper = new DozerBeanMapper();
+
+                AssignmentBean newAssignment = mapper.map(assignmentTemplateList.get(i), AssignmentBean.class);
+                newAssignment.setId(0);
+                newAssignment.setPercentNumber(0);
+                newAssignment.setBeginDate(new Date());
+
+                Date endDate = new Date();
+                newAssignment.setEndDate(new Date(endDate.getTime() + assignmentTemplateList.get(i).getTaskDate()*24*60*60*1000));
+                newAssignment.setPercent(0);
+                // 添加时，写入用户id及用户名
+                newAssignment.setUserId(userId);
+                newAssignment.setUserName(userName);
+                newAssignment.setCreationDate(new Date());
+                newAssignment.setUpdateDate(new Date());
+
+                postNewAssignmentEvent(entity);
+                //新增部门计划下的任务
+                super.saveEntity(entity);
+            }
+
+            Mapper mapper = new DozerBeanMapper();
+            DepartmentPlanBean departmentPlanBean = mapper.map(templateBean,DepartmentPlanBean.class);
+            departmentPlanBean.setId(0);
+            departmentPlanBean.setUserName(userName);
+            departmentPlanBean.setUserId(userId);
+            departmentPlanBean.setBeginDate(new Date());
+            Date endDate = new Date();
+            departmentPlanBean.setEndDate(new Date(endDate.getTime() + templateBean.getPlanDate()*24*60*60*1000));
+            departmentPlanBean.setCreationDate(new Date());
+            departmentPlanBean.setUpdateDate(new Date());
+            //新增部门计划
+            jsonStatus = departmentplanBeanService.saveEntity(departmentPlanBean);
+        }else {
+            // 添加时，写入用户id及用户名
+            entity.setUserId(userId);
+            entity.setUserName(userName);
+
+            //设置进度
+            if (entity != null) {
+                entity.setPercent(entity.getPercent());
+            } else {
+                entity.setPercent(0f);
+            }
+            postNewAssignmentEvent(entity);
+
+            jsonStatus = super.saveEntity(entity);
+            //保存任务事件
+            saveEventEntity(entity);
         }
-        postNewAssignmentEvent(entity);
 
-        JsonStatus jsonStatus = super.saveEntity(entity);
-        //保存任务事件
-        saveEventEntity(entity);
         return jsonStatus;
     }
 
@@ -423,5 +474,17 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
 
     public void setScheduleDictBeanService(IScheduleDictBeanService scheduleDictBeanService) {
         this.scheduleDictBeanService = scheduleDictBeanService;
+    }
+
+    public void setTemplateBeanService(ITemplateBeanService templateBeanService) {
+        this.templateBeanService = templateBeanService;
+    }
+
+    public void setAssignmentTemplateBeanService(IAssignmentTemplateBeanService assignmentTemplateBeanService) {
+        this.assignmentTemplateBeanService = assignmentTemplateBeanService;
+    }
+
+    public void setDepartmentplanBeanService(IDepartmentPlanBeanService departmentplanBeanService) {
+        this.departmentplanBeanService = departmentplanBeanService;
     }
 }

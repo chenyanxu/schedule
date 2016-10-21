@@ -13,14 +13,16 @@ import com.kalix.schedule.task.assignment.api.dao.ITemplateBeanDao;
 import com.kalix.schedule.task.assignment.entities.AssignmentBean;
 import com.kalix.schedule.task.assignment.entities.AssignmentTemplateBean;
 import com.kalix.schedule.task.assignment.entities.TemplateBean;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
 /**
- * @类描述： 
- * @创建人：  
- * @创建时间： 
+ * @类描述：
+ * @创建人：
+ * @创建时间：
  * @修改人：
  * @修改时间：
  * @修改备注：
@@ -66,27 +68,30 @@ public class TemplateBeanServiceImpl extends ShiroGenericBizServiceImpl<ITemplat
         List<AssignmentBean> assignmentList = jsonData.getData();
         String taskIds = "";
         for(int i = 0; i < assignmentList.size(); i++){
+            Mapper mapper = new DozerBeanMapper();
+
             taskIds += assignmentList.get(i).getId() + ",";
-            AssignmentTemplateBean assignmentTemplateBean = new AssignmentTemplateBean();
+            AssignmentTemplateBean assignmentTemplateBean = mapper.map(assignmentList.get(i),AssignmentTemplateBean.class);
+
             assignmentTemplateBean.setId(0);
-            assignmentTemplateBean.setUserId(assignmentList.get(i).getUserId());
-            assignmentTemplateBean.setUserName(assignmentList.get(i).getUserName());
-            assignmentTemplateBean.setOrgId(assignmentList.get(i).getOrgId());
-            assignmentTemplateBean.setOrgCode(assignmentList.get(i).getOrgCode());
-            assignmentTemplateBean.setOrgName(assignmentList.get(i).getOrgName());
-            assignmentTemplateBean.setTitle(assignmentList.get(i).getTitle());
-            assignmentTemplateBean.setSourceType(assignmentList.get(i).getSourceType());
-            assignmentTemplateBean.setSourceId(assignmentList.get(i).getSourceId());
-            assignmentTemplateBean.setContent(assignmentList.get(i).getContent());
-            assignmentTemplateBean.setState(assignmentList.get(i).getState());
+//            assignmentTemplateBean.setUserId(assignmentList.get(i).getUserId());
+//            assignmentTemplateBean.setUserName(assignmentList.get(i).getUserName());
+//            assignmentTemplateBean.setOrgId(assignmentList.get(i).getOrgId());
+//            assignmentTemplateBean.setOrgCode(assignmentList.get(i).getOrgCode());
+//            assignmentTemplateBean.setOrgName(assignmentList.get(i).getOrgName());
+//            assignmentTemplateBean.setTitle(assignmentList.get(i).getTitle());
+//            assignmentTemplateBean.setSourceType(assignmentList.get(i).getSourceType());
+//            assignmentTemplateBean.setSourceId(assignmentList.get(i).getSourceId());
+//            assignmentTemplateBean.setContent(assignmentList.get(i).getContent());
+//            assignmentTemplateBean.setState(assignmentList.get(i).getState());
             long intervalMilli = assignmentList.get(i).getEndDate().getTime() - assignmentList.get(i).getBeginDate().getTime();
             assignmentTemplateBean.setTaskDate((int) (intervalMilli / (24 * 60 * 60 * 1000)));
-            assignmentTemplateBean.setWorkHours(assignmentList.get(i).getWorkHours());
-            assignmentTemplateBean.setHead(assignmentList.get(i).getHead());
-            assignmentTemplateBean.setHeader(assignmentList.get(i).getHeader());
-            assignmentTemplateBean.setParticipant(assignmentList.get(i).getParticipant());
-            assignmentTemplateBean.setRewardStandard(assignmentList.get(i).getRewardStandard());
-            assignmentTemplateBean.setInstruction(assignmentList.get(i).getInstruction());
+//            assignmentTemplateBean.setWorkHours(assignmentList.get(i).getWorkHours());
+//            assignmentTemplateBean.setHead(assignmentList.get(i).getHead());
+//            assignmentTemplateBean.setHeader(assignmentList.get(i).getHeader());
+//            assignmentTemplateBean.setParticipant(assignmentList.get(i).getParticipant());
+//            assignmentTemplateBean.setRewardStandard(assignmentList.get(i).getRewardStandard());
+//            assignmentTemplateBean.setInstruction(assignmentList.get(i).getInstruction());
 
             //保存部门计划下的任务信息
             assignmentTemplateBeanService.saveEntity(assignmentTemplateBean);
@@ -96,21 +101,23 @@ public class TemplateBeanServiceImpl extends ShiroGenericBizServiceImpl<ITemplat
             taskIds = taskIds.substring(0,taskIds.length() - 1);
         }
 
-        TemplateBean templateBean = new TemplateBean();
+        Mapper mapper = new DozerBeanMapper();
+
+        TemplateBean templateBean = mapper.map(departmentPlanBean,TemplateBean.class);
         templateBean.setId(0);
         templateBean.setTemplateName(entity.getTemplateName());
-        templateBean.setUserId(departmentPlanBean.getUserId());
-        templateBean.setUserName(departmentPlanBean.getUserName());
-        templateBean.setOrgId(departmentPlanBean.getOrgId());
-        templateBean.setOrgCode(departmentPlanBean.getOrgCode());
-        templateBean.setOrgName(departmentPlanBean.getOrgName());
-        templateBean.setTitle(departmentPlanBean.getTitle());
-        templateBean.setContent(departmentPlanBean.getContent());
-        templateBean.setPlanType(departmentPlanBean.getPlanType());
+//        templateBean.setUserId(departmentPlanBean.getUserId());
+//        templateBean.setUserName(departmentPlanBean.getUserName());
+//        templateBean.setOrgId(departmentPlanBean.getOrgId());
+//        templateBean.setOrgCode(departmentPlanBean.getOrgCode());
+//        templateBean.setOrgName(departmentPlanBean.getOrgName());
+//        templateBean.setTitle(departmentPlanBean.getTitle());
+//        templateBean.setContent(departmentPlanBean.getContent());
+//        templateBean.setPlanType(departmentPlanBean.getPlanType());
         long intervalMilli = departmentPlanBean.getEndDate().getTime() - departmentPlanBean.getBeginDate().getTime();
         templateBean.setPlanDate((int) (intervalMilli / (24 * 60 * 60 * 1000)));
 
-        templateBean.setState(departmentPlanBean.getState());
+        //templateBean.setState(departmentPlanBean.getState());
         templateBean.setTaskIds(taskIds);
 
         //保存部门计划模板信息

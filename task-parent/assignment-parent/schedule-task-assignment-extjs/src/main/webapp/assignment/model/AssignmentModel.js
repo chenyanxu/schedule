@@ -124,6 +124,10 @@ Ext.define('kalix.task.assignment.model.AssignmentModel', {
         {
             name: 'eventType',
             type: 'int'
+        },
+        {
+            name: 'templateId',
+            type: 'int'
         }
     ]
 });
