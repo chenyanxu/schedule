@@ -8,7 +8,8 @@ Ext.define('kalix.plan.workreport.view.WorkReportSearchGrid', {
     requires: [
         'kalix.plan.workreport.controller.WorkReportGridController',
         'kalix.plan.workreport.store.WorkReportStore',
-        'kalix.schedule.scheduleDict.component.ScheduleDictGridColumn'
+        'kalix.schedule.scheduleDict.component.ScheduleDictGridColumn',
+        'kalix.view.components.common.IconColumn'
     ],
     alias: 'widget.workreportsearchGrid',
     xtype: 'workreportsearchGridPanel',
@@ -26,12 +27,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportSearchGrid', {
 
     columns: [
         {
-            xtype: 'rownumberer',
-            text: "行号",
-            width: 50,
-            flex: 0,
-            align: 'center',
-            renderer: this.update
+            xtype: 'rownumberer'
         },
         {
             text: '编号',
@@ -49,9 +45,9 @@ Ext.define('kalix.plan.workreport.view.WorkReportSearchGrid', {
             hidden: true
         },
         {
-            text: '部门code',
-            hidden: true,
-            dataIndex: 'orgCode'
+            text: '头像',
+            xtype: 'iconcolumn',
+            dataIndex: 'userIcon'
         },
         {
             text: '部门名称',
@@ -118,12 +114,12 @@ Ext.define('kalix.plan.workreport.view.WorkReportSearchGrid', {
     plugins: [{
         ptype: 'rowexpander',
         rowBodyTpl: new Ext.XTemplate(
-            '<p><b>内容:</b> {content}</p>',
-            {
-                formatChange: function (v) {
-                    var color = v >= 0 ? 'green' : 'red';
-                    return '<span style="color: ' + color + ';">' + Ext.util.Format.usMoney(v) + '</span>';
-                }
-            })
+          '<p><b>内容:</b> {content}</p>',
+          {
+              formatChange: function (v) {
+                  var color = v >= 0 ? 'green' : 'red';
+                  return '<span style="color: ' + color + ';">' + Ext.util.Format.usMoney(v) + '</span>';
+              }
+          })
     }],
 });
