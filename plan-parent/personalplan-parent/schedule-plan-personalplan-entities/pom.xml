@@ -19,17 +19,17 @@
     </properties>
 
     <dependencies>
-            <dependency>
-                <groupId>com.kalix.admin.core</groupId>
-                <artifactId>admin-core-entities</artifactId>
-            </dependency>
-        </dependencies>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.openjpa</groupId>
-                    <artifactId>openjpa-maven-plugin</artifactId>
-                </plugin>
-            </plugins>
-        </build>
+        <dependency>
+            <groupId>com.kalix.admin.core</groupId>
+            <artifactId>admin-core-entities</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.openjpa</groupId>
+                <artifactId>openjpa-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

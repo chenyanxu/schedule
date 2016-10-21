@@ -1,20 +1,16 @@
 package com.kalix.schedule.plan.personalplan.entities.internal;
 
-import com.kalix.framework.core.util.SystemUtil;
-import org.osgi.framework.BundleActivator;
+import com.kalix.framework.core.api.osgi.CascadeBundleActivator;
+import com.kalix.schedule.plan.personalplan.entities.PersonalPlanBean;
 import org.osgi.framework.BundleContext;
 
 /**
  * Created by sunlf on 14-3-23.
  */
-public class InitActivator implements BundleActivator {
+public class InitActivator extends CascadeBundleActivator {
     @Override
     public void start(BundleContext bundleContext) throws Exception {
-        SystemUtil.startBundlePrintln(bundleContext);
-    }
-
-    @Override
-    public void stop(BundleContext bundleContext) throws Exception {
-        SystemUtil.stopBundlePrintln(bundleContext);
+        super.start(bundleContext);
+        registerCascade(PersonalPlanBean.class);
     }
 }

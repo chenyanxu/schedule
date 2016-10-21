@@ -48,11 +48,6 @@ Ext.define('kalix.plan.workreport.view.WorkReportGrid', {
             hidden: true
         },
         {
-            text: '部门code',
-            hidden: true,
-            dataIndex: 'orgCode'
-        },
-        {
             text: '部门名称',
             dataIndex: 'orgName'
         },
