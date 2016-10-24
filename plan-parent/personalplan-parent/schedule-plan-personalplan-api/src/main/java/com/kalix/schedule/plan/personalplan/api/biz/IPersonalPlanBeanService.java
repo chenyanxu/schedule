@@ -23,5 +23,5 @@ public interface IPersonalPlanBeanService extends IBizService<PersonalPlanBean> 
      * @param jsonStr
      * @return
      */
-    JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr);
+    JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr, String sort);
 }

@@ -42,7 +42,7 @@ public interface IWorkReportBeanService extends IBizService<WorkReportBean> {
      * @param jsonStr
      * @return
      */
-    JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr);
+    JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr, String sort);
 
     /**
      * 查询计划关联的工作汇报信息 2016-09-01 by p

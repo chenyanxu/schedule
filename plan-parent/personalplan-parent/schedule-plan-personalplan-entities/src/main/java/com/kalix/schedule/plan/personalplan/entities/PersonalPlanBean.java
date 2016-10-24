@@ -1,11 +1,16 @@
 package com.kalix.schedule.plan.personalplan.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.kalix.framework.core.api.annotation.KalixCascade;
+import com.kalix.framework.core.api.annotation.Relation;
+import com.kalix.framework.core.api.annotation.TableCascade;
+import com.kalix.framework.core.api.annotation.TableRelation;
 import com.kalix.framework.core.api.persistence.BusinessEntity;
-import com.kalix.framework.core.api.persistence.Relation;
-import com.kalix.framework.core.api.persistence.TableRelation;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.Date;
 
 /**
@@ -22,6 +27,10 @@ import java.util.Date;
 @TableRelation(relations = {
         @Relation(BeanName = "UserBean", PK = "id", PFields ={"name","icon"}, FK = "userId", FFields = {"userName","userIcon"}),
         @Relation(BeanName = "OrganizationBean", PK = "id", PFields = {"name"}, FK = "orgId", FFields = {"orgName"})
+})
+@TableCascade(kalixCascades = {
+        @KalixCascade(beans = "com.kalix.admin.core.entities.UserBean", deletable = true, foreignKey = "userId"),
+        @KalixCascade(beans = "com.kalix.admin.core.entities.OrganizationBean", deletable = true, foreignKey = "orgid")
 })
 public class PersonalPlanBean extends BusinessEntity {
     public PersonalPlanBean() {}

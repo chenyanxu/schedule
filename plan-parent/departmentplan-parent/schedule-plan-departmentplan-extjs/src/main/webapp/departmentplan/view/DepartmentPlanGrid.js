@@ -48,11 +48,6 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
             hidden: true
         },
         {
-            text: '部门code',
-            dataIndex: 'orgCode',
-            hidden: true
-        },
-        {
             text: '部门名称',
             dataIndex: 'orgName'
         },

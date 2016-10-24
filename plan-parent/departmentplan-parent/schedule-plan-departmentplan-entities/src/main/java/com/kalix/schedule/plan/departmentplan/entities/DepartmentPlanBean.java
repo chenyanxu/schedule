@@ -1,11 +1,16 @@
 package com.kalix.schedule.plan.departmentplan.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.kalix.framework.core.api.persistence.PersistentEntity;
+import com.kalix.framework.core.api.annotation.KalixCascade;
+import com.kalix.framework.core.api.annotation.Relation;
+import com.kalix.framework.core.api.annotation.TableCascade;
+import com.kalix.framework.core.api.annotation.TableRelation;
+import com.kalix.framework.core.api.persistence.BusinessEntity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.Date;
 
 /**
@@ -19,26 +24,32 @@ import java.util.Date;
 //todo 修改模型定义
 @Entity
 @Table(name = "schedule_departmentplan")
-public class DepartmentPlanBean extends PersistentEntity {
-    /**
-     * @describe 用户ID
-     */
-    private long userId;
-    /**
-     * @describe 用户姓名
-     */
-    private String userName;
+@TableRelation(relations = {
+        @Relation(BeanName = "UserBean", PK = "id", PFields = {"name", "icon"}, FK = "userId", FFields = {"userName", "userIcon"}),
+        @Relation(BeanName = "OrganizationBean", PK = "id", PFields = {"name"}, FK = "orgId", FFields = {"orgName"})
+})
+@TableCascade(kalixCascades = {
+        @KalixCascade(beans = "com.kalix.admin.core.entities.UserBean", deletable = true, foreignKey = "userId"),
+        @KalixCascade(beans = "com.kalix.admin.core.entities.OrganizationBean", deletable = true, foreignKey = "orgid")
+})
+public class DepartmentPlanBean extends BusinessEntity {
+    public DepartmentPlanBean() {
+    }
+
+    public DepartmentPlanBean(DepartmentPlanBean departmentPlanBean, String userName, String userIcon, String orgName) {
+        super(departmentPlanBean, userName, userIcon);
+
+        this.orgName = orgName;
+    }
+
     /**
      * @describe 组织机构ID
      */
     private long orgId;
     /**
-     * @describe 组织机构编码
-     */
-    private String orgCode;
-    /**
      * @describe 组织机构名称
      */
+    @Transient
     private String orgName;
     /**
      * @describe 计划标题
@@ -47,12 +58,16 @@ public class DepartmentPlanBean extends PersistentEntity {
     /**
      * @describe 计划内容
      */
-    @Column(columnDefinition = "TEXT")
+    @Lob
     private String content;
     /**
      * @describe 计划类型
      */
     private Integer planType;
+    /**
+     * @describe 计划状态
+     */
+    private Integer state;
     /**
      * @describe 计划开始时间
      */
@@ -63,26 +78,6 @@ public class DepartmentPlanBean extends PersistentEntity {
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date endDate;
-    /**
-     * @describe 计划状态
-     */
-    private Integer state;
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public long getOrgId() {
         return orgId;
@@ -90,14 +85,6 @@ public class DepartmentPlanBean extends PersistentEntity {
 
     public void setOrgId(long orgId) {
         this.orgId = orgId;
-    }
-
-    public String getOrgCode() {
-        return orgCode;
-    }
-
-    public void setOrgCode(String orgCode) {
-        this.orgCode = orgCode;
     }
 
     public String getOrgName() {
@@ -132,6 +119,14 @@ public class DepartmentPlanBean extends PersistentEntity {
         this.planType = planType;
     }
 
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
     public Date getBeginDate() {
         return beginDate;
     }
@@ -146,13 +141,5 @@ public class DepartmentPlanBean extends PersistentEntity {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
-    }
-
-    public Integer getState() {
-        return state;
-    }
-
-    public void setState(Integer state) {
-        this.state = state;
     }
 }

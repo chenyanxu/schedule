@@ -19,6 +19,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportSearchForm', {
         {
             xtype: 'textfield',
             fieldLabel: '部门code',
+            itemId: 'orgCode',
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,

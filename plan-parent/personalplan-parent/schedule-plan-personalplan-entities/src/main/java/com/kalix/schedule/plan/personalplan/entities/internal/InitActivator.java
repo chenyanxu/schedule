@@ -13,4 +13,10 @@ public class InitActivator extends CascadeBundleActivator {
         super.start(bundleContext);
         registerCascade(PersonalPlanBean.class);
     }
+
+    @Override
+    public void stop(BundleContext bundleContext) throws Exception {
+        unRegisterCascade(PersonalPlanBean.class);
+        super.stop(bundleContext);
+    }
 }

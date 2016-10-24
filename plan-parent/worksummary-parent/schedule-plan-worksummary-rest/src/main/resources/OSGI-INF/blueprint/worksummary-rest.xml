@@ -17,7 +17,7 @@
             <!-- this is a rest GET to find all worksummary -->
             <get id="route-getAllWorkSummary" outType="com.kalix.framework.core.api.persistence.JsonData">
                 <description>Find all WorkSummarys</description>
-                <to uri="bean:worksummaryService?method=getSelfEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
+                <to uri="bean:worksummaryService?method=getSelfEntityByQuery(${header.page},${header.limit},${header.jsonStr},${header.sort})"/>
             </get>
 
             <!-- this is a rest POST to create a worksummary -->

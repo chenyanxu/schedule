@@ -2,7 +2,6 @@ package com.kalix.schedule.plan.departmentplan.api.biz;
 
 import com.kalix.framework.core.api.biz.IBizService;
 import com.kalix.framework.core.api.persistence.JsonData;
-import com.kalix.framework.core.api.persistence.JsonStatus;
 import com.kalix.schedule.plan.departmentplan.entities.DepartmentPlanBean;
 
 /**
@@ -24,7 +23,7 @@ public interface IDepartmentPlanBeanService extends IBizService<DepartmentPlanBe
      * @param jsonStr
      * @return
      */
-    JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr);
+    JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr, String sort);
 
     /**
      * 查询个人的部门计划,提供给combobox使用,已经归档的任务不出现在combobox中

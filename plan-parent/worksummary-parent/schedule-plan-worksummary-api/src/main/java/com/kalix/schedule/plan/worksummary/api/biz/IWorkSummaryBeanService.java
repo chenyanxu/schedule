@@ -23,5 +23,5 @@ public interface IWorkSummaryBeanService extends IBizService<WorkSummaryBean> {
      * @param jsonStr
      * @return
      */
-    JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr);
+    JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr, String sort);
 }

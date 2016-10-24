@@ -19,10 +19,11 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchForm', {
         {
             xtype: 'textfield',
             fieldLabel: '部门code',
+            itemId: 'orgCode',
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
-            name: 'orgCode%',
+            name: 'code%:relation:OrganizationBean',
             hidden: true
         },
         {

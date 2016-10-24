@@ -88,12 +88,6 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchForm', {
             labelAlign: 'right',
             width: 140,
             name: 'beginDate:end:lt'
-        },
-        {
-            xtype:'textfield',
-            fieldLabel:'用户名称:',
-            labelWidth:60,
-            name:'%name%:relation:UserBean'
         }
     ]
 });

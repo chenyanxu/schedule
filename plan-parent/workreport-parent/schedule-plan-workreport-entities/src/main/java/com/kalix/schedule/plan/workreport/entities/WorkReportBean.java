@@ -1,12 +1,14 @@
 package com.kalix.schedule.plan.workreport.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.kalix.framework.core.api.annotation.KalixCascade;
+import com.kalix.framework.core.api.annotation.Relation;
+import com.kalix.framework.core.api.annotation.TableCascade;
+import com.kalix.framework.core.api.annotation.TableRelation;
 import com.kalix.framework.core.api.persistence.BusinessEntity;
-import com.kalix.framework.core.api.persistence.Relation;
-import com.kalix.framework.core.api.persistence.TableRelation;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.util.Date;
@@ -23,14 +25,20 @@ import java.util.Date;
 @Entity
 @Table(name = "schedule_workreport")
 @TableRelation(relations = {
-        @Relation(BeanName = "UserBean", PK = "id", PFields ={"name","icon"}, FK = "userId", FFields = {"userName","userIcon"}),
+        @Relation(BeanName = "UserBean", PK = "id", PFields = {"name", "icon"}, FK = "userId", FFields = {"userName", "userIcon"}),
         @Relation(BeanName = "OrganizationBean", PK = "id", PFields = {"name"}, FK = "orgId", FFields = {"orgName"})
 })
-
+@TableCascade(kalixCascades = {
+        @KalixCascade(beans = "com.kalix.admin.core.entities.UserBean", deletable = true, foreignKey = "userId"),
+        @KalixCascade(beans = "com.kalix.admin.core.entities.OrganizationBean", deletable = true, foreignKey = "orgid")
+})
 public class WorkReportBean extends BusinessEntity {
+    public WorkReportBean() {
 
-    public WorkReportBean(WorkReportBean workReportBean, String userName,String userIcon, String orgName) {
-        super(workReportBean,userName,userIcon);
+    }
+
+    public WorkReportBean(WorkReportBean workReportBean, String userName, String userIcon, String orgName) {
+        super(workReportBean, userName, userIcon);
         this.orgName = orgName;
     }
 
@@ -48,7 +56,7 @@ public class WorkReportBean extends BusinessEntity {
     /**
      * @describe 内容
      */
-    @Column(columnDefinition = "TEXT")
+    @Lob
     private String content;
     /**
      * @describe 汇报类型

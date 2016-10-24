@@ -8,14 +8,13 @@ import com.kalix.schedule.plan.departmentplan.api.biz.IDepartmentPlanBeanService
 import com.kalix.schedule.plan.departmentplan.api.dao.IDepartmentPlanBeanDao;
 import com.kalix.schedule.plan.departmentplan.entities.DepartmentPlanBean;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Map;
 
 /**
- * @类描述： 
- * @创建人：  
- * @创建时间： 
+ * @类描述：
+ * @创建人：
+ * @创建时间：
  * @修改人：
  * @修改时间：
  * @修改备注：
@@ -38,25 +37,26 @@ public class DepartmentPlanBeanServiceImpl extends ShiroGenericBizServiceImpl<ID
     @Override
     public JsonData getDepPlanCombox(Integer page, Integer limit, String jsonStr) {
         Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
-        String condition=" where 1=1 ";
+        String condition = " where 1=1 ";
         for (Map.Entry<String, String> entry : jsonMap.entrySet()) {
             if (entry.getValue() != null && !entry.getValue().equals("")) {
                 condition = condition + " and " + entry.getKey() + " = " + entry.getValue();
             }
         }
         String userId = String.valueOf(this.getShiroService().getCurrentUserId());
-        condition += " and userId="+userId;
+        condition += " and userId=" + userId;
         // 已完成的部门计划在新建任务时不显示
         condition += " and state <> 2";
 
-        List comboList = dao.findByNativeSql("select * from " + dao.getTableName() + condition,DepartmentPlanBean.class,null);
+        List comboList = dao.findByNativeSql("select * from " + dao.getTableName() + condition, DepartmentPlanBean.class, null);
 
         JsonData jsonData = new JsonData();
         jsonData.setData(comboList);
-        jsonData.setTotalCount((long)comboList.size());
+        jsonData.setTotalCount((long) comboList.size());
 
         return jsonData;
     }
+
     /**
      * 查询个人的部门计划
      *
@@ -66,12 +66,12 @@ public class DepartmentPlanBeanServiceImpl extends ShiroGenericBizServiceImpl<ID
      * @return
      */
     @Override
-    public JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr) {
+    public JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr, String sort) {
         // 查询json串中添加，当前操作人员id
         Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
         jsonMap.put("userId", String.valueOf(this.getShiroService().getCurrentUserId()));
 
-        return super.getAllEntityByQuery(page, limit, SerializeUtil.serializeJson(jsonMap));
+        return super.getAllEntityByQuery(page, limit, SerializeUtil.serializeJson(jsonMap), sort);
     }
 
     /**
@@ -83,20 +83,18 @@ public class DepartmentPlanBeanServiceImpl extends ShiroGenericBizServiceImpl<ID
      * @return
      */
     @Override
-    public JsonData getAllEntityByQuery(Integer page, Integer limit, String jsonStr) {
+    public JsonData getAllEntityByQuery(Integer page, Integer limit, String jsonStr, String sort) {
         Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
         // 不允许查询全部计划，所以在没有code情况下，添加一个不可能存在的code，保证查询不出数据
-        if (jsonMap.get("orgCode%") == null || "".equals(jsonMap.get("orgCode%")))  {
-            jsonMap.put("orgCode", "-1");
+        if (jsonMap.get("code%:relation:OrganizationBean") == null || jsonMap.get("code%:relation:OrganizationBean").isEmpty())  {
+            jsonMap.put("code:relation:OrganizationBean", "-1");
         }
-        return super.getAllEntityByQuery(page, limit, SerializeUtil.serializeJson(jsonMap));
+        return super.getAllEntityByQuery(page, limit, SerializeUtil.serializeJson(jsonMap), sort);
     }
 
     @Override
-    @Transactional
-    public JsonStatus saveEntity(DepartmentPlanBean entity) {
+    public void beforeSaveEntity(DepartmentPlanBean entity, JsonStatus status) {
         entity.setUserId(this.getShiroService().getCurrentUserId());
-        entity.setUserName(this.getShiroService().getCurrentUserRealName());
-        return super.saveEntity(entity);
+        super.beforeSaveEntity(entity, status);
     }
 }
