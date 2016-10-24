@@ -376,6 +376,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         properties.put("userName", bean.getUserName());//布置人
         properties.put("head", bean.getHead());//负责人
         properties.put("taskName", bean.getTitle());//任务名称
+        properties.put("participant",bean.getParticipant());//参与人
         Event osgi_event = new Event(Const.SCHEDULE_ASSIGNMENT_NEW_TOPIC, properties);
         System.out.println("Schedule User name: " + bean.getUserName() + " message is sent!");
         eventAdmin.postEvent(osgi_event);
