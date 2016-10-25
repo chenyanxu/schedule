@@ -8,7 +8,8 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchGrid', {
   requires: [
     'kalix.plan.departmentplan.controller.DepartmentPlanGridController',
     'kalix.plan.departmentplan.store.DepartmentPlanStore',
-    'kalix.schedule.scheduleDict.component.ScheduleDictGridColumn'
+    'kalix.schedule.scheduleDict.component.ScheduleDictGridColumn',
+    'kalix.view.components.common.IconColumn'
   ],
   alias: 'widget.departmentplansearchGrid',
   xtype: 'departmentplansearchGridPanel',
@@ -49,19 +50,13 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchGrid', {
       hidden: true
     },
     {
-      text: '部门code',
-      dataIndex: 'orgCode',
-      hidden: true
+      text:'头像',
+      xtype:'iconcolumn',
+      dataIndex:'userIcon'
     },
     {
       text: '部门名称',
       dataIndex: 'orgName'
-    },
-    {
-      text:'头像',
-      xtype:'templatecolumn',
-      tpl:'<img src="http://test" onerror="this.src=\'resources/images/default_user.png\'"/>',
-      renderer:null,
     },
     {
       text: '用户名称',

@@ -86,12 +86,12 @@ public class WorkReportBeanServiceImpl extends ShiroGenericBizServiceImpl<IWorkR
      * @return
      */
     @Override
-    public JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr) {
+    public JsonData getSelfEntityByQuery(Integer page, Integer limit, String jsonStr, String sort) {
         // 查询json串中添加，当前操作人员id
         Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
         jsonMap.put("userId", String.valueOf(this.getShiroService().getCurrentUserId()));
 
-        return super.getAllEntityByQuery(page, limit, SerializeUtil.serializeJson(jsonMap));
+        return super.getAllEntityByQuery(page, limit, SerializeUtil.serializeJson(jsonMap), sort);
     }
 
     /**
@@ -102,23 +102,21 @@ public class WorkReportBeanServiceImpl extends ShiroGenericBizServiceImpl<IWorkR
      * @return
      */
     @Override
-    public JsonData getAllEntityByQuery(Integer page, Integer limit, String jsonStr) {
+    public JsonData getAllEntityByQuery(Integer page, Integer limit, String jsonStr, String sort) {
         Map<String, String> jsonMap = SerializeUtil.json2Map(jsonStr);
         // 不允许查询全部计划，所以在没有code情况下，添加一个不可能存在的code，保证查询不出数据
         if (jsonMap.get("code%:relation:OrganizationBean") == null || jsonMap.get("code%:relation:OrganizationBean").isEmpty())  {
             jsonMap.put("code:relation:OrganizationBean", "-1");
         }
 
-        return super.getAllEntityByQuery(page, limit, SerializeUtil.serializeJson(jsonMap));
+        return super.getAllEntityByQuery(page, limit, SerializeUtil.serializeJson(jsonMap), sort);
     }
 
     @Override
     public void beforeSaveEntity(WorkReportBean entity, JsonStatus status) {
         entity.setUserId(this.getShiroService().getCurrentUserId());
-        entity.setUserName(this.getShiroService().getCurrentUserRealName());
         super.beforeSaveEntity(entity,status);
     }
-
     /**
      * 查询计划关联的工作汇报信息 2016-09-01 by p
      *

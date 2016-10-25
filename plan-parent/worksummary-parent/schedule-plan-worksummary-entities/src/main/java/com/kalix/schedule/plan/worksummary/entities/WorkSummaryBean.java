@@ -1,11 +1,16 @@
 package com.kalix.schedule.plan.worksummary.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.kalix.framework.core.api.persistence.PersistentEntity;
+import com.kalix.framework.core.api.annotation.KalixCascade;
+import com.kalix.framework.core.api.annotation.Relation;
+import com.kalix.framework.core.api.annotation.TableCascade;
+import com.kalix.framework.core.api.annotation.TableRelation;
+import com.kalix.framework.core.api.persistence.BusinessEntity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.Date;
 
 /**
@@ -19,26 +24,31 @@ import java.util.Date;
 //todo 修改模型定义
 @Entity
 @Table(name = "schedule_worksummary")
-public class WorkSummaryBean extends PersistentEntity {
-    /**
-     * @describe 用户id
-     */
-    private long userId;
-    /**
-     * @describe 用户名
-     */
-    private String userName;
+@TableRelation(relations = {
+        @Relation(BeanName = "UserBean", PK = "id", PFields = {"name", "icon"}, FK = "userId", FFields = {"userName", "userIcon"}),
+        @Relation(BeanName = "OrganizationBean", PK = "id", PFields = {"name"}, FK = "orgId", FFields = {"orgName"})
+})
+@TableCascade(kalixCascades = {
+        @KalixCascade(beans = "com.kalix.admin.core.entities.UserBean", deletable = true, foreignKey = "userId"),
+        @KalixCascade(beans = "com.kalix.admin.core.entities.OrganizationBean", deletable = true, foreignKey = "orgid")
+})
+public class WorkSummaryBean extends BusinessEntity {
+    public WorkSummaryBean() {
+
+    }
+
+    public WorkSummaryBean(WorkSummaryBean workSummaryBean, String userName, String userIcon, String orgName) {
+        super(workSummaryBean, userName, userIcon);
+        this.orgName = orgName;
+    }
     /**
      * @describe 部门id
      */
     private long orgId;
     /**
-     * @describe 部门code
-     */
-    private String orgCode;
-    /**
      * @describe 部门名
      */
+    @Transient
     private String orgName;
     /**
      * @describe 标题
@@ -47,7 +57,7 @@ public class WorkSummaryBean extends PersistentEntity {
     /**
      * @describe 内容
      */
-    @Column(columnDefinition = "TEXT")
+    @Lob
     private String content;
     /**
      * @describe 总结类型
@@ -64,40 +74,16 @@ public class WorkSummaryBean extends PersistentEntity {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date endDate;
 
-    public long getUserId() {
-        return this.userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public String getUserName() {
-        return this.userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public long getOrgId() {
-        return this.orgId;
+        return orgId;
     }
 
     public void setOrgId(long orgId) {
         this.orgId = orgId;
     }
 
-    public String getOrgCode() {
-        return this.orgCode;
-    }
-
-    public void setOrgCode(String orgCode) {
-        this.orgCode = orgCode;
-    }
-
     public String getOrgName() {
-        return this.orgName;
+        return orgName;
     }
 
     public void setOrgName(String orgName) {
@@ -105,7 +91,7 @@ public class WorkSummaryBean extends PersistentEntity {
     }
 
     public String getTitle() {
-        return this.title;
+        return title;
     }
 
     public void setTitle(String title) {
@@ -113,7 +99,7 @@ public class WorkSummaryBean extends PersistentEntity {
     }
 
     public String getContent() {
-        return this.content;
+        return content;
     }
 
     public void setContent(String content) {
@@ -121,7 +107,7 @@ public class WorkSummaryBean extends PersistentEntity {
     }
 
     public Integer getWorkType() {
-        return this.workType;
+        return workType;
     }
 
     public void setWorkType(Integer workType) {
@@ -129,7 +115,7 @@ public class WorkSummaryBean extends PersistentEntity {
     }
 
     public Date getBeginDate() {
-        return this.beginDate;
+        return beginDate;
     }
 
     public void setBeginDate(Date beginDate) {
@@ -137,12 +123,10 @@ public class WorkSummaryBean extends PersistentEntity {
     }
 
     public Date getEndDate() {
-        return this.endDate;
+        return endDate;
     }
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-
-
 }

@@ -17,7 +17,7 @@
             <!-- this is a rest GET to find all workreport -->
             <get id="route-getAllWorkReport" outType="com.kalix.framework.core.api.persistence.JsonData">
                 <description>Find all WorkReports</description>
-                <to uri="bean:workreportService?method=getSelfEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
+                <to uri="bean:workreportService?method=getSelfEntityByQuery(${header.page},${header.limit},${header.jsonStr},${header.sort})"/>
             </get>
 
             <!-- this is a rest POST to create a workreport -->
@@ -28,7 +28,8 @@
             </post>
         </rest>
 
-        <rest path="/workreports/{id}" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+        <rest path="/workreports/{id}" consumes="application/json;charset=utf-8"
+              produces="application/json;charset=utf-8">
             <!-- this is a rest GET to view a workreport by the given id -->
             <get id="route-getWorkReport" outType="com.kalix.schedule.plan.workreport.entities.WorkReportBean">
                 <description>Find WorkReport by id</description>
@@ -44,13 +45,14 @@
 
             <!-- this is a rest DELETE to delete a workreport -->
             <delete id="route-deleteWorkReport"
-                outType="com.kalix.framework.core.api.persistence.JsonStatus">
+                    outType="com.kalix.framework.core.api.persistence.JsonStatus">
                 <description>Delete a WorkReport</description>
                 <to uri="bean:workreportService?method=deleteEntity(${header.id})"/>
             </delete>
         </rest>
 
-        <rest path="/workreports/{id}/personalplans" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+        <rest path="/workreports/{id}/personalplans" consumes="application/json;charset=utf-8"
+              produces="application/json;charset=utf-8">
             <description>workreport rest service</description>
 
             <!-- this is a rest GET to find all workreport -->
@@ -67,7 +69,8 @@
             </post>
         </rest>
 
-        <rest path="/workreports/{id}/departmentplans" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+        <rest path="/workreports/{id}/departmentplans" consumes="application/json;charset=utf-8"
+              produces="application/json;charset=utf-8">
             <description>workreport rest service</description>
 
             <!-- this is a rest GET to find all workreport -->
@@ -77,7 +80,8 @@
             </get>
         </rest>
 
-        <rest path="/workreportsearchs" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+        <rest path="/workreportsearchs" consumes="application/json;charset=utf-8"
+              produces="application/json;charset=utf-8">
             <description>workreport rest service</description>
 
             <!-- this is a rest GET to find All workreport -->

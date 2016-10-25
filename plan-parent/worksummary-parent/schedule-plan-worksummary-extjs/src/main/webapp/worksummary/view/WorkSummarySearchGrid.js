@@ -8,7 +8,8 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchGrid', {
     requires: [
         'kalix.plan.worksummary.controller.WorkSummaryGridController',
         'kalix.plan.worksummary.store.WorkSummaryStore',
-        'kalix.schedule.scheduleDict.component.ScheduleDictGridColumn'
+        'kalix.schedule.scheduleDict.component.ScheduleDictGridColumn',
+        'kalix.view.components.common.IconColumn'
     ],
     alias: 'widget.worksummarysearchGrid',
     xtype: 'worksummarysearchGridPanel',
@@ -49,9 +50,9 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchGrid', {
             hidden: true
         },
         {
-            text: '部门code',
-            hidden: true,
-            dataIndex: 'orgCode'
+            text: '头像',
+            xtype: 'iconcolumn',
+            dataIndex: 'userIcon'
         },
         {
             text: '部门名称',

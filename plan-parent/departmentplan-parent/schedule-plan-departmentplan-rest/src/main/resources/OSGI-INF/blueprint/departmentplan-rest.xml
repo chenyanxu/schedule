@@ -4,20 +4,22 @@
            xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
        http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
 
-    <reference id="departmentplanService" interface="com.kalix.schedule.plan.departmentplan.api.biz.IDepartmentPlanBeanService"/>
+    <reference id="departmentplanService"
+               interface="com.kalix.schedule.plan.departmentplan.api.biz.IDepartmentPlanBeanService"/>
     <camelContext id="departmentplanCamel" xmlns="http://camel.apache.org/schema/blueprint">
         <restConfiguration component="servlet" bindingMode="json">
             <dataFormatProperty key="prettyPrint" value="${rest.pretty}"/>
         </restConfiguration>
 
         <!-- defines the rest services using the context-path /departmentplan -->
-        <rest path="/departmentplans" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+        <rest path="/departmentplans" consumes="application/json;charset=utf-8"
+              produces="application/json;charset=utf-8">
             <description>departmentplan rest service</description>
 
             <!-- this is a rest GET to find all departmentplan -->
             <get id="route-getSelfDepartmentPlan" outType="com.kalix.framework.core.api.persistence.JsonData">
                 <description>Find all DepartmentPlans</description>
-                <to uri="bean:departmentplanService?method=getSelfEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
+                <to uri="bean:departmentplanService?method=getSelfEntityByQuery(${header.page},${header.limit},${header.jsonStr},${header.sort})"/>
             </get>
 
             <!-- this is a rest POST to create a departmentplan -->
@@ -27,15 +29,18 @@
                 <to uri="bean:departmentplanService?method=saveEntity"/>
             </post>
         </rest>
-        <rest path="/departmentplans/{id}" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+        <rest path="/departmentplans/{id}" consumes="application/json;charset=utf-8"
+              produces="application/json;charset=utf-8">
             <!-- this is a rest GET to view a departmentplan by the given id -->
-            <get id="route-getDepartmentPlan" outType="com.kalix.schedule.plan.departmentplan.entities.DepartmentPlanBean">
+            <get id="route-getDepartmentPlan"
+                 outType="com.kalix.schedule.plan.departmentplan.entities.DepartmentPlanBean">
                 <description>Find DepartmentPlan by id</description>
                 <to uri="bean:departmentplanService?method=getEntity(${header.id})"/>
             </get>
 
             <!-- this is a rest PUT to update a departmentplan -->
-            <put id="route-updateDepartmentPlan" type="com.kalix.schedule.plan.departmentplan.entities.DepartmentPlanBean"
+            <put id="route-updateDepartmentPlan"
+                 type="com.kalix.schedule.plan.departmentplan.entities.DepartmentPlanBean"
                  outType="com.kalix.framework.core.api.persistence.JsonStatus">
                 <description>Updates a DepartmentPlan</description>
                 <to uri="bean:departmentplanService?method=updateEntity"/>
@@ -43,13 +48,14 @@
 
             <!-- this is a rest DELETE to delete a departmentplan -->
             <delete id="route-deleteDepartmentPlan"
-                outType="com.kalix.framework.core.api.persistence.JsonStatus">
+                    outType="com.kalix.framework.core.api.persistence.JsonStatus">
                 <description>Delete a DepartmentPlan</description>
                 <to uri="bean:departmentplanService?method=deleteEntity(${header.id})"/>
             </delete>
         </rest>
 
-        <rest path="/departmentplansearchs" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+        <rest path="/departmentplansearchs" consumes="application/json;charset=utf-8"
+              produces="application/json;charset=utf-8">
             <description>departmentplansearch rest service</description>
 
             <!-- this is a rest GET to find all departmentplansearch -->
@@ -59,7 +65,8 @@
             </get>
         </rest>
 
-        <rest path="/departmentplancomboboxs" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+        <rest path="/departmentplancomboboxs" consumes="application/json;charset=utf-8"
+              produces="application/json;charset=utf-8">
             <description>departmentplansearch rest service</description>
 
             <!-- this is a rest GET to find all departmentplancombobox -->
@@ -70,7 +77,8 @@
         </rest>
 
         <!-- 查询部门计划关联的工作汇报信息 -->
-        <rest path="/departmentplans/{id}/workreport" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+        <rest path="/departmentplans/{id}/workreport" consumes="application/json;charset=utf-8"
+              produces="application/json;charset=utf-8">
             <!-- this is a rest GET to view a departmentplan by the given id -->
             <get id="route-getEntityByPlanId" outType="com.kalix.framework.core.api.persistence.JsonData">
                 <description>Find WorkReport By DepartmentPlanId</description>
@@ -78,9 +86,11 @@
             </get>
         </rest>
         <!-- 添加部门计划模板信息 -->
-        <rest path="/departmentplans/{id}/templete" consumes="application/json;charset=utf-8" produces="application/json;charset=utf-8">
+        <rest path="/departmentplans/{id}/templete" consumes="application/json;charset=utf-8"
+              produces="application/json;charset=utf-8">
             <!-- this is a rest POST to create a departmentplan template -->
-            <post id="route-addDepartmentPlanTemplate" type="com.kalix.schedule.plan.departmentplan.entities.DepartmentPlanBean"
+            <post id="route-addDepartmentPlanTemplate"
+                  type="com.kalix.schedule.plan.departmentplan.entities.DepartmentPlanBean"
                   outType="com.kalix.framework.core.api.persistence.JsonStatus">
                 <description>Create a DepartmentPlanTemplate</description>
                 <to uri="bean:departmentplanService?method=saveTemplate"/>

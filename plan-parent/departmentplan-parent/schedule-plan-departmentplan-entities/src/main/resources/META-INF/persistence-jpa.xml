@@ -5,6 +5,9 @@
         <jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/ds)
         </jta-data-source>
         <class>com.kalix.framework.core.api.persistence.PersistentEntity</class>
+        <class>com.kalix.framework.core.api.persistence.BusinessEntity</class>
+        <class>com.kalix.admin.core.entities.UserBean</class>
+        <class>com.kalix.admin.core.entities.OrganizationBean</class>
         <class>com.kalix.schedule.task.assignment.entities.TemplateBean</class>
         <properties>
             <property name="openjpa.BrokerImpl" value="non-finalizing"/>

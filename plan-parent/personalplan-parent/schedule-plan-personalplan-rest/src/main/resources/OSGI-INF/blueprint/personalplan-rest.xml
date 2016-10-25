@@ -18,7 +18,7 @@
             <!-- this is a rest GET to find self personalplan -->
             <get id="route-getSelfPersonalPlan" outType="com.kalix.framework.core.api.persistence.JsonData">
                 <description>Find all PersonalPlans</description>
-                <to uri="bean:personalplanService?method=getSelfEntityByQuery(${header.page},${header.limit},${header.jsonStr})"/>
+                <to uri="bean:personalplanService?method=getSelfEntityByQuery(${header.page},${header.limit},${header.jsonStr},${header.sort})"/>
             </get>
 
             <!-- this is a rest POST to create a personalplan -->
