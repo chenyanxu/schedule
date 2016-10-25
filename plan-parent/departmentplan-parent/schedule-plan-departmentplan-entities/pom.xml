@@ -23,7 +23,12 @@
                 <groupId>com.kalix.admin.core</groupId>
                 <artifactId>admin-core-entities</artifactId>
             </dependency>
-        </dependencies>
+        <dependency>
+            <groupId>com.kalix.schedule.task.assignment</groupId>
+            <artifactId>schedule-task-assignment-entities</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
         <build>
             <plugins>
                 <plugin>

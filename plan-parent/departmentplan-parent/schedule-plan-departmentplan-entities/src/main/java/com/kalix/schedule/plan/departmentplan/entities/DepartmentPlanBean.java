@@ -65,10 +65,6 @@ public class DepartmentPlanBean extends BusinessEntity {
      */
     private Integer planType;
     /**
-     * @describe 计划状态
-     */
-    private Integer state;
-    /**
      * @describe 计划开始时间
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
@@ -78,6 +74,13 @@ public class DepartmentPlanBean extends BusinessEntity {
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date endDate;
+    /**
+     * @describe 计划状态
+     */
+    private Integer state;
+
+    @Transient
+    private long templateId;
 
     public long getOrgId() {
         return orgId;
@@ -119,14 +122,6 @@ public class DepartmentPlanBean extends BusinessEntity {
         this.planType = planType;
     }
 
-    public Integer getState() {
-        return state;
-    }
-
-    public void setState(Integer state) {
-        this.state = state;
-    }
-
     public Date getBeginDate() {
         return beginDate;
     }
@@ -141,5 +136,21 @@ public class DepartmentPlanBean extends BusinessEntity {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public long getTemplateId() {
+        return templateId;
+    }
+
+    public void setTemplateId(long templateId) {
+        this.templateId = templateId;
     }
 }

@@ -13,7 +13,7 @@
     <reference id="userBeanService" interface="com.kalix.admin.core.api.biz.IUserBeanService"/>
     <reference id="scheduleDictBeanService" interface="com.kalix.schedule.system.dict.api.biz.IScheduleDictBeanService"/>
     <reference id="templateBeanDao" interface="com.kalix.schedule.task.assignment.api.dao.ITemplateBeanDao"/>
-    <reference id="departmentplanBeanService" interface="com.kalix.schedule.plan.departmentplan.api.biz.IDepartmentPlanBeanService"/>
+    <!--<reference id="departmentplanBeanService" interface="com.kalix.schedule.plan.departmentplan.api.biz.IDepartmentPlanBeanService"/>-->
     <reference id="assignmentTemplateBeanDao" interface="com.kalix.schedule.task.assignment.api.dao.IAssignmentTemplateBeanDao"/>
 
     <bean id="assignmentBeanServiceImpl" class="com.kalix.schedule.task.assignment.biz.AssignmentBeanServiceImpl">
@@ -26,7 +26,7 @@
         <property name="scheduleDictBeanService" ref="scheduleDictBeanService"/>
         <property name="templateBeanService" ref="templateBeanServiceImpl"/>
         <property name="assignmentTemplateBeanService" ref="assignmentTemplateBeanServiceImpl"/>
-        <property name="departmentplanBeanService" ref="departmentplanBeanService"/>
+        <!--<property name="departmentplanBeanService" ref="departmentplanBeanService"/>-->
     </bean>
 
     <bean id="assignmentStatisticsBeanServiceImpl" class="com.kalix.schedule.task.assignment.biz.AssignmentStatisticsBeanServiceImpl">
@@ -40,7 +40,7 @@
     <bean id="templateBeanServiceImpl" class="com.kalix.schedule.task.assignment.biz.TemplateBeanServiceImpl">
         <property name="dao" ref="templateBeanDao"/>
         <property name="shiroService" ref="shiroService"/>
-        <property name="departmentplanBeanService" ref="departmentplanBeanService"/>
+        <!--<property name="departmentplanBeanService" ref="departmentplanBeanService"/>-->
         <property name="assignmentBeanService" ref="assignmentBeanServiceImpl"/>
         <property name="assignmentTemplateBeanService" ref="assignmentTemplateBeanServiceImpl"/>
     </bean>

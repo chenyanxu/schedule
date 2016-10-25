@@ -28,9 +28,10 @@
             <groupId>com.kalix.schedule.plan.departmentplan</groupId>
             <artifactId>schedule-plan-departmentplan-api</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>com.kalix.schedule.plan.template</groupId>
-            <artifactId>schedule-plan-template-api</artifactId>
+            <groupId>com.kalix.schedule.task.assignment</groupId>
+            <artifactId>schedule-task-assignment-api</artifactId>
             <version>${globle.version}</version>
         </dependency>
     </dependencies>

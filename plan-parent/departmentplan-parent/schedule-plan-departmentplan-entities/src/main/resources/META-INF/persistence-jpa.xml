@@ -8,6 +8,7 @@
         <class>com.kalix.framework.core.api.persistence.BusinessEntity</class>
         <class>com.kalix.admin.core.entities.UserBean</class>
         <class>com.kalix.admin.core.entities.OrganizationBean</class>
+        <class>com.kalix.schedule.task.assignment.entities.TemplateBean</class>
         <properties>
             <property name="openjpa.BrokerImpl" value="non-finalizing"/>
             <property name="openjpa.Sequence" value="table(Table=OPENJPASEQ, Increment=100)"/>

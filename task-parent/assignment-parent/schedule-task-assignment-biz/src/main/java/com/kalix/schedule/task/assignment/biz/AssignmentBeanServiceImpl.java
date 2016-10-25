@@ -8,8 +8,8 @@ import com.kalix.framework.core.impl.biz.ShiroGenericBizServiceImpl;
 import com.kalix.framework.core.util.BeanUtil;
 import com.kalix.framework.core.util.JNDIHelper;
 import com.kalix.framework.core.util.SerializeUtil;
-import com.kalix.schedule.plan.departmentplan.api.biz.IDepartmentPlanBeanService;
-import com.kalix.schedule.plan.departmentplan.entities.DepartmentPlanBean;
+//import com.kalix.schedule.plan.departmentplan.api.biz.IDepartmentPlanBeanService;
+//import com.kalix.schedule.plan.departmentplan.entities.DepartmentPlanBean;
 import com.kalix.schedule.task.assignment.api.biz.IAssignmentTemplateBeanService;
 import com.kalix.schedule.task.assignment.api.biz.ITemplateBeanService;
 import com.kalix.schedule.task.assignment.entities.*;
@@ -48,7 +48,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
     private IScheduleDictBeanService scheduleDictBeanService;
     private ITemplateBeanService templateBeanService;
     private IAssignmentTemplateBeanService assignmentTemplateBeanService;
-    private IDepartmentPlanBeanService departmentplanBeanService;
+    //private IDepartmentPlanBeanService departmentplanBeanService;
     private IProgressBeanDao progressBeanDao;
     private IEventBeanDao eventBeanDao;
     private IReadingBeanDao readingBeanDao;
@@ -149,6 +149,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
 
         // 先判断是否是从计划模板创建的任务
         if(entity.getTemplateId() != 0){//根据模板生成部门计划，部门计划下的任务
+            jsonStatus.setSuccess(true);
             // 查询该计划模板
             TemplateBean templateBean = templateBeanService.getEntity(entity.getTemplateId());
             // 利用计划模板新建计划
@@ -173,23 +174,23 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
                 newAssignment.setCreationDate(new Date());
                 newAssignment.setUpdateDate(new Date());
 
-                postNewAssignmentEvent(entity);
+                postNewAssignmentEvent(newAssignment);
                 //新增部门计划下的任务
-                super.saveEntity(entity);
+                super.saveEntity(newAssignment);
             }
 
-            Mapper mapper = new DozerBeanMapper();
-            DepartmentPlanBean departmentPlanBean = mapper.map(templateBean,DepartmentPlanBean.class);
-            departmentPlanBean.setId(0);
-            departmentPlanBean.setUserName(userName);
-            departmentPlanBean.setUserId(userId);
-            departmentPlanBean.setBeginDate(new Date());
-            Date endDate = new Date();
-            departmentPlanBean.setEndDate(new Date(endDate.getTime() + templateBean.getPlanDate()*24*60*60*1000));
-            departmentPlanBean.setCreationDate(new Date());
-            departmentPlanBean.setUpdateDate(new Date());
+//            Mapper mapper = new DozerBeanMapper();
+//            DepartmentPlanBean departmentPlanBean = mapper.map(templateBean,DepartmentPlanBean.class);
+//            departmentPlanBean.setId(0);
+//            departmentPlanBean.setUserName(userName);
+//            departmentPlanBean.setUserId(userId);
+//            departmentPlanBean.setBeginDate(new Date());
+//            Date endDate = new Date();
+//            departmentPlanBean.setEndDate(new Date(endDate.getTime() + templateBean.getPlanDate()*24*60*60*1000));
+//            departmentPlanBean.setCreationDate(new Date());
+//            departmentPlanBean.setUpdateDate(new Date());
             //新增部门计划
-            jsonStatus = departmentplanBeanService.saveEntity(departmentPlanBean);
+            //jsonStatus = departmentplanBeanService.saveEntity(departmentPlanBean);
         }else {
             // 添加时，写入用户id及用户名
             entity.setUserId(userId);
@@ -485,7 +486,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         this.assignmentTemplateBeanService = assignmentTemplateBeanService;
     }
 
-    public void setDepartmentplanBeanService(IDepartmentPlanBeanService departmentplanBeanService) {
-        this.departmentplanBeanService = departmentplanBeanService;
-    }
+//    public void setDepartmentplanBeanService(IDepartmentPlanBeanService departmentplanBeanService) {
+//        this.departmentplanBeanService = departmentplanBeanService;
+//    }
 }
