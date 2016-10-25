@@ -7,8 +7,15 @@ import com.kalix.framework.core.util.SerializeUtil;
 import com.kalix.schedule.plan.departmentplan.api.biz.IDepartmentPlanBeanService;
 import com.kalix.schedule.plan.departmentplan.api.dao.IDepartmentPlanBeanDao;
 import com.kalix.schedule.plan.departmentplan.entities.DepartmentPlanBean;
+import com.kalix.schedule.task.assignment.api.biz.IAssignmentBeanService;
+import com.kalix.schedule.task.assignment.api.biz.ITemplateBeanService;
+import com.kalix.schedule.task.assignment.entities.AssignmentBean;
+import com.kalix.schedule.task.assignment.entities.TemplateBean;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +33,8 @@ public class DepartmentPlanBeanServiceImpl extends ShiroGenericBizServiceImpl<ID
     public DepartmentPlanBeanServiceImpl() {
         super.init(DepartmentPlanBean.class.getName());
     }
-
+    private ITemplateBeanService templateBeanService;
+    private IAssignmentBeanService assignmentBeanService;
     /**
      * 查询个人的部门计划,提供给combobox使用,已经完成的部门计划不出现在combobox中
      *
@@ -95,8 +103,45 @@ public class DepartmentPlanBeanServiceImpl extends ShiroGenericBizServiceImpl<ID
     @Override
     @Transactional
     public JsonStatus saveEntity(DepartmentPlanBean entity) {
-        entity.setUserId(this.getShiroService().getCurrentUserId());
-        entity.setUserName(this.getShiroService().getCurrentUserRealName());
-        return super.saveEntity(entity);
+        // 获取登录用户id及用户名
+        Long userId = this.getShiroService().getCurrentUserId();
+        String userName = this.getShiroService().getCurrentUserRealName();
+
+        // 先判断是否是从计划模板创建的任务
+        if(entity.getTemplateId() != 0) {//根据模板生成部门计划，部门计划下的任务
+            //先保存该计划下的任务
+            AssignmentBean assignmentBean = new AssignmentBean();
+            assignmentBean.setTemplateId(entity.getTemplateId());
+            jsonStatus = assignmentBeanService.saveEntity(assignmentBean);
+            if(!jsonStatus.getSuccess())
+                return jsonStatus;
+
+            // 查询该计划模板
+            TemplateBean templateBean = templateBeanService.getEntity(entity.getTemplateId());
+            Mapper mapper = new DozerBeanMapper();
+            DepartmentPlanBean departmentPlanBean = mapper.map(templateBean,DepartmentPlanBean.class);
+            departmentPlanBean.setId(0);
+            departmentPlanBean.setUserName(userName);
+            departmentPlanBean.setUserId(userId);
+            departmentPlanBean.setBeginDate(new Date());
+            Date endDate = new Date();
+            departmentPlanBean.setEndDate(new Date(endDate.getTime() + templateBean.getPlanDate()*24*60*60*1000));
+            departmentPlanBean.setCreationDate(new Date());
+            departmentPlanBean.setUpdateDate(new Date());
+            //新增部门计划
+            return super.saveEntity(departmentPlanBean);
+        }else {
+            entity.setUserId(this.getShiroService().getCurrentUserId());
+            entity.setUserName(this.getShiroService().getCurrentUserRealName());
+            return super.saveEntity(entity);
+        }
+    }
+
+    public void setTemplateBeanService(ITemplateBeanService templateBeanService) {
+        this.templateBeanService = templateBeanService;
+    }
+
+    public void setAssignmentBeanService(IAssignmentBeanService assignmentBeanService) {
+        this.assignmentBeanService = assignmentBeanService;
     }
 }
