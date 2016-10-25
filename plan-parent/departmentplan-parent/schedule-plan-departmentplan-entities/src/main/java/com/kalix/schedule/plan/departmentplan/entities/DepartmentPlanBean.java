@@ -81,21 +81,6 @@ public class DepartmentPlanBean extends BusinessEntity {
 
     @Transient
     private long templateId;
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public long getOrgId() {
         return orgId;
@@ -103,14 +88,6 @@ public class DepartmentPlanBean extends BusinessEntity {
 
     public void setOrgId(long orgId) {
         this.orgId = orgId;
-    }
-
-    public String getOrgCode() {
-        return orgCode;
-    }
-
-    public void setOrgCode(String orgCode) {
-        this.orgCode = orgCode;
     }
 
     public String getOrgName() {

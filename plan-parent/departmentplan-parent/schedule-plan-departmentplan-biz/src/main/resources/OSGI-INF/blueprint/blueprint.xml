@@ -5,10 +5,14 @@
     <tx:enable-annotations/>
     <reference id="shiroService" interface="com.kalix.framework.core.api.security.IShiroService"/>
     <reference id="departmentplanBeanDao" interface="com.kalix.schedule.plan.departmentplan.api.dao.IDepartmentPlanBeanDao"/>
+    <reference id="templateBeanService" interface="com.kalix.schedule.task.assignment.api.biz.ITemplateBeanService"/>
+    <reference id="assignmentBeanService" interface="com.kalix.schedule.task.assignment.api.biz.IAssignmentBeanService"/>
 
     <bean id="departmentplanBeanServiceImpl" class="com.kalix.schedule.plan.departmentplan.biz.DepartmentPlanBeanServiceImpl">
         <property name="dao" ref="departmentplanBeanDao"/>
         <property name="shiroService" ref="shiroService"/>
+        <property name="templateBeanService" ref="templateBeanService"/>
+        <property name="assignmentBeanService" ref="assignmentBeanService"/>
     </bean>
 
     <service id="departmentplanBeanService" interface="com.kalix.schedule.plan.departmentplan.api.biz.IDepartmentPlanBeanService"

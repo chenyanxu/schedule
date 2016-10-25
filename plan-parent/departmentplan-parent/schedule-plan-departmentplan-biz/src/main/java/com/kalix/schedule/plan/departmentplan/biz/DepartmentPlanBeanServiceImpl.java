@@ -105,7 +105,7 @@ public class DepartmentPlanBeanServiceImpl extends ShiroGenericBizServiceImpl<ID
     public JsonStatus saveEntity(DepartmentPlanBean entity) {
         // 获取登录用户id及用户名
         Long userId = this.getShiroService().getCurrentUserId();
-        String userName = this.getShiroService().getCurrentUserRealName();
+        //String userName = this.getShiroService().getCurrentUserRealName();
 
         // 先判断是否是从计划模板创建的任务
         if(entity.getTemplateId() != 0) {//根据模板生成部门计划，部门计划下的任务
@@ -121,7 +121,7 @@ public class DepartmentPlanBeanServiceImpl extends ShiroGenericBizServiceImpl<ID
             Mapper mapper = new DozerBeanMapper();
             DepartmentPlanBean departmentPlanBean = mapper.map(templateBean,DepartmentPlanBean.class);
             departmentPlanBean.setId(0);
-            departmentPlanBean.setUserName(userName);
+            //departmentPlanBean.setUserName(userName);
             departmentPlanBean.setUserId(userId);
             departmentPlanBean.setBeginDate(new Date());
             Date endDate = new Date();
@@ -132,15 +132,10 @@ public class DepartmentPlanBeanServiceImpl extends ShiroGenericBizServiceImpl<ID
             return super.saveEntity(departmentPlanBean);
         }else {
             entity.setUserId(this.getShiroService().getCurrentUserId());
-            entity.setUserName(this.getShiroService().getCurrentUserRealName());
+            //entity.setUserName(this.getShiroService().getCurrentUserRealName());
             return super.saveEntity(entity);
         }
     }
-    public void beforeSaveEntity(DepartmentPlanBean entity, JsonStatus status) {
-        entity.setUserId(this.getShiroService().getCurrentUserId());
-        super.beforeSaveEntity(entity, status);
-    }
-}
 
     public void setTemplateBeanService(ITemplateBeanService templateBeanService) {
         this.templateBeanService = templateBeanService;
