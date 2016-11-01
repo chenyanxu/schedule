@@ -8,7 +8,7 @@ Ext.define('kalix.plan.workreport.component.PlanComboBox', {
     xtype: 'planComboBox',
     valueField: 'id',
     displayField: 'title',
-    queryParam: 'title',
+    queryParam: '%title%',
     modelField:'id',
     editable: false
 });

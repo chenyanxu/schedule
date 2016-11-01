@@ -11,7 +11,7 @@ Ext.define('kalix.plan.departmentplan.component.DepartmentPlanComboBox', {
     xtype: 'departmentPlanComboBox',
     valueField: 'id',
     displayField: 'title',
-    queryParam: 'title',
+    queryParam: '%title%',
     modelField:'id',
     store: {
         type: 'departmentplanStore'

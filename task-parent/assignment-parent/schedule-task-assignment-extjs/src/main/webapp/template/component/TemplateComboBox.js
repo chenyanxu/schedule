@@ -11,7 +11,7 @@ Ext.define('kalix.schedule.template.component.TemplateComboBox', {
     xtype: 'templateComboBox',
     valueField: 'id',
     displayField: 'templateName',
-    queryParam: 'templateName',
+    queryParam: '%templateName%',
     modelField:'id',
     store: {
         type: 'templateStore'

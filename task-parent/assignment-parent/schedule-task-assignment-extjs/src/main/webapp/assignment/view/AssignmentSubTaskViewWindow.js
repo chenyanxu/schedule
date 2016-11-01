@@ -112,7 +112,7 @@ Ext.define('kalix.task.assignment.view.AssignmentSubTaskViewWindow', {
                                     xtype: 'baseComboBox',
                                     valueField: 'id',
                                     displayField: 'title',
-                                    queryParam: 'title',
+                                    queryParam: '%title%',
                                     modelField: 'id',
                                     bind: {
                                         value: '{rec.sourceId}'

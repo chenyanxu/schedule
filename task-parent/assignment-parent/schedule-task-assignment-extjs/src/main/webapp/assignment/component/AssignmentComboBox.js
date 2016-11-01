@@ -11,7 +11,7 @@ Ext.define('kalix.task.assignment.component.AssignmentComboBox', {
     xtype: 'assignmentComboBox',
     valueField: 'id',
     displayField: 'title',
-    queryParam: 'title',
+    queryParam: '%title%',
     modelField:'id',
     store: {
         type: 'assignmentStore'
