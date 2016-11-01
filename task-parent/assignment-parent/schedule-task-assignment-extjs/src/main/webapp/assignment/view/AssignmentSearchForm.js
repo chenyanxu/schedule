@@ -46,7 +46,7 @@ Ext.define('kalix.task.assignment.view.AssignmentSearchForm', {
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
-            name: 'title'
+            name: '%title%'
         },
         {
             xtype: 'textfield',
@@ -68,7 +68,7 @@ Ext.define('kalix.task.assignment.view.AssignmentSearchForm', {
             labelAlign: 'right',
             labelWidth: 60,
             width: 200,
-            name: 'head'
+            name: '%head%'
         }
     ]
 });
