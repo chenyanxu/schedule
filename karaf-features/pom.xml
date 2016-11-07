@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>karaf-features</artifactId>
+    <version>${project.schedule.version}</version>
     <name>Kalix Schedule Karaf Features</name>
     <packaging>pom</packaging>
 
