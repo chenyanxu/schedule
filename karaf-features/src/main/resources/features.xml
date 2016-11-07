@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<features xmlns="http://karaf.apache.org/xmlns/features/v1.3.0" name="kalix-features-schedule-1.0.0">
-    <feature name="schedule-all" version="1.0">
-        <feature>core-parent</feature>
-        <feature>system-parent</feature>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.3.0"
+          name="kalix-features-schedule-${project.schedule.version}">
+    <feature name="schedule-all" version="${project.schedule.version}">
         <feature>schedule-config</feature>
-        <feature>plan-parent</feature>
-        <feature>task-parent</feature>
+        <feature>schedule-core</feature>
+        <feature>schedule-system</feature>
+        <feature>schedule-plan</feature>
+        <feature>schedule-task</feature>
     </feature>
 
-    <feature name="core-parent" version="1.0">
+    <feature name="schedule-config" version="${project.schedule.version}">
+        <configfile finalname="/etc/ConfigScheduleApp.cfg" override="true">
+            mvn:com.kalix.schedule.core/schedule-core-etc/${project.schedule.version}/cfg/ConfigScheduleApp
+        </configfile>
+        <configfile finalname="/etc/ConfigScheduleDict.cfg" override="true">
+            mvn:com.kalix.schedule.core/schedule-core-etc/${project.schedule.version}/cfg/ConfigScheduleDict
+        </configfile>
+    </feature>
+
+    <feature name="schedule-core" version="${project.schedule.version}">
         <bundle>mvn:com.kalix.schedule.core/schedule-core-extjs/${project.schedule.version}</bundle>
         <bundle>mvn:com.kalix.schedule.core/schedule-core-etc/${project.schedule.version}</bundle>
     </feature>
 
-    <feature name="system-parent" version="1.0">
+    <feature name="schedule-system" version="${project.schedule.version}">
         <feature>schedule-system-dict</feature>
     </feature>
 
-    <feature name="schedule-system-dict" version="1.0">
+    <feature name="schedule-system-dict" version="${project.schedule.version}">
         <bundle>mvn:com.kalix.schedule.system.dict/schedule-system-dict-entities/${project.schedule.version}</bundle>
         <bundle>mvn:com.kalix.schedule.system.dict/schedule-system-dict-api/${project.schedule.version}</bundle>
         <bundle>mvn:com.kalix.schedule.system.dict/schedule-system-dict-dao/${project.schedule.version}</bundle>
@@ -26,14 +36,14 @@
         <bundle>mvn:com.kalix.schedule.system.dict/schedule-system-dict-extjs/${project.schedule.version}</bundle>
     </feature>
 
-    <feature name="plan-parent" version="1.0">
+    <feature name="schedule-plan" version="${project.schedule.version}">
         <feature>departmentplan-parent</feature>
         <feature>personalplan-parent</feature>
         <feature>workreport-parent</feature>
         <feature>worksummary-parent</feature>
     </feature>
 
-    <feature name="departmentplan-parent" version="1.0">
+    <feature name="departmentplan-parent" version="${project.schedule.version}">
         <bundle>mvn:com.kalix.schedule.plan.departmentplan/schedule-plan-departmentplan-entities/${project.schedule.version}</bundle>
         <bundle>mvn:com.kalix.schedule.plan.departmentplan/schedule-plan-departmentplan-api/${project.schedule.version}</bundle>
         <bundle>mvn:com.kalix.schedule.plan.departmentplan/schedule-plan-departmentplan-dao/${project.schedule.version}</bundle>
@@ -42,7 +52,7 @@
         <bundle>mvn:com.kalix.schedule.plan.departmentplan/schedule-plan-departmentplan-extjs/${project.schedule.version}</bundle>
     </feature>
 
-    <feature name="personalplan-parent" version="1.0">
+    <feature name="personalplan-parent" version="${project.schedule.version}">
         <bundle>mvn:com.kalix.schedule.plan.personalplan/schedule-plan-personalplan-entities/${project.schedule.version}</bundle>
         <bundle>mvn:com.kalix.schedule.plan.personalplan/schedule-plan-personalplan-api/${project.schedule.version}</bundle>
         <bundle>mvn:com.kalix.schedule.plan.personalplan/schedule-plan-personalplan-dao/${project.schedule.version}</bundle>
@@ -51,7 +61,7 @@
         <bundle>mvn:com.kalix.schedule.plan.personalplan/schedule-plan-personalplan-extjs/${project.schedule.version}</bundle>
     </feature>
 
-    <feature name="workreport-parent" version="1.0">
+    <feature name="workreport-parent" version="${project.schedule.version}">
         <bundle>mvn:com.kalix.schedule.plan.workreport/schedule-plan-workreport-entities/${project.schedule.version}</bundle>
         <bundle>mvn:com.kalix.schedule.plan.workreport/schedule-plan-workreport-api/${project.schedule.version}</bundle>
         <bundle>mvn:com.kalix.schedule.plan.workreport/schedule-plan-workreport-dao/${project.schedule.version}</bundle>
@@ -60,7 +70,7 @@
         <bundle>mvn:com.kalix.schedule.plan.workreport/schedule-plan-workreport-extjs/${project.schedule.version}</bundle>
     </feature>
 
-    <feature name="worksummary-parent" version="1.0">
+    <feature name="worksummary-parent" version="${project.schedule.version}">
         <bundle>mvn:com.kalix.schedule.plan.worksummary/schedule-plan-worksummary-entities/${project.schedule.version}</bundle>
         <bundle>mvn:com.kalix.schedule.plan.worksummary/schedule-plan-worksummary-api/${project.schedule.version}</bundle>
         <bundle>mvn:com.kalix.schedule.plan.worksummary/schedule-plan-worksummary-dao/${project.schedule.version}</bundle>
@@ -69,11 +79,11 @@
         <bundle>mvn:com.kalix.schedule.plan.worksummary/schedule-plan-worksummary-extjs/${project.schedule.version}</bundle>
     </feature>
 
-    <feature name="task-parent" version="1.0">
+    <feature name="schedule-task" version="${project.schedule.version}">
         <feature>assignment-parent</feature>
     </feature>
 
-    <feature name="assignment-parent" version="1.0">
+    <feature name="assignment-parent" version="${project.schedule.version}">
         <bundle>mvn:com.kalix.schedule.task.assignment/schedule-task-assignment-entities/${project.schedule.version}</bundle>
         <bundle>mvn:com.kalix.schedule.task.assignment/schedule-task-assignment-api/${project.schedule.version}</bundle>
         <bundle>mvn:com.kalix.schedule.task.assignment/schedule-task-assignment-dao/${project.schedule.version}</bundle>
@@ -82,12 +92,5 @@
         <bundle>mvn:com.kalix.schedule.task.assignment/schedule-task-assignment-extjs/${project.schedule.version}</bundle>
     </feature>
 
-    <feature name="schedule-config">
-        <configfile finalname="/etc/ConfigScheduleApp.cfg" override="true">
-            mvn:com.kalix.schedule.core/schedule-core-etc/${project.schedule.version}/cfg/ConfigScheduleApp
-        </configfile>
-        <configfile finalname="/etc/ConfigScheduleDict.cfg" override="true">
-            mvn:com.kalix.schedule.core/schedule-core-etc/${project.schedule.version}/cfg/ConfigScheduleDict
-        </configfile>
-    </feature>
+
 </features>
