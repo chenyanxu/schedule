@@ -8,11 +8,12 @@
     <parent>
         <groupId>com.kalix.schedule.plan.departmentplan</groupId>
         <artifactId>departmentplan-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0-RELEASE</version>
     </parent>
 
     <artifactId>schedule-plan-departmentplan-extjs</artifactId>
     <name>Kalix Schedule Plan DepartmentPlan Extjs</name>
+    <version>${project.schedule.version}</version>
     <packaging>bundle</packaging>
 
     <properties>

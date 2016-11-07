@@ -8,18 +8,19 @@
         <dependency>
             <groupId>com.kalix.schedule.plan.personalplan</groupId>
             <artifactId>schedule-plan-personalplan-api</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.schedule.version}</version>
         </dependency>
     </dependencies>
 
     <parent>
         <groupId>com.kalix.schedule.plan.personalplan</groupId>
         <artifactId>personalplan-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0-RELEASE</version>
     </parent>
 
     <artifactId>schedule-plan-personalplan-rest</artifactId>
     <name>Kalix Schedule Plan PersonalPlan Rest</name>
+    <version>${project.schedule.version}</version>
     <packaging>bundle</packaging>
 
     <properties>
