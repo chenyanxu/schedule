@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.kalix.schedule.task</groupId>
         <artifactId>task-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0-RELEASE</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -30,32 +30,32 @@
             <dependency>
                 <groupId>com.kalix.admin.core</groupId>
                 <artifactId>admin-core-entities</artifactId>
-                <version>${globle.version}</version>
+                <version>${project.admin.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.kalix.admin.core</groupId>
                 <artifactId>admin-core-api</artifactId>
-                <version>${globle.version}</version>
+                <version>${project.admin.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.kalix.schedule.task.assignment</groupId>
                 <artifactId>schedule-task-assignment-api</artifactId>
-                <version>${globle.version}</version>
+                <version>${project.schedule.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.kalix.schedule.task.assignment</groupId>
                 <artifactId>schedule-task-assignment-entities</artifactId>
-                <version>${globle.version}</version>
+                <version>${project.schedule.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.kalix.common.message</groupId>
                 <artifactId>common-message-api</artifactId>
-                <version>${globle.version}</version>
+                <version>${project.common.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.kalix.schedule.system.dict</groupId>
                 <artifactId>schedule-system-dict-api</artifactId>
-                <version>${globle.version}</version>
+                <version>${project.schedule.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

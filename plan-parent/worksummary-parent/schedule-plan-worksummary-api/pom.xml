@@ -7,11 +7,12 @@
     <parent>
         <groupId>com.kalix.schedule.plan.worksummary</groupId>
         <artifactId>worksummary-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0-RELEASE</version>
     </parent>
 
     <artifactId>schedule-plan-worksummary-api</artifactId>
     <name>Kalix Schedule Plan WorkSummary API</name>
+    <version>${project.schedule.version}</version>
     <packaging>bundle</packaging>
 
     <properties>

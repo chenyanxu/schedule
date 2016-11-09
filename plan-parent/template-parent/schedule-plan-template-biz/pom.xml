@@ -8,11 +8,12 @@
     <parent>
         <groupId>com.kalix.schedule.plan.template</groupId>
         <artifactId>template-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0-RELEASE</version>
     </parent>
 
     <artifactId>schedule-plan-template-biz</artifactId>
     <name>Kalix Schedule Plan Template Biz</name>
+    <version>${project.schedule.version}</version>
     <packaging>bundle</packaging>
 
     <properties>
@@ -31,12 +32,12 @@
         <dependency>
             <groupId>com.kalix.schedule.plan.departmentplan</groupId>
             <artifactId>schedule-plan-departmentplan-api</artifactId>
-            <version>${globle.version}</version>
+            <version>${project.schedule.version}</version>
         </dependency>
         <dependency>
             <groupId>com.kalix.schedule.task.assignment</groupId>
             <artifactId>schedule-task-assignment-api</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.schedule.version</version>
         </dependency>
     </dependencies>
 </project>

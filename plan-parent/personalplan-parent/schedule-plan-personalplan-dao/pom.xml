@@ -7,11 +7,12 @@
     <parent>
         <groupId>com.kalix.schedule.plan.personalplan</groupId>
         <artifactId>personalplan-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0-RELEASE</version>
     </parent>
 
     <artifactId>schedule-plan-personalplan-dao</artifactId>
     <name>Kalix Schedule Plan PersonalPlan DAO</name>
+    <version>${project.schedule.version}</version>
     <packaging>bundle</packaging>
 
     <properties>
