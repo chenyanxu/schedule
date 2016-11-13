@@ -5,7 +5,7 @@
     <parent>
         <artifactId>core-parent</artifactId>
         <groupId>com.kalix.schedule.core</groupId>
-        <version>1.0.0-RELEASE</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -13,7 +13,6 @@
     <artifactId>schedule-core-etc</artifactId>
     <name>Kalix Schedule Core ETC</name>
     <description>ETC</description>
-    <version>${project.schedule.version}</version>
     <packaging>bundle</packaging>
 
     <properties>
