@@ -10,13 +10,14 @@
     <groupId>com.kalix.schedule</groupId>
     <artifactId>schedule-parent</artifactId>
     <name>Kalix Schedule Parent</name>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <scm>
         <connection>scm:git:https://github.com/chenyanxu/schedule-parent.git</connection>
         <developerConnection>scm:git:https://github.com/chenyanxu/schedule-parent.git</developerConnection>
-    </scm>
+      <tag>schedule-parent-1.0.0</tag>
+  </scm>
 
     <modules>
         <module>core-parent</module>
