@@ -20,29 +20,29 @@ public class ReadingBean extends PersistentEntity {
     /**
      * @describe 任务ID
      */
-    private long assignmentId;
+    private Long assignmentId;
     /**
      * @describe 参与人ID
      */
-    private long participantId;
+    private Long participantId;
     /**
      * @describe 是否已读
      */
     private boolean read;
 
-    public long getAssignmentId() {
+    public Long getAssignmentId() {
         return assignmentId;
     }
 
-    public void setAssignmentId(long assignmentId) {
+    public void setAssignmentId(Long assignmentId) {
         this.assignmentId = assignmentId;
     }
 
-    public long getParticipantId() {
+    public Long getParticipantId() {
         return participantId;
     }
 
-    public void setParticipantId(long participantId) {
+    public void setParticipantId(Long participantId) {
         this.participantId = participantId;
     }
 

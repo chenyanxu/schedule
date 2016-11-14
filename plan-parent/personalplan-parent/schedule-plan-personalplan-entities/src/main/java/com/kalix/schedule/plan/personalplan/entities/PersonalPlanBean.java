@@ -44,7 +44,7 @@ public class PersonalPlanBean extends BusinessEntity {
     /**
      * @describe 组织机构id
      */
-    private long orgId;
+    private Long orgId;
     @Transient
     private String orgName;
     /**
@@ -75,11 +75,11 @@ public class PersonalPlanBean extends BusinessEntity {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date endDate;
 
-    public long getOrgId() {
+    public Long getOrgId() {
         return orgId;
     }
 
-    public void setOrgId(long orgId) {
+    public void setOrgId(Long orgId) {
         this.orgId = orgId;
     }
 

@@ -23,5 +23,5 @@ public interface IWorkReportPlanBeanDao extends IGenericDao<WorkReportPlanBean, 
      * @param id
      * @return
      */
-    List<WorkReportPlanBean> findPlanByWorkReportId(long id);
+    List<WorkReportPlanBean> findPlanByWorkReportId(Long id);
 }

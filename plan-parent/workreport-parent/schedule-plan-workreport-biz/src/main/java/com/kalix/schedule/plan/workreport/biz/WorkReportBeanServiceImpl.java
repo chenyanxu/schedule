@@ -53,7 +53,7 @@ public class WorkReportBeanServiceImpl extends ShiroGenericBizServiceImpl<IWorkR
      */
     @Deprecated
     @Override
-    public JsonData getPersonalPlanByWorkReportId(long id) {
+    public JsonData getPersonalPlanByWorkReportId(Long id) {
         List<Long> list = workreportplanBeanDao.findPlanByWorkReportId(id).stream()
                 .filter(n -> n.getPersonalplanId() != 0)
                 .map(n -> n.getPersonalplanId()).collect(Collectors.toList());
@@ -69,7 +69,7 @@ public class WorkReportBeanServiceImpl extends ShiroGenericBizServiceImpl<IWorkR
      */
     @Deprecated
     @Override
-    public JsonData getDepartmentPlanByWorkReportId(long id) {
+    public JsonData getDepartmentPlanByWorkReportId(Long id) {
         List<Long> list = workreportplanBeanDao.findPlanByWorkReportId(id).stream()
                 .filter(n -> n.getDepartmentplanId() != 0)
                 .map(n -> n.getDepartmentplanId()).collect(Collectors.toList());
@@ -126,7 +126,7 @@ public class WorkReportBeanServiceImpl extends ShiroGenericBizServiceImpl<IWorkR
      * @return
      */
     @Override
-    public JsonData getEntityByPlanId(long id, Integer page, Integer limit) {
+    public JsonData getEntityByPlanId(Long id, Integer page, Integer limit) {
         Map<String, String> jsonMap = new HashMap<>();
         jsonMap.put("planId", String.valueOf(id));
 

@@ -22,7 +22,7 @@ public interface IWorkReportBeanService extends IBizService<WorkReportBean> {
      * @return
      */
     @Deprecated
-    JsonData getPersonalPlanByWorkReportId(long id);
+    JsonData getPersonalPlanByWorkReportId(Long id);
 
 
     /**
@@ -32,7 +32,7 @@ public interface IWorkReportBeanService extends IBizService<WorkReportBean> {
      * @return
      */
     @Deprecated
-    JsonData getDepartmentPlanByWorkReportId(long id);
+    JsonData getDepartmentPlanByWorkReportId(Long id);
 
     /**
      *  查询个人工作汇报
@@ -52,5 +52,5 @@ public interface IWorkReportBeanService extends IBizService<WorkReportBean> {
      * @param limit
      * @return
      */
-    JsonData getEntityByPlanId(long id, Integer page, Integer limit);
+    JsonData getEntityByPlanId(Long id, Integer page, Integer limit);
 }

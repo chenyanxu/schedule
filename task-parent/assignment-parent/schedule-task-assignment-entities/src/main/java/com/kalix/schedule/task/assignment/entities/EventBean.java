@@ -20,11 +20,11 @@ public class EventBean extends PersistentEntity {
     /**
      * @describe 任务ID
      */
-    private long assignmentId;
+    private Long assignmentId;
     /**
      * @describe 事件类型
      */
-    private long eventType;
+    private Long eventType;
     /**
      * @describe 事件标题/内容
      */
@@ -32,25 +32,25 @@ public class EventBean extends PersistentEntity {
     /**
      * @describe 操作人
      */
-    private long operator;
+    private Long operator;
     /**
      * @describe 操作人
      */
     private String operatorName;
 
-    public long getAssignmentId() {
+    public Long getAssignmentId() {
         return assignmentId;
     }
 
-    public void setAssignmentId(long assignmentId) {
+    public void setAssignmentId(Long assignmentId) {
         this.assignmentId = assignmentId;
     }
 
-    public long getEventType() {
+    public Long getEventType() {
         return eventType;
     }
 
-    public void setEventType(long eventType) {
+    public void setEventType(Long eventType) {
         this.eventType = eventType;
     }
 
@@ -62,11 +62,11 @@ public class EventBean extends PersistentEntity {
         this.eventContent = eventContent;
     }
 
-    public long getOperator() {
+    public Long getOperator() {
         return operator;
     }
 
-    public void setOperator(long operator) {
+    public void setOperator(Long operator) {
         this.operator = operator;
     }
 

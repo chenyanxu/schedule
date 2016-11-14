@@ -239,7 +239,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
      * @return
      */
     @Override
-    public JsonData getAllProgressEntity(long assignmentId) {
+    public JsonData getAllProgressEntity(Long assignmentId) {
         JsonData jsonData = new JsonData();
         List<ProgressBean> progressList = progressBeanDao.find("select ob from ProgressBean ob where ob.assignmentId = ?1", assignmentId);
         jsonData.setTotalCount((long) progressList.size());
@@ -255,7 +255,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
      * @return
      */
     @Override
-    public JsonData getAllReadingEntity(long assignmentId) {
+    public JsonData getAllReadingEntity(Long assignmentId) {
         JsonData jsonData = new JsonData();
         List<ReadingBean> readingList = readingBeanDao.find("select ob from ReadingBean ob where ob.assignmentId=?1", assignmentId);
         jsonData.setTotalCount((long) readingList.size());
@@ -271,7 +271,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
      * @return
      */
     @Override
-    public JsonData getAllEventEntity(Integer page, Integer limit,long assignmentId) {
+    public JsonData getAllEventEntity(Integer page, Integer limit,Long assignmentId) {
         JsonData jsonData = eventBeanDao.findByNativeSql("select * from " + eventBeanDao.getTableName() +" ob where ob.assignmentId=?1 order by ob.creationDate desc", page,limit,EventBean.class,assignmentId);
         //翻译任务事件操作人
         List eventList = jsonData.getData();
@@ -292,7 +292,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
      * @return
      */
     @Override
-    public JsonData getAllTaskEntityByDepartmentPlanId(Integer page, Integer limit,long departmentPlanId) {
+    public JsonData getAllTaskEntityByDepartmentPlanId(Integer page, Integer limit,Long departmentPlanId) {
         JsonData jsonData = dao.findByNativeSql("select * from " + dao.getTableName() + " ob where ob.sourceId=?1 order by ob.creationDate desc", page,limit,AssignmentBean.class,departmentPlanId);
         //翻译任务负责人
         List taskList = jsonData.getData();
@@ -356,7 +356,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         EventBean eventBean = new EventBean();
         eventBean.setAssignmentId(assignmentBean.getId());
         eventBean.setEventContent(eventContent);
-        eventBean.setEventType(eventType);
+        eventBean.setEventType((long)eventType);
         eventBean.setOperator(this.getShiroService().getCurrentUserId());
 
         eventBeanDao.save(eventBean);
@@ -422,7 +422,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
     @Override
     public void beforeUpdateEntity(AssignmentBean entity, JsonStatus status) {
         AssignmentBean oldEntity = dao.get(entity.getId());
-        if (oldEntity.getState() != (entity.getState()))
+        if (entity.getState() != null && oldEntity.getState() != (entity.getState()))
             postChangeAssignmentEvent(entity, oldEntity.getState());
         super.beforeUpdateEntity(entity, status);
     }

@@ -21,7 +21,7 @@ public class ProgressBean extends PersistentEntity {
     /**
      * @describe 任务ID
      */
-    private long assignmentId;
+    private Long assignmentId;
     /**
      * @describe 任务进度
      */
@@ -31,11 +31,11 @@ public class ProgressBean extends PersistentEntity {
      */
     private String comment;
 
-    public long getAssignmentId() {
+    public Long getAssignmentId() {
         return assignmentId;
     }
 
-    public void setAssignmentId(long assignmentId) {
+    public void setAssignmentId(Long assignmentId) {
         this.assignmentId = assignmentId;
     }
 

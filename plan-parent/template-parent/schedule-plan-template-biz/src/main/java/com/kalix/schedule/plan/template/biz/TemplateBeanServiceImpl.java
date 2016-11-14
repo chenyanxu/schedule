@@ -37,7 +37,7 @@ public class TemplateBeanServiceImpl extends ShiroGenericBizServiceImpl<ITemplat
     @Override
     @Transactional
     public JsonStatus saveEntity(TemplateBean entity) {
-        //long departmentplanId = entity.getDepartmentplanId();
+        //Long departmentplanId = entity.getDepartmentplanId();
 
         //DepartmentPlanBean departmentplanBean = departmentplanBeanService.getEntity(departmentplanId);
         return super.saveEntity(entity);
@@ -78,7 +78,7 @@ public class TemplateBeanServiceImpl extends ShiroGenericBizServiceImpl<ITemplat
             assignmentTemplateBean.setSourceId(assignmentList.get(i).getSourceId());
             assignmentTemplateBean.setContent(assignmentList.get(i).getContent());
             assignmentTemplateBean.setState(assignmentList.get(i).getState());
-            long intervalMilli = assignmentList.get(i).getEndDate().getTime() - assignmentList.get(i).getBeginDate().getTime();
+            Long intervalMilli = assignmentList.get(i).getEndDate().getTime() - assignmentList.get(i).getBeginDate().getTime();
             assignmentTemplateBean.setTaskDate((int) (intervalMilli / (24 * 60 * 60 * 1000)));
             assignmentTemplateBean.setWorkHours(assignmentList.get(i).getWorkHours());
             assignmentTemplateBean.setHead(assignmentList.get(i).getHead());
@@ -106,7 +106,7 @@ public class TemplateBeanServiceImpl extends ShiroGenericBizServiceImpl<ITemplat
         templateBean.setTitle(departmentPlanBean.getTitle());
         templateBean.setContent(departmentPlanBean.getContent());
         templateBean.setPlanType(departmentPlanBean.getPlanType());
-        long intervalMilli = departmentPlanBean.getEndDate().getTime() - departmentPlanBean.getBeginDate().getTime();
+        Long intervalMilli = departmentPlanBean.getEndDate().getTime() - departmentPlanBean.getBeginDate().getTime();
         templateBean.setPlanDate((int) (intervalMilli / (24 * 60 * 60 * 1000)));
 
         templateBean.setState(departmentPlanBean.getState());

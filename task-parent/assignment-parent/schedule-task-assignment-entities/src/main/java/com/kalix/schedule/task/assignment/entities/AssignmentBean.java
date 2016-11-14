@@ -23,7 +23,7 @@ public class AssignmentBean extends PersistentEntity {
     /**
      * @describe 用户id
      */
-    private long userId;
+    private Long userId;
     /**
      * @describe 用户名
      */
@@ -31,7 +31,7 @@ public class AssignmentBean extends PersistentEntity {
     /**
      * @describe 部门id
      */
-    private long orgId;
+    private Long orgId;
     /**
      * @describe 部门代码
      */
@@ -77,7 +77,7 @@ public class AssignmentBean extends PersistentEntity {
     /**
      * @describe 负责人
      */
-    private long head;
+    private Long head;
     @Transient
     private String header;
     /**
@@ -128,13 +128,13 @@ public class AssignmentBean extends PersistentEntity {
     private Integer eventType;
 
     @Transient
-    private long templateId;
+    private Long templateId;
 
-    public long getUserId() {
+    public Long getUserId() {
         return this.userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -146,11 +146,11 @@ public class AssignmentBean extends PersistentEntity {
         this.userName = userName;
     }
 
-    public long getOrgId() {
+    public Long getOrgId() {
         return orgId;
     }
 
-    public void setOrgId(long orgId) {
+    public void setOrgId(Long orgId) {
         this.orgId = orgId;
     }
 
@@ -234,11 +234,11 @@ public class AssignmentBean extends PersistentEntity {
         this.workHours = workHours;
     }
 
-    public long getHead() {
+    public Long getHead() {
         return head;
     }
 
-    public void setHead(long head) {
+    public void setHead(Long head) {
         this.head = head;
     }
 
@@ -338,11 +338,11 @@ public class AssignmentBean extends PersistentEntity {
         this.eventType = eventType;
     }
 
-    public long getTemplateId() {
+    public Long getTemplateId() {
         return templateId;
     }
 
-    public void setTemplateId(long templateId) {
+    public void setTemplateId(Long templateId) {
         this.templateId = templateId;
     }
 }

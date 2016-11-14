@@ -23,38 +23,38 @@ public class WorkReportPlanBean extends PersistentEntity {
     /**
      * @describe 工作汇报id
      */
-    private long workreportId;
+    private Long workreportId;
     /**
      * @describe 个人计划id
      */
-    private long personalplanId;
+    private Long personalplanId;
 
     /**
      * @describe 部门计划id
      */
-    private long departmentplanId;
+    private Long departmentplanId;
 
-    public long getWorkreportId() {
+    public Long getWorkreportId() {
         return workreportId;
     }
 
-    public void setWorkreportId(long workreportId) {
+    public void setWorkreportId(Long workreportId) {
         this.workreportId = workreportId;
     }
 
-    public long getPersonalplanId() {
+    public Long getPersonalplanId() {
         return personalplanId;
     }
 
-    public void setPersonalplanId(long personalplanId) {
+    public void setPersonalplanId(Long personalplanId) {
         this.personalplanId = personalplanId;
     }
 
-    public long getDepartmentplanId() {
+    public Long getDepartmentplanId() {
         return departmentplanId;
     }
 
-    public void setDepartmentplanId(long departmentplanId) {
+    public void setDepartmentplanId(Long departmentplanId) {
         this.departmentplanId = departmentplanId;
     }
 }

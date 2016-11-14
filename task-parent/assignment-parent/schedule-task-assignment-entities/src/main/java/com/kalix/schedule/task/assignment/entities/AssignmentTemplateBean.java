@@ -21,11 +21,11 @@ public class AssignmentTemplateBean extends PersistentEntity {
     /**
      * @describe 用户id
      */
-    private long planTemplateId;
+    private Long planTemplateId;
     /**
      * @describe 用户id
      */
-    private long userId;
+    private Long userId;
     /**
      * @describe 用户名
      */
@@ -33,7 +33,7 @@ public class AssignmentTemplateBean extends PersistentEntity {
     /**
      * @describe 部门id
      */
-    private long orgId;
+    private Long orgId;
     /**
      * @describe 部门代码
      */
@@ -73,7 +73,7 @@ public class AssignmentTemplateBean extends PersistentEntity {
     /**
      * @describe 负责人
      */
-    private long head;
+    private Long head;
     @Transient
     private String header;
     /**
@@ -89,19 +89,19 @@ public class AssignmentTemplateBean extends PersistentEntity {
      */
     private String instruction;
 
-    public long getPlanTemplateId() {
+    public Long getPlanTemplateId() {
         return planTemplateId;
     }
 
-    public void setPlanTemplateId(long planTemplateId) {
+    public void setPlanTemplateId(Long planTemplateId) {
         this.planTemplateId = planTemplateId;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return this.userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -113,11 +113,11 @@ public class AssignmentTemplateBean extends PersistentEntity {
         this.userName = userName;
     }
 
-    public long getOrgId() {
+    public Long getOrgId() {
         return orgId;
     }
 
-    public void setOrgId(long orgId) {
+    public void setOrgId(Long orgId) {
         this.orgId = orgId;
     }
 
@@ -185,11 +185,11 @@ public class AssignmentTemplateBean extends PersistentEntity {
         this.workHours = workHours;
     }
 
-    public long getHead() {
+    public Long getHead() {
         return head;
     }
 
-    public void setHead(long head) {
+    public void setHead(Long head) {
         this.head = head;
     }
 
