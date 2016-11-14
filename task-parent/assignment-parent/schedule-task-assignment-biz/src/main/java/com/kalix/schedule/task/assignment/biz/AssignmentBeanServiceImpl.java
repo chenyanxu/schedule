@@ -75,7 +75,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         // 只有任务状态为进行中、等待接收、提交审核的任务在新建任务时可作为母任务
         condition += " and (state = 0 or state = 2 or state = 3)";
         // 来源于部门计划的任务或者自定义的任务可作为母任务，已经来源于母任务的子任务就不能再作为母任务了
-        condition += " and (sourceType = 0 or sourceType=2)";
+        condition += " and (sourceType = 0 or sourceType=2) order by creationDate desc";
 
         List comboList = dao.findByNativeSql("select * from " + dao.getTableName() + condition, AssignmentBean.class, null);
 
@@ -105,7 +105,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         }
 
         Long userId = this.getShiroService().getCurrentUserId();
-        condition += " and (userId = " + userId + " or head = " + userId + " or participant like '%" + userId + "%')";
+        condition += " and (userId = " + userId + " or head = " + userId + " or participant like '%" + userId + "%') order by creationDate desc";
 
         //查找任务布置人或者任务负责人或者参与人是当前用户的数据
         JsonData jsonData = dao.findByNativeSql("select * from " + dao.getTableName() + condition,page,limit,AssignmentBean.class,null);
@@ -167,7 +167,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
 
                 Date endDate = new Date();
                 newAssignment.setEndDate(new Date(endDate.getTime() + assignmentTemplateList.get(i).getTaskDate()*24*60*60*1000));
-                newAssignment.setPercent(0);
+                newAssignment.setPercent(0f);
                 // 添加时，写入用户id及用户名
                 newAssignment.setUserId(userId);
                 newAssignment.setUserName(userName);
@@ -308,7 +308,10 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
 
     //保存任务事件
     private void saveEventEntity(AssignmentBean assignmentBean) {
-        int eventType = assignmentBean.getEventType();
+        int eventType = 100;
+        if(assignmentBean.getEventType() != null) {
+            eventType = assignmentBean.getEventType();
+        }
         String eventContent;
         switch (eventType) {
             case 0:

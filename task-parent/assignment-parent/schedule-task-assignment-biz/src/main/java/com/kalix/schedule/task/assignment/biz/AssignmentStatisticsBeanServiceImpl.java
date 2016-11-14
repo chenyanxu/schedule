@@ -309,7 +309,7 @@ public class AssignmentStatisticsBeanServiceImpl extends ShiroGenericBizServiceI
         if (chartList.size() == 0) {
             AssignmentPieChartDTO tmpDTO = new AssignmentPieChartDTO();
             tmpDTO.setOrgName("没有数据");
-            tmpDTO.setPercent(100);
+            tmpDTO.setPercent(100f);
             chartList.add(tmpDTO);
         }
 

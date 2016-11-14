@@ -199,7 +199,7 @@ Ext.define('kalix.task.assignment.view.AssignmentViewWindow', {
                             xtype: 'baseForm',
                             items: [
                                 {
-                                    fieldLabel: '评估工时',
+                                    fieldLabel: '评估工时(小时)',
                                     allowBlank: false,
                                     bind: {
                                         value: '{rec.workHours}'

@@ -100,7 +100,7 @@ public class AssignmentBean extends PersistentEntity {
     /**
      * @describe 任务进度
      */
-    private float percent;
+    private Float percent;
     /**
      * @describe 进度说明
      */
@@ -306,11 +306,11 @@ public class AssignmentBean extends PersistentEntity {
         this.percentNumber = percentNumber;
     }
 
-    public float getPercent() {
+    public Float getPercent() {
         return percent;
     }
 
-    public void setPercent(float percent) {
+    public void setPercent(Float percent) {
         this.percent = percent;
     }
 

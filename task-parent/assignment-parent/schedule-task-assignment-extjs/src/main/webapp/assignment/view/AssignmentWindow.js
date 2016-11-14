@@ -162,7 +162,7 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
         {
             items: [
                 {
-                    fieldLabel: '评估工时',
+                    fieldLabel: '评估工时(小时)',
                     allowBlank: false,
                     bind: {
                         value: '{rec.workHours}'

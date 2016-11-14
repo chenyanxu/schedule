@@ -7,7 +7,7 @@ import com.kalix.framework.core.api.web.model.BaseDTO;
  */
 public class AssignmentPieChartDTO extends BaseDTO {
     private String orgName;
-    private float percent;
+    private Float percent;
 
     public String getOrgName() {
         return orgName;
@@ -17,11 +17,11 @@ public class AssignmentPieChartDTO extends BaseDTO {
         this.orgName = orgName;
     }
 
-    public float getPercent() {
+    public Float getPercent() {
         return percent;
     }
 
-    public void setPercent(float percent) {
+    public void setPercent(Float percent) {
         this.percent = percent;
     }
 }
