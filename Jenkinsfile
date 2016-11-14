@@ -27,7 +27,7 @@ def utils = new io.fabric8.Utils()
 node {
   git 'https://github.com/chenyanxu/schedule-parent.git'
 
-  echo 'NOTE: running pipelines for the first time will take Longer as build and base docker images are pulled onto the node'
+  echo 'NOTE: running pipelines for the first time will take longer as build and base docker images are pulled onto the node'
   kubernetes.pod('buildpod').withImage('fabric8/maven-builder')
       .withPrivileged(true)
       .withHostPathMount('/var/run/docker.sock','/var/run/docker.sock')
