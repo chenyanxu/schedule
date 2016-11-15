@@ -22,7 +22,6 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
     },
     xtype: "assignmentWindow",
     width: 800,
-    //todo 在此修改表单
     items: [
         {
             items: [
@@ -172,8 +171,10 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                     fieldLabel: '负责人',
                     allowBlank: false,
                     xtype: 'userCombobox',
+                    reference:'headCombobox',
                     valueField: 'id',
                     displayField: 'name',
+                    modelField:'head',
                     bind: {
                         value: '{rec.head}'
                     }
