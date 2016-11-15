@@ -108,7 +108,7 @@ public class DepartmentPlanBeanServiceImpl extends ShiroGenericBizServiceImpl<ID
         //String userName = this.getShiroService().getCurrentUserRealName();
 
         // 先判断是否是从计划模板创建的任务
-        if(entity.getTemplateId() != 0) {//根据模板生成部门计划，部门计划下的任务
+        if(entity.getTemplateId() != null && entity.getTemplateId() != 0) {//根据模板生成部门计划，部门计划下的任务
             //先保存该计划下的任务
             AssignmentBean assignmentBean = new AssignmentBean();
             assignmentBean.setTemplateId(entity.getTemplateId());
@@ -120,7 +120,7 @@ public class DepartmentPlanBeanServiceImpl extends ShiroGenericBizServiceImpl<ID
             TemplateBean templateBean = templateBeanService.getEntity(entity.getTemplateId());
             Mapper mapper = new DozerBeanMapper();
             DepartmentPlanBean departmentPlanBean = mapper.map(templateBean,DepartmentPlanBean.class);
-            departmentPlanBean.setId(0);
+            departmentPlanBean.setId(0L);
             //departmentPlanBean.setUserName(userName);
             departmentPlanBean.setUserId(userId);
             departmentPlanBean.setBeginDate(new Date());

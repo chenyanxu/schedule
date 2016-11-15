@@ -15,5 +15,15 @@ Ext.define('kalix.plan.departmentplan.component.DepartmentPlanComboBox', {
     modelField:'id',
     store: {
         type: 'departmentplanStore'
+    },
+    getParams: function (queryString) {
+        var params = {},
+            param = this.queryParam;
+
+        if (param) {
+            params[param] = '{"%' + this.displayField + '%":"' + queryString + '"}';
+        }
+
+        return params;
     }
 });

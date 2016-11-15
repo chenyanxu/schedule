@@ -113,7 +113,7 @@ Ext.define('kalix.task.assignment.view.AssignmentViewWindow', {
                                     valueField: 'id',
                                     displayField: 'title',
                                     queryParam: '%title%',
-                                    modelField: 'id',
+                                    modelField: 'sourceId',
                                     bind: {
                                         value: '{rec.sourceId}'
                                     },

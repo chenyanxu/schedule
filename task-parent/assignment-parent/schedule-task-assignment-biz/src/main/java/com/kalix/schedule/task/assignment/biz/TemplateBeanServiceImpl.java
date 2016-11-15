@@ -73,7 +73,7 @@ public class TemplateBeanServiceImpl extends ShiroGenericBizServiceImpl<ITemplat
             taskIds += assignmentList.get(i).getId() + ",";
             AssignmentTemplateBean assignmentTemplateBean = mapper.map(assignmentList.get(i),AssignmentTemplateBean.class);
 
-            assignmentTemplateBean.setId(0);
+            assignmentTemplateBean.setId(0L);
 //            assignmentTemplateBean.setUserId(assignmentList.get(i).getUserId());
 //            assignmentTemplateBean.setUserName(assignmentList.get(i).getUserName());
 //            assignmentTemplateBean.setOrgId(assignmentList.get(i).getOrgId());
@@ -104,7 +104,7 @@ public class TemplateBeanServiceImpl extends ShiroGenericBizServiceImpl<ITemplat
         Mapper mapper = new DozerBeanMapper();
 
         TemplateBean templateBean = mapper.map(departmentPlanBean,TemplateBean.class);
-        templateBean.setId(0);
+        templateBean.setId(0L);
         templateBean.setTemplateName(entity.getTemplateName());
 //        templateBean.setUserId(departmentPlanBean.getUserId());
 //        templateBean.setUserName(departmentPlanBean.getUserName());

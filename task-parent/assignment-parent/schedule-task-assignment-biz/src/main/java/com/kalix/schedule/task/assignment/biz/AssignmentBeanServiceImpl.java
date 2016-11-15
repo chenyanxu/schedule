@@ -161,7 +161,7 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
                 Mapper mapper = new DozerBeanMapper();
 
                 AssignmentBean newAssignment = mapper.map(assignmentTemplateList.get(i), AssignmentBean.class);
-                newAssignment.setId(0);
+                newAssignment.setId(0L);
                 newAssignment.setPercentNumber(0);
                 newAssignment.setBeginDate(new Date());
 
