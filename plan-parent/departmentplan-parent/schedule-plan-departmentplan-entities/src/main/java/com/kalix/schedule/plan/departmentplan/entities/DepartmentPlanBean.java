@@ -45,7 +45,7 @@ public class DepartmentPlanBean extends BusinessEntity {
     /**
      * @describe 组织机构ID
      */
-    private long orgId;
+    private Long orgId;
     /**
      * @describe 组织机构名称
      */
@@ -80,13 +80,13 @@ public class DepartmentPlanBean extends BusinessEntity {
     private Integer state;
 
     @Transient
-    private long templateId;
+    private Long templateId;
 
-    public long getOrgId() {
+    public Long getOrgId() {
         return orgId;
     }
 
-    public void setOrgId(long orgId) {
+    public void setOrgId(Long orgId) {
         this.orgId = orgId;
     }
 
@@ -146,11 +146,11 @@ public class DepartmentPlanBean extends BusinessEntity {
         this.state = state;
     }
 
-    public long getTemplateId() {
+    public Long getTemplateId() {
         return templateId;
     }
 
-    public void setTemplateId(long templateId) {
+    public void setTemplateId(Long templateId) {
         this.templateId = templateId;
     }
 }

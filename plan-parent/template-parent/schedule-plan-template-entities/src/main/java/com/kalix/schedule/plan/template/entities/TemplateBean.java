@@ -28,7 +28,7 @@ public class TemplateBean extends PersistentEntity {
     /**
      * @describe 用户ID
      */
-    private long userId;
+    private Long userId;
     /**
      * @describe 用户姓名
      */
@@ -36,7 +36,7 @@ public class TemplateBean extends PersistentEntity {
     /**
      * @describe 组织机构ID
      */
-    private long orgId;
+    private Long orgId;
     /**
      * @describe 组织机构编码
      */
@@ -83,11 +83,11 @@ public class TemplateBean extends PersistentEntity {
         this.templateName = templateName;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return this.userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -99,11 +99,11 @@ public class TemplateBean extends PersistentEntity {
         this.userName = userName;
     }
 
-    public long getOrgId() {
+    public Long getOrgId() {
         return this.orgId;
     }
 
-    public void setOrgId(long orgId) {
+    public void setOrgId(Long orgId) {
         this.orgId = orgId;
     }
 

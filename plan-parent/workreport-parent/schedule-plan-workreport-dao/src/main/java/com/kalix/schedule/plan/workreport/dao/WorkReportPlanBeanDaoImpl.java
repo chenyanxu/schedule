@@ -31,7 +31,7 @@ public class WorkReportPlanBeanDaoImpl extends GenericDao<WorkReportPlanBean, Lo
      */
     @SuppressWarnings("unchecked")
     @Override
-    public List<WorkReportPlanBean> findPlanByWorkReportId(long id) {
+    public List<WorkReportPlanBean> findPlanByWorkReportId(Long id) {
         return (List<WorkReportPlanBean>) this.find("select ob from WorkReportPlanBean ob where ob.workreportId = ?1", id);
     }
 }

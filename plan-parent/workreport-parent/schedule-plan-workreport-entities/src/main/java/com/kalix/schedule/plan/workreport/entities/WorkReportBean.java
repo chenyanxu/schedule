@@ -45,7 +45,7 @@ public class WorkReportBean extends BusinessEntity {
     /**
      * @describe 部门id
      */
-    private long orgId;
+    private Long orgId;
 
     @Transient
     private String orgName;
@@ -71,7 +71,7 @@ public class WorkReportBean extends BusinessEntity {
     /**
      * @describe 计划id
      */
-    private long planId;
+    private Long planId;
     /**
      * @describe 开始日期
      */
@@ -83,11 +83,11 @@ public class WorkReportBean extends BusinessEntity {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date endDate;
 
-    public long getOrgId() {
+    public Long getOrgId() {
         return this.orgId;
     }
 
-    public void setOrgId(long orgId) {
+    public void setOrgId(Long orgId) {
         this.orgId = orgId;
     }
 
@@ -132,11 +132,11 @@ public class WorkReportBean extends BusinessEntity {
         this.planType = planType;
     }
 
-    public long getPlanId() {
+    public Long getPlanId() {
         return planId;
     }
 
-    public void setPlanId(long planId) {
+    public void setPlanId(Long planId) {
         this.planId = planId;
     }
 
