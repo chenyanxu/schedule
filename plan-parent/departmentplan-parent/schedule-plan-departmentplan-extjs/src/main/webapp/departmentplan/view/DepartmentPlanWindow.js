@@ -32,7 +32,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,
@@ -64,8 +64,8 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
                             },
                             listeners: {
                                 'change': function (e, t, options) {
-                                    this.lookupViewModel().get('rec').set('orgName', e.displayTplData[0].name);
-                                    this.lookupViewModel().get('rec').set('orgCode', e.displayTplData[0].code);
+                                    //this.lookupViewModel().get('rec').set('orgName', e.displayTplData[0].name);
+                                    //this.lookupViewModel().get('rec').set('orgCode', e.displayTplData[0].code);
                                 }
                             }
                         }
@@ -74,7 +74,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,
