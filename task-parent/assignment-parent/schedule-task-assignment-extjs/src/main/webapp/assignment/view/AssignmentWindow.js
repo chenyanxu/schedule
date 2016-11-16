@@ -139,7 +139,7 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                     allowBlank: false,
                     editable: false,
                     xtype: 'datefield',
-                    format: 'Y-m-d',
+                    format: 'Y-m-d',             formatText:'格式为YYYY-mm-dd',
                     minValue: new Date(),
                     bind: {
                         value: '{rec.beginDate}'
@@ -150,7 +150,7 @@ Ext.define('kalix.task.assignment.view.AssignmentWindow', {
                     allowBlank: false,
                     editable: false,
                     xtype: 'datefield',
-                    format: 'Y-m-d',
+                    format: 'Y-m-d',             formatText:'格式为YYYY-mm-dd',
                     minValue: new Date(),
                     bind: {
                         value: '{rec.endDate}'

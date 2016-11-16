@@ -24,7 +24,7 @@ Ext.define('kalix.task.assignment.view.DelayWindow', {
                     fieldLabel: '完成日期',
                     allowBlank: false,
                     xtype: 'datefield',
-                    format: 'Y-m-d',
+                    format: 'Y-m-d',             formatText:'格式为YYYY-mm-dd',
 
                     bind: {
                         minValue: '{rec.endDate}',

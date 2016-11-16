@@ -58,7 +58,7 @@ Ext.define('kalix.task.assignment.view.ReadingGrid', {
                 text: '日期',
                 dataIndex: 'updateDate',
                 xtype: 'datecolumn',
-                format: 'Y-m-d',
+                format: 'Y-m-d',             formatText:'格式为YYYY-mm-dd',
                 renderer: null
             }
         ]

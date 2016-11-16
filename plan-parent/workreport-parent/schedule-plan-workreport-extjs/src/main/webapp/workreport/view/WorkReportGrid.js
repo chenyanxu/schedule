@@ -70,13 +70,13 @@ Ext.define('kalix.plan.workreport.view.WorkReportGrid', {
             text: '开始日期',
             dataIndex: 'beginDate',
             xtype: 'datecolumn',
-            format: 'Y-m-d', renderer: null
+            format: 'Y-m-d',             formatText:'格式为YYYY-mm-dd', renderer: null
         },
         {
             text: '结束日期',
             dataIndex: 'endDate',
             xtype: 'datecolumn',
-            format: 'Y-m-d', renderer: null
+            format: 'Y-m-d',             formatText:'格式为YYYY-mm-dd', renderer: null
         },
         {
             text: '创建日期',

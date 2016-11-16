@@ -60,7 +60,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchForm', {
         },
         {
             xtype: 'datefield',
-            format: 'Y-m-d',
+            format: 'Y-m-d',             formatText:'格式为YYYY-mm-dd',
             fieldLabel: '开始日期:',
             labelAlign: 'right',
             labelWidth: 60,
@@ -74,7 +74,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchForm', {
         },
         {
             xtype: 'datefield',
-            format: 'Y-m-d',
+            format: 'Y-m-d',             formatText:'格式为YYYY-mm-dd',
             headLabel: true,
             labelAlign: 'right',
             width: 140,

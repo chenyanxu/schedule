@@ -17,7 +17,7 @@ Ext.define('kalix.task.assignmentcharts.view.StatisticsSearchForm', {
     items: [
         {
             xtype: 'datefield',
-            format: 'Y-m-d',
+            format: 'Y-m-d',             formatText:'格式为YYYY-mm-dd',
             fieldLabel: '开始日期:',
             labelAlign: 'right',
             labelWidth: 120,
@@ -32,7 +32,7 @@ Ext.define('kalix.task.assignmentcharts.view.StatisticsSearchForm', {
         },
         {
             xtype: 'datefield',
-            format: 'Y-m-d',
+            format: 'Y-m-d',             formatText:'格式为YYYY-mm-dd',
             headLabel: true,
             labelAlign: 'right',
             width: 140,
@@ -40,7 +40,7 @@ Ext.define('kalix.task.assignmentcharts.view.StatisticsSearchForm', {
         },
         {
             xtype: 'datefield',
-            format: 'Y-m-d',
+            format: 'Y-m-d',             formatText:'格式为YYYY-mm-dd',
             fieldLabel: '结束日期:',
             labelAlign: 'right',
             labelWidth: 120,
@@ -55,7 +55,7 @@ Ext.define('kalix.task.assignmentcharts.view.StatisticsSearchForm', {
         },
         {
             xtype: 'datefield',
-            format: 'Y-m-d',
+            format: 'Y-m-d',             formatText:'格式为YYYY-mm-dd',
             headLabel: true,
             labelAlign: 'right',
             width: 140,

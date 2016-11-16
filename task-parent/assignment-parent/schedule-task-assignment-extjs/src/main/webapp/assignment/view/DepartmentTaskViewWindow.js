@@ -134,7 +134,7 @@ Ext.define('kalix.task.assignment.view.DepartmentTaskViewWindow', {
                 {
                     fieldLabel: '开始日期',
                     xtype: 'datefield',
-                    format: 'Y-m-d',
+                    format: 'Y-m-d',             formatText:'格式为YYYY-mm-dd',
                     bind: {
                         value: '{rec.beginDate}'
                     }
@@ -142,7 +142,7 @@ Ext.define('kalix.task.assignment.view.DepartmentTaskViewWindow', {
                 {
                     fieldLabel: '结束日期',
                     xtype: 'datefield',
-                    format: 'Y-m-d',
+                    format: 'Y-m-d',             formatText:'格式为YYYY-mm-dd',
                     bind: {
                         value: '{rec.endDate}'
                     }
