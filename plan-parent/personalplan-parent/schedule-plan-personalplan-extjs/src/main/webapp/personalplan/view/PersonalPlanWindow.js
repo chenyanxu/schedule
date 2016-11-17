@@ -7,14 +7,14 @@
 Ext.define('kalix.plan.personalplan.view.PersonalPlanWindow', {
     extend: 'kalix.view.components.common.BaseWindow',
     requires: [
-        'kalix.controller.BaseWindowController',
+        'kalix.plan.personalplan.controller.PersonalPlanWindowController',
         'kalix.schedule.scheduleDict.component.ScheduleDictCombobox',
         'kalix.admin.user.component.UserTagField',
         'kalix.admin.user.component.UserOrgComboBox'
     ],
     alias: 'widget.personalplanWindow',
     controller: {
-        type: 'baseWindowController'
+        type: 'personalPlanWindowController'
     },
     xtype: "personalplanWindow",
     width: 930,
