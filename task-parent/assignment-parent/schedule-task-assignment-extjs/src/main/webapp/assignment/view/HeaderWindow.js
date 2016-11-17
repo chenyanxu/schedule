@@ -32,8 +32,8 @@ Ext.define('kalix.task.assignment.view.HeaderWindow', {
                         value: '{rec.head}'
                     },
                     listeners: {
-                        'change':function(e,t,options) {
-                            if(e.displayTplData.length != 0) {
+                        'change': function (e, t, options) {
+                            if (e.displayTplData.length != 0) {
                                 this.lookupViewModel().get('rec').set('header', e.displayTplData[0].name);
                             }
                         }
@@ -41,12 +41,29 @@ Ext.define('kalix.task.assignment.view.HeaderWindow', {
                 },
                 {
                     fieldLabel: '选择负责人',
-                    hidden:true,
+                    hidden: true,
                     bind: {
                         value: '{rec.header}'
                     }
                 }
             ]
+        }
+    ],
+    buttons: [
+        {
+            text: '保存',
+            iconCls: 'iconfont icon-save iconfont-btn-small',
+            handler: 'onSave',
+            bind: {
+                hidden: '{view_operation}'
+            }
+        },
+        {
+            text: '取消',
+            glyph: 'xf00d@FontAwesome',
+            handler: function () {
+                this.up('window').close();
+            }
         }
     ]
 })
