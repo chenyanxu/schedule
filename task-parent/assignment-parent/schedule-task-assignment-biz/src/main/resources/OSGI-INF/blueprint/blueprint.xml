@@ -13,6 +13,7 @@
     <reference id="userBeanService" interface="com.kalix.admin.core.api.biz.IUserBeanService"/>
     <reference id="scheduleDictBeanService" interface="com.kalix.schedule.system.dict.api.biz.IScheduleDictBeanService"/>
     <reference id="templateBeanDao" interface="com.kalix.schedule.task.assignment.api.dao.ITemplateBeanDao"/>
+    <reference id="departmentPlanBeanDao" interface="com.kalix.schedule.plan.departmentplan.api.dao.IDepartmentPlanBeanDao"/>
     <!--<reference id="departmentplanBeanService" interface="com.kalix.schedule.plan.departmentplan.api.biz.IDepartmentPlanBeanService"/>-->
     <reference id="assignmentTemplateBeanDao" interface="com.kalix.schedule.task.assignment.api.dao.IAssignmentTemplateBeanDao"/>
 
@@ -39,6 +40,7 @@
 
     <bean id="templateBeanServiceImpl" class="com.kalix.schedule.task.assignment.biz.TemplateBeanServiceImpl">
         <property name="dao" ref="templateBeanDao"/>
+        <property name="departmentPlanBeanDao" ref="departmentPlanBeanDao"/>
         <property name="shiroService" ref="shiroService"/>
         <!--<property name="departmentplanBeanService" ref="departmentplanBeanService"/>-->
         <property name="assignmentBeanService" ref="assignmentBeanServiceImpl"/>
@@ -60,6 +62,7 @@
     <bean id="assignmentTemplateBeanServiceImpl" class="com.kalix.schedule.task.assignment.biz.AssignmentTemplateBeanServiceImpl">
         <property name="dao" ref="assignmentTemplateBeanDao"/>
         <property name="shiroService" ref="shiroService"/>
+        <property name="userBeanService" ref="userBeanService"/>
     </bean>
 
     <service id="assignmentTemplateBeanService" interface="com.kalix.schedule.task.assignment.api.biz.IAssignmentTemplateBeanService"

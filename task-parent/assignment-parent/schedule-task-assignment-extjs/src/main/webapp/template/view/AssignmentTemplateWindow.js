@@ -96,20 +96,20 @@ Ext.define('kalix.schedule.template.view.AssignmentTemplateWindow', {
                     listeners: {
                         'change':function(e,t,options) {
                             if(t=='0'){
-                                Ext.getCmp("schedule_task_assignment_sourceId").show();
-                                Ext.getCmp("schedule_task_assignment_sourceId").store.proxy.url = CONFIG.restRoot + '/camel/rest/departmentplancomboboxs';
-                                Ext.getCmp("schedule_task_assignment_sourceId").value="";
-                                Ext.getCmp("schedule_task_assignment_sourceId").store.load();
+                                Ext.getCmp("assignmentTemplateWindow_sourceId").show();
+                                Ext.getCmp("assignmentTemplateWindow_sourceId").store.proxy.url = CONFIG.restRoot + '/camel/rest/departmentplancomboboxs';
+                                Ext.getCmp("assignmentTemplateWindow_sourceId").value="";
+                                Ext.getCmp("assignmentTemplateWindow_sourceId").store.load();
                             }
                             else if(t=='1'){
-                                Ext.getCmp("schedule_task_assignment_sourceId").store.proxy.url = CONFIG.restRoot + '/camel/rest/assignmentcomboboxs';
-                                Ext.getCmp("schedule_task_assignment_sourceId").store.load();
-                                Ext.getCmp("schedule_task_assignment_sourceId").value="";
-                                Ext.getCmp("schedule_task_assignment_sourceId").show();
+                                Ext.getCmp("assignmentTemplateWindow_sourceId").store.proxy.url = CONFIG.restRoot + '/camel/rest/assignmentcomboboxs';
+                                Ext.getCmp("assignmentTemplateWindow_sourceId").store.load();
+                                Ext.getCmp("assignmentTemplateWindow_sourceId").value="";
+                                Ext.getCmp("assignmentTemplateWindow_sourceId").show();
                             }
                             else{
-                                Ext.getCmp("schedule_task_assignment_sourceId").value="";
-                                Ext.getCmp("schedule_task_assignment_sourceId").hide();
+                                Ext.getCmp("assignmentTemplateWindow_sourceId").value="";
+                                Ext.getCmp("assignmentTemplateWindow_sourceId").hide();
                             }
                         }
                     }
@@ -117,7 +117,7 @@ Ext.define('kalix.schedule.template.view.AssignmentTemplateWindow', {
                 {
                     fieldLabel: '来源于',
                     allowBlank: false,
-                    id: 'schedule_task_assignment_sourceId',
+                    id: 'assignmentTemplateWindow_sourceId',
                     xtype: 'combo',
                     valueField: 'id',
                     displayField: 'title',

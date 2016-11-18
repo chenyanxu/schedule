@@ -8,6 +8,7 @@ Ext.define('kalix.schedule.template.view.TemplateWindow', {
     extend: 'kalix.view.components.common.BaseWindow',
     requires: [
         'kalix.controller.BaseWindowController',
+        'kalix.admin.user.component.UserOrgComboBox',
         'kalix.schedule.scheduleDict.component.ScheduleDictCombobox'
     ],
     alias: 'widget.templateWindow',
@@ -26,6 +27,19 @@ Ext.define('kalix.schedule.template.view.TemplateWindow', {
                     allowBlank: false,
                     bind: {
                         value: '{rec.templateName}'
+                    }
+                },
+                {
+                    fieldLabel: '部门名称',
+                    beforeLabelTextTpl: '<span class="field-required" data-qtip="必填选项">*</span>',
+                    xtype: 'userOrgComboBox',
+                    allowBlank: false,
+                    labelAlign: 'right',
+                    labelWidth: 80,
+                    width: 450,
+                    margin: '10 5 5 5',
+                    bind: {
+                        value: '{rec.orgId}'
                     }
                 },
                 {

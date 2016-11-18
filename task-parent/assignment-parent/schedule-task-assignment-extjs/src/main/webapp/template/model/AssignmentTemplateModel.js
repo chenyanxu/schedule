@@ -43,7 +43,8 @@ Ext.define('kalix.schedule.template.model.AssignmentTemplateModel', {
             name: 'content'
         },
         {
-            name: 'state'
+            name: 'state',
+            defaultValue: 0
         },
         {
             name: 'taskDate'
@@ -58,7 +59,8 @@ Ext.define('kalix.schedule.template.model.AssignmentTemplateModel', {
             name: 'header'
         },
         {
-            name: 'participant'
+            name: 'participant',
+            type: 'string'
         },
         {
             name: 'rewardStandard'

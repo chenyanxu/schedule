@@ -88,7 +88,7 @@ Ext.define('kalix.schedule.template.view.AssignmentTemplateViewWindow', {
                 {
                     fieldLabel: '来源于',
                     allowBlank: false,
-                    id: 'schedule_task_assignment_sourceId',
+                    id: 'AssignmentTemplateViewWindow_sourceId',
                     xtype: 'combo',
                     valueField: 'id',
                     displayField: 'title',

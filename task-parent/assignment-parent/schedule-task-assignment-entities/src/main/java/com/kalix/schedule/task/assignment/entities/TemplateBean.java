@@ -1,5 +1,9 @@
 package com.kalix.schedule.task.assignment.entities;
 
+import com.kalix.framework.core.api.annotation.KalixCascade;
+import com.kalix.framework.core.api.annotation.Relation;
+import com.kalix.framework.core.api.annotation.TableCascade;
+import com.kalix.framework.core.api.annotation.TableRelation;
 import com.kalix.framework.core.api.persistence.PersistentEntity;
 
 import javax.persistence.Entity;
@@ -17,6 +21,10 @@ import javax.persistence.Transient;
 //todo 修改模型定义
 @Entity
 @Table(name = "schedule_template")
+@TableRelation(relations = {
+        @Relation(BeanName = "UserBean", PK = "id", PFields ={"name","icon"}, FK = "userId", FFields = {"userName","userIcon"}),
+        @Relation(BeanName = "OrganizationBean", PK = "id", PFields = {"name"}, FK = "orgId", FFields = {"orgName"})
+})
 public class TemplateBean extends PersistentEntity {
     /**
      * @describe 模板名称
