@@ -117,6 +117,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
         vm.set('iconCls', vm.get('editIconCls'));
         vm.set('title','修改负责人');
         vm.set('store',this.getView().store);
+        vm.get('rec').vm=vm;
 
         view.show();
         grid.setSelection(selModel);
@@ -133,6 +134,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
         vm.set('iconCls', 'iconfont icon-schedule-task-progress');
         vm.set('title','汇报进度');
         vm.set('store',this.getView().store);
+        vm.get('rec').vm=vm;
 
         view.show();
         grid.setSelection(selModel);
@@ -181,6 +183,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
                 vm.set('iconCls', vm.get('editIconCls'));
                 vm.set('title',vm.get('editTitle'));
                 vm.set('store',scope.getView().store);
+                vm.get('rec').vm=vm;
 
                 view.show();
                 grid.setSelection(selModel);
@@ -232,6 +235,7 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
         vm.set('iconCls', vm.get('editIconCls'));
         vm.set('title','审批任务完成');
         vm.set('store',this.getView().store);
+        vm.get('rec').vm=vm;
 
         view.show();
         grid.setSelection(selModel);
