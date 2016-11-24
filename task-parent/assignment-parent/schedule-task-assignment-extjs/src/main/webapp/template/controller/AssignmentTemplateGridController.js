@@ -26,7 +26,7 @@ Ext.define('kalix.schedule.template.controller.AssignmentTemplateGridController'
         var planTemplateId = Ext.JSON.decode(this.getView().store.proxy.extraParams.jsonStr).planTemplateId;
         vm.get('rec').set('planTemplateId',planTemplateId);
         vm.get('rec').dirty = false;
-
+        vm.get('rec').vm=vm;
         this.viewModelExtraInit(vm);
         view.show();
     },

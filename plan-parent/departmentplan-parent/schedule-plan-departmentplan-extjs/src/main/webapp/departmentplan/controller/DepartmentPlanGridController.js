@@ -23,6 +23,7 @@ Ext.define('kalix.plan.departmentplan.controller.DepartmentPlanGridController', 
                 vm.set('iconCls', vm.get('editIconCls'));
                 vm.set('title','从模板添加计划');
                 vm.set('store',this.getView().store);
+                vm.get('rec').vm=vm;
                 view.show();
             }else{
                 var view = Ext.create(this.cfgForm);
@@ -32,7 +33,7 @@ Ext.define('kalix.plan.departmentplan.controller.DepartmentPlanGridController', 
                 vm.set('iconCls', vm.get('addIconCls'));
                 vm.set('title', vm.get('addTitle'));
                 vm.set('store',this.getView().store);
-
+                vm.get('rec').vm=vm;
                 this.viewModelExtraInit(vm);
                 view.show();
             }
@@ -49,7 +50,7 @@ Ext.define('kalix.plan.departmentplan.controller.DepartmentPlanGridController', 
         vm.set('rec', newModel);
         vm.set('iconCls', vm.get('editIconCls'));
         vm.set('title', '新增模板');
-
+        vm.get('rec').vm=vm;
         view.show();
     }
 });
