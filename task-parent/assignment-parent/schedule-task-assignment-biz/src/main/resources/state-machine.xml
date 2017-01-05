@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : config.xml
+    Created on : 22 March, 2013, 9:05 AM
+    Author     : ANKIT
+    Description:
+        File specifies states and transition of an fsm.
+        This is an example file.
+-->
+
+<FSM>
+	<STATE id="START" type="ID">
+		<MESSAGE id="MOVEWAITACCEPT" action="moveWaitAccept" nextState="WAITACCEPT"/>
+	</STATE>
+	<STATE id="WAITACCEPT">
+		<MESSAGE id="MOVEFAILURE" action="moveFailure" nextState="FAILURE"/>
+		<MESSAGE id="MOVEREJECT" action="moveReject" nextState="REJECT"/>
+		<MESSAGE id="MOVEPROGRESS" action="moveProgress" nextState="PROGRESS"/>
+		<MESSAGE id="MOVECANCEL" action="moveCancel" nextState="CANCEL"/>
+	</STATE>
+
+	<STATE id="REJECT">
+		<MESSAGE id="MOVEFAILURE" action="moveFailure" nextState="FAILURE"/>
+		<MESSAGE id="MOVECANCEL" action="moveCancel" nextState="CANCEL"/>
+	</STATE>
+
+	<STATE id="PROGRESS">
+		<MESSAGE id="MOVEFAILURE" action="moveFailure" nextState="FAILURE"/>
+		<MESSAGE id="MOVECOMPLETE" action="moveComplete" nextState="COMPLETE"/>
+		<MESSAGE id="MOVECANCEL" action="moveCancel" nextState="CANCEL"/>
+	</STATE>
+
+	<STATE id="COMPLETE">
+		<MESSAGE id="MOVEFAILURE" action="moveFailure" nextState="FAILURE"/>
+		<MESSAGE id="MOVEPROGRESS" action="moveProgress" nextState="PROGRESS"/>
+		<MESSAGE id="MOVECANCEL" action="moveCancel" nextState="CANCEL"/>
+		<MESSAGE id="MOVEFINISH" action="moveFinish" nextState="FINISH"/>
+	</STATE>
+
+	<STATE id="FAILURE">
+		<MESSAGE id="STOP" action="moveStop" nextState="STOP"/>
+	</STATE>
+
+	<STATE id="CANCEL">
+		<MESSAGE id="STOP" action="moveStop" nextState="STOP"/>
+	</STATE>
+
+	<STATE id="FINISH">
+		<MESSAGE id="STOP" action="moveStop" nextState="STOP"/>
+	</STATE>
+
+	<STATE id="STOP">
+	</STATE>
+
+</FSM>
