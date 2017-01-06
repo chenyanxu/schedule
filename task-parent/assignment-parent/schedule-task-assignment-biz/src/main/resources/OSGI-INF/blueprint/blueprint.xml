@@ -17,6 +17,8 @@
     <!--<reference id="departmentplanBeanService" interface="com.kalix.schedule.plan.departmentplan.api.biz.IDepartmentPlanBeanService"/>-->
     <reference id="assignmentTemplateBeanDao" interface="com.kalix.schedule.task.assignment.api.dao.IAssignmentTemplateBeanDao"/>
 
+    <reference id="statemachineService" interface="com.kalix.middleware.statemachine.api.biz.IStatemachineService"/>
+
     <bean id="assignmentBeanServiceImpl" class="com.kalix.schedule.task.assignment.biz.AssignmentBeanServiceImpl">
         <property name="progressBeanDao" ref="progressBeanDao"/>
         <property name="eventBeanDao" ref="eventBeanDao"/>
@@ -27,6 +29,7 @@
         <property name="scheduleDictBeanService" ref="scheduleDictBeanService"/>
         <property name="templateBeanService" ref="templateBeanServiceImpl"/>
         <property name="assignmentTemplateBeanService" ref="assignmentTemplateBeanServiceImpl"/>
+        <property name="statemachineService" ref="statemachineService"/>
         <!--<property name="departmentplanBeanService" ref="departmentplanBeanService"/>-->
     </bean>
 

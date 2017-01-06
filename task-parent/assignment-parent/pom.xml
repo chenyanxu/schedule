@@ -56,6 +56,16 @@
                 <artifactId>schedule-system-dict-api</artifactId>
                 <version>${project.schedule.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.kalix.schedule.plan.departmentplan</groupId>
+                <artifactId>schedule-plan-departmentplan-api</artifactId>
+                <version>${project.schedule.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kalix.middleware.statemachine</groupId>
+                <artifactId>middleware-statemachine-api</artifactId>
+                <version>${project.oa.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

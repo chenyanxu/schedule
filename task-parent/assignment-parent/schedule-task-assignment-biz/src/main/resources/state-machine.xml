@@ -10,43 +10,43 @@
 -->
 
 <FSM>
-	<STATE id="START" type="ID">
-		<MESSAGE id="MOVEWAITACCEPT" action="moveWaitAccept" nextState="WAITACCEPT"/>
+	<STATE id="START" type="state">
+		<MESSAGE id="MOVEWAITACCEPT" action="moveWaitAccept" nextState="等待接收"/>
 	</STATE>
-	<STATE id="WAITACCEPT">
-		<MESSAGE id="MOVEFAILURE" action="moveFailure" nextState="FAILURE"/>
-		<MESSAGE id="MOVEREJECT" action="moveReject" nextState="REJECT"/>
-		<MESSAGE id="MOVEPROGRESS" action="moveProgress" nextState="PROGRESS"/>
-		<MESSAGE id="MOVECANCEL" action="moveCancel" nextState="CANCEL"/>
-	</STATE>
-
-	<STATE id="REJECT">
-		<MESSAGE id="MOVEFAILURE" action="moveFailure" nextState="FAILURE"/>
-		<MESSAGE id="MOVECANCEL" action="moveCancel" nextState="CANCEL"/>
+	<STATE id="等待接收">
+		<MESSAGE id="任务已失败" action="moveFailure" nextState="任务已失败"/>
+		<MESSAGE id="拒绝接收" action="moveReject" nextState="拒绝接收"/>
+		<MESSAGE id="进行中" action="moveProgress" nextState="进行中"/>
+		<MESSAGE id="任务已撤销" action="moveCancel" nextState="任务已撤销"/>
 	</STATE>
 
-	<STATE id="PROGRESS">
-		<MESSAGE id="MOVEFAILURE" action="moveFailure" nextState="FAILURE"/>
-		<MESSAGE id="MOVECOMPLETE" action="moveComplete" nextState="COMPLETE"/>
-		<MESSAGE id="MOVECANCEL" action="moveCancel" nextState="CANCEL"/>
+	<STATE id="拒绝接收">
+		<MESSAGE id="任务已失败" action="moveFailure" nextState="任务已失败"/>
+		<MESSAGE id="任务已撤销" action="moveCancel" nextState="任务已撤销"/>
 	</STATE>
 
-	<STATE id="COMPLETE">
-		<MESSAGE id="MOVEFAILURE" action="moveFailure" nextState="FAILURE"/>
-		<MESSAGE id="MOVEPROGRESS" action="moveProgress" nextState="PROGRESS"/>
-		<MESSAGE id="MOVECANCEL" action="moveCancel" nextState="CANCEL"/>
-		<MESSAGE id="MOVEFINISH" action="moveFinish" nextState="FINISH"/>
+	<STATE id="进行中">
+		<MESSAGE id="任务已失败" action="moveFailure" nextState="任务已失败"/>
+		<MESSAGE id="提交审核" action="moveComplete" nextState="提交审核"/>
+		<MESSAGE id="任务已撤销" action="moveCancel" nextState="任务已撤销"/>
 	</STATE>
 
-	<STATE id="FAILURE">
+	<STATE id="提交审核">
+		<MESSAGE id="任务已失败" action="moveFailure" nextState="任务已失败"/>
+		<MESSAGE id="进行中" action="moveProgress" nextState="进行中"/>
+		<MESSAGE id="任务已撤销" action="moveCancel" nextState="任务已撤销"/>
+		<MESSAGE id="任务完成" action="moveFinish" nextState="任务完成"/>
+	</STATE>
+
+	<STATE id="任务已失败">
 		<MESSAGE id="STOP" action="moveStop" nextState="STOP"/>
 	</STATE>
 
-	<STATE id="CANCEL">
+	<STATE id="任务已撤销">
 		<MESSAGE id="STOP" action="moveStop" nextState="STOP"/>
 	</STATE>
 
-	<STATE id="FINISH">
+	<STATE id="任务完成">
 		<MESSAGE id="STOP" action="moveStop" nextState="STOP"/>
 	</STATE>
 

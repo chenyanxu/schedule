@@ -10,6 +10,7 @@ import com.kalix.framework.core.util.JNDIHelper;
 import com.kalix.framework.core.util.SerializeUtil;
 //import com.kalix.schedule.plan.departmentplan.api.biz.IDepartmentPlanBeanService;
 //import com.kalix.schedule.plan.departmentplan.entities.DepartmentPlanBean;
+import com.kalix.middleware.statemachine.api.biz.IStatemachineService;
 import com.kalix.schedule.task.assignment.api.biz.IAssignmentTemplateBeanService;
 import com.kalix.schedule.task.assignment.api.biz.ITemplateBeanService;
 import com.kalix.schedule.task.assignment.entities.*;
@@ -37,6 +38,12 @@ import java.util.*;
  * @修改备注：
  */
 public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssignmentBeanDao, AssignmentBean> implements IAssignmentBeanService {
+    private IStatemachineService statemachineService;
+
+    public void setStatemachineService(IStatemachineService statemachineService) {
+        this.statemachineService = statemachineService;
+    }
+
     private JsonStatus jsonStatus = new JsonStatus();
     private IUserBeanService userBeanService;
     private EventAdmin eventAdmin;
@@ -229,6 +236,16 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
         } else {
             entity.setPercent(0f);
         }
+
+
+        AssignmentBean oldEntity = dao.get(entity.getId());
+        if (entity.getState() != null && oldEntity.getState() != (entity.getState())) {
+            String strNewState = scheduleDictBeanService.getByTypeAndValue("任务状态", entity.getState()).getLabel();
+            String strOldState = scheduleDictBeanService.getByTypeAndValue("任务状态", oldEntity.getState()).getLabel();
+
+            statemachineService.processFSM(this.getClass().getClassLoader().getResourceAsStream("state-machine.xml"), strOldState, strNewState);
+        }
+
         return super.updateEntity(entity);
     }
 
