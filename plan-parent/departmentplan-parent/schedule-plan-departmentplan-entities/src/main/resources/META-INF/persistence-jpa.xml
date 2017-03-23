@@ -6,6 +6,7 @@
         </jta-data-source>
         <class>com.kalix.framework.core.api.persistence.PersistentEntity</class>
         <class>com.kalix.framework.core.api.persistence.BusinessEntity</class>
+        <class>com.kalix.framework.core.api.persistence.UserEntity</class>
         <class>com.kalix.admin.core.entities.UserBean</class>
         <class>com.kalix.admin.core.entities.OrganizationBean</class>
         <class>com.kalix.schedule.task.assignment.entities.TemplateBean</class>
