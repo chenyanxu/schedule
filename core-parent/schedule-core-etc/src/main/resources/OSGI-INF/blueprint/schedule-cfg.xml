@@ -7,7 +7,7 @@
     </bean>
     <service id="managedService" interface="org.osgi.service.cm.ManagedService" ref="scheduleApplicationConfig">
         <service-properties>
-            <entry key="service.pid" value="ConfigScheduleApp"/>
+            <entry key="service.pid" value="config.schedule.app"/>
         </service-properties>
     </service>
 
@@ -15,7 +15,7 @@
     </bean>
     <service  interface="org.osgi.service.cm.ManagedService" ref="scheduleDictConfig">
         <service-properties>
-            <entry key="service.pid" value="ConfigScheduleDict"/>
+            <entry key="service.pid" value="config.schedule.dict"/>
         </service-properties>
     </service>
 </blueprint>
