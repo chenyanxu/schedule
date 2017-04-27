@@ -11,7 +11,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryViewWindow', {
         'kalix.schedule.scheduleDict.component.ScheduleDictCombobox'
     ],
     alias: 'widget.worksummaryViewWindow',
-    xtype: "worksummaryViewWindow",
+    xtype: 'worksummaryViewWindow',
     width: 930,
     height: 510,
     //todo 在此修改查看字段
@@ -28,7 +28,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryViewWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,
@@ -65,7 +65,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryViewWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,
@@ -101,7 +101,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryViewWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,
@@ -139,7 +139,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryViewWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,

@@ -8,7 +8,7 @@
 Ext.define('kalix.plan.personalplan.view.PersonalPlanViewWindow', {
     extend: 'kalix.view.components.common.BaseWindow',
     alias: 'widget.personalplanViewWindow',
-    xtype: "personalplanViewWindow",
+    xtype: 'personalplanViewWindow',
     requires: [
         'kalix.plan.workreport.view.WorkReportViewGrid'
     ],
@@ -31,7 +31,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanViewWindow', {
                         {
                             xtype: 'panel',
                             layout: {
-                                type: 'hbox',
+                                type: 'hbox'
                             },
                             width: '100%',
                             border: false,
@@ -54,7 +54,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanViewWindow', {
                         {
                             xtype: 'panel',
                             layout: {
-                                type: 'hbox',
+                                type: 'hbox'
                             },
                             width: '100%',
                             border: false,
@@ -90,7 +90,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanViewWindow', {
                         {
                             xtype: 'panel',
                             layout: {
-                                type: 'hbox',
+                                type: 'hbox'
                             },
                             width: '100%',
                             border: false,
@@ -130,7 +130,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanViewWindow', {
                         {
                             xtype: 'panel',
                             layout: {
-                                type: 'hbox',
+                                type: 'hbox'
                             },
                             width: '100%',
                             border: false,
@@ -170,7 +170,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanViewWindow', {
                         {
                             xtype: 'panel',
                             layout: {
-                                type: 'hbox',
+                                type: 'hbox'
                             },
                             width: '100%',
                             border: false,

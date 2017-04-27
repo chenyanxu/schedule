@@ -28,7 +28,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchGrid', {
     columns: [
         {
             xtype: 'rownumberer',
-            text: "行号",
+            text: '行号',
             width: 50,
             flex: 0,
             align: 'center',
@@ -102,7 +102,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchGrid', {
             //todo change permission
             verifyItems: [
                 {
-                    iconCls: "iconfont icon-view-column",
+                    iconCls: 'iconfont icon-view-column',
                     permission: 'view',
                     tooltip: '查看',
                     handler: 'onView'
@@ -126,5 +126,5 @@ Ext.define('kalix.plan.worksummary.view.WorkSummarySearchGrid', {
                     return '<span style="color: ' + color + ';">' + Ext.util.Format.usMoney(v) + '</span>';
                 }
             })
-    }],
+    }]
 });

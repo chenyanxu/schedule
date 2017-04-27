@@ -97,7 +97,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportSearchGrid', {
             //todo change permission
             verifyItems: [
                 {
-                    iconCls: "iconfont icon-view-column",
+                    iconCls: 'iconfont icon-view-column',
                     permission: 'view',
                     tooltip: '查看',
                     handler: 'onView'
@@ -121,5 +121,5 @@ Ext.define('kalix.plan.workreport.view.WorkReportSearchGrid', {
                   return '<span style="color: ' + color + ';">' + Ext.util.Format.usMoney(v) + '</span>';
               }
           })
-    }],
+    }]
 });

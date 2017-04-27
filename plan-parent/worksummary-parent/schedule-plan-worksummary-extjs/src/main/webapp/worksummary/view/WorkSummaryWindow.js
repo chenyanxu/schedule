@@ -16,7 +16,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryWindow', {
     controller: {
         type: 'baseWindowController'
     },
-    xtype: "worksummaryWindow",
+    xtype: 'worksummaryWindow',
     width: 930,
     //todo 在此修改表单
     items: [
@@ -32,7 +32,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,
@@ -55,7 +55,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,
@@ -141,7 +141,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,
@@ -216,7 +216,7 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,
@@ -236,7 +236,6 @@ Ext.define('kalix.plan.worksummary.view.WorkSummaryWindow', {
                     ]
                 }
             ]
-
         }
     ]
 });

@@ -14,7 +14,7 @@ Ext.define('kalix.task.assignment.view.TemplateWindow', {
     controller: {
         type: 'baseWindowController'
     },
-    xtype: "templateWindow",
+    xtype: 'templateWindow',
     width: 400,
     //todo 在此修改表单
     items: [

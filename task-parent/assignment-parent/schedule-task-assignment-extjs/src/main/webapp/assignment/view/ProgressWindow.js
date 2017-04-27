@@ -13,7 +13,7 @@ Ext.define('kalix.task.assignment.view.ProgressWindow', {
     controller: {
         type: 'baseWindowController'
     },
-    xtype: "progressWindow",
+    xtype: 'progressWindow',
     width: 400,
     //todo 在此修改表单
     items: [

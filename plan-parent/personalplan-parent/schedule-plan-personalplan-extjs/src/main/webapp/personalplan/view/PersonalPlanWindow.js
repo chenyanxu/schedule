@@ -16,7 +16,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanWindow', {
     controller: {
         type: 'personalPlanWindowController'
     },
-    xtype: "personalplanWindow",
+    xtype: 'personalplanWindow',
     width: 930,
     //todo 在此修改表单
     items: [
@@ -32,7 +32,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,
@@ -74,7 +74,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,
@@ -114,7 +114,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,
@@ -154,7 +154,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,

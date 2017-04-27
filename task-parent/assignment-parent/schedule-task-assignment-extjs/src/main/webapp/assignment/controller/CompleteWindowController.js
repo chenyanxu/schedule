@@ -41,8 +41,8 @@ Ext.define('kalix.task.assignment.controller.CompleteWindowController', {
         var view = this.getView();
         var model = viewModel.get('rec');
         var store = viewModel.get('store');
-        Ext.Msg.confirm("警告", "确定要完成本任务吗？", function (button) {
-            if (button == "yes") {
+        Ext.Msg.confirm('警告', '确定要完成本任务吗？', function (button) {
+            if (button == 'yes') {
                 store.proxy.extraParams = {};
                 // 设置任务状态为完成
                 model.set('state', 4);
@@ -73,8 +73,8 @@ Ext.define('kalix.task.assignment.controller.CompleteWindowController', {
         var view = this.getView();
         var model = viewModel.get('rec');
         var store = viewModel.get('store');
-        Ext.Msg.confirm("警告", "确定要失败本任务吗？", function (button) {
-            if (button == "yes") {
+        Ext.Msg.confirm('警告', '确定要失败本任务吗？', function (button) {
+            if (button == 'yes') {
                 store.proxy.extraParams = {};
                 // 设置任务状态为失败
                 model.set('state', 5);

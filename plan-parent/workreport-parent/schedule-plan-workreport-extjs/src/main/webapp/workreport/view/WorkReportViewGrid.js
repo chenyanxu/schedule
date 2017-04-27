@@ -7,14 +7,14 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewGrid', {
     extend: 'kalix.view.components.common.BaseGrid',
     requires: [
         'kalix.plan.workreport.controller.WorkReportGridController',
-        'kalix.plan.workreport.store.WorkReportStore',
+        'kalix.plan.workreport.store.WorkReportStore'
     ],
     alias: 'widget.workreportviewGrid',
     xtype: 'workreportviewGridPanel',
     //==custom property
     autoLoad: false,
     config: {
-        planId: '0',
+        planId: '0'
     },
     //custom property==
     store: {
@@ -57,7 +57,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewGrid', {
             xtype: 'securityGridColumnCommon',
             items: [
                 {
-                    iconCls: "iconfont icon-view-column",
+                    iconCls: 'iconfont icon-view-column',
                     permission: '',
                     tooltip: '查看',
                     handler: 'onView'

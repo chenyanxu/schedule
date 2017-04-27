@@ -8,7 +8,7 @@
 Ext.define('kalix.plan.departmentplan.view.DepartmentPlanViewWindow', {
     extend: 'kalix.view.components.common.BaseWindow',
     alias: 'widget.departmentplanViewWindow',
-    xtype: "departmentplanViewWindow",
+    xtype: 'departmentplanViewWindow',
     requires: [
         'kalix.plan.workreport.view.WorkReportViewGrid',
         'kalix.task.assignment.view.DepartmentTaskGrid'
@@ -33,7 +33,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanViewWindow', {
                         {
                             xtype: 'panel',
                             layout: {
-                                type: 'hbox',
+                                type: 'hbox'
                             },
                             width: '100%',
                             border: false,
@@ -56,7 +56,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanViewWindow', {
                         {
                             xtype: 'panel',
                             layout: {
-                                type: 'hbox',
+                                type: 'hbox'
                             },
                             width: '100%',
                             border: false,
@@ -92,7 +92,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanViewWindow', {
                         {
                             xtype: 'panel',
                             layout: {
-                                type: 'hbox',
+                                type: 'hbox'
                             },
                             width: '100%',
                             border: false,
@@ -131,7 +131,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanViewWindow', {
                         {
                             xtype: 'panel',
                             layout: {
-                                type: 'hbox',
+                                type: 'hbox'
                             },
                             width: '100%',
                             border: false,
@@ -170,7 +170,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanViewWindow', {
                         {
                             xtype: 'panel',
                             layout: {
-                                type: 'hbox',
+                                type: 'hbox'
                             },
                             width: '100%',
                             border: false,
@@ -213,9 +213,9 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanViewWindow', {
                                 'sourceId':departmentPlanId
                             };
                             jsonStr = Ext.JSON.encode(jsonStr);
-                            Ext.getCmp("departmentTaskGridPanel").store.proxy.url = CONFIG.restRoot + '/camel/rest/assignments/' + departmentPlanId + '/tasks';
-                            Ext.getCmp("departmentTaskGridPanel").store.proxy.extraParams = {'jsonStr':jsonStr};
-                            Ext.getCmp("departmentTaskGridPanel").store.load();
+                            Ext.getCmp('departmentTaskGridPanel').store.proxy.url = CONFIG.restRoot + '/camel/rest/assignments/' + departmentPlanId + '/tasks';
+                            Ext.getCmp('departmentTaskGridPanel').store.proxy.extraParams = {'jsonStr':jsonStr};
+                            Ext.getCmp('departmentTaskGridPanel').store.load();
                         }
                     }
                 }

@@ -11,9 +11,9 @@ Ext.define('kalix.task.assignmentcharts.store.AssignmentPieChartStore', {
     autoLoad: true,
     proxyUrl: CONFIG.restRoot + '/camel/rest/assignmentpiecharts/pie',
 
-    fields:["orgName","percent"],
+    fields:['orgName','percent'],
     data:[
-        {orgName:"没有数据",percent:100}
+        {orgName:'没有数据',percent:100}
     ]//,
     //seed: 1.42,
     //

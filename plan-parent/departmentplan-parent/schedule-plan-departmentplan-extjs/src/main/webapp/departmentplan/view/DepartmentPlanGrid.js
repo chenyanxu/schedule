@@ -98,7 +98,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
             width: 150,
             verifyItems: [
                 {
-                    iconCls: "iconfont icon-view-column",
+                    iconCls: 'iconfont icon-view-column',
                     permission: 'view',
                     tooltip: '查看',
                     handler: 'onView'
@@ -109,7 +109,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
                     handler: 'onEdit',
                     getClass: function (v, meta, record) {
                         if (record.data.state == 2) {
-                            return "kalix_hidden";
+                            return 'kalix_hidden';
                         }else{
                             return 'iconfont icon-edit-column';
                         }
@@ -121,7 +121,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
                     handler: 'onDelete',
                     getClass: function (v, meta, record) {
                         if (record.data.state == 2) {
-                            return "kalix_hidden";
+                            return 'kalix_hidden';
                         }else{
                             return 'iconfont icon-delete';
                         }
@@ -133,7 +133,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
                     handler: 'onAttachmentManage',
                     getClass: function (v, meta, record) {
                         if (record.data.state == 2) {
-                            return "kalix_hidden";
+                            return 'kalix_hidden';
                         }else{
                             return 'iconfont icon-attachment-column';
                         }
@@ -145,7 +145,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanGrid', {
                     handler: 'onTemplate',
                     getClass: function (v, meta, record) {
                         if (record.data.state == 2) {
-                            return "kalix_hidden";
+                            return 'kalix_hidden';
                         }else{
                             return 'iconfont icon-schedule-plantemplate';
                         }

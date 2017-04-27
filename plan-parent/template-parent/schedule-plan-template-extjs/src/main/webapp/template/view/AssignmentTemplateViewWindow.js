@@ -14,7 +14,7 @@ Ext.define('kalix.schedule.template.view.AssignmentTemplateViewWindow', {
         'kalix.admin.user.component.UserTagField'
     ],
     alias: 'widget.assignmentTemplateViewWindow',
-    xtype: "assignmentTemplateViewWindow",
+    xtype: 'assignmentTemplateViewWindow',
     width: 800,
     //todo 在此修改查看字段
     items: [

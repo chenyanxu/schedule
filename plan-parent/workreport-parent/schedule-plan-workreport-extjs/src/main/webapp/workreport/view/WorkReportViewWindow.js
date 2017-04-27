@@ -11,7 +11,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
         'kalix.schedule.scheduleDict.component.ScheduleDictCombobox'
     ],
     alias: 'widget.workreportViewWindow',
-    xtype: "workreportViewWindow",
+    xtype: 'workreportViewWindow',
     width: 930,
     height: 600,
     planTitle: 'test',
@@ -33,7 +33,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
                         {
                             xtype: 'panel',
                             layout: {
-                                type: 'hbox',
+                                type: 'hbox'
                             },
                             width: '100%',
                             border: false,
@@ -56,7 +56,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
                         {
                             xtype: 'panel',
                             layout: {
-                                type: 'hbox',
+                                type: 'hbox'
                             },
                             width: '100%',
                             border: false,
@@ -92,7 +92,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
                         {
                             xtype: 'panel',
                             layout: {
-                                type: 'hbox',
+                                type: 'hbox'
                             },
                             width: '100%',
                             border: false,
@@ -130,7 +130,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
                         {
                             xtype: 'panel',
                             layout: {
-                                type: 'hbox',
+                                type: 'hbox'
                             },
                             width: '100%',
                             border: false,
@@ -139,7 +139,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
                                     fieldLabel: '计划类型',
                                     xtype: 'combobox',
                                     id: 'workReportPlanType',
-                                    store: Ext.create("kalix.plan.workreport.store.PlanStore"),
+                                    store: Ext.create('kalix.plan.workreport.store.PlanStore'),
                                     queryMode: 'local',
                                     displayField: 'name',
                                     valueField: 'value',
@@ -163,11 +163,11 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
 
                                             if (sourceType == 1) {
                                                 // 个人计划
-                                                store = Ext.create("kalix.plan.personalplan.store.PersonalPlanStore");
+                                                store = Ext.create('kalix.plan.personalplan.store.PersonalPlanStore');
                                             }
                                             else if (sourceType == 2) {
                                                 // 部门计划
-                                                store = Ext.create("kalix.plan.departmentplan.store.DepartmentPlanStore");
+                                                store = Ext.create('kalix.plan.departmentplan.store.DepartmentPlanStore');
                                             }
 
 
@@ -213,7 +213,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportViewWindow', {
                         {
                             xtype: 'panel',
                             layout: {
-                                type: 'hbox',
+                                type: 'hbox'
                             },
                             width: '100%',
                             border: false,

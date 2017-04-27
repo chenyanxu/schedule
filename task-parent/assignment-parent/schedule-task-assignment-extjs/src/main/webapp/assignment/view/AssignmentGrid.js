@@ -135,7 +135,7 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                     {
                         tooltip: '查看',
                         permission: 'view',
-                        iconCls: "iconfont icon-view-column",
+                        iconCls: 'iconfont icon-view-column',
                         handler: 'onView'
                     },
                     {
@@ -145,12 +145,12 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                         getClass: function (v, meta, record) {
                             if (Ext.util.Cookies.get('currentUserId') == record.data.userId){
                                 if(record.data.state < 4) {
-                                    return "iconfont icon-edit-column";
+                                    return 'iconfont icon-edit-column';
                                 }else{
-                                    return "kalix_hidden";
+                                    return 'kalix_hidden';
                                 }
                             }
-                            return "kalix_hidden";
+                            return 'kalix_hidden';
                         }
                     },
                     {
@@ -162,13 +162,13 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                             if (Ext.util.Cookies.get('currentUserId') == record.data.userId){
                                 //如果任务是等待接收的状态，那么允许删除
                                 if(record.data.state == 0) {
-                                    return "iconfont icon-delete";
+                                    return 'iconfont icon-delete';
                                 }else{
-                                    "kalix_hidden";
+                                    'kalix_hidden';
                                 }
                             }
 
-                            return "kalix_hidden";
+                            return 'kalix_hidden';
                         }
                     },
                     {
@@ -178,17 +178,17 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                         getClass: function (v, meta, record) {
                             //如果当前登录用户是任务的创建人,则允许上传附件
                             if (Ext.util.Cookies.get('currentUserId') == record.data.head) {
-                                return "iconfont icon-attachment-column";
+                                return 'iconfont icon-attachment-column';
                             }
                             //如果当前登录用户是任务的负责人,则允许上传附件
                             if (Ext.util.Cookies.get('currentUserId') == record.data.head) {
-                                return "iconfont icon-attachment-column";
+                                return 'iconfont icon-attachment-column';
                             }
 
                             //需求说参与人也可以上传附件啦
-                            return "iconfont icon-attachment-column";
+                            return 'iconfont icon-attachment-column';
 
-                            //return "kalix_hidden";
+                            //return 'kalix_hidden';
                         }
                     }
                 ]
@@ -206,12 +206,12 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                             //如果当前登录用户是任务的创建人,那么可以修改任务的负责人
                             if (Ext.util.Cookies.get('currentUserId') == record.data.userId) {
                                 if(record.data.state < 4) {
-                                    return "iconfont icon-schedule-task-head";
+                                    return 'iconfont icon-schedule-task-head';
                                 }else{
-                                    return "kalix_hidden";
+                                    return 'kalix_hidden';
                                 }
                             }
-                            return "kalix_hidden";
+                            return 'kalix_hidden';
                         }
                     },
                     {
@@ -222,12 +222,12 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                             //如果当前登录用户是任务的创建人,那么可以撤销任务
                             if (Ext.util.Cookies.get('currentUserId') == record.data.userId) {
                                 if(record.data.state < 4) {
-                                    return "iconfont icon-schedule-task-cancel";
+                                    return 'iconfont icon-schedule-task-cancel';
                                 }else{
-                                    return "kalix_hidden";
+                                    return 'kalix_hidden';
                                 }
                             }
-                            return "kalix_hidden";
+                            return 'kalix_hidden';
                         }
                     },
                     {
@@ -239,12 +239,12 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                             //特别注意的，暂时不放开督办功能，因为没有任务的审批人
                             if (Ext.util.Cookies.get('currentUserId') == record.data.userId) {
                                 if(record.data.state == 2) {
-                                    return "iconfont icon-schedule-task-supervise";
+                                    return 'iconfont icon-schedule-task-supervise';
                                 }else{
-                                    return "kalix_hidden";
+                                    return 'kalix_hidden';
                                 }
                             }
-                            return "kalix_hidden";
+                            return 'kalix_hidden';
                         }
                     },
                     {
@@ -255,12 +255,12 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                             //如果当前登录用户是任务的创建人,那么可以延期任务
                             if (Ext.util.Cookies.get('currentUserId') == record.data.userId) {
                                 if(record.data.state == 2) {
-                                    return "iconfont icon-schedule-task-delay";
+                                    return 'iconfont icon-schedule-task-delay';
                                 }else{
-                                    return "kalix_hidden";
+                                    return 'kalix_hidden';
                                 }
                             }
-                            return "kalix_hidden";
+                            return 'kalix_hidden';
                         }
                     },
                     {
@@ -271,12 +271,12 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                             //如果当前登录用户是任务的创建人,那么可以失败任务
                             if (Ext.util.Cookies.get('currentUserId') == record.data.userId) {
                                 if(record.data.state < 4) {
-                                    return "iconfont icon-schedule-task-failure";
+                                    return 'iconfont icon-schedule-task-failure';
                                 }else{
-                                    return "kalix_hidden";
+                                    return 'kalix_hidden';
                                 }
                             }
-                            return "kalix_hidden";
+                            return 'kalix_hidden';
                         }
                     },
                     {
@@ -288,12 +288,12 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                             //如果当前登录用户是任务的负责人,那么可以汇报进度
                             if (Ext.util.Cookies.get('currentUserId') == record.data.head) {
                                 if(record.data.state == 2) {
-                                    return "iconfont icon-schedule-task-progress";
+                                    return 'iconfont icon-schedule-task-progress';
                                 }else{
-                                    return "kalix_hidden";
+                                    return 'kalix_hidden';
                                 }
                             }
-                            return "kalix_hidden";
+                            return 'kalix_hidden';
                         }
                     },
                     {
@@ -304,12 +304,12 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                             //如果当前登录用户是任务的负责人,那么可以申请任务完成
                             if (Ext.util.Cookies.get('currentUserId') == record.data.head) {
                                 if(record.data.state == 2) {
-                                    return "iconfont icon-schedule-task-complete";
+                                    return 'iconfont icon-schedule-task-complete';
                                 }else{
-                                    return "kalix_hidden";
+                                    return 'kalix_hidden';
                                 }
                             }
-                            return "kalix_hidden";
+                            return 'kalix_hidden';
                         }
                     },
                     {
@@ -320,12 +320,12 @@ Ext.define('kalix.task.assignment.view.AssignmentGrid', {
                             //如果当前登录用户是任务的创建人,那么可以审批任务完成
                             if (Ext.util.Cookies.get('currentUserId') == record.data.userId) {
                                 if(record.data.state == 3) {
-                                    return "iconfont icon-schedule-task-complete";
+                                    return 'iconfont icon-schedule-task-complete';
                                 }else{
-                                    return "kalix_hidden";
+                                    return 'kalix_hidden';
                                 }
                             }
-                            return "kalix_hidden";
+                            return 'kalix_hidden';
                         }
                     }
                 ]

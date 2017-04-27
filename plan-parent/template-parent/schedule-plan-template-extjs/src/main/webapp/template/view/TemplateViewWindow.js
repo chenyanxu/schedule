@@ -11,7 +11,7 @@ Ext.define('kalix.schedule.template.view.TemplateViewWindow', {
         'kalix.schedule.scheduleDict.component.ScheduleDictCombobox'
     ],
     alias: 'widget.templateViewWindow',
-    xtype: "templateViewWindow",
+    xtype: 'templateViewWindow',
     width: 400,
     //todo 在此修改查看字段
     items: [

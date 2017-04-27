@@ -16,7 +16,7 @@ Ext.define('kalix.task.assignment.view.AssignmentViewWindow', {
         'kalix.task.assignment.view.AssignmentSubTaskGrid'
     ],
     alias: 'widget.assignmentViewWindow',
-    xtype: "assignmentViewWindow",
+    xtype: 'assignmentViewWindow',
     controller: {
         type: 'assignmentWindowController'
     },
@@ -125,11 +125,11 @@ Ext.define('kalix.task.assignment.view.AssignmentViewWindow', {
                                         render: function (target) {
                                             var sourceType = this.lookupViewModel().get('rec').get('sourceType');
 
-                                            if (sourceType == "0") {
+                                            if (sourceType == '0') {
                                                 target.store.proxy.url = CONFIG.restRoot + '/camel/rest/departmentplans';
                                                 target.store.load();
                                             }
-                                            else if (sourceType == "1") {
+                                            else if (sourceType == '1') {
                                                 target.store.proxy.url = CONFIG.restRoot + '/camel/rest/assignments';
                                                 target.store.load();
                                             }
@@ -279,13 +279,13 @@ Ext.define('kalix.task.assignment.view.AssignmentViewWindow', {
                     listeners: {
                         'activate': function (target, eOpts) {
                             var assignmentId = Ext.getCmp('taskTabPanel').items.items[0].items.items[0].items.items[0].value;
-                            Ext.getCmp("assignmentSubTaskGridPanel").store.proxy.url = CONFIG.restRoot + '/camel/rest/assignments/';
+                            Ext.getCmp('assignmentSubTaskGridPanel').store.proxy.url = CONFIG.restRoot + '/camel/rest/assignments/';
                             var jsonStr = {
                                 'sourceId':assignmentId
                             };
                             jsonStr = Ext.JSON.encode(jsonStr);
-                            Ext.getCmp("assignmentSubTaskGridPanel").store.proxy.extraParams = {'jsonStr':jsonStr};
-                            Ext.getCmp("assignmentSubTaskGridPanel").store.load();
+                            Ext.getCmp('assignmentSubTaskGridPanel').store.proxy.extraParams = {'jsonStr':jsonStr};
+                            Ext.getCmp('assignmentSubTaskGridPanel').store.load();
                         }
                     }
                 },
@@ -309,9 +309,9 @@ Ext.define('kalix.task.assignment.view.AssignmentViewWindow', {
                                 'assignmentId':assignmentId
                             };
                             jsonStr = Ext.JSON.encode(jsonStr);
-                            Ext.getCmp("eventGridPanel").store.proxy.url = CONFIG.restRoot + '/camel/rest/assignments/' + assignmentId + '/events';
-                            Ext.getCmp("eventGridPanel").store.proxy.extraParams = {'jsonStr':jsonStr};
-                            Ext.getCmp("eventGridPanel").store.load();
+                            Ext.getCmp('eventGridPanel').store.proxy.url = CONFIG.restRoot + '/camel/rest/assignments/' + assignmentId + '/events';
+                            Ext.getCmp('eventGridPanel').store.proxy.extraParams = {'jsonStr':jsonStr};
+                            Ext.getCmp('eventGridPanel').store.load();
                         }
                     }
                 }

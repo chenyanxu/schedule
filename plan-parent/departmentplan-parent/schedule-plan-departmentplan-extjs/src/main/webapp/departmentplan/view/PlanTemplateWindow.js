@@ -12,7 +12,7 @@ Ext.define('kalix.plan.departmentplan.view.PlanTemplateWindow', {
         'kalix.task.assignment.view.DepartmentTaskGrid'
     ],
     alias: 'widget.planTemplateWindow',
-    xtype: "planTemplateWindow",
+    xtype: 'planTemplateWindow',
     controller: {
         type: 'departmentPlanWindowController'
     },
@@ -118,9 +118,9 @@ Ext.define('kalix.plan.departmentplan.view.PlanTemplateWindow', {
                                 'sourceId': departmentPlanId
                             };
                             jsonStr = Ext.JSON.encode(jsonStr);
-                            Ext.getCmp("planTemplateTaskPanel").store.proxy.url = CONFIG.restRoot + '/camel/rest/assignments/' + departmentPlanId + '/tasks';
-                            Ext.getCmp("planTemplateTaskPanel").store.proxy.extraParams = {'jsonStr': jsonStr};
-                            Ext.getCmp("planTemplateTaskPanel").store.load();
+                            Ext.getCmp('planTemplateTaskPanel').store.proxy.url = CONFIG.restRoot + '/camel/rest/assignments/' + departmentPlanId + '/tasks';
+                            Ext.getCmp('planTemplateTaskPanel').store.proxy.extraParams = {'jsonStr': jsonStr};
+                            Ext.getCmp('planTemplateTaskPanel').store.load();
                         }
                     }
                 }

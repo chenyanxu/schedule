@@ -16,7 +16,7 @@ Ext.define('kalix.task.assignment.view.AssignmentSubTaskViewWindow', {
         'kalix.task.assignment.view.AssignmentSubTaskGrid'
     ],
     alias: 'widget.assignmentSubTaskViewWindow',
-    xtype: "assignmentSubTaskViewWindow",
+    xtype: 'assignmentSubTaskViewWindow',
     controller: {
         type: 'assignmentWindowController'
     },
@@ -125,11 +125,11 @@ Ext.define('kalix.task.assignment.view.AssignmentSubTaskViewWindow', {
                                         render: function (target) {
                                             var sourceType = this.lookupViewModel().get('rec').get('sourceType');
 
-                                            if (sourceType == "0") {
+                                            if (sourceType == '0') {
                                                 target.store.proxy.url = CONFIG.restRoot + '/camel/rest/departmentplans';
                                                 target.store.load();
                                             }
-                                            else if (sourceType == "1") {
+                                            else if (sourceType == '1') {
                                                 target.store.proxy.url = CONFIG.restRoot + '/camel/rest/assignments';
                                                 target.store.load();
                                             }
@@ -283,9 +283,9 @@ Ext.define('kalix.task.assignment.view.AssignmentSubTaskViewWindow', {
                                 'assignmentId': assignmentId
                             };
                             jsonStr = Ext.JSON.encode(jsonStr);
-                            Ext.getCmp("eventSubTaskGridPanel").store.proxy.url = CONFIG.restRoot + '/camel/rest/assignments/' + assignmentId + '/events';
-                            Ext.getCmp("eventSubTaskGridPanel").store.proxy.extraParams = {'jsonStr': jsonStr};
-                            Ext.getCmp("eventSubTaskGridPanel").store.load();
+                            Ext.getCmp('eventSubTaskGridPanel').store.proxy.url = CONFIG.restRoot + '/camel/rest/assignments/' + assignmentId + '/events';
+                            Ext.getCmp('eventSubTaskGridPanel').store.proxy.extraParams = {'jsonStr': jsonStr};
+                            Ext.getCmp('eventSubTaskGridPanel').store.load();
                         }
                     }
                 }

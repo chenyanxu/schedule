@@ -92,20 +92,20 @@ Ext.define('kalix.plan.workreport.view.WorkReportGrid', {
             width: 150,
             verifyItems: [
                 {
-                    iconCls: "iconfont icon-view-column",
+                    iconCls: 'iconfont icon-view-column',
                     permission: 'view',
                     tooltip: '查看',
                     handler: 'onView'
                 },
                 {
                     //bind: {icon: ''},
-                    iconCls: "iconfont icon-edit-column",
+                    iconCls: 'iconfont icon-edit-column',
                     permission: 'edit',
                     tooltip: '编辑',
                     handler: 'onEdit'
                 },
                 {
-                    iconCls: "iconfont icon-delete",
+                    iconCls: 'iconfont icon-delete',
                     permission: 'delete',
                     tooltip: '删除',
                     handler: 'onDelete'

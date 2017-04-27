@@ -108,7 +108,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchGrid', {
       //todo change permission
       verifyItems: [
         {
-          iconCls: "iconfont icon-view-column",
+          iconCls: 'iconfont icon-view-column',
           permission: 'view',
           tooltip: '查看',
           handler: 'onView'
@@ -134,5 +134,5 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanSearchGrid', {
       })
   }],
   collapsible: true,
-  animCollapse: true,
+  animCollapse: true
 });

@@ -9,6 +9,6 @@ Ext.define('kalix.schedule.template.store.AssignmentTemplateStore', {
     model: 'kalix.schedule.template.model.AssignmentTemplateModel',
     alias: 'store.assignmentTemplateStore',
     xtype: 'assignmentTemplateStore',
-    storeId: "assignmentTemplateStore",
+    storeId: 'assignmentTemplateStore',
     proxyUrl: CONFIG.restRoot + '/camel/rest/assignment-templates'
 });

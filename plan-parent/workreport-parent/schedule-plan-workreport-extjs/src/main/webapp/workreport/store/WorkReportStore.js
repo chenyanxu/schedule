@@ -9,6 +9,6 @@ Ext.define('kalix.plan.workreport.store.WorkReportStore', {
     model: 'kalix.plan.workreport.model.WorkReportModel',
     alias: 'store.workreportStore',
     xtype: 'workreportStore',
-    storeId: "workreportStore",
+    storeId: 'workreportStore',
     proxyUrl: CONFIG.restRoot + '/camel/rest/workreports'
 });

@@ -17,7 +17,7 @@ Ext.define('kalix.schedule.template.view.AssignmentTemplateWindow', {
     controller: {
         type: 'baseWindowController'
     },
-    xtype: "assignmentTemplateWindow",
+    xtype: 'assignmentTemplateWindow',
     width: 800,
     //todo 在此修改表单
     items: [
@@ -96,20 +96,20 @@ Ext.define('kalix.schedule.template.view.AssignmentTemplateWindow', {
                     listeners: {
                         'change':function(e,t,options) {
                             if(t=='0'){
-                                Ext.getCmp("assignmentTemplateWindow_sourceId").show();
-                                Ext.getCmp("assignmentTemplateWindow_sourceId").store.proxy.url = CONFIG.restRoot + '/camel/rest/departmentplancomboboxs';
-                                Ext.getCmp("assignmentTemplateWindow_sourceId").value="";
-                                Ext.getCmp("assignmentTemplateWindow_sourceId").store.load();
+                                Ext.getCmp('assignmentTemplateWindow_sourceId').show();
+                                Ext.getCmp('assignmentTemplateWindow_sourceId').store.proxy.url = CONFIG.restRoot + '/camel/rest/departmentplancomboboxs';
+                                Ext.getCmp('assignmentTemplateWindow_sourceId').value='';
+                                Ext.getCmp('assignmentTemplateWindow_sourceId').store.load();
                             }
                             else if(t=='1'){
-                                Ext.getCmp("assignmentTemplateWindow_sourceId").store.proxy.url = CONFIG.restRoot + '/camel/rest/assignmentcomboboxs';
-                                Ext.getCmp("assignmentTemplateWindow_sourceId").store.load();
-                                Ext.getCmp("assignmentTemplateWindow_sourceId").value="";
-                                Ext.getCmp("assignmentTemplateWindow_sourceId").show();
+                                Ext.getCmp('assignmentTemplateWindow_sourceId').store.proxy.url = CONFIG.restRoot + '/camel/rest/assignmentcomboboxs';
+                                Ext.getCmp('assignmentTemplateWindow_sourceId').store.load();
+                                Ext.getCmp('assignmentTemplateWindow_sourceId').value='';
+                                Ext.getCmp('assignmentTemplateWindow_sourceId').show();
                             }
                             else{
-                                Ext.getCmp("assignmentTemplateWindow_sourceId").value="";
-                                Ext.getCmp("assignmentTemplateWindow_sourceId").hide();
+                                Ext.getCmp('assignmentTemplateWindow_sourceId').value='';
+                                Ext.getCmp('assignmentTemplateWindow_sourceId').hide();
                             }
                         }
                     }

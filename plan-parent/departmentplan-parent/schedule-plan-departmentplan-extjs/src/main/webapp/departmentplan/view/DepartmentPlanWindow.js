@@ -16,7 +16,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
     controller: {
         type: 'departmentPlanWindowController'
     },
-    xtype: "departmentplanWindow",
+    xtype: 'departmentplanWindow',
     width: 930,
     //todo 在此修改表单
     items: [
@@ -113,7 +113,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,
@@ -152,7 +152,7 @@ Ext.define('kalix.plan.departmentplan.view.DepartmentPlanWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,

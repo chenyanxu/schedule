@@ -26,7 +26,7 @@ Ext.define('kalix.task.assignment.view.ProgressGrid', {
         items: [
             {
                 xtype: 'rownumberer',
-                text: "行号",
+                text: '行号',
                 width: 50,
                 flex: 0,
                 align: 'center',

@@ -6,11 +6,11 @@ Ext.define('kalix.plan.workreport.store.PlanStore', {
     extend: 'kalix.store.BaseStore',
     alias: 'store.planStore',
     xtype: 'planStore',
-    storeId: "planStore",
+    storeId: 'planStore',
     fields: ['name', 'value'],
     data : [
-        {"name": "自定义", "value": "0"},
-        {"name": "个人计划", "value": "1"},
-        {"name": "部门计划", "value": "2"}
+        {'name': '自定义', 'value': '0'},
+        {'name': '个人计划', 'value': '1'},
+        {'name': '部门计划', 'value': '2'}
     ]
 });

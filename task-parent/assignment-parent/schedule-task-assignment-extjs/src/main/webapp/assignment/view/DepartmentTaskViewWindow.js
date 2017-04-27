@@ -13,7 +13,7 @@ Ext.define('kalix.task.assignment.view.DepartmentTaskViewWindow', {
         'kalix.admin.user.component.UserTagField'
     ],
     alias: 'widget.departmentTaskViewWindow',
-    xtype: "departmentTaskViewWindow",
+    xtype: 'departmentTaskViewWindow',
     controller: {
         type: 'assignmentWindowController'
     },
@@ -102,11 +102,11 @@ Ext.define('kalix.task.assignment.view.DepartmentTaskViewWindow', {
                         render: function (target) {
                             var sourceType = this.lookupViewModel().get('rec').get('sourceType');
 
-                            if (sourceType == "0") {
+                            if (sourceType == '0') {
                                 target.store.proxy.url = CONFIG.restRoot + '/camel/rest/departmentplans';
                                 target.store.load();
                             }
-                            else if (sourceType == "1") {
+                            else if (sourceType == '1') {
                                 target.store.proxy.url = CONFIG.restRoot + '/camel/rest/assignments';
                                 target.store.load();
                             }

@@ -14,7 +14,7 @@ Ext.define('kalix.schedule.template.view.TemplateWindow', {
     controller: {
         type: 'baseWindowController'
     },
-    xtype: "templateWindow",
+    xtype: 'templateWindow',
     width: 400,
     //todo 在此修改表单
     items: [

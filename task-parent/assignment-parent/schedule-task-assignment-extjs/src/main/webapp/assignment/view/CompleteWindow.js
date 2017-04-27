@@ -10,7 +10,7 @@ Ext.define('kalix.task.assignment.view.CompleteWindow', {
         'kalix.task.assignment.controller.CompleteWindowController'
     ],
     alias: 'widget.completeWindow',
-    xtype: "completeWindow",
+    xtype: 'completeWindow',
     controller: {
         type: 'completeWindowController'
     },

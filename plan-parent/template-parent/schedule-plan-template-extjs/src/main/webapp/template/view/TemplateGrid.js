@@ -28,7 +28,7 @@ Ext.define('kalix.schedule.template.view.TemplateGrid', {
         items: [
             {
                 xtype: 'rownumberer',
-                text: "行号",
+                text: '行号',
                 width: 50,
                 flex: 0,
                 align: 'center',
@@ -59,19 +59,19 @@ Ext.define('kalix.schedule.template.view.TemplateGrid', {
                 //todo change permission
                 verifyItems: [
                     {
-                        iconCls: "iconfont icon-view-column",
+                        iconCls: 'iconfont icon-view-column',
                         permission: 'view',
                         tooltip: '查看',
                         handler: 'onView'
                     },
                     {
-                        iconCls: "iconfont icon-edit-column",
+                        iconCls: 'iconfont icon-edit-column',
                         permission: 'edit',
                         tooltip: '编辑',
                         handler: 'onEdit'
                     },
                     {
-                        iconCls: "iconfont icon-delete",
+                        iconCls: 'iconfont icon-delete',
                         permission: 'delete',
                         tooltip: '删除',
                         handler: 'onDelete'

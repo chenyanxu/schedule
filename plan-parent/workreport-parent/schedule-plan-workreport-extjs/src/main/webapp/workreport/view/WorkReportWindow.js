@@ -17,7 +17,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
     controller: {
         type: 'workReportController'
     },
-    xtype: "workreportWindow",
+    xtype: 'workreportWindow',
     width: 930,
     //todo 在此修改表单
     items: [
@@ -33,7 +33,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,
@@ -56,7 +56,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,
@@ -130,7 +130,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                                     model.set('beginDate', beginDate);
                                     model.set('endDate', endDate);
                                     model.set('title', title);
-                                    model.modified = {};
+                                    //model.modified = {};
                                     model.dirty = false;
                                 }
                             }
@@ -140,7 +140,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,
@@ -191,7 +191,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                                     model.set('beginDate', beginDate);
                                     model.set('endDate', endDate);
                                     model.set('title', title);
-                                    model.modified = {};
+                                    //model.modified = {};
                                     model.dirty = false;
                                 }
                             }
@@ -215,7 +215,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,
@@ -225,7 +225,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                             beforeLabelTextTpl: '<span class="field-required" data-qtip="必填选项">*</span>',
                             xtype: 'combobox',
                             id: 'workReportPlanType',
-                            store: Ext.create("kalix.plan.workreport.store.PlanStore"),
+                            store: Ext.create('kalix.plan.workreport.store.PlanStore'),
                             queryMode: 'local',
                             displayField: 'name',
                             valueField: 'value',
@@ -249,12 +249,12 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                                     x.setVisible(false);
 
                                     if (newValue == 1) {
-                                        x.setStore(Ext.create("kalix.plan.personalplan.store.PersonalPlanStore"));
+                                        x.setStore(Ext.create('kalix.plan.personalplan.store.PersonalPlanStore'));
                                         x.store.load();
                                         x.setVisible(true);
                                     }
                                     else if (newValue == 2) {
-                                        x.setStore(Ext.create("kalix.plan.departmentplan.store.DepartmentPlanStore"));
+                                        x.setStore(Ext.create('kalix.plan.departmentplan.store.DepartmentPlanStore'));
                                         x.store.load();
                                         x.setVisible(true);
                                     }
@@ -281,7 +281,7 @@ Ext.define('kalix.plan.workreport.view.WorkReportWindow', {
                 {
                     xtype: 'panel',
                     layout: {
-                        type: 'hbox',
+                        type: 'hbox'
                     },
                     width: '100%',
                     border: false,

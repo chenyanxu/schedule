@@ -30,7 +30,7 @@ Ext.define('kalix.schedule.template.view.AssignmentTemplateGrid', {
         items: [
             {
                 xtype: 'rownumberer',
-                text: "行号",
+                text: '行号',
                 width: 50,
                 flex: 0,
                 align: 'center',
@@ -115,7 +115,7 @@ Ext.define('kalix.schedule.template.view.AssignmentTemplateGrid', {
                     {
                         tooltip: '查看',
                         permission: 'view',
-                        iconCls: "iconfont icon-view-column",
+                        iconCls: 'iconfont icon-view-column',
                         handler: 'onView'
                     },
                     {

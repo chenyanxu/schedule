@@ -27,7 +27,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchGrid', {
     //todo 在此修改grid显示列
     columns: [
         {
-            xtype: 'rownumberer',
+            xtype: 'rownumberer'
         },
         {
             text: '编号',
@@ -103,7 +103,7 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchGrid', {
             //todo change permission
             verifyItems: [
                 {
-                    iconCls: "iconfont icon-view-column",
+                    iconCls: 'iconfont icon-view-column',
                     permission: 'view',
                     tooltip: '查看',
                     handler: 'onView'
@@ -127,5 +127,5 @@ Ext.define('kalix.plan.personalplan.view.PersonalPlanSearchGrid', {
                   return '<span style="color: ' + color + ';">' + Ext.util.Format.usMoney(v) + '</span>';
               }
           })
-    }],
+    }]
 });

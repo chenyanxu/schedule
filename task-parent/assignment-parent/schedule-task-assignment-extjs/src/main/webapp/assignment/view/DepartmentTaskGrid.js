@@ -93,7 +93,7 @@ Ext.define('kalix.task.assignment.view.DepartmentTaskGrid', {
                 {
                     tooltip: '查看',
                     permission: 'view',
-                    iconCls: "iconfont icon-view-column",
+                    iconCls: 'iconfont icon-view-column',
                     handler: 'onView'
                 }
             ]

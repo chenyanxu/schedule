@@ -15,8 +15,8 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
      */
     //onAdd: function (target) {
     //    var scope = this;
-    //    Ext.Msg.confirm("警告", "是否从模板新建任务？", function (button) {
-    //        if (button == "yes") {
+    //    Ext.Msg.confirm('警告', '是否从模板新建任务？', function (button) {
+    //        if (button == 'yes') {
     //            var view = Ext.create('kalix.task.assignment.view.TemplateWindow');
     //            var vm = view.lookupViewModel();
     //            vm.set('rec', Ext.create('kalix.task.assignment.model.TemplateModel'));
@@ -43,8 +43,8 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
         var model = grid.getStore().getData().items[rowIndex];
         var store = grid.getStore();
 
-        Ext.Msg.confirm("警告", "确定撤销本任务吗？", function (button) {
-            if (button == "yes") {
+        Ext.Msg.confirm('警告', '确定撤销本任务吗？', function (button) {
+            if (button == 'yes') {
                 store.proxy.extraParams = {};
                 // 设置任务状态为取消
                 model.set('state',6);
@@ -75,8 +75,8 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
         var model = grid.getStore().getData().items[rowIndex];
         var store = grid.getStore();
 
-        Ext.Msg.confirm("警告", "确定使本任务失败吗？", function (button) {
-            if (button == "yes") {
+        Ext.Msg.confirm('警告', '确定使本任务失败吗？', function (button) {
+            if (button == 'yes') {
                 store.proxy.extraParams = {};
                 // 设置任务状态为失败
                 model.set('state',5);
@@ -144,8 +144,8 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
         var model = grid.getStore().getData().items[rowIndex];
         var store = grid.getStore();
 
-        Ext.Msg.confirm("警告", "确定督办本任务吗？", function (button) {
-            if (button == "yes") {
+        Ext.Msg.confirm('警告', '确定督办本任务吗？', function (button) {
+            if (button == 'yes') {
                 store.proxy.extraParams = {};
                 // 设置任务事件类型为督办
                 model.set('eventType',11);
@@ -173,8 +173,8 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
     //任务延迟
     onDelay: function (grid, rowIndex, colIndex) {
         var scope = this;
-        Ext.Msg.confirm("警告", "确定延长本任务的完成时间吗？", function (button) {
-            if (button == "yes") {
+        Ext.Msg.confirm('警告', '确定延长本任务的完成时间吗？', function (button) {
+            if (button == 'yes') {
                 var selModel = grid.getStore().getData().items[rowIndex];
                 var view = Ext.create('kalix.task.assignment.view.DelayWindow');
                 var vm = view.lookupViewModel();
@@ -194,8 +194,8 @@ Ext.define('kalix.task.assignment.controller.AssignmentGridController', {
     onComplete: function (grid, rowIndex, colIndex) {
         var model = grid.getStore().getData().items[rowIndex];
         var store = grid.getStore();
-        Ext.Msg.confirm("警告", "确定要申请完成本任务吗？", function (button) {
-            if (button == "yes") {
+        Ext.Msg.confirm('警告', '确定要申请完成本任务吗？', function (button) {
+            if (button == 'yes') {
                 store.proxy.extraParams = {};
                 // 设置任务状态为申请完成
                 model.set('state',3);

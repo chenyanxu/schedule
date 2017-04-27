@@ -13,7 +13,7 @@ Ext.define('kalix.schedule.template.view.TemplateAddWindow', {
     controller: {
         type: 'templateAddWindowController'
     },
-    xtype: "templateAddWindow",
+    xtype: 'templateAddWindow',
     width: 400,
     //todo 在此修改表单
     items: [

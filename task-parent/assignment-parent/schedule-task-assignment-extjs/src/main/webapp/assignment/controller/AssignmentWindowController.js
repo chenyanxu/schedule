@@ -11,19 +11,19 @@ Ext.define('kalix.task.assignment.controller.AssignmentWindowController', {
         var viewModel = this.getViewModel();
         var model = viewModel.get('rec');
         if(model.get('sourceType') != 2){
-            if(model.get('sourceId') == null || model.get("sourceId") == "") {
-                Ext.Msg.alert(CONFIG.ALTER_TITLE_INFO, "来源于不能为空");
+            if(model.get('sourceId') == null || model.get('sourceId') == '') {
+                Ext.Msg.alert(CONFIG.ALTER_TITLE_INFO, '来源于不能为空');
                 return;
             }
         }else{
             model.set('sourceId',0);
         }
         if(model.get('beginDate') > model.get('endDate')){
-            Ext.Msg.alert(CONFIG.ALTER_TITLE_INFO, "结束日期不能小于开始日期");
+            Ext.Msg.alert(CONFIG.ALTER_TITLE_INFO, '结束日期不能小于开始日期');
             return;
         }
         if(model.get('workHours') == 0){
-            Ext.Msg.alert(CONFIG.ALTER_TITLE_INFO, "评估工时不能为0");
+            Ext.Msg.alert(CONFIG.ALTER_TITLE_INFO, '评估工时不能为0');
             return;
         }
 
@@ -63,8 +63,8 @@ Ext.define('kalix.task.assignment.controller.AssignmentWindowController', {
         var view = this.getView();
         var model = viewModel.get('rec');
         var store = viewModel.get('store');
-        Ext.Msg.confirm("警告", "确定要拒绝本任务吗？", function (button) {
-            if (button == "yes") {
+        Ext.Msg.confirm('警告', '确定要拒绝本任务吗？', function (button) {
+            if (button == 'yes') {
                 store.proxy.extraParams = {};
                 // 设置任务状态为拒绝
                 model.set('state', 1);

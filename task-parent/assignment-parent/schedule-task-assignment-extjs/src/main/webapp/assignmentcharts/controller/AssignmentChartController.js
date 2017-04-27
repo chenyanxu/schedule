@@ -18,7 +18,7 @@ Ext.define('kalix.task.assignmentcharts.controller.AssignmentChartController', {
 
     getRandomColor:function(){
         //颜色字符串
-        var colorStr="";
+        var colorStr='';
         //字符串的每一字符的范围
         var randomArr=['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
         //产生一个六位的字符串

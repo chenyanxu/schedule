@@ -15,8 +15,8 @@ Ext.define('kalix.plan.departmentplan.controller.DepartmentPlanGridController', 
      */
     onAdd: function (target) {
         var scope = this;
-        Ext.Msg.confirm("警告", "是否从模板新建计划？", function (button) {
-            if (button == "yes") {
+        Ext.Msg.confirm('警告', '是否从模板新建计划？', function (button) {
+            if (button == 'yes') {
                 var view = Ext.create('kalix.task.assignment.view.TemplateWindow');
                 var vm = view.lookupViewModel();
                 vm.set('rec', Ext.create('kalix.task.assignment.model.TemplateModel'));

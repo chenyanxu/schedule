@@ -13,7 +13,7 @@ Ext.define('kalix.task.assignment.view.DelayWindow', {
     controller: {
         type: 'baseWindowController'
     },
-    xtype: "delayWindow",
+    xtype: 'delayWindow',
     width: 400,
     //todo 在此修改表单
     items: [
