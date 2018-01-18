@@ -154,7 +154,7 @@ public class AssignmentStatisticsBeanServiceImpl extends ShiroGenericBizServiceI
 
         // 传到前台的id
         for (int i = 0; i < assignmentList.size(); i++) {
-            assignmentList.get(i).setId(i);
+            assignmentList.get(i).setId((long)i);
         }
         jsonData.setTotalCount((long) assignmentList.size());
         jsonData.setData(assignmentList);
@@ -248,7 +248,7 @@ public class AssignmentStatisticsBeanServiceImpl extends ShiroGenericBizServiceI
 
         // 传到前台的id
         for (int i = 0; i < chartList.size(); i++) {
-            chartList.get(i).setId(i);
+            chartList.get(i).setId((long)i);
         }
         jsonData.setTotalCount((long) chartList.size());
         jsonData.setData(chartList);
@@ -315,7 +315,7 @@ public class AssignmentStatisticsBeanServiceImpl extends ShiroGenericBizServiceI
 
         // 传到前台的id
         for (int i = 0; i < chartList.size(); i++) {
-            chartList.get(i).setId(i);
+            chartList.get(i).setId((long)i);
         }
         jsonData.setTotalCount((long) chartList.size());
         jsonData.setData(chartList);

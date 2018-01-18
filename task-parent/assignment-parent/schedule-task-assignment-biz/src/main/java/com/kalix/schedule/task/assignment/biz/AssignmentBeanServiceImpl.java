@@ -243,7 +243,9 @@ public class AssignmentBeanServiceImpl extends ShiroGenericBizServiceImpl<IAssig
             String strNewState = scheduleDictBeanService.getByTypeAndValue("任务状态", entity.getState()).getLabel();
             String strOldState = scheduleDictBeanService.getByTypeAndValue("任务状态", oldEntity.getState()).getLabel();
 
-            statemachineService.processFSM(this.getClass().getClassLoader().getResourceAsStream("state-machine.xml"), strOldState, strNewState);
+            //statemachineService.processFSM(this.getClass().getClassLoader().getResourceAsStream("state-machine.xml"), strOldState, strNewState);
+            statemachineService.initFSM(this.getClass().getClassLoader().getResourceAsStream("state-machine.xml"), strOldState);
+            statemachineService.processFSM(strNewState);
         }
 
         return super.updateEntity(entity);
